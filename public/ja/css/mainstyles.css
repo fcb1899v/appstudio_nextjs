@@ -1,0 +1,165 @@
+body{
+  margin: 0;
+  font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  font-size: 11px;
+  color: white;
+  background-color: #ff8800;
+}
+
+@media (min-width: 540px) {
+  header h1{
+    font-size: 28px;
+  }
+}
+
+.sp-menu #open,
+.overlay #close {
+  position: absolute;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.sp-menu #open{
+  margin-top: -20px;
+}
+
+.overlay #close{
+  margin-top: -10px;
+}
+
+.sp-menu #open.hide {
+  display: none;
+}
+
+.imgmenu,
+.imgclose {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 320px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-top: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 500ms 0s ease;
+}
+
+.overlay li{
+  list-style-type: none;
+  margin-top: 24px;
+}
+
+.overlay a{
+  font-size: 16px;
+  color: white;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.top {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.top a {
+  margin-top: 30px;
+  color: black;
+}
+
+.transitimage,
+.phonicsimage{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 70%;
+  vertical-align: bottom;
+}
+
+.transitimage {
+  padding-top: 30px; 
+  background-color: #03DAC5;
+}
+
+.mytransitmakers,
+.studyphonics {
+  margin-top: 30px;
+}
+
+.badgecontainer a{
+  color: white;
+}
+
+.googleplay-badge{
+  width: 175px; 
+}
+
+.appstore-badge{
+  width: 135px; 
+  margin: 11px 0px;
+  padding-left: 12px;
+}
+
+footer {
+  margin-top: 20px;
+  background-color: black;
+  padding: 20px 0px 20px 0px;
+}
+
+footer a {
+  color: white;
+  font-size: 20px;
+}
+
+.policytop {
+  background-color: white;
+  color: black;
+  padding: 25px 0px 20px 0px;
+}
+
+.policytop h1{
+  font-size: 22px;
+}
+
+.policylist{
+  text-align: left; 
+  width: auto;
+  margin: 0px 25px 15px 25px; 
+}
+
+.policylist a{
+  color: black;
+  margin-left: 10px;
+}
+
+.policytop h2{
+  font-size: 18px;
+}
+
+.policytop h2{
+  font-size: 20px;
+  padding-top: 15px;
+}
