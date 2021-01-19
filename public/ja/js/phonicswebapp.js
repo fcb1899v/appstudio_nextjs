@@ -342,27 +342,38 @@
     return this;
   }
 
+  function speechWord(text) {
+    if (!'SpeechSynthesisUtterance' in window) {
+      alert('Speech synthesis(音声合成) APIには未対応です.');
+      console.log('Speech synthesis(音声合成) APIには未対応です.');
+      return;
+    }  
+    var msg = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();  
+    msg.text = text;
+    msg.voice = voices[0];
+    msg.volume = 1;
+    msg.lang = "en";
+    speechSynthesis.speak(msg);
+  }
+
   image1.addEventListener('click', () => {
-    var word1 = word11.textContent + word12.textContent + word13.textContent 
-    var msg1 = new SpeechSynthesisUtterance(word1);
-    window.speechSynthesis.speak(msg1);
+    var text = word11.textContent + word12.textContent + word13.textContent 
+    speechWord(text);
   })  
 
   image2.addEventListener('click', () => {
-    var word2 = word21.textContent + word22.textContent + word23.textContent 
-    var msg2 = new SpeechSynthesisUtterance(word2);
-    window.speechSynthesis.speak(msg2);
+    var text = word21.textContent + word22.textContent + word23.textContent 
+    speechWord(text);
   })  
 
   soundbutton1.addEventListener('click', () => {
-    var word1 = word11.textContent + word12.textContent + word13.textContent 
-    var msg1 = new SpeechSynthesisUtterance(word1);
-    window.speechSynthesis.speak(msg1);
+    var text = word11.textContent + word12.textContent + word13.textContent 
+    speechWord(text);
   })  
 
   soundbutton2.addEventListener('click', () => {
-    var word2 = word21.textContent + word22.textContent + word23.textContent 
-    var msg2 = new SpeechSynthesisUtterance(word2);
-    window.speechSynthesis.speak(msg2);
-  })  
+    var text = word21.textContent + word22.textContent + word23.textContent 
+    speechWord(text);
+  }) 
 }
