@@ -1,0 +1,248 @@
+body{
+  margin: 0;
+  font-family: "Helvetica Neue",
+  Arial,
+  "Hiragino Kaku Gothic ProN",
+  "Hiragino Sans",
+  Meiryo,
+  sans-serif;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+.googleplay-badge:hover,
+.appstore-badge:hover,
+.overlay a:hover,
+.policylist a:hover {
+  opacity: 0.6;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  font-size: 13px;
+  background-color: #FF69B4;
+  color: white;
+}
+
+.sp-menu #open,
+.overlay #close {
+  position: absolute;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.sp-menu #open{
+  margin-top: -20px;
+}
+
+.overlay #close{
+  margin-top: -10px;
+}
+
+.sp-menu #open.hide {
+  display: none;
+}
+
+.imgmenu,
+.imgclose {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 320px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-top: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 500ms 0s ease;
+}
+
+.overlay li{
+  list-style-type: none;
+  margin-top: 24px;
+}
+
+.overlay a{
+  font-size: 16px;
+  color: white;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.word {
+  font-size:22px;
+}
+
+#phonicschar {
+  font-size: 125px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#word11, #word12, #word13,
+#word21, #word22, #word23{
+  display: inline-block;
+  letter-spacing: normal;
+}
+
+.container1, .container2, 
+.container3, .container4{
+  display: inline-block;
+  width: 45%;
+}
+
+.container2{
+  vertical-align: middle;
+  height: 45%;
+}
+
+.word1, .word2{
+  letter-spacing: -.4em;
+  padding: 0;
+  margin: 0;
+}
+
+#word12, #word22{
+  color: #FF69B4;
+  text-decoration: underline;
+}
+
+.imagebox{
+  padding: 0;
+}
+
+.word img{
+  object-fit: cover;
+  width: auto;
+  height: auto;
+  max-width: 80%;
+  max-height: 80%;
+} 
+
+/* 横幅が500px以上の場合に適用するスタイル */
+@media (min-width: 300px) {
+  .word img {
+    max-width: 150px;
+    max-height: 150px;  
+  }
+}
+
+/* 横幅が500px以上の場合に適用するスタイル */
+@media (min-width: 500px) {
+  .word img {
+    max-width: 200px;
+    max-height: 200px;  
+  }
+}
+
+#soundbutton1, #soundbutton2 {
+  width: 90%;
+  height: 40px;
+  font-size:24px;
+  color:#FFFFFF;
+  text-align:center;
+  background:#03A9F4;
+  border-color: #03A9F4;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#soundimage1, #soundimage2 {  
+  height: 100%;
+  filter: invert();  
+}
+
+#returnimage, #shuffleimage,
+#backimage, #nextimage {  
+  height: 90%;
+  vertical-align: middle;
+  filter: invert();  
+}
+
+#returnbutton, #shufflebutton,
+#backbutton, #nextbutton {
+  width: 40%;
+  height: 40px;
+  font-size:24px;
+  color:#FFFFFF;
+  text-align:center;
+  background:#FF69B4;
+  border-color: #FF69B4;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+
+#returnbutton, #backbutton{
+  margin-right: 15px;
+}
+
+.selectchar {
+  text-align: left !important;
+}
+
+.gridphonics {
+  font-size: 20px;
+  font-weight: bold;
+  width: 100px;
+  height: 100px;
+  background-color: #03A9F4;
+  color: white;
+  margin: 2px 2px 2px 2px;
+  display: inline-block;
+  text-align: center;
+  line-height: 100px;
+  cursor: pointer;
+  transition: 0.8s;
+}
+
+/* 横幅が500px以下の場合に適用するスタイル */
+@media (max-width: 500px) {
+  .gridphonics {
+    width: 19%;
+    height: 80px;
+    line-height: 80px;
+  }
+}
+
+
+
+footer {
+  background-color: black;
+  margin-top: 20px;
+  padding: 20px 0px 20px 0px;
+}
+
+.snsbutton li{
+  list-style: none;
+  display: inline-block;
+  padding: 0 5px 0 5px;
+}
+
+.twitter{
+  margin-left: -50px;
+  margin-right: -3px;
+  width: 90px;
+}
+
+.fb{
+  line-height: 0.65;
+}
+
+.line{
+  width:90px;
+}
