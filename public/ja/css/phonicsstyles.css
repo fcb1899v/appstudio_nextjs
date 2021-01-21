@@ -19,12 +19,15 @@ body{
 }
 
 header {
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 70px;
   font-size: 13px;
   background-color: #FF69B4;
+  left: 0;
+  right: 0;
 }
 
 .sp-menu #open,
@@ -83,7 +86,14 @@ header {
 
 .top {
   font-size: 18px;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
+}
+
+.topimage{
+  padding-top: 20px;
+  width: 50%;
+  vertical-align: bottom;
+  margin-top: 60px;
 }
 
 .badgecontainer a{
@@ -106,17 +116,11 @@ header {
   color: white;
 }
 
-.topimage{
-  padding-top: 20px;
-  width: 50%;
-  vertical-align: bottom;
-}
-
 .features{
   font-size: 16px;
   background-color: white;
   color: #FF69B4;
-  padding: 35px 0px 10px 0px;
+  padding: 35px 0px 25px 0px;
 }
 
 .features h1{
@@ -133,10 +137,10 @@ header {
 }
 
 .container li{
-  font-size: 18px;
+  font-size: 16px;
   list-style: none ;
   display: inline-block;
-  margin: 0px 15px 10px 15px;
+  margin: 0px 10px 10px 10px;
 }
 
 .screenshot1{
