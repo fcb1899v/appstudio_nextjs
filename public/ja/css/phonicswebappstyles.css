@@ -19,11 +19,14 @@ body{
 }
 
 header {
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 70px;
   font-size: 13px;
+  left: 0;
+  right: 0;
   background-color: #FF69B4;
   color: white;
 }
@@ -89,7 +92,7 @@ header {
 #phonicschar {
   font-size: 125px;
   font-weight: bold;
-  margin-top: 20px;
+  padding-top: 90px;
   margin-bottom: 20px;
 }
 

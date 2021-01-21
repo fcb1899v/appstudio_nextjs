@@ -25,9 +25,9 @@ header {
   align-items: center;
   height: 70px;
   font-size: 13px;
-  background-color: #FF69B4;
   left: 0;
   right: 0;
+  background-color: #FF69B4;
 }
 
 .sp-menu #open,
@@ -93,7 +93,7 @@ header {
   padding-top: 20px;
   width: 50%;
   vertical-align: bottom;
-  margin-top: 60px;
+  margin-top: 70px;
 }
 
 .badgecontainer a{
