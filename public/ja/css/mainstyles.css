@@ -8,7 +8,7 @@ body{
     sans-serif;
   text-align: center;
   background-color: white;
-  color: black;
+  color: #2d2926;
 }
 
 header {
@@ -18,7 +18,7 @@ header {
   height: 70px;
   font-size: 11px;
   color: white;
-  background-color: #ff8800;
+  background-color: #fe5000;
 }
 
 @media (min-width: 540px) {
@@ -88,7 +88,8 @@ header {
 
 .top a {
   margin-top: 30px;
-  color: black;
+  color: #2d2926;
+  ;
 }
 
 .transitimage,
@@ -123,10 +124,14 @@ header {
   padding-left: 12px;
 }
 
+.trywebapp {
+  margin-bottom: 40px;
+}
+
 footer {
   margin-top: 20px;
-  background-color: black;
-  padding: 20px 0px 20px 0px;
+  background-color: #2d2926;
+  padding: 10px 0px 10px 0px;
 }
 
 footer a {
@@ -136,7 +141,7 @@ footer a {
 
 .policytop {
   background-color: white;
-  color: black;
+  color: #2d2926;
   padding: 25px 0px 20px 0px;
 }
 
@@ -151,7 +156,7 @@ footer a {
 }
 
 .policylist a{
-  color: black;
+  color: #2d2926;
   margin-left: 10px;
 }
 
