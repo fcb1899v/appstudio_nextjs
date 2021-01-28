@@ -1,0 +1,197 @@
+body{
+  margin: 0;
+  font-family: "Helvetica Neue",
+  Arial,
+  "Hiragino Kaku Gothic ProN",
+  "Hiragino Sans",
+  Meiryo,
+  sans-serif;
+  text-align: center;
+  background-color: #0077ff;
+  color: white;
+}
+
+.googleplay-badge:hover,
+.appstore-badge:hover,
+.overlay a:hover,
+.policylist a:hover {
+  opacity: 0.6;
+}
+
+header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  font-size: 10px;
+  left: 0;
+  right: 0;
+  background-color: #ffa500;
+}
+
+.sp-menu #open,
+.overlay #close {
+  position: absolute;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.sp-menu #open{
+  margin-top: -20px;
+}
+
+.overlay #close{
+  margin-top: -10px;
+}
+
+.sp-menu #open.hide {
+  display: none;
+}
+
+.imgmenu,
+.imgclose {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 320px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-top: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 500ms 0s ease;
+}
+
+.overlay li{
+  list-style-type: none;
+  margin-top: 24px;
+}
+
+.overlay a{
+  font-size: 16px;
+  color: white;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.top {
+  font-size: 18px;
+  margin-bottom: 35px;
+}
+
+.topimage{
+  width: 65%;
+  vertical-align: bottom;
+  margin-top: 80px;
+}
+
+.badgecontainer a{
+  color: #0077ff;
+}
+
+.googleplay-badge{
+  width: 175px;
+  color: #0077ff; 
+}
+
+.appstore-badge{
+  width: 135px; 
+  margin:11px 0px;
+  padding-left: 12px;
+}
+
+.trywebapp a {
+  font-size: 20px;
+  color: white;
+}
+
+.features{
+  font-size: 16px;
+  background-color: white;
+  color: #ffa500;
+  padding: 35px 0px 25px 0px;
+}
+
+.features h1{
+  font-size: 26px;
+  margin: 0px 0px 20px 0px;
+}
+
+.features p{
+  font-size: 18px;
+}
+
+.container {
+  margin: 0px 70px 10px 70px;
+}
+
+.container li{
+  font-size: 16px;
+  list-style: none ;
+  display: inline-block;
+  margin: 0px 10px 10px 10px;
+}
+
+.screenshot1{
+  width: 100%;
+  margin: 10px 0px 10px 0px;
+}
+
+.downloadnow {
+  font-size: 18px;
+  padding: 15px 0px 30px 0px;
+}
+
+@media (max-width: 400px) {
+  header {
+    font-size:7px;
+  } 
+  .features p{
+    font-size:16px;
+  }  
+}
+
+@media (max-width: 320px) {
+  header {
+    font-size:6px;
+  } 
+  .features p{
+    font-size:14px;
+  }  
+}
+
+
+footer {
+  background-color: #2d2926;
+  padding: 20px 0px 20px 0px;
+}
+
+.snsbutton li{
+  list-style: none;
+  display: inline-block;
+  padding: 0 5px 0 5px;
+}
+
+.twitter{
+  margin-left: -50px;
+  margin-right: -3px;
+  width: 90px;
+}
+
+.fb{
+  line-height: 0.65;
+}
+
+.line{
+  width:90px;
+}

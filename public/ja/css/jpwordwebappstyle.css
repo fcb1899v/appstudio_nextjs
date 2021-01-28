@@ -1,0 +1,285 @@
+body{
+  margin: 0;
+  font-family: "Helvetica Neue",
+  Arial,
+  "Hiragino Kaku Gothic ProN",
+  "Hiragino Sans",
+  Meiryo,
+  sans-serif;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+.googleplay-badge:hover,
+.appstore-badge:hover,
+.overlay a:hover,
+.policylist a:hover {
+  opacity: 0.6;
+}
+
+header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  font-size: 10px;
+  left: 0;
+  right: 0;
+  background-color: #ffa500;
+  color: white;
+}
+
+.sp-menu #open,
+.overlay #close {
+  position: absolute;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.sp-menu #open{
+  margin-top: -20px;
+}
+
+.overlay #close{
+  margin-top: -10px;
+}
+
+.sp-menu #open.hide {
+  display: none;
+}
+
+.imgmenu,
+.imgclose {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 320px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-top: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 500ms 0s ease;
+}
+
+.overlay li{
+  list-style-type: none;
+  margin-top: 24px;
+}
+
+.overlay a{
+  font-size: 16px;
+  color: white;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.word {
+  font-size:20px;
+}
+
+#hiraganachar,
+#katakanachar {
+  font-size: 90px;
+  font-weight: bold;
+  padding-top: 90px;
+  margin-bottom: 20px;
+}
+
+.container0,
+.container1, .container2, 
+.container3, .container4{
+  display: inline-block;
+  width: 45%;
+}
+
+#word11, #word12, #word13,
+#word21, #word22, #word23{
+  display: inline-block;
+  letter-spacing: normal;
+  margin-bottom: 10px;
+}
+
+.word1, .word2{
+  letter-spacing: -.4em;
+  padding: 0;
+  margin: 0;
+}
+
+#word12, #word22{
+  color: #ffa500;
+  text-decoration: underline;
+}
+
+.imagebox {
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.imagebox:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.container2 img{
+  object-fit: contain;
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+} 
+
+/* 横幅が500px以上の場合に適用するスタイル */
+@media (min-width: 500px) {
+  .imagebox {
+    width: 250px;
+  }
+  .container2 img {
+    max-width: 250px;
+    max-height: 250px;  
+  }
+}
+
+#soundbutton1, #soundbutton2 {
+  width: 90%;
+  height: 40px;
+  font-size:24px;
+  color:#FFFFFF;
+  text-align:center;
+  background:#0077ff;
+  border-color: #0077ff;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+#soundimage1, #soundimage2 {  
+  height: 100%;
+  filter: invert();  
+}
+
+#returnimage, #shuffleimage,
+#backimage, #nextimage {  
+  height: 90%;
+  vertical-align: middle;
+  filter: invert();  
+}
+
+#returnbutton, #shufflebutton,
+#backbutton, #nextbutton {
+  width: 40%;
+  height: 40px;
+  font-size:24px;
+  color:#FFFFFF;
+  text-align:center;
+  background:#ffa500;
+  border-color: #ffa500;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+
+#returnbutton, #backbutton{
+  margin-right: 15px;
+}
+
+.selectchar {
+  text-align: left !important;
+}
+
+.gridjpword {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #0077ff;
+  color: white;
+  width: 90px;
+  height: 90px;
+  margin: 2px 2px 2px 2px;
+  display: inline-block;
+  text-align: center;
+  line-height: 90px;
+  cursor: pointer;
+  transition: 0.8s;
+}
+
+/* 横幅が500px以下の場合に適用するスタイル */
+@media (max-width: 500px) {
+  header {
+    font-size:9px;
+  }  
+  .word {
+    font-size:18px;
+  }  
+  .gridjpword {
+    width: calc(18vmin);
+    height: calc(18vmin);
+    line-height: calc(18vmin);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  header {
+    font-size:7px;
+  } 
+  .word {
+    font-size:16px;
+  }  
+}
+
+@media (max-width: 320px) {
+  header {
+    font-size:6px;
+  } 
+  .word {
+    font-size:14px;
+  }  
+}
+
+footer {
+  background-color: #2d2926;
+  margin-top: 20px;
+  padding: 20px 0px 20px 0px;
+}
+
+.snsbutton li{
+  list-style: none;
+  display: inline-block;
+  padding: 0 5px 0 5px;
+}
+
+.twitter{
+  margin-left: -50px;
+  margin-right: -3px;
+  width: 90px;
+}
+
+.fb{
+  line-height: 0.65;
+}
+
+.line{
+  width:90px;
+}

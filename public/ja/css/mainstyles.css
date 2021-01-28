@@ -95,7 +95,8 @@ header {
 }
 
 .transitimage,
-.phonicsimage{
+.phonicsimage,
+.jpwordimage {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 70%;
@@ -108,8 +109,9 @@ header {
 }
 
 .mytransitmakers,
-.studyphonics {
-  margin-top: 30px;
+.studyphonics,
+.studyjpword {
+  margin-top: 50px;
 }
 
 .badgecontainer a{
@@ -127,7 +129,7 @@ header {
 }
 
 .trywebapp {
-  margin-bottom: 40px;
+  margin-bottom: 70px;
 }
 
 footer {
