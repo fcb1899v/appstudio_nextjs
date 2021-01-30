@@ -21,46 +21,42 @@
     "あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ",
     "さ", "し", "す", "せ", "そ", "た", "ち", "つ", "て", "と",
     "な", "に", "ぬ", "ね", "の", "は", "ひ", "ふ", "へ", "ほ",
-    "ま", "み", "む", "め", "も", "や", "ゆ", "よ",
-    "ら", "り", "る", "れ", "ろ", "わ", "ん",
-    "が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず", "ぜ", "ぞ",
-    "だ", "づ", "で", "ど", "ば", "び", "ぶ", "べ", "ぼ",
-    "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"
-    // ,"きゃ", "きゅ", "きょ", "しゃ", "しゅ", "しょ", "ちゃ", "ちゅ", "ちょ",
-    // "にゃ", "にゅ", "にょ", "ひゃ", "ひゅ", "ひょ", "みゃ", "みゅ", "みょ",
-    // "りゃ", "りゅ", "りょ", "ぎゃ", "ぎゅ", "ぎょ", "じゃ", "じゅ", "じょ",
-    // "びゃ", "びゅ", "びょ", "ぴゃ", "ぴゅ", "ぴょ"
+    "ま", "み", "む", "め", "も", "や", "ゆ", "よ", "ら", "り", "る", "れ", "ろ",
+    "わ", "ん", "が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず", "ぜ", "ぞ",
+    "だ", "づ", "で", "ど", "ば", "び", "ぶ", "べ", "ぼ", "ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
+    "きゃ", "きゅ", "きょ", "しゃ", "しゅ", "しょ", "ちゃ", "ちゅ", "ちょ", "ひょ", "りゅ",
+    // "にゃ", "にゅ", "にょ", "ひゃ", "ひゅ", "みゃ", "みゅ", "みょ", "りゃ", "りょ", "ぎゃ",
+    "ぎゅ", "ぎょ", "じゃ", "じゅ", "じょ", "びょ",
+    // "びゃ", "びゅ", "ぴゃ", "ぴゅ", "ぴょ",
   ];
 
   const jpworddefault0 = [
     "あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ",
     "さ", "し", "す", "せ", "そ", "た", "ち", "つ", "て", "と",
     "な", "に", "ぬ", "ね", "の", "は", "ひ", "ふ", "へ", "ほ",
-    "ま", "み", "む", "め", "も", "や", "ゆ", "よ",
-    "ら", "り", "る", "れ", "ろ", "わ", "ん",
-    "が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず", "ぜ", "ぞ",
-    "だ", "づ", "で", "ど", "ば", "び", "ぶ", "べ", "ぼ",
-    "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"
-    // ,"きゃ", "きゅ", "きょ", "しゃ", "しゅ", "しょ", "ちゃ", "ちゅ", "ちょ",
-    // "にゃ", "にゅ", "にょ", "ひゃ", "ひゅ", "ひょ", "みゃ", "みゅ", "みょ",
-    // "りゃ", "りゅ", "りょ", "ぎゃ", "ぎゅ", "ぎょ", "じゃ", "じゅ", "じょ",
-    // "びゃ", "びゅ", "びょ", "ぴゃ", "ぴゅ", "ぴょ"
-  ];
+    "ま", "み", "む", "め", "も", "や", "ゆ", "よ", "ら", "り", "る", "れ", "ろ",
+    "わ", "ん", "が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず", "ぜ", "ぞ",
+    "だ", "づ", "で", "ど", "ば", "び", "ぶ", "べ", "ぼ", "ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
+    "きゃ", "きゅ", "きょ", "しゃ", "しゅ", "しょ", "ちゃ", "ちゅ", "ちょ", "ひょ", "りゅ",
+    // "にゃ", "にゅ", "にょ", "ひゃ", "ひゅ", "みゃ", "みゅ", "みょ", "りゃ", "りょ", "ぎゃ",
+    "ぎゅ", "ぎょ", "じゃ", "じゅ", "じょ", "びょ",
+    // "びゃ", "びゅ", "ぴゃ", "ぴゅ", "ぴょ",
+];
 
   function jpwordWord(word) {
     switch (word) {
       case "あ": return ["", "あ", "ひる", "", "ア", "イスクリーム"];
-      case "い": return ["", "い", "ぬ", "", "イ", "チゴ"];
+      case "い": return ["", "い", "ちご", "", "イ", "ルカ"];
       case "う": return ["", "う", "どん", "", "ウ", "サギ"];
       case "え": return ["", "え", "んぴつ", "", "エ", "レベーター"];
       case "お": return ["", "お", "たまじゃくし", "", "オ", "ムライス"];
       case "か": return ["", "か", "える", "", "カ", "ブトムシ"];
-      case "き": return ["", "き", "んぎょ", "", "キ", "ウイ"];
+      case "き": return ["", "き", "つね", "", "キ", "ウイ"];
       case "く": return ["", "く", "じら", "", "ク", "ッキー"];
       case "け": return ["", "け", "しゴム", "", "ケ", "ーキ"];
       case "こ": return ["", "こ", "うもり", "", "コ", "ーヒー"];
       case "さ": return ["", "さ", "つまいも", "", "サ", "メ"];
-      case "し": return ["", "し", "ろ", "", "シ", "マウマ"];
+      case "し": return ["", "し", "んごう", "", "シ", "マウマ"];
       case "す": return ["", "す", "ずめ", "", "ス", "イカ"];
       case "せ": return ["", "せ", "いざ", "", "セ", "ミ"];
       case "そ": return ["", "そ", "うじき", "", "ソ", "フトクリーム"];
@@ -71,7 +67,7 @@
       case "と": return ["", "と", "ら", "", "ト", "マト"];
       case "な": return ["", "な", "っとう", "", "ナ", "マズ"];
       case "に": return ["", "に", "じ", "", "ニ", "ンジン"];
-      case "ぬ": return ["", "ぬ", "いぐるみ", "", "ヌ", "ノマスク"];
+      case "ぬ": return ["", "ぬ", "いぐるみ", "イ", "ヌ", ""];
       case "ね": return ["", "ね", "こ", "", "ネ", "ギ"];
       case "の": return ["", "の", "りまき", "", "ノ", "ート"];
       case "は": return ["", "は", "さみ", "", "ハ", "ンバーガー"];
@@ -118,6 +114,23 @@
       case "ぷ": return ["", "ぷ", "りん", "", "プ", "レゼント"];
       case "ぺ": return ["", "ぺ", "んぎん", "", "ペ", "ットボトル"];
       case "ぽ": return ["", "ぽ", "っと", "", "ポ", "テトチップス"];
+      case "きゃ": return ["", "きゃ", "べつ", "", "キャ", "ンプファイヤー"];
+      case "きゅ": return ["", "きゅ", "うきゅうしゃ", "", "キュ", "ウリ"];
+      case "きょ": return ["", "きょ", "うかい", "", "キョ", "ウリュウ"];
+      case "しゃ": return ["", "しゃ", "ち", "", "シャ", "ツ"];
+      case "しゅ": return ["", "しゅ", "りけん", "", "シュ", "ーマイ"];
+      case "しょ": return ["", "しょ", "くパン", "", "ショ", "ッピングモール"];
+      case "ちゃ": return ["あか", "ちゃ", "ん", "ガチャガ", "チャ", ""];
+      case "ちゅ": return ["", "ちゅ", "うしゃ", "", "チュ", "ーリップ"];
+      case "ちょ": return ["", "ちょ", "うちょ", "", "チョ", "コレート"];
+      case "ひょ": return ["", "ひょ", "うたん", "", "ヒョ", "ウ"];
+      case "りゅ": return ["", "りゅ", "う", "", "リュ", "ック"];
+      case "ぎゅ": return ["", "ぎゅ", "うどん", "フィ", "ギュ", "アスケート"];
+      case "ぎょ": return ["きん", "ぎょ", "", "", "ギョ", "ーザ"];
+      case "じゃ": return ["", "じゃ", "ぐち", "", "ジャ", "ガイモ"];
+      case "じゅ": return ["もみじまん", "じゅ", "う", "", "ジュ", "ース"];
+      case "じょ": return ["", "じょ", "うききかんしゃ", "", "ジョ", "ウロ"];
+      case "びょ": return ["", "びょ", "ういん", "ガ", "ビョ", "ウ"];
       default: return ["","","", "","",""];
     }
   }
@@ -125,17 +138,17 @@
   function jpwordPicture(word) {
     switch (word) {
       case "あ": return ["img/jpwordwebapp/image/ahiru.png", "img/jpwordwebapp/image/aisukurimu.png"];
-      case "い": return ["img/jpwordwebapp/image/inu.png", "img/jpwordwebapp/image/ichigo.png"];
+      case "い": return ["img/jpwordwebapp/image/ichigo.png", "img/jpwordwebapp/image/iruka.png"];
       case "う": return ["img/jpwordwebapp/image/udon.png", "img/jpwordwebapp/image/usagi.png"];
       case "え": return ["img/jpwordwebapp/image/enpitsu.png", "img/jpwordwebapp/image/elevator.png"];
       case "お": return ["img/jpwordwebapp/image/otamajakushi.png", "img/jpwordwebapp/image/omurice.png"];
       case "か": return ["img/jpwordwebapp/image/kaeru.png", "img/jpwordwebapp/image/kabutomushi.png"];
-      case "き": return ["img/jpwordwebapp/image/kingyo.png", "img/jpwordwebapp/image/kiwi.png"];
+      case "き": return ["img/jpwordwebapp/image/kitsune.png", "img/jpwordwebapp/image/kiwi.png"];
       case "く": return ["img/jpwordwebapp/image/kujira.png", "img/jpwordwebapp/image/cookie.png"];
       case "け": return ["img/jpwordwebapp/image/keshigomu.png", "img/jpwordwebapp/image/cake.png"];
       case "こ": return ["img/jpwordwebapp/image/koumori.png", "img/jpwordwebapp/image/coffee.png"];
       case "さ": return ["img/jpwordwebapp/image/satsumaimo.png", "img/jpwordwebapp/image/same.png"];
-      case "し": return ["img/jpwordwebapp/image/shiro.png", "img/jpwordwebapp/image/shimauma.png"];
+      case "し": return ["img/jpwordwebapp/image/shingo.png", "img/jpwordwebapp/image/shimauma.png"];
       case "す": return ["img/jpwordwebapp/image/suzume.png", "img/jpwordwebapp/image/suika.png"];
       case "せ": return ["img/jpwordwebapp/image/seiza.png", "img/jpwordwebapp/image/semi.png"];
       case "そ": return ["img/jpwordwebapp/image/soujiki.png", "img/jpwordwebapp/image/softcream.png"];
@@ -146,7 +159,7 @@
       case "と": return ["img/jpwordwebapp/image/tora.png", "img/jpwordwebapp/image/tomato.png"];
       case "な": return ["img/jpwordwebapp/image/natto.png", "img/jpwordwebapp/image/namazu.png"];
       case "に": return ["img/jpwordwebapp/image/niji.png", "img/jpwordwebapp/image/ninjin.png"];
-      case "ぬ": return ["img/jpwordwebapp/image/nuigurumi.png", "img/jpwordwebapp/image/nunomask.png"];
+      case "ぬ": return ["img/jpwordwebapp/image/nuigurumi.png", "img/jpwordwebapp/image/inu.png"];
       case "ね": return ["img/jpwordwebapp/image/neko.png", "img/jpwordwebapp/image/negi.png"];
       case "の": return ["img/jpwordwebapp/image/norimaki.png", "img/jpwordwebapp/image/note.png"];
       case "は": return ["img/jpwordwebapp/image/hasami.png", "img/jpwordwebapp/image/hamberger.png"];
@@ -193,6 +206,23 @@
       case "ぷ": return ["img/jpwordwebapp/image/pudding.png", "img/jpwordwebapp/image/present.png"];
       case "ぺ": return ["img/jpwordwebapp/image/penguin.png", "img/jpwordwebapp/image/petbuttle.png"];
       case "ぽ": return ["img/jpwordwebapp/image/pot.png", "img/jpwordwebapp/image/potatochips.png"];
+      case "きゃ": return ["img/jpwordwebapp/image/kyabetsu.png", "img/jpwordwebapp/image/campfire.png"];
+      case "きゅ": return ["img/jpwordwebapp/image/kyukyusha.png", "img/jpwordwebapp/image/kyuri.png"];
+      case "きょ": return ["img/jpwordwebapp/image/kyokai.png", "img/jpwordwebapp/image/kyoryu.png"];
+      case "しゃ": return ["img/jpwordwebapp/image/shachi.png", "img/jpwordwebapp/image/shirt.png"];
+      case "しゅ": return ["img/jpwordwebapp/image/shuriken.png", "img/jpwordwebapp/image/shumai.png"];
+      case "しょ": return ["img/jpwordwebapp/image/shokupan.png", "img/jpwordwebapp/image/shoppingmall.png"];
+      case "ちゃ": return ["img/jpwordwebapp/image/akachan.png", "img/jpwordwebapp/image/gachagacha.png"];
+      case "ちゅ": return ["img/jpwordwebapp/image/chusha.png", "img/jpwordwebapp/image/turip.png"];
+      case "ちょ": return ["img/jpwordwebapp/image/chocho.png", "img/jpwordwebapp/image/chocolate.png"];
+      case "ひょ": return ["img/jpwordwebapp/image/hyotan.png", "img/jpwordwebapp/image/hyo.png"];
+      case "りゅ": return ["img/jpwordwebapp/image/ryu.png", "img/jpwordwebapp/image/ruck.png"];
+      case "ぎゅ": return ["img/jpwordwebapp/image/gyudon.png", "img/jpwordwebapp/image/figureskate.png"];
+      case "ぎょ": return ["img/jpwordwebapp/image/kingyo.png", "img/jpwordwebapp/image/gyoza.png"];
+      case "じゃ": return ["img/jpwordwebapp/image/jaguchi.png", "img/jpwordwebapp/image/jagaimo.png"];
+      case "じゅ": return ["img/jpwordwebapp/image/momijimanjyu.png", "img/jpwordwebapp/image/juice.png"];
+      case "じょ": return ["img/jpwordwebapp/image/jyokikikansha.png", "img/jpwordwebapp/image/jyouro.png"];
+      case "びょ": return ["img/jpwordwebapp/image/byoin.png", "img/jpwordwebapp/image/gabyo.png"];
       default: return ["", ""];
     }
   }
