@@ -333,7 +333,7 @@
     msg.text = text;
     msg.voice = voices[0];
     msg.volume = 1;
-    msg.lang = "en";
+    msg.lang = "ja";
     speechSynthesis.speak(msg);
   }
 

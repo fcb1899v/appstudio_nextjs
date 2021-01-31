@@ -86,12 +86,17 @@ header {
 
 .top {
   padding-top: 75px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .top a {
   margin-top: 30px;
   color: #2d2926;
+}
+
+.top p {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .transitimage,
