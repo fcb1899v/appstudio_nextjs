@@ -152,12 +152,21 @@ header {
   padding: 15px 0px 30px 0px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
+  header {
+    font-size:8px;
+  } 
+  .features p{
+    font-size:16px;
+  }  
+}
+
+@media (max-width: 360px) {
   header {
     font-size:7px;
   } 
   .features p{
-    font-size:16px;
+    font-size:15px;
   }  
 }
 
@@ -169,7 +178,6 @@ header {
     font-size:14px;
   }  
 }
-
 
 footer {
   background-color: #2d2926;

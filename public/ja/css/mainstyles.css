@@ -24,10 +24,8 @@ header {
   background-color: #fe5000;
 }
 
-@media (min-width: 540px) {
-  header h1{
-    font-size: 28px;
-  }
+header h1{
+  font-size: 28px;
 }
 
 .sp-menu #open,
@@ -86,12 +84,17 @@ header {
 
 .top {
   padding-top: 75px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .top a {
   margin-top: 30px;
   color: #2d2926;
+}
+
+.top p {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .transitimage,
@@ -171,4 +174,37 @@ footer a {
 .policytop h2{
   font-size: 20px;
   padding-top: 15px;
+}
+
+@media (max-width: 500px) {
+  header h1{
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  header h1{
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  header h1{
+    font-size: 18px;
+  }
+  .policytop h1{
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 340px) {
+  header h1{
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 300px) {
+  header h1{
+    font-size: 14px;
+  }
 }

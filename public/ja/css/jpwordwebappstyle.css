@@ -85,10 +85,6 @@ header {
   pointer-events: auto;
 }
 
-.word {
-  font-size:20px;
-}
-
 #hiraganachar,
 #katakanachar {
   font-size: 90px;
@@ -112,6 +108,7 @@ header {
 }
 
 .word1, .word2{
+  font-size:20px;
   letter-spacing: -.4em;
   padding: 0;
   margin: 0;
@@ -226,7 +223,12 @@ header {
   header {
     font-size:9px;
   }  
-  .word {
+  #hiraganachar,
+  #katakanachar {
+    font-size: 75px;
+  }  
+  .word1,
+  .word2 {
     font-size:18px;
   }  
   .gridjpword {
@@ -244,7 +246,12 @@ header {
   header {
     font-size:7px;
   } 
-  .word {
+  #hiraganachar,
+  #katakanachar {
+    font-size: 60px;
+  }  
+  .word1,
+  .word2 {
     font-size:16px;
   }  
 }

@@ -59,7 +59,7 @@
       case "し": return ["", "し", "んごう", "", "シ", "マウマ"];
       case "す": return ["", "す", "ずめ", "", "ス", "イカ"];
       case "せ": return ["", "せ", "いざ", "", "セ", "ーター"];
-      case "そ": return ["", "そ", "らまめ", "", "ソ", "フトクリーム"];
+      case "そ": return ["", "そ", "ば", "", "ソ", "フトクリーム"];
       case "た": return ["", "た", "いよう", "", "タ", "ヌキ"];
       case "ち": return ["", "ち", "きゅう", "", "チ", "ーズ"];
       case "つ": return ["", "つ", "くし", "", "ツ", "バメ"];
@@ -82,7 +82,7 @@
       case "も": return ["", "も", "も", "", "モ", "グラ"];
       case "や": return ["", "や", "かん", "", "ヤ", "キソバ"];
       case "ゆ": return ["", "ゆ", "きだるま", "", "ユ", "リ"];
-      case "よ": return ["", "よ", "くそう", "", "ヨ", "ット"];
+      case "よ": return ["", "よ", "せなべ", "", "ヨ", "ット"];
       case "ら": return ["", "ら", "くだ", "", "ラ", "ムネ"];
       case "り": return ["", "り", "んご", "", "リ", "ス"];
       case "る": return ["かえ", "る", "", "", "ル", "ーペ"];
@@ -104,19 +104,19 @@
       case "づ": return ["みか", "づ", "き", "オリ", "ヅ", "ル"];
       case "で": return ["", "で", "んしゃ", "", "デ", "ィスプレイ"];
       case "ど": return ["", "ど", "んぐり", "", "ド", "ーナツ"];
-      case "ば": return ["そ", "ば", "", "", "バ", "ッタ"];
+      case "ば": return ["", "ば", "ら", "", "バ", "イク"];
       case "び": return ["", "び", "わ", "", "ビ", "ル"];
       case "ぶ": return ["", "ぶ", "どう", "", "ブ", "タ"];
-      case "べ": return ["よせな", "べ", "", "", "べ", "スト"];
+      case "べ": return ["お", "べ", "んとう", "", "べ", "スト"];
       case "ぼ": return ["あかとん", "ぼ", "", "", "ボ", "ール"];
-      case "ぱ": return ["かっ", "ぱ", "まき", "", "パ", "ンダ"];
+      case "ぱ": return ["かっ", "ぱ", "", "", "パ", "ンダ"];
       case "ぴ": return ["はっ", "ぴ", "", "", "ピ", "ザ"];
       case "ぷ": return ["おん", "ぷ", "", "", "プ", "リン"];
       case "ぺ": return ["", "ぺ", "んぎん", "", "ペ", "ットボトル"];
       case "ぽ": return ["きりたん", "ぽ", "なべ", "", "ポ", "ット"];
       case "きゃ": return ["", "きゃ", "べつ", "", "キャ", "ンプファイヤー"];
       case "きゅ": return ["", "きゅ", "うきゅうしゃ", "", "キュ", "ウリ"];
-      case "きょ": return ["", "きょ", "うかい", "", "キョ", "ウリュウ"];
+      case "きょ": return ["", "きょ", "うりゅう", "ラッ", "キョ", "ウ"];
       case "しゃ": return ["", "しゃ", "ち", "", "シャ", "ツ"];
       case "しゅ": return ["", "しゅ", "りけん", "", "シュ", "ーマイ"];
       case "しょ": return ["", "しょ", "くパン", "", "ショ", "ッピングモール"];
@@ -127,7 +127,7 @@
       case "りゅ": return ["", "りゅ", "う", "", "リュ", "ック"];
       case "ぎゅ": return ["", "ぎゅ", "うどん", "フィ", "ギュ", "アスケート"];
       case "ぎょ": return ["きん", "ぎょ", "", "", "ギョ", "ーザ"];
-      case "じゃ": return ["", "じゃ", "ぐち", "", "ジャ", "ガイモ"];
+      case "じゃ": return ["", "じゃ", "んけん", "", "ジャ", "ガイモ"];
       case "じゅ": return ["もみじまん", "じゅ", "う", "", "ジュ", "ース"];
       case "じょ": return ["", "じょ", "うききかんしゃ", "", "ジョ", "ウロ"];
       case "びょ": return ["", "びょ", "ういん", "ガ", "ビョ", "ウ"];
@@ -151,7 +151,7 @@
       case "し": return ["img/jpwordwebapp/image/shingo.png", "img/jpwordwebapp/image/shimauma.png"];
       case "す": return ["img/jpwordwebapp/image/suzume.png", "img/jpwordwebapp/image/suika.png"];
       case "せ": return ["img/jpwordwebapp/image/seiza.png", "img/jpwordwebapp/image/sweater.png"];
-      case "そ": return ["img/jpwordwebapp/image/soramame.png", "img/jpwordwebapp/image/softcream.png"];
+      case "そ": return ["img/jpwordwebapp/image/soba.png", "img/jpwordwebapp/image/softcream.png"];
       case "た": return ["img/jpwordwebapp/image/taiyo.png", "img/jpwordwebapp/image/tanuki.png"];
       case "ち": return ["img/jpwordwebapp/image/chikyu.png", "img/jpwordwebapp/image/cheese.png"];
       case "つ": return ["img/jpwordwebapp/image/tsukushi.png", "img/jpwordwebapp/image/tsubame.png"];
@@ -174,7 +174,7 @@
       case "も": return ["img/jpwordwebapp/image/momo.png", "img/jpwordwebapp/image/mogura.png"];
       case "や": return ["img/jpwordwebapp/image/yakan.png", "img/jpwordwebapp/image/yakisoba.png"];
       case "ゆ": return ["img/jpwordwebapp/image/yukidaruma.png", "img/jpwordwebapp/image/yuri.png"];
-      case "よ": return ["img/jpwordwebapp/image/yokusou.png", "img/jpwordwebapp/image/yacht.png"];
+      case "よ": return ["img/jpwordwebapp/image/yosenabe.png", "img/jpwordwebapp/image/yacht.png"];
       case "ら": return ["img/jpwordwebapp/image/rakuda.png", "img/jpwordwebapp/image/ramune.png"];
       case "り": return ["img/jpwordwebapp/image/ringo.png", "img/jpwordwebapp/image/risu.png"];
       case "る": return ["img/jpwordwebapp/image/kaeru.png", "img/jpwordwebapp/image/rupe.png"];
@@ -196,19 +196,19 @@
       case "づ": return ["img/jpwordwebapp/image/mikaduki.png", "img/jpwordwebapp/image/oriduru.png"];
       case "で": return ["img/jpwordwebapp/image/densha.png", "img/jpwordwebapp/image/display.png"];
       case "ど": return ["img/jpwordwebapp/image/donguri.png", "img/jpwordwebapp/image/donut.png"];
-      case "ば": return ["img/jpwordwebapp/image/soba.png", "img/jpwordwebapp/image/batta.png"];
+      case "ば": return ["img/jpwordwebapp/image/bara.png", "img/jpwordwebapp/image/bike.png"];
       case "び": return ["img/jpwordwebapp/image/biwa.png", "img/jpwordwebapp/image/building.png"];
       case "ぶ": return ["img/jpwordwebapp/image/budou.png", "img/jpwordwebapp/image/buta.png"];
-      case "べ": return ["img/jpwordwebapp/image/yosenabe.png", "img/jpwordwebapp/image/vest.png"];
+      case "べ": return ["img/jpwordwebapp/image/bento.png", "img/jpwordwebapp/image/vest.png"];
       case "ぼ": return ["img/jpwordwebapp/image/akatombo.png", "img/jpwordwebapp/image/ball.png"];
-      case "ぱ": return ["img/jpwordwebapp/image/kappamaki.png", "img/jpwordwebapp/image/panda.png"];
+      case "ぱ": return ["img/jpwordwebapp/image/kappa.png", "img/jpwordwebapp/image/panda.png"];
       case "ぴ": return ["img/jpwordwebapp/image/happi.png", "img/jpwordwebapp/image/pizza.png"];
       case "ぷ": return ["img/jpwordwebapp/image/onpu.png", "img/jpwordwebapp/image/pudding.png"];
       case "ぺ": return ["img/jpwordwebapp/image/penguin.png", "img/jpwordwebapp/image/petbuttle.png"];
       case "ぽ": return ["img/jpwordwebapp/image/kiritamponabe.png", "img/jpwordwebapp/image/pot.png"];
       case "きゃ": return ["img/jpwordwebapp/image/kyabetsu.png", "img/jpwordwebapp/image/campfire.png"];
       case "きゅ": return ["img/jpwordwebapp/image/kyukyusha.png", "img/jpwordwebapp/image/kyuri.png"];
-      case "きょ": return ["img/jpwordwebapp/image/kyokai.png", "img/jpwordwebapp/image/kyoryu.png"];
+      case "きょ": return ["img/jpwordwebapp/image/kyoryu.png", "img/jpwordwebapp/image/rakkyo.png"];
       case "しゃ": return ["img/jpwordwebapp/image/shachi.png", "img/jpwordwebapp/image/shirt.png"];
       case "しゅ": return ["img/jpwordwebapp/image/shuriken.png", "img/jpwordwebapp/image/shumai.png"];
       case "しょ": return ["img/jpwordwebapp/image/shokupan.png", "img/jpwordwebapp/image/shoppingmall.png"];
@@ -219,7 +219,7 @@
       case "りゅ": return ["img/jpwordwebapp/image/ryu.png", "img/jpwordwebapp/image/ruck.png"];
       case "ぎゅ": return ["img/jpwordwebapp/image/gyudon.png", "img/jpwordwebapp/image/figureskate.png"];
       case "ぎょ": return ["img/jpwordwebapp/image/kingyo.png", "img/jpwordwebapp/image/gyoza.png"];
-      case "じゃ": return ["img/jpwordwebapp/image/jaguchi.png", "img/jpwordwebapp/image/jagaimo.png"];
+      case "じゃ": return ["img/jpwordwebapp/image/janken.png", "img/jpwordwebapp/image/jagaimo.png"];
       case "じゅ": return ["img/jpwordwebapp/image/momijimanjyu.png", "img/jpwordwebapp/image/juice.png"];
       case "じょ": return ["img/jpwordwebapp/image/jyokikikansha.png", "img/jpwordwebapp/image/jyouro.png"];
       case "びょ": return ["img/jpwordwebapp/image/byoin.png", "img/jpwordwebapp/image/gabyo.png"];
@@ -320,7 +320,7 @@
     return text.replace( /[\u3042-\u3093]/g, 
                  m => String.fromCharCode(m.charCodeAt(0) + 96)
              );
-};
+  };
   
   function speechWord(text) {
     if (!'SpeechSynthesisUtterance' in window) {
@@ -333,7 +333,7 @@
     msg.text = text;
     msg.voice = voices[0];
     msg.volume = 1;
-    msg.lang = "en";
+    msg.lang = "ja";
     speechSynthesis.speak(msg);
   }
 
