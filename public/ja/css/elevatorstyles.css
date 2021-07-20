@@ -1,0 +1,203 @@
+body{
+  margin: 0;
+  font-family: "Helvetica Neue",
+  Arial,
+  "Hiragino Kaku Gothic ProN",
+  "Hiragino Sans",
+  Meiryo,
+  sans-serif;
+  text-align: center;
+  background-color: white;
+  color: #FF9800;
+}
+
+.googleplay-badge:hover,
+.appstore-badge:hover,
+.overlay a:hover,
+.policylist a:hover {
+  opacity: 0.6;
+}
+
+header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  font-size: 11px;
+  left: 0;
+  right: 0;
+  background-color: #FF9800;
+  color: white;
+}
+
+@media (min-width: 540px) {
+  header h1{
+    font-size: 28px;
+  }
+}
+
+.sp-menu #open,
+.overlay #close {
+  position: absolute;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.sp-menu #open{
+  margin-top: -20px;
+}
+
+.overlay #close{
+  margin-top: -10px;
+}
+
+.sp-menu #open.hide {
+  display: none;
+}
+
+.imgmenu,
+.imgclose {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 320px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-top: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 500ms 0s ease;
+}
+
+.overlay li{
+  list-style-type: none;
+  margin-top: 24px;
+}
+
+.overlay a{
+  font-size: 16px;
+  color: white;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.top {
+  font-size: 18px;
+}
+
+.container {
+  padding-top: 110px;
+  margin: 0px 70px 10px 70px;
+}
+
+.container li{
+  list-style: none ;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.badgecontainer a,
+.badgecontainer a:visited{
+  color: #FF9800;
+}
+
+.googleplay-badge{
+  width: 175px; 
+}
+
+.appstore-badge{
+  width: 135px; 
+  margin:11px 0px;
+  padding-left: 12px;
+}
+
+.topimage{
+  padding-top: 20px;
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.features{
+  font-size: 16px;
+  background-color: white;
+  color: #FF9800;
+  padding: 40px 0px 20px 0px;
+}
+
+.features h1{
+  font-size: 24px;
+  margin: 0px 0px 20px 0px;
+}
+
+.container1 div{
+  display: inline-block;
+}
+
+.container2 li{
+  list-style: none ;
+  display: inline-block;
+  margin: 0px 25px 10px 25px;
+}
+
+.screenshot1{
+  width: 100%;
+  margin: 10px 0px 10px 0px;
+}
+
+.downloadnow {
+  background-color: #FF9800;
+  color: white;
+  padding: 15px 0px 25px 0px;
+}
+
+footer {
+  color: white;
+  font-size: 14px;
+  background-color: #2d2926;
+  padding: 20px 0px 20px 0px;
+}
+
+footer p {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-block-start: 20px;
+  margin-block-end: 0px;
+}
+
+footer a:visited{
+  color: white;
+}
+
+.snsbutton li{
+  list-style: none;
+  display: inline-block;
+  padding: 0 5px 0 5px;
+}
+
+.snsbutton,
+.footercontact {
+  padding-inline-start: 0px;
+}
+
+.twitter{
+  margin-right: -3px;
+  width: 90px;
+}
+
+.fb{
+  line-height: 0.65;
+}
+
+.line{
+  width:90px;
+}

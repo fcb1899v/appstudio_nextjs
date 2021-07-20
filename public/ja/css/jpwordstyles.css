@@ -95,13 +95,13 @@ header {
   margin-top: 80px;
 }
 
-.badgecontainer a{
+.badgecontainer a,
+.badgecontainer a:visited{
   color: #0077ff;
 }
 
 .googleplay-badge{
   width: 175px;
-  color: #0077ff; 
 }
 
 .appstore-badge{
@@ -148,7 +148,6 @@ header {
 }
 
 .downloadnow {
-  font-size: 18px;
   padding: 15px 0px 30px 0px;
 }
 
@@ -180,8 +179,21 @@ header {
 }
 
 footer {
+  color: white;
+  font-size: 14px;
   background-color: #2d2926;
   padding: 20px 0px 20px 0px;
+}
+
+footer p {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-block-start: 20px;
+  margin-block-end: 0px;
+}
+
+footer a:visited{
+  color: white;
 }
 
 .snsbutton li{
@@ -190,8 +202,12 @@ footer {
   padding: 0 5px 0 5px;
 }
 
+.snsbutton,
+.footercontact {
+  padding-inline-start: 0px;
+}
+
 .twitter{
-  margin-left: -50px;
   margin-right: -3px;
   width: 90px;
 }
@@ -202,4 +218,11 @@ footer {
 
 .line{
   width:90px;
+}
+
+.email p{
+  color: white;
+  font-size: 14px;
+  margin-left: 20px;
+  margin-block-end: 0px;
 }

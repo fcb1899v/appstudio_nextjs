@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Let's Elevator</title>
+  <link rel="stylesheet" href="ja/css/elevatorstyles.css">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Let's Elevator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="An app for playing your favorite elevator anytime, anywhere. 
+  It has a function of going up and down, selecting and deselecting the desired floor, 
+  emergency call button available, and various announcement." />
+  <meta property="og:url" content="https://nakajimamasao-appstudio.web.app/letselevator.html"/>
+  <meta property="og:image" content="ja/img/elevator/appicon.jpg" />
+  <meta property="og:site_name" content="Let's Elevator" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="msapplication-square70x70logo" content="ja/img/elevator/favicons/site-tile-70x70.png">
+  <meta name="msapplication-square150x150logo" content="ja/img/elevator/favicons/site-tile-150x150.png">
+  <meta name="msapplication-wide310x150logo" content="ja/img/elevator/favicons/site-tile-310x150.png">
+  <meta name="msapplication-square310x310logo" content="ja/img/elevator/favicons/site-tile-310x310.png">
+  <meta name="msapplication-TileColor" content="#0078d7">
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="ja/img/elevator/favicons/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="ja/img/elevator/favicons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="ja/img/elevator/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="ja/img/elevator/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="ja/img/elevator/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="ja/img/elevator/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="ja/img/elevator/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="ja/img/elevator/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="ja/img/elevator/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="ja/img/elevator/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="ja/img/elevator/favicons/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" type="image/png" href="ja/img/elevator/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="36x36" href="ja/img/elevator/favicons/android-chrome-36x36.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="ja/img/elevator/favicons/android-chrome-48x48.png">
+  <link rel="icon" type="image/png" sizes="72x72" href="ja/img/elevator/favicons/android-chrome-72x72.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="ja/img/elevator/favicons/android-chrome-96x96.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="ja/img/elevator/favicons/android-chrome-128x128.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="ja/img/elevator/favicons/android-chrome-144x144.png">
+  <link rel="icon" type="image/png" sizes="152x152" href="ja/img/elevator/favicons/android-chrome-152x152.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="ja/img/elevator/favicons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="ja/img/elevator/favicons/android-chrome-256x256.png">
+  <link rel="icon" type="image/png" sizes="384x384" href="ja/img/elevator/favicons/android-chrome-384x384.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="ja/img/elevator/favicons/android-chrome-512x512.png">
+  <link rel="icon" type="image/png" sizes="36x36" href="ja/img/elevator/favicons/icon-36x36.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="ja/img/elevator/favicons/icon-48x48.png">
+  <link rel="icon" type="image/png" sizes="72x72" href="ja/img/elevator/favicons/icon-72x72.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="ja/img/elevator/favicons/icon-96x96.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="ja/img/elevator/favicons/icon-128x128.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="ja/img/elevator/favicons/icon-144x144.png">
+  <link rel="icon" type="image/png" sizes="152x152" href="ja/img/elevator/favicons/icon-152x152.png">
+  <link rel="icon" type="image/png" sizes="160x160" href="ja/img/elevator/favicons/icon-160x160.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="ja/img/elevator/favicons/icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="196x196" href="ja/img/elevator/favicons/icon-196x196.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="ja/img/elevator/favicons/icon-256x256.png">
+  <link rel="icon" type="image/png" sizes="384x384" href="ja/img/elevator/favicons/icon-384x384.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="ja/img/elevator/favicons/icon-512x512.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="ja/img/elevator/favicons/icon-16x16.png">
+  <link rel="icon" type="image/png" sizes="24x24" href="ja/img/elevator/favicons/icon-24x24.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="ja/img/elevator/favicons/icon-32x32.png">
+  <link rel="icon" type="image/png" href="ja/img/elevator/favicons/icon-192x192.png">
+  <link rel="manifest" href="ja/img/elevator/favicons/manifest.json">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lets Elevator" />
+  <meta name="twitter:description" content="An app for playing your favorite elevator anytime, anywhere. 
+  It has a function of going up and down, selecting and deselecting the desired floor, 
+  emergency call button available, and various announcement." />
+  <meta name="twitter:text:description" content="n app for playing your favorite elevator anytime, anywhere. 
+  It has a function of going up and down, selecting and deselecting the desired floor, 
+  emergency call button available, and various announcement." />
+  <meta name="twitter:url" content="https://nakajimamasao-appstudio.web.app/letselevator.html" />
+  <meta name="twitter:image" content="ja/img/elevator/appaicon.jpg" />
+</head>
+
+<body>
+  <header>
+    <h1 class="apptitle">Let's Elevator</h1>  
+
+    <div class="overlay">
+      <span id="close">
+        <img class="imgclose" src="ja/img/close.svg">
+      </span>
+      <nav>
+        <li class="home">
+          <a href="index.html">Home</a>
+        </li>
+        <li class="support">
+          <a href="support.html">Support Center</a>
+        </li>    
+        <li class="privacypolicy">
+          <a href="privacypolicy.html">Terms of Use and Privacy Policy</a>
+        </li>    
+        <li class="mytransitmakers">
+          <a href="mytransitmakers.html">My Transit Makers</a>
+        </li>
+        <li class="letselevator">
+          <a href="letselevator.html">Let's Elevator</a>
+        </li>
+        <li class="studyphonics">
+          <a href="studyphonics.html">Study Phonics</a>
+        </li>    
+        <li class="studyphonicswebapp">
+          <a href="phonicswebapp.html">Study Phonics (Web App)</a>
+        </li>    
+      </nav>
+    </div>
+    <div class="sp-menu">
+      <span id="open">
+        <img class="imgmenu" src="ja/img/menu.svg">
+      </span>
+    </div>
+  </header>
+  
+  <section class="top">
+    <div class="container">
+      <li>Can play your favorite elevator </li>
+      <li>anytime, anywhere </li>  
+    </div>
+    <div class="badgecontainer">
+      <a href="https://apps.apple.com/app/letselevator/id1577024337#?platform=iphone" 
+        target="_blank" 
+        rel="noopener noreferrer">
+        <img class="appstore-badge" src="ja/img/AppStore_Badge_US_BK.svg">
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.nakajimamasaoappstudio.letselevatorr" 
+        target="_blank" 
+        rel="noopener noreferrer">
+        <img class="googleplay-badge" src="ja/img/google-play-badge.png">
+      </a>
+    </div>
+    <img class="topimage" src="ja/img/elevator/top.png">
+  </section>
+
+  <section class="features">
+    <h1>Features</h1>
+    <div class=container1>
+      <div class=container2>
+        <li>Going up and down</li>
+        <li>Select and deselect the desired floor</li>  
+      </div>
+      <div class=container2>
+        <li>Emergency call button available</li>
+        <li>Various announcement</li>  
+      </div>  
+    </div>  
+    <img class="screenshot1" src="ja/img/elevator/screenshotlist.png">
+  </section>
+
+  <section class="downloadnow">
+    <h1>Download Now</h1>
+    <div class="badgecontainer">
+      <a href="https://apps.apple.com/app/letselevator/id1577024337#?platform=iphone" 
+        target="_blank" 
+        rel="noopener noreferrer">
+        <img class="appstore-badge" src="ja/img/AppStore_Badge_US_BK.svg">
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.nakajimamasaoappstudio.letselevator" 
+        target="_blank" 
+        rel="noopener noreferrer">
+        <img class="googleplay-badge" src="ja/img/google-play-badge.png">
+      </a>
+    </div>
+  </section>
+</body>
+
+<footer>
+  <ul class="snsbutton">
+    <li class="twitter">
+      <div class="twitter-share-button">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
+          class="twitter-share-button" 
+          data-url="https://nakajimamasao-appstudio.web.app/letselevator.html" 
+          data-lang="ja" 
+          data-show-count="false">
+          Tweet
+        </a>
+        <script 
+          async src="https://platform.twitter.com/widgets.js" 
+          charset="utf-8">
+        </script>
+      </div>
+    </li>
+    <li class="fb">
+      <div class="fb-share-button" 
+        data-href="https://nakajimamasao-appstudio.web.app/letselevator.html" 
+        data-layout="button_count"
+        data-size="small" 
+        data-mobile-iframe="true">
+      </div>     
+    </li>
+    <li class="line">
+      <div class="line-it-button" 
+        data-lang="ja" 
+        data-type="share-a" 
+        data-ver="3" 
+        data-url="https://nakajimamasao-appstudio.web.app/letselevator.html" 
+        data-color="default" 
+        data-size="small" 
+        data-count="false" 
+        style="display: none;">
+      </div>
+      <script 
+        src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" 
+        async="async" 
+        defer="defer">
+      </script>      
+    </li>
+    <ul class="footercontact">
+      <li class="github">
+        <a href="https://github.com/fcb1899v" target="_blank" rel="noopener noreferrer">Github: fcb1899v</a>
+      </li>  
+      <li class="email">
+        <p>e-mail: fcb1899v3@gmail.com</p>
+      </li>    
+    </ul>
+   </ul>
+  
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+</footer>
+<script src="ja/js/main.js"></script> 
+</html>
