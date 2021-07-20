@@ -105,7 +105,8 @@ header {
   margin-bottom: 10px;
 }
 
-.badgecontainer a{
+.badgecontainer a,
+.badgecontainer a:visited{
   color: #03DAC5;
 }
 
@@ -153,18 +154,21 @@ header {
 }
 
 .downloadnow {
-  font-size: 18px;
   padding: 15px 0px 25px 0px;
 }
 
 footer {
+  color: white;
+  font-size: 14px;
   background-color: #2d2926;
   padding: 20px 0px 20px 0px;
 }
 
-footer a {
-  color: white;
-  font-size: 18px;
+footer p {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-block-start: 20px;
+  margin-block-end: 0px;
 }
 
 footer a:visited{
@@ -177,8 +181,12 @@ footer a:visited{
   padding: 0 5px 0 5px;
 }
 
+.snsbutton,
+.footercontact {
+  padding-inline-start: 0px;
+}
+
 .twitter{
-  margin-left: -50px;
   margin-right: -3px;
   width: 90px;
 }
@@ -189,9 +197,5 @@ footer a:visited{
 
 .line{
   width:90px;
-}
-
-footer a:visited{
-  color: white;
 }
 

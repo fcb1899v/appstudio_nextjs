@@ -137,15 +137,31 @@ header h1{
   margin-bottom: 70px;
 }
 
+footer ul {
+  display: block;
+  list-style: none ;
+  padding-inline-start: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+footer li {
+  margin-left: 10px;
+  margin-right: 10px;
+  display:inline-block;
+}
+
+footer p {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
 footer {
+  color: white;
+  font-size: 14px;
   margin-top: 20px;
   background-color: #2d2926;
   padding: 10px 0px 10px 0px;
-}
-
-footer a {
-  color: white;
-  font-size: 18px;
 }
 
 footer a:visited{
@@ -180,6 +196,11 @@ footer a:visited{
 .policytop h2{
   font-size: 20px;
   padding-top: 15px;
+}
+
+.contact {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 @media (max-width: 500px) {
