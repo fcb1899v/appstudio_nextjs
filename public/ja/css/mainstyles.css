@@ -198,11 +198,14 @@ footer a:visited{
   padding-top: 15px;
 }
 
+<<<<<<< HEAD
 .contact {
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
+=======
+>>>>>>> c57f8238765a18280868e5ab2eb9905d7fcb6879
 @media (max-width: 500px) {
   header h1{
     font-size: 24px;
