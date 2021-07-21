@@ -85,13 +85,11 @@ header {
 }
 
 .top {
-  font-size: 18px;
   margin-bottom: 35px;
 }
 
 .topimage{
   width: 65%;
-  vertical-align: bottom;
   margin-top: 80px;
 }
 
@@ -112,19 +110,16 @@ header {
 
 .trywebapp a {
   font-size: 20px;
+}
+
+.trywebapp a:visited {
   color: white;
 }
 
 .features{
-  font-size: 16px;
   background-color: white;
   color: #ffa500;
-  padding: 35px 0px 25px 0px;
-}
-
-.features h1{
-  font-size: 26px;
-  margin: 0px 0px 20px 0px;
+  padding: 20px 0px 0px 0px;
 }
 
 .features p{
@@ -132,14 +127,12 @@ header {
 }
 
 .container {
-  margin: 0px 70px 10px 70px;
+  margin: 0px 70px 20px 70px;
 }
 
 .container li{
-  font-size: 16px;
-  list-style: none ;
   display: inline-block;
-  margin: 0px 10px 10px 10px;
+  margin: 0px 10px 0px 10px;
 }
 
 .screenshot1{
@@ -182,13 +175,11 @@ footer {
   color: white;
   font-size: 14px;
   background-color: #2d2926;
-  padding: 20px 0px 20px 0px;
+  padding: 10px 0px 10px 0px;
 }
 
 footer p {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-block-start: 20px;
+  margin-block-start: 0px;
   margin-block-end: 0px;
 }
 
@@ -197,14 +188,14 @@ footer a:visited{
 }
 
 .snsbutton li{
-  list-style: none;
   display: inline-block;
-  padding: 0 5px 0 5px;
+  padding: 0px 5px 10px 5px;
 }
 
 .snsbutton,
 .footercontact {
   padding-inline-start: 0px;
+  margin: 10px 10px 0px 10px;
 }
 
 .twitter{
@@ -218,11 +209,4 @@ footer a:visited{
 
 .line{
   width:90px;
-}
-
-.email p{
-  color: white;
-  font-size: 14px;
-  margin-left: 20px;
-  margin-block-end: 0px;
 }
