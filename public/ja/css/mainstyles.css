@@ -87,8 +87,7 @@ header h1{
   font-size: 18px;
 }
 
-.top a {
-  margin-top: 30px;
+.top a:visited {
   color: #2d2926;
 }
 
@@ -102,9 +101,8 @@ header h1{
 .phonicsimage,
 .jpwordimage {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 70%;
-  vertical-align: bottom;
 }
 
 .transitimage {
@@ -138,16 +136,12 @@ header h1{
 }
 
 footer ul {
-  display: block;
-  list-style: none ;
   padding-inline-start: 0px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0px 10px 0px;
 }
 
 footer li {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 0px 10px 0px 10px;
   display:inline-block;
 }
 
