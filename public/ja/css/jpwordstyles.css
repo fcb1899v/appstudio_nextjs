@@ -90,7 +90,11 @@ header {
 
 .topimage{
   width: 65%;
-  margin-top: 80px;
+  margin-top: 70px;
+}
+
+.badgecontainer{
+  margin-top: -30px;
 }
 
 .badgecontainer a,
@@ -110,6 +114,7 @@ header {
 
 .trywebapp a {
   font-size: 20px;
+  color: white;
 }
 
 .trywebapp a:visited {
@@ -119,7 +124,7 @@ header {
 .features{
   background-color: white;
   color: #ffa500;
-  padding: 20px 0px 0px 0px;
+  padding-top: 10px;
 }
 
 .features p{
@@ -143,6 +148,11 @@ header {
 .downloadnow {
   padding: 15px 0px 30px 0px;
 }
+
+.downloadnow h1{
+  padding-bottom: 30px;
+}
+
 
 @media (max-width: 420px) {
   header {

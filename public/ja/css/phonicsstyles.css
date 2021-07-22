@@ -110,6 +110,7 @@ header {
 
 .trywebapp a {
   font-size: 20px;
+  color: white;
 }
 
 .trywebapp a:visited {
@@ -119,7 +120,7 @@ header {
 .features{
   background-color: white;
   color: #FF69B4;
-  padding: 20px 0px 0px 0px;
+  padding-top: 10px;
 }
 
 .features p{
