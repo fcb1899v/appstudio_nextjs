@@ -96,7 +96,7 @@ header {
 }
 
 .container {
-  padding-top: 110px;
+  padding-top: 95px;
   margin: 0px 70px 10px 70px;
 }
 
@@ -111,14 +111,11 @@ header {
   color: #FF9800;
 }
 
-.googleplay-badge{
-  width: 175px; 
-}
-
-.appstore-badge{
-  width: 135px; 
-  margin:11px 0px;
-  padding-left: 12px;
+.appstore-badge,
+.googleplay-badge,
+.amazonappstore-badge {
+  height: 40px; 
+  padding: 0px 5px 0px 5px;
 }
 
 .topimage{
@@ -157,7 +154,7 @@ header {
 .downloadnow {
   background-color: #FF9800;
   color: white;
-  padding: 15px 0px 25px 0px;
+  padding: 5px 0px 25px 0px;
 }
 
 footer {

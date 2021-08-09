@@ -121,14 +121,11 @@ header h1{
   color: white;
 }
 
-.googleplay-badge{
-  width: 175px; 
-}
-
-.appstore-badge{
-  width: 135px; 
-  margin: 11px 0px;
-  padding-left: 12px;
+.appstore-badge,
+.googleplay-badge,
+.amazonappstore-badge {
+  height: 40px; 
+  padding: 10px 5px 10px 5px;
 }
 
 .trywebapp {

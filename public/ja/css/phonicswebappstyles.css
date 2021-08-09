@@ -92,8 +92,7 @@ header {
 #phonicschar {
   font-size: 125px;
   font-weight: bold;
-  padding-top: 90px;
-  margin-bottom: 20px;
+  padding: 80px 0px 30px 0px;
 }
 
 .container1, .container2, 
@@ -110,7 +109,7 @@ header {
 }
 
 .word1, .word2{
-  letter-spacing: -.4em;
+  letter-spacing: -5px;
   padding: 0;
   margin: 0;
 }
@@ -160,7 +159,8 @@ header {
   }
 }
 
-#soundbutton1, #soundbutton2 {
+#soundbutton1, 
+#soundbutton2 {
   width: 90%;
   height: 40px;
   font-size:24px;
@@ -172,20 +172,25 @@ header {
   margin-bottom: 30px;
 }
 
-#soundimage1, #soundimage2 {  
+#soundimage1, 
+#soundimage2 {  
   height: 100%;
   filter: invert();  
 }
 
-#returnimage, #shuffleimage,
-#backimage, #nextimage {  
+#returnimage, 
+#shuffleimage,
+#backimage, 
+#nextimage {  
   height: 90%;
   vertical-align: middle;
   filter: invert();  
 }
 
-#returnbutton, #shufflebutton,
-#backbutton, #nextbutton {
+#returnbutton, 
+#shufflebutton,
+#backbutton, 
+#nextbutton {
   width: 40%;
   height: 40px;
   font-size:24px;
@@ -197,7 +202,8 @@ header {
   margin-bottom: 50px;
 }
 
-#returnbutton, #backbutton{
+#returnbutton, 
+#backbutton{
   margin-right: 15px;
 }
 
@@ -237,6 +243,7 @@ footer {
   color: white;
   font-size: 14px;
   background-color: #2d2926;
+  margin-top: 30px;
   padding: 10px 0px 10px 0px;
 }
 

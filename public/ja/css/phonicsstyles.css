@@ -85,12 +85,13 @@ header {
 }
 
 .top {
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 
 .topimage{
   width: 50%;
-  margin-top: 90px;
+  margin-top: 80px;
+  padding-bottom: 10px;
 }
 
 .badgecontainer a,
@@ -98,14 +99,10 @@ header {
   color: #03A9F4; 
 }
 
-.googleplay-badge{
-  width: 175px;
-}
-
-.appstore-badge{
-  width: 135px; 
-  margin:11px 0px;
-  padding-left: 12px;
+.appstore-badge,
+.googleplay-badge {
+  height: 40px; 
+  padding: 0px 10px 10px 10px;
 }
 
 .trywebapp a {
@@ -142,7 +139,7 @@ header {
 }
 
 .downloadnow {
-  padding: 15px 0px 30px 0px;
+  padding: 5px 0px 30px 0px;
 }
 
 footer {
