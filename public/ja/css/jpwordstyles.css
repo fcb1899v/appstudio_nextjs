@@ -90,7 +90,7 @@ header {
 
 .topimage{
   width: 65%;
-  margin-top: 65px;
+  margin-top: 60px;
 }
 
 .badgecontainer{
@@ -109,7 +109,7 @@ header {
 }
 
 .trywebapp a {
-  font-size: 20px;
+  font-size: 18px;
   color: white;
 }
 
@@ -138,11 +138,11 @@ header {
 
 .screenshot1{
   width: 100%;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px 25px 0px;
 }
 
 .downloadnow {
-  padding: 5px 0px 30px 0px;
+  padding: 5px 0px 25px 0px;
 }
 
 .downloadnow h1{
