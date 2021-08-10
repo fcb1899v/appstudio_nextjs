@@ -100,16 +100,13 @@ header {
 
 .appstore-badge,
 .googleplay-badge {
-  height: 40px; 
+  height: 50px; 
   padding: 0px 10px 10px 10px;
 }
 
-.trywebapp a {
-  font-size: 18px;
-  color: white;
-}
-
+.trywebapp a,
 .trywebapp a:visited {
+  font-size: 20px;
   color: white;
 }
 

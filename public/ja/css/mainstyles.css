@@ -85,13 +85,14 @@ header h1{
   padding-top: 75px;
 }
 
+.top a,
 .top a:visited {
   color: #2d2926;
 }
 
 .top p {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .transitimage,
@@ -111,7 +112,7 @@ header h1{
 .letselevator,
 .studyphonics,
 .studyjpword {
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .badgecontainer a{
@@ -121,14 +122,21 @@ header h1{
 .appstore-badge,
 .googleplay-badge,
 .amazonappstore-badge {
-  height: 40px; 
+  height: 50px; 
   padding: 10px 5px 10px 5px;
 }
 
-.trywebapp {
-  margin-bottom: 45px;
+.trywebapp{
+  margin-bottom: 50px;
+}
+
+.trywebapp a,
+.trywebapp a:visited{
+  color: black;
+  font-size: 20px;
   font-weight: bold;
 }
+
 
 footer ul {
   padding-inline-start: 0px;
@@ -146,13 +154,13 @@ footer p {
 }
 
 footer {
-  color: white;
   font-size: 14px;
   margin-top: 20px;
   background-color: #2d2926;
   padding: 10px 0px 10px 0px;
 }
 
+footer a,
 footer a:visited{
   color: white;
 }

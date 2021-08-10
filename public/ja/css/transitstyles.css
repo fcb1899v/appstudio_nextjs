@@ -112,7 +112,7 @@ header {
 
 .appstore-badge,
 .googleplay-badge {
-  height: 40px; 
+  height: 50px; 
   padding: 0px 10px 0px 10px;
 }
 
@@ -158,7 +158,8 @@ footer p {
   margin-block-end: 0px;
 }
 
-footer a:visited{
+footer a,
+footer a:visited {
   color: white;
 }
 
