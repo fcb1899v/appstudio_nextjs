@@ -1,14 +1,9 @@
 body{
   margin: 0;
-  font-family: "Helvetica Neue",
-  Arial,
-  "Hiragino Kaku Gothic ProN",
-  "Hiragino Sans",
-  Meiryo,
-  sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
   text-align: center;
   background-color: white;
-  color: #FF9800;
+  color: #383635;
 }
 
 .googleplay-badge:hover,
@@ -27,14 +22,23 @@ header {
   font-size: 11px;
   left: 0;
   right: 0;
-  background-color: #FF9800;
-  color: white;
+  background-color: #F7B249;
+  color: #383635;
 }
 
 @media (min-width: 540px) {
   header h1{
     font-size: 28px;
   }
+}
+
+.apptitle {
+  font-weight: bold;
+}
+
+span {
+  display: inline-block;
+  padding-left: 5px; 
 }
 
 .sp-menu #open,
@@ -96,8 +100,8 @@ header {
 }
 
 .container {
-  padding-top: 95px;
-  margin: 0px 70px 10px 70px;
+  padding-top: 10px;
+  margin: 0px 30px 0px 30px;
 }
 
 .container li{
@@ -108,59 +112,168 @@ header {
 
 .badgecontainer a,
 .badgecontainer a:visited{
-  color: #FF9800;
+  color: white;
 }
 
 .appstore-badge,
-.googleplay-badge,
-.amazonappstore-badge {
+.googleplay-badge {
   height: 50px; 
-  padding: 0px 5px 0px 5px;
+  padding: 5px 5px 15px 5px;
 }
 
-.topimage{
-  padding-top: 20px;
-  width: 100%;
+.topappicon {
+  width: 100px;
+  height: auto;
+}
+
+.toptitleimage{
+  padding-top: 100px;
+  height: 100px;
+  width: auto;
+}
+
+.topcontainer,
+.featurescontainer {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.topscreenshotimage{
+  padding: 10px 0px 30px 0px;
   vertical-align: bottom;
+  width: 50%;
+  height: auto;
+}
+
+.bignews{
+  font-size: 18px;
+  background-color: #383635;
+  color: white;
+  padding: 30px 0px 10px 0px;
+}
+
+.bignews h1{
+  font-size: 24px;
+  color:  #F7B249;
+  margin: 10px 10px 20px 10px;
+}
+
+.bignews h2{
+  font-size: 20px;
+  margin: 20px 10px 20px 10px;
+}
+
+.bignews h3{
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.twitter-tweet {
+  width: 90% !important;
+  padding: 10px 0px 20px 0px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .features{
-  font-size: 16px;
-  background-color: white;
-  color: #FF9800;
-  padding-top: 30px;
+  font-size: 20px;
+  background-color: #F7B249;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  font-weight: bold;
 }
 
-.features h1{
-  font-size: 24px;
-  margin: 0px 0px 20px 0px;
+.bignewsscreenshot,
+.featuresscreenshot{
+  width: 40%;
+  margin: 10px 10px 10px 10px;
 }
 
-.container1 div{
-  display: inline-block;
+.screenshotexplain{
+  width: 90%;
+  margin: 10px 10px 10px 10px;
 }
 
-.container2 li{
-  list-style: none ;
-  display: inline-block;
-  margin: 0px 25px 10px 25px;
+@media screen and (min-width:500px){
+  .topscreenshotimage{
+    width: 250px;
+    height: auto;
+  }
+
+  .screenshotexplain{
+    width: 435px;
+    height: auto;
+    margin: 10px 15px 20px 15px;
+  }
+  
 }
 
-.screenshot1{
-  width: 100%;
-  margin: 10px 0px 25px 0px;
+@media screen and (min-width: 600px){
+  .bignewsscreenshot,
+  .featuresscreenshot{
+      width: 240px;
+    height: auto;
+    margin: 10px 15px 20px 15px;
+  }
+}
+
+@media screen and (min-width: 700px){
+  .bignewsscreenshot,
+  .featuresscreenshot{
+    margin: 10px 35px 20px 35px;
+  }
+
+  .screenshotexplain{
+    margin: 10px 35px 20px 35px;
+  }
+}
+
+@media screen and (min-width:1000px){
+  .topcontainer {
+    float: left;
+    width: 50%;
+    padding: 30px 0px 0px 50px;
+  }
+  .topscreenshotimage {
+    padding: 100px 50px 25px 0px;
+  }
+  .container {
+    padding-bottom: 30px;
+  }
+}
+
+@media screen and (min-width:1200px){
+  .featurescontainer {
+    float: left;
+    width: 55%;
+    height: auto;
+  }
+  .bignewscontainer {
+    float: left;
+    width: 50%;
+    height: auto;
+  }
+  .bignewsscreenshot {
+    margin: 10px 10px 20px 10px;
+  }
+}
+
+@media screen and (min-width:1300px){
+  .bignewsscreenshot {
+    margin: 10px 35px 20px 35px;
+  }
 }
 
 .downloadnow {
-  background-color: #FF9800;
-  color: white;
-  padding: 5px 0px 25px 0px;
+  background-color: white;
+  color: #383635;
+  padding: 10px 0px 25px 0px;
 }
 
 footer {
   color: white;
   font-size: 14px;
-  background-color: #2d2926;
+  background-color: #383635;
   padding: 10px 0px 10px 0px;
 }
 
@@ -169,6 +282,8 @@ footer p {
   margin-block-end: 0px;
 }
 
+footer p,
+footer a,
 footer a:visited{
   color: white;
 }

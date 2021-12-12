@@ -1,11 +1,6 @@
 body{
   margin: 0;
-  font-family: "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans",
-    Meiryo,
-    sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
   text-align: center;
   background-color: white;
   color: #2d2926;
@@ -95,11 +90,17 @@ header h1{
   font-size: 24px;
 }
 
+.top-studyjpword a{
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .transitimage,
 .elevatorimage,
+.allowanceimage,
 .phonicsimage,
 .jpwordimage {
-  margin: 10px 0px 10px 0px;
+  margin-bottom: 10px;
   width: 70%;
 }
 
@@ -108,20 +109,22 @@ header h1{
   background-color: #03DAC5;
 }
 
-.mytransitmakers,
-.letselevator,
-.studyphonics,
-.studyjpword {
-  margin-top: 50px;
+.top-mytransitmakers,
+.top-letselevator,
+.top-allowance,
+.top-studyphonics,
+.top-studyjpword {
+  margin-top: 40px;
 }
 
-.badgecontainer a{
+.badgecontainer a,
+.badgecontainer a:visited{
   color: white;
+
 }
 
 .appstore-badge,
-.googleplay-badge,
-.amazonappstore-badge {
+.googleplay-badge {
   height: 50px; 
   padding: 10px 5px 10px 5px;
 }
@@ -160,6 +163,7 @@ footer {
   padding: 10px 0px 10px 0px;
 }
 
+footer p,
 footer a,
 footer a:visited{
   color: white;
