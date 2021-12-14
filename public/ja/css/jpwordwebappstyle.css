@@ -1,9 +1,15 @@
 body{
-  margin: 0;
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+  margin: 0;
   text-align: center;
   background-color: white;
   color: black;
+}
+
+@font-face {
+	font-family: 'KodomoRounded';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/KodomoRounded.otf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/KodomoRounded.otf);
 }
 
 .googleplay-badge:hover,
@@ -14,6 +20,7 @@ body{
 }
 
 header {
+  font-family: 'KodomoRounded';
   position: fixed;
   display: flex;
   justify-content: center;
@@ -24,6 +31,29 @@ header {
   right: 0;
   background-color: #ffa500;
   color: white;
+}
+
+header h1 {
+  font-size: 32px;
+}
+
+.pc_hid {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  header h1{
+    font-size: 24px;
+  } 
+}
+
+@media (max-width: 500px) {
+  header h1{
+    font-size: 20px;
+  } 
+  .pc_hid {
+    display: block;
+  }
 }
 
 .sp-menu #open,

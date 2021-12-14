@@ -1,9 +1,15 @@
 body{
   margin: 0;
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
   text-align: center;
   background-color: white;
   color: #383635;
+}
+
+@font-face {
+	font-family: 'Cornerstone';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/cornerstone.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/cornerstone.ttf);
 }
 
 .googleplay-badge:hover,
@@ -26,19 +32,20 @@ header {
   color: #383635;
 }
 
-@media (min-width: 540px) {
-  header h1{
-    font-size: 28px;
-  }
+header h1{
+  font-size: 24px;
 }
 
-.apptitle {
-  font-weight: bold;
+header h4 {
+  font-size: 32px;
+  font-family: "Cornerstone";
+  font-weight: normal;
+  padding-top: 5px
 }
 
 span {
   display: inline-block;
-  padding-left: 5px; 
+  padding: 0px 0px 5px 5px; 
 }
 
 .sp-menu #open,
@@ -101,7 +108,7 @@ span {
 
 .container {
   padding-top: 10px;
-  margin: 0px 30px 0px 30px;
+  margin: 0px 30px 10px 30px;
 }
 
 .container li{
@@ -153,19 +160,22 @@ span {
 }
 
 .bignews h1{
-  font-size: 24px;
+  font-family: "Cornerstone";
+  font-size: 48px;
   color:  #F7B249;
   margin: 10px 10px 20px 10px;
 }
 
-.bignews h2{
+h2{
   font-size: 20px;
   margin: 20px 10px 20px 10px;
 }
 
-.bignews h3{
-  font-size: 16px;
+h3{
+  font-size: 28px;
+  font-family: "Cornerstone";
   font-weight: normal;
+  margin: 20px 10px 20px 10px;
 }
 
 .twitter-tweet {
@@ -183,6 +193,12 @@ span {
   font-weight: bold;
 }
 
+.features p {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+
 .bignewsscreenshot,
 .featuresscreenshot{
   width: 40%;
@@ -194,18 +210,30 @@ span {
   margin: 10px 10px 10px 10px;
 }
 
-@media screen and (min-width:500px){
+
+@media screen and (min-width: 400px){
+  header h1 {
+    font-size: 28px;
+  }
+  header h4 {
+    font-size: 40px;
+  }
+  h3 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width:520px){
   .topscreenshotimage{
     width: 250px;
     height: auto;
   }
-
   .screenshotexplain{
-    width: 435px;
+    width: 465px;
     height: auto;
-    margin: 10px 15px 20px 15px;
+    padding-top: 10px;
+    margin: 0px 15px 20px 15px;
   }
-  
 }
 
 @media screen and (min-width: 600px){
@@ -222,9 +250,8 @@ span {
   .featuresscreenshot{
     margin: 10px 35px 20px 35px;
   }
-
   .screenshotexplain{
-    margin: 10px 35px 20px 35px;
+    margin: 0px 25px 20px 25px;
   }
 }
 
@@ -238,7 +265,7 @@ span {
     padding: 100px 50px 25px 0px;
   }
   .container {
-    padding-bottom: 30px;
+    padding-bottom: 10px;
   }
 }
 
@@ -255,6 +282,12 @@ span {
   }
   .bignewsscreenshot {
     margin: 10px 10px 20px 10px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .modechangetitle {
+    padding-top: 10px;
   }
 }
 
@@ -302,10 +335,6 @@ footer a:visited{
 .twitter{
   margin-right: -3px;
   width: 90px;
-}
-
-.fb{
-  line-height: 0.65;
 }
 
 .line{
