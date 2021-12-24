@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="LETS ELEVATOR" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="An app for playing with your favorite elevators anytime, anywhere, in collaboration with Shimada Electric Manufacturing Company which is famous for 1000 elevator buttons." />
+  <meta property="og:description" content="Over 10,000 downloads! An app for playing with your favorite elevators anytime, anywhere, in collaboration with Shimada Electric Manufacturing Company which is famous for 1000 elevator buttons." />
   <meta property="og:url" content="https://nakajimamasao-appstudio.web.app/letselevator.html"/>
   <meta property="og:image" content="ja/img/elevator/appicon.jpg" />
   <meta property="og:site_name" content="LETS ELEVATOR" />
@@ -64,10 +64,31 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="LETS ELEVATOR" />
-  <meta name="twitter:description" content="An app for playing with your favorite elevators anytime, anywhere, in collaboration with Shimada Electric Manufacturing Company which is famous for 1000 elevator buttons." />
-  <meta name="twitter:text:description" content="An app for playing with your favorite elevators anytime, anywhere, in collaboration with Shimada Electric Manufacturing Company which is famous for 1000 elevator buttons." />
+  <meta name="twitter:description" content="Over 10,000 downloads! An app for playing with your favorite elevators anytime, anywhere, in collaboration with Shimada Electric Manufacturing Company which is famous for 1000 elevator buttons." />
+  <meta name="twitter:text:description" content="Over 10,000 downloads! An app for playing with your favorite elevators anytime, anywhere, in collaboration with Shimada Electric Manufacturing Company which is famous for 1000 elevator buttons." />
   <meta name="twitter:url" content="https://nakajimamasao-appstudio.web.app/letselevator.html" />
   <meta name="twitter:image" content="ja/img/elevator/appaicon.jpg" />
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0FGZZJ71Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R0FGZZJ71Y');
+  </script>
+
 </head>
 
 <body>
@@ -115,8 +136,11 @@
       </nav>
       <nav class="container">
         <img class="topappicon" src="ja/img/elevator/appicon.png">
-      </nav>
-      <nav class="container">
+        <p>
+          <span>Over</span>
+          <span id=dlnumber>10,000</span>
+          <span>downloads</span>
+        </p>  
         <li>Play with your favorite elevator </li>
         <li>anytime, anywhere</li>  
       </nav>
@@ -251,18 +275,7 @@
         <p>e-mail: fcb1899v3@gmail.com</p>
       </li>    
     </ul>
-   </ul>
-  
-  <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+   </ul>  
 </footer>
 <script src="ja/js/main.js"></script> 
 </html>

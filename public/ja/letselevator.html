@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="レッツ・エレベーター" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="いつでもどこでも大好きなエレベーター遊びができるアプリです。1000のボタンで有名な島田電機製作所とコラボしました。"/>
+  <meta property="og:description" content="10,000DL突破！いつでもどこでも大好きなエレベーター遊びができるアプリです。1000のボタンで有名な島田電機製作所とコラボしました。"/>
   <meta property="og:url" content="https://nakajimamasao-appstudio.web.app/ja/letselevator.html"/>
   <meta property="og:image" content="img/elevator/appicon.jpg" />
   <meta property="og:site_name" content="レッツ・エレベーター" />
@@ -64,10 +64,31 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="レッツ・エレベーター" />
-  <meta name="twitter:description" content="いつでもどこでも大好きなエレベーター遊びができるアプリです。1000のボタンで有名な島田電機製作所とコラボしました。" />
-  <meta name="twitter:text:description" content="いつでもどこでも大好きなエレベーター遊びができるアプリです。1000のボタンで有名な島田電機製作所とコラボしました。" />
+  <meta name="twitter:description" content="10,000DL突破！いつでもどこでも大好きなエレベーター遊びができるアプリです。1000のボタンで有名な島田電機製作所とコラボしました。" />
+  <meta name="twitter:text:description" content="10,000DL突破！いつでもどこでも大好きなエレベーター遊びができるアプリです。1000のボタンで有名な島田電機製作所とコラボしました。" />
   <meta name="twitter:url" content="https://nakajimamasao-appstudio.web.app/ja/letselevator.html" />
   <meta name="twitter:image" content="img/elevator/appicon.jpg" />
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0FGZZJ71Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R0FGZZJ71Y');
+  </script>
+
 </head>
 
 <body>
@@ -119,8 +140,10 @@
       </nav>
       <nav class="container">
         <img class="topappicon" src="img/elevator/appicon.png">
-      </nav>
-      <nav class="container">
+        <p>
+          <span id=dlnumber>10,000</span>
+          <span>ダウンロード突破</span>
+        </p>  
         <li>大好きなエレベーター遊びが</li>
         <li>いつでもどこでも</li>  
       </nav>
@@ -165,8 +188,8 @@
     </div>
     <div class="bignewscontainer2">
       <h2 class ="modechangetitle">＜モード変更のやり方＞</h2>
-      <img class="bignewsscreenshot" src="img/elevator/screenshot_button.png">      
-      <img class="bignewsscreenshot" src="img/elevator/screenshot_change.png">
+      <img class="bignewsscreenshot" src="img/elevator/screenshot_button_ja.png">      
+      <img class="bignewsscreenshot" src="img/elevator/screenshot_change_ja.png">
     </div>
   </section>
   <section class="features">
@@ -257,17 +280,6 @@
       </li>    
     </ul>
   </ul>
-
-  <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
 </footer>
 <script src="js/main.js"></script> 
 </html>

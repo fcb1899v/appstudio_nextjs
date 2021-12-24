@@ -62,7 +62,6 @@
   <link rel="icon" type="image/png" href="ja/img/transit/favicons/icon-192x192.png">
   <link rel="manifest" href="ja/img/transit/favicons/manifest.json">
 
-
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="My Transit Makers" />
@@ -72,6 +71,27 @@
   It has a function of countdown until departure , comparison two routes at the same time, and switching between return and outing route." />
   <meta name="twitter:url" content="https://nakajimamasao-appstudio.web.app/mytransitmakers.html" />
   <meta name="twitter:image" content="ja/img/transit/ic_train.jpg" />
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0FGZZJ71Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R0FGZZJ71Y');
+  </script>
+
 </head>
 
 <body>
@@ -216,18 +236,7 @@
         <p>e-mail: fcb1899v3@gmail.com</p>
       </li>    
     </ul>
-  </ul>
-  
-  <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+  </ul>  
 </footer>
 <script src="ja/js/main.js"></script> 
 </html>

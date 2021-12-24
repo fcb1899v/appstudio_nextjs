@@ -68,6 +68,27 @@
   <meta name="twitter:text:description" content="毎日の通勤通学に便利な自分だけのための乗換案内作成アプリ。出発までのカウントダウン機能、2つのルートの同時比較機能、帰宅ルートと外出ルートの切替機能があります。" />
   <meta name="twitter:url" content="https://nakajimamasao-appstudio.web.app/ja/mytransitmakers.html" />
   <meta name="twitter:image" content="img/transit/ic_train.jpg" />
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0FGZZJ71Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R0FGZZJ71Y');
+  </script>
+
 </head>
 
 <body>
@@ -215,17 +236,6 @@
       </li>    
     </ul>  
   </ul>
-
-  <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
 </footer>
 <script src="js/main.js"></script> 
 </html>
