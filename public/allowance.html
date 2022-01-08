@@ -68,6 +68,23 @@
   <meta name="twitter:text:description" content="Kawaii app for both adults and children helps manage allowance easily." />
   <meta name="twitter:url" content="https://nakajimamasao-appstudio.web.app/allowance.html" />
   <meta name="twitter:image" content="ja/img/allowance/appaicon.jpg" />
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Google Adsense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585283309075901"
+    crossorigin="anonymous">
+  </script>
+
 </head>
 
 <body>
@@ -82,9 +99,6 @@
         <li class="home">
           <a href="index.html">Home</a>
         </li>
-        <li class="mytransitmakers">
-          <a href="mytransitmakers.html">My Transit Makers</a>
-        </li>
         <li class="letselevator">
           <a href="letselevator.html">Let's Elevator</a>
         </li>
@@ -94,6 +108,9 @@
         <li class="studyphonics">
           <a href="studyphonics.html">Study Phonics</a>
         </li>    
+        <li class="mytransitmakers">
+          <a href="mytransitmakers.html">My Transit Makers</a>
+        </li>
         <li class="support">
           <a href="support.html">Support Center</a>
         </li>    
@@ -199,18 +216,7 @@
         <p>e-mail: fcb1899v3@gmail.com</p>
       </li>    
     </ul>
-   </ul>
-  
-  <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+   </ul>  
 </footer>
 <script src="ja/js/main.js"></script> 
 </html>
