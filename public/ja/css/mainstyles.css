@@ -95,11 +95,7 @@ header h1{
   font-size: 20px;
 }
 
-.transitimage,
-.elevatorimage,
-.allowanceimage,
-.phonicsimage,
-.jpwordimage {
+.image {
   margin-bottom: 10px;
   width: 70%;
 }
@@ -107,14 +103,6 @@ header h1{
 .transitimage {
   padding-top: 30px; 
   background-color: #03DAC5;
-}
-
-.top-mytransitmakers,
-.top-letselevator,
-.top-allowance,
-.top-studyphonics,
-.top-studyjpword {
-  margin-top: 40px;
 }
 
 .badgecontainer a,
