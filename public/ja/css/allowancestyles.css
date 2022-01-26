@@ -1,9 +1,21 @@
 body{
   margin: 0;
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+  font-family: 'Pacifico', 'RiiPopkkR';
   text-align: center;
   background-color: #00ffff;
   color: white;
+}
+
+@font-face {
+	font-family: 'Pacifico';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/Pacifico.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/Pacifico.ttf);
+}
+
+@font-face {
+	font-family: 'RiiPopkkR';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/RiiPopkkR.otf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/RiiPopkkR.otf);
 }
 
 .googleplay-badge:hover,
@@ -22,14 +34,18 @@ header {
   font-size: 11px;
   left: 0;
   right: 0;
-  background: linear-gradient(90deg,#ff80ff, #8040ff);
+  background: linear-gradient(90deg, #8040ff,#ff80ff);
   color: white;
 }
 
-@media (min-width: 540px) {
-  header h1{
-    font-size: 28px;
-  }
+header h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+span {
+  display: inline-block;
+  padding: 0px 0px 5px 5px; 
 }
 
 .sp-menu #open,
@@ -87,13 +103,19 @@ header {
 }
 
 .top {
-  font-size: 18px;
-  background: linear-gradient(90deg,#ff80ff, #8040ff);
+  font-size: 20px;
+  background: linear-gradient(90deg, #8040ff,#ff80ff);
+}
+
+.top p {
+  padding: 20px 0px 20px 0px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .container {
-  padding-top: 80px;
-  margin: 0px 70px 10px 70px;
+  padding-top: 10px;
+  margin: 0px 0px 20px 0px;
 }
 
 .container li{
@@ -104,7 +126,7 @@ header {
 
 .badgecontainer a,
 .badgecontainer a:visited{
-  color: #ff80ff;
+  color: #8040ff;
 }
 
 .appstore-badge,
@@ -113,19 +135,52 @@ header {
   padding: 0px 10px 0px 10px;
 }
 
-.topimage{
-  padding: 10px 0px 0px 0px;
-  width: 100%;
-  vertical-align: bottom;
+.topappicon {
+  padding: 10px 0px 30px 0px;
+  width: 120px;
+  height: auto;
 }
 
-.screenshot1{
+.toptitleimage{
+  padding-top: 80px;
+  height: 50px;
+  width: auto;
+}
+
+.topbackground {
   width: 100%;
-  margin: 25px 0px 20px 0px;
+  height: auto;
+}
+
+.topcontainer,
+.featurescontainer {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.topscreenshotimage{
+  padding: 30px 0px 15px 0px;
+  vertical-align: bottom;
+  width: 50%;
+  height: auto;
+}
+
+.features{
+  font-size: 20px;
+  background-color: #00ffff;
+  color: white;
+  margin-top: -10px;
+  padding: 20px 20px 20px 20px;
+  font-weight: bold;
+}
+
+.featuresscreenshot{
+  width: 40%;
+  margin: 10px 10px 10px 10px;
 }
 
 .downloadnow {
-  background: linear-gradient(90deg,#ff80ff, #8040ff);
+  background: linear-gradient(90deg, #8040ff,#ff80ff);
   color: white;
   padding: 5px 0px 25px 0px;
 }
@@ -162,10 +217,64 @@ footer a:visited{
   width: 90px;
 }
 
-.fb{
-  line-height: 0.65;
-}
-
 .line{
   width:90px;
+}
+
+@media screen and (max-width: 400px){
+  .toptitleimage{
+    height: auto;
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 400px){
+  header h1{
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width:520px){
+  .topscreenshotimage{
+    width: 250px;
+    height: auto;
+  }
+
+  header h1{
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 600px){
+  .featuresscreenshot{
+    width: 240px;
+    height: auto;
+    margin: 10px 15px 20px 15px;
+  }
+}
+
+@media screen and (min-width: 700px){
+  .featuresscreenshot{
+    margin: 10px 35px 20px 35px;
+  }
+}
+
+@media screen and (min-width:1000px){
+  .topcontainer {
+    float: left;
+    width: 50%;
+    padding: 20px 0px 0px 0px;
+  }
+  
+  .topscreenshotimage {
+    padding: 100px 0px 0px 0px;
+  }
+
+  .container {
+    padding-bottom: 10px;
+  }
+
+  .topbackground {
+    height: 200px;
+  }
 }
