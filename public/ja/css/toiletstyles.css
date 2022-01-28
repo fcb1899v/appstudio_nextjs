@@ -2,7 +2,7 @@ body{
   margin: 0;
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
   text-align: center;
-  background-color: white;
+  background-color: #383635;
   color: #383635;
 }
 
@@ -242,7 +242,7 @@ h3{
 
 @media screen and (min-width: 600px){
   .featuresscreenshot{
-      width: 240px;
+    width: 240px;
     height: auto;
     margin: 10px 15px 20px 15px;
   }

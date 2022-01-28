@@ -2,7 +2,7 @@ body{
   margin: 0;
   font-family: 'Pacifico', 'RiiPopkkR';
   text-align: center;
-  background-color: #00ffff;
+  background-color: #2d2926;
   color: white;
 }
 
@@ -93,6 +93,7 @@ span {
 }
 
 .overlay a{
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif, 'Pacifico', 'RiiPopkkR';
   font-size: 16px;
   color: white;
 }
@@ -108,8 +109,8 @@ span {
 }
 
 .top p {
-  padding: 20px 0px 20px 0px;
-  font-size: 24px;
+  padding-top: 80px;
+  font-size: 28px;
   font-weight: bold;
 }
 
@@ -136,15 +137,9 @@ span {
 }
 
 .topappicon {
-  padding: 10px 0px 30px 0px;
-  width: 120px;
+  padding: 10px 0px 20px 0px;
+  width: 150px;
   height: auto;
-}
-
-.toptitleimage{
-  padding-top: 80px;
-  height: 50px;
-  width: auto;
 }
 
 .topbackground {
@@ -188,6 +183,7 @@ span {
 footer {
   color: white;
   font-size: 14px;
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif, 'Pacifico', 'RiiPopkkR';
   background-color: #2d2926;
   padding: 10px 0px 10px 0px;
 }
@@ -234,7 +230,7 @@ footer a:visited{
   }
 }
 
-@media screen and (min-width:520px){
+@media screen and (min-width:550px){
   .topscreenshotimage{
     width: 250px;
     height: auto;
@@ -243,38 +239,57 @@ footer a:visited{
   header h1{
     font-size: 32px;
   }
-}
 
-@media screen and (min-width: 600px){
   .featuresscreenshot{
-    width: 240px;
-    height: auto;
-    margin: 10px 15px 20px 15px;
-  }
+    width: 200px;
+    margin: 10px 20px 10px 20px;
+  } 
 }
 
 @media screen and (min-width: 700px){
   .featuresscreenshot{
-    margin: 10px 35px 20px 35px;
+    width: 250px;
+  } 
+
+  .top p {
+    font-size: 32px;
+  }
+
+  .top li {
+    font-size: 24px;
   }
 }
 
-@media screen and (min-width:1000px){
+
+@media screen and (min-width:1100px){
   .topcontainer {
     float: left;
-    width: 50%;
-    padding: 20px 0px 0px 0px;
+    width: 55%;
+    padding: 20px 0px 0px 50px;
   }
   
   .topscreenshotimage {
     padding: 100px 0px 0px 0px;
   }
 
-  .container {
-    padding-bottom: 10px;
-  }
-
   .topbackground {
     height: 200px;
   }
+
+  .featurescontainer {
+    float: left;
+    width: 50%;
+    height: auto;
+  }
+
+  .featuresscreenshot{
+    width: 200px;
+  }
 }
+
+@media screen and (min-width: 1250px){
+  .featuresscreenshot{
+    width: 250px;
+  } 
+}
+
