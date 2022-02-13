@@ -70,10 +70,18 @@
     gtag('config', 'G-R0FGZZJ71Y');
   </script>
 
-    <!-- Google Adsense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585283309075901"
-      crossorigin="anonymous">
-    </script>
+  <!-- Google Adsense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585283309075901"
+    crossorigin="anonymous">
+  </script>
+
+  <!-- footer -->
+  <script src=”https://code.jquery.com/jquery-3.5.1.js”></script>
+  <script>
+    $(function() {
+      $("#footer").load("footer.html");
+    });
+  </script>
     
 </head>
 
@@ -235,7 +243,7 @@
   </section>
 </body>
 
-<footer>
+<footer id=”footer”>
   <ul class="link">
     <li class="support">
       <a href="support.html">サポートセンター</a>
