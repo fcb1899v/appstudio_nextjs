@@ -99,8 +99,15 @@ header h1{
 
 .image {
   margin-bottom: 10px;
-  width: 70%;
+  width: 600px;
 }
+
+.movie {
+  margin-bottom: 10px;
+  aspect-ratio: 16/9;
+  width: 600px;
+}
+
 
 .transitimage {
   padding-top: 30px; 
@@ -191,6 +198,13 @@ footer a:visited{
 
 .contact {
   padding: 40px 0px 15px 0px;
+}
+
+@media (max-width: 600px) {
+  .image,
+  .movie {
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {

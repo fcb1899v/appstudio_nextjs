@@ -141,9 +141,12 @@ span {
 }
 
 .toptitleimage{
-  padding-top: 100px;
   height: 100px;
   width: auto;
+}
+
+.topcontainer {
+  padding: 10px 0px 30px 0px;
 }
 
 .topcontainer,
@@ -152,11 +155,18 @@ span {
   margin-right: auto;
 }
 
-.topscreenshotimage{
-  padding: 10px 0px 30px 0px;
+.topmovie {
+  padding: 100px 0px 30px 0px;
   vertical-align: bottom;
-  width: 50%;
-  height: auto;
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+
+.downloadmovie {
+  padding-top: 30px;
+  vertical-align: bottom;
+  aspect-ratio: 16/9;
+  width: 100%;
 }
 
 #dlnumber {
@@ -233,11 +243,7 @@ h3{
   }
 }
 
-@media screen and (min-width:520px){
-  .topscreenshotimage{
-    width: 250px;
-    height: auto;
-  }
+@media screen and (min-width:560px){
   .screenshotexplain{
     width: 465px;
     height: auto;
@@ -247,6 +253,12 @@ h3{
 }
 
 @media screen and (min-width: 600px){
+
+  .topmovie,
+  .downloadmovie {
+    width: 560px;
+  }
+  
   .bignewsscreenshot,
   .featuresscreenshot{
     width: 240px;
@@ -265,24 +277,28 @@ h3{
   }
 }
 
-@media screen and (min-width:1000px){
+@media screen and (min-width:1200px){
+  .top {
+    padding-bottom: 80px;
+  }
+  
   .topcontainer {
-    float: left;
-    width: 50%;
-    padding: 20px 0px 0px 50px;
+    float: right;
+    padding: 100px 50px 0px 0px;
+    width: 40%;
   }
-  .topscreenshotimage {
-    padding: 100px 50px 25px 0px;
+
+  .topmovie {
+    padding: 175px 0px 35px 50px;
   }
+
   .container {
     padding-bottom: 10px;
   }
-}
 
-@media screen and (min-width:1200px){
   .featurescontainer {
     float: left;
-    width: 55%;
+    width: 50%;
     height: auto;
   }
   .bignewscontainer {
