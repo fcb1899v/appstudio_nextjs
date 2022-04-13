@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/elevatorstyles.css">
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="elevator,エレベーター,レッツ・エレベーター,シミュレーター,simulator,乗り物,操作,表示,パネル,pannel,教育,生活,そっくり,ゲーム,game,輸送,リフト,lift,シミュレーション,simulation,模擬,ボタン,島田電機製作所,1000のボタン,島田電機,昇降機,SHIMAX,島田,シマダ,shimada,シマックス"/>
+  <meta name="keywords" content="elevator,エレベーター,レッツ・エレベーター"/>
   <meta name="author" content="Nakajima Masao" />
   <meta property="og:title" content="レッツ・エレベーター" />
   <meta property="og:type" content="website" />
@@ -20,7 +20,7 @@
   <meta name="msapplication-square150x150logo" content="img/elevator/favicons/site-tile-150x150.png">
   <meta name="msapplication-wide310x150logo" content="img/elevator/favicons/site-tile-310x150.png">
   <meta name="msapplication-square310x310logo" content="img/elevator/favicons/site-tile-310x310.png">
-  <meta name="msapplication-TileColor" content="#0078d7">
+  <meta name="msapplication-TileColor" content="#F7B249">
   <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="img/elevator/favicons/favicon.ico">
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/elevator/favicons/favicon.ico">
   <link rel="apple-touch-icon" sizes="57x57" href="img/elevator/favicons/apple-touch-icon-57x57.png">
@@ -164,15 +164,22 @@
         <li>大好きなエレベーター遊びが</li>
         <li>いつでも・どこでも</li>  
       </nav>
+
       <nav class="badgecontainer">
         <a href="https://apps.apple.com/jp/app/id1577024337#?platform=iphone" 
           target="_blank" 
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+          onclick="gtag('event', 'select_content', {
+            content_type: 'Get iOS app',
+            item_id: 'get_ios'});">
           <img class="appstore-badge" src="img/AppStore_Badge_US_BK.svg">
         </a>
         <a href="https://play.google.com/store/apps/details?id=com.nakajimamasaoappstudio.letselevator" 
           target="_blank" 
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+          onclick="gtag('event', 'select_content', {
+            content_type: 'Get Android app',
+            item_id: 'get_android'});">
           <img class="googleplay-badge" src="img/google-play-badge.png">
         </a>
       </nav>
@@ -226,8 +233,6 @@
       <img class="screenshotexplain" src="img/elevator/screenshot_explain_ja.png">
     </div>
   </section>
-
-
   
   <section class="downloadnow">
     <iframe class="downloadmovie" 
@@ -241,12 +246,18 @@
     <div class="badgecontainer">
       <a href="https://apps.apple.com/jp/app/id1577024337#?platform=iphone" 
         target="_blank" 
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+        onclick="gtag('event', 'select_content', {
+          content_type: 'Get iOS app',
+          item_id: 'get_ios'});">
         <img class="appstore-badge" src="img/AppStore_Badge_US_BK.svg">
       </a>
       <a href="https://play.google.com/store/apps/details?id=com.nakajimamasaoappstudio.letselevator" 
         target="_blank" 
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+        onclick="gtag('event', 'select_content', {
+          content_type: 'Get Android app',
+          item_id: 'get_Android'});">
         <img class="googleplay-badge" src="img/google-play-badge.png">
       </a>
     </div>
