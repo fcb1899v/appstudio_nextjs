@@ -1,332 +1,83 @@
-body{
-  margin: 0;
-  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
-  text-align: center;
-  background-color: #383635;
-  color: #383635;
-}
-
 @font-face {
 	font-family: 'Cornerstone';
 	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/cornerstone.ttf);
   src: url(https://nakajimamasao-appstudio.web.app/font/cornerstone.ttf);
 }
 
-.googleplay-badge:hover,
-.appstore-badge:hover,
-.overlay a:hover,
-.policylist a:hover {
-  opacity: 0.6;
+/* Common */
+body{
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  margin: 0; text-align: center; font-size: 18px; font-weight: normal;
+}
+.en { font-size: 20px; }
+h1 { font-size: 28px; margin: 10px 10px 10px 10px; }
+h2 { font-size: 24px; margin: 10px 10px 10px 10px; }
+span { display: inline-block; padding: 0px 0px 5px 5px; }
+.cornerstone { font-family: "Cornerstone"; font-weight: normal; }
+.image { width: 100%; height: auto; margin: 10px 10px 10px 10px; }
+.screenshot { width: 70%; height: auto; margin: 10px 10px 10px 10px; }
+
+/* Color */
+.accentlight { background-color: #86bdda; color: white }
+.accent { color: #86bdda; }
+.dark { background-color: #383635; color: white }
+.light { background-color: white; color: #383635 }
+
+/* Badge */
+.badge_container { margin: 20px 0px 20px 0px; }
+.badge_container a, .badge_container a:visited { color: white;}
+.appstore_badge, .googleplay_badge { height: 50px; padding: 5px 5px 15px 5px; }
+.googleplay-badge:hover, .appstore-badge:hover { opacity: 0.6; }
+
+/* Header */
+header { position: fixed; display: flex; justify-content: center; align-items: center; height: 70px; left: 0; right: 0;}
+#apptitle { font-size: 40px; padding: 5px 0px 0px 0px; }
+.sp-menu #open, .overlay #close { position: absolute; right: 20px; font-size: 32px; cursor: pointer; }
+.sp-menu #open { margin-top: -20px; }
+.sp-menu #open.hide { display: none; }
+.imgmenu, .imgclose { filter: invert(100%); -webkit-filter: invert(100%); }
+.overlay { 
+  position: fixed; top: 0; bottom: 0; right: 0; width: 320px; background: rgba(0, 0, 0, 0.5); 
+  padding-top: 24px; opacity: 0; pointer-events: none; transition: all 500ms 0s ease;
+}
+.overlay li { list-style-type: none; margin-top: 24px; }
+.overlay a { font-size: 16px; color: white; }
+.overlay a:hover { opacity: 0.6; }
+.overlay.show { opacity: 1; pointer-events: auto; }
+.overlay #close{ margin-top: -10px; }
+
+/* Top */
+.top { padding: 115px 20px 40px 20px; background-image: url(back.png); background-repeat: repeat; }
+#top_title { width: 280px; height: auto; }
+#top_icon { width: 100px; height: auto; margin: 20px 30px 20px 30px; }
+.top_subtitle { margin-top: 10px;}
+
+/* Features */
+.features { padding: 25px 20px 30px 20px; }
+#howtouse { padding: 10px 0px 10px 0px; }
+#howtouse_en { font-size: 32px; padding: 10px 0px 10px 0px; }
+
+/* Download Now */
+.dlnow { background-image: url(back.png); background-repeat: repeat; padding: 25px 0px 10px 0px; }
+#dlnow_en { font-size: 36px; }
+
+/* Footer */
+footer { font-size: 14px; padding: 20px 0px 20px 0px;}
+footer p { margin-block-start: 0px; margin-block-end: 0px; margin-bottom: 0; }
+footer a, footer a:visited { color: white; }
+.snsbutton li { display: inline-block; height: 20px; width: auto; padding: 0px 5px 0px 5px; }
+.snsbutton, .footercontact { padding-inline-start: 0px; margin: 10px 10px 10px 10px; }
+
+@media screen and (min-width: 342px){
+  .screenshot { width: 240px }
 }
 
-header {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  font-size: 11px;
-  left: 0;
-  right: 0;
-  background-color: #86bdda;
-  color: white;
-}
-
-header h1{
-  font-size: 24px;
-}
-
-header h4 {
-  font-size: 32px;
-  font-family: "Cornerstone";
-  font-weight: normal;
-  padding-top: 5px
-}
-
-span {
-  display: inline-block;
-  padding: 0px 0px 5px 5px; 
-}
-
-.sp-menu #open,
-.overlay #close {
-  position: absolute;
-  right: 20px;
-  font-size: 32px;
-  cursor: pointer;
-}
-
-.sp-menu #open{
-  margin-top: -20px;
-}
-
-.overlay #close{
-  margin-top: -10px;
-}
-
-.sp-menu #open.hide {
-  display: none;
-}
-
-.imgmenu,
-.imgclose {
-  filter: invert(100%);
-  -webkit-filter: invert(100%);
-}
-
-.overlay{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 320px;
-  background: rgba(0, 0, 0, 0.5);
-  padding-top: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 500ms 0s ease;
-}
-
-.overlay li{
-  list-style-type: none;
-  margin-top: 24px;
-}
-
-.overlay a{
-  font-size: 16px;
-  color: white;
-}
-
-.overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.top {
-  font-size: 18px;
-  background-image: url(back.png);
-  background-repeat: repeat;
-}
-
-.top p {
-  font-size: 24px;
-  font-family: "Cornerstone" ;
-  font-weight: bold;
-}
-
-.container {
-  padding-top: 10px;
-  margin: 0px 30px 10px 30px;
-}
-
-.container li{
-  list-style: none ;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.badgecontainer a,
-.badgecontainer a:visited{
-  color: white;
-}
-
-.appstore-badge,
-.googleplay-badge {
-  height: 50px; 
-  padding: 5px 5px 15px 5px;
-}
-
-.topappicon {
-  padding: 10px 0px 10px 0px;
-  width: 100px;
-  height: auto;
-}
-
-.toptitleimage{
-  padding: 100px 0px 10px 0px;
-  height: 50px;
-  width: auto;
-}
-
-.topcontainer,
-.featurescontainer {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.topscreenshotimage{
-  padding: 30px 0px 30px 0px;
-  vertical-align: bottom;
-  width: 50%;
-  height: auto;
-}
-
-#dlnumber {
-  font-size: 50px;
-}
-
-h2{
-  font-size: 20px;
-  margin: 20px 10px 20px 10px;
-}
-
-h3{
-  font-size: 28px;
-  font-family: "Cornerstone";
-  font-weight: normal;
-  margin: 20px 10px 20px 10px;
-}
-
-.twitter-tweet {
-  width: 90% !important;
-  padding: 10px 0px 20px 0px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.features{
-  font-size: 20px;
-  background-color: #86bdda;
-  color: white;
-  padding: 20px 20px 20px 20px;
-  font-weight: bold;
-}
-
-.features p {
-  font-size: 18px;
-  font-weight: normal;
-}
-
-.featuresscreenshot{
-  width: 40%;
-  margin: 10px 10px 10px 10px;
-}
-
-.screenshotexplain{
-  width: 90%;
-  margin: 10px 10px 10px 10px;
-}
-
-@media screen and (max-width: 400px){
-  .toptitleimage{
-    height: auto;
-    width: 95%;
-  }
-}
-
-@media screen and (min-width: 400px){
-
-  header h1 {
-    font-size: 28px;
-  }
-  header h4 {
-    font-size: 40px;
-  }
-  h3 {
-    font-size: 32px;
-  }
-}
-
-@media screen and (min-width:520px){
-  .topscreenshotimage{
-    width: 250px;
-    height: auto;
-  }
-  .screenshotexplain{
-    width: 475px;
-    height: auto;
-    padding-top: 10px;
-    margin: 0px 15px 20px 15px;
-  }
-}
-
-@media screen and (min-width: 600px){
-  .featuresscreenshot{
-    width: 240px;
-    height: auto;
-    margin: 10px 15px 20px 15px;
-  }
-}
-
-@media screen and (min-width: 700px){
-  .featuresscreenshot{
-    margin: 10px 35px 20px 35px;
-  }
-  .screenshotexplain{
-    margin: 0px 25px 20px 25px;
-  }
-}
-
-@media screen and (min-width:1000px){
-  .topcontainer {
-    float: left;
-    width: 50%;
-    padding: 20px 0px 0px 50px;
-  }
-  .topscreenshotimage {
-    padding: 100px 50px 25px 0px;
-  }
-  .container {
-    padding-bottom: 10px;
-  }
+@media screen and (min-width: 520px){
+  .image { width: 480px; }  
 }
 
 @media screen and (min-width:1200px){
-  .featurescontainer {
-    float: left;
-    width: 55%;
-    height: auto;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-  .modechangetitle {
-    padding-top: 10px;
-  }
-}
-
-.downloadnow {
-  background-image: url(back.png);
-  background-repeat: repeat;
-  color: #383635;
-  padding: 10px 0px 25px 0px;
-}
-
-footer {
-  color: white;
-  font-size: 14px;
-  background-color: #383635;
-  padding: 10px 0px 10px 0px;
-}
-
-footer p {
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-}
-
-footer p,
-footer a,
-footer a:visited{
-  color: white;
-}
-
-.snsbutton li{
-  display: inline-block;
-  padding: 0px 5px 10px 5px;
-}
-
-.snsbutton,
-.footercontact {
-  padding-inline-start: 0px;
-  margin: 10px 10px 0px 10px;
-}
-
-.twitter{
-  margin-right: -3px;
-  width: 90px;
-}
-
-.line{
-  width:90px;
+  .top { padding: 105px 20px 30px 20px; }
+  .top_container { float: left; width: 50%; height: auto; padding-top: 100px;}
+  .features_container { float: left; width: 50%; height: auto; }
 }

@@ -75,6 +75,6 @@ footer a, footer a:visited { color: white; }
 @media (max-width: 360px) {
   h1 { font-size: 18px; }
   h2 { font-size: 18px; }
-  h2 { font-size: 18px; }
+  h3 { font-size: 18px; }
   .appstore_badge, .googleplay_badge { height: 40px; }
 }
