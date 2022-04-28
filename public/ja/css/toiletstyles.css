@@ -68,7 +68,7 @@ footer a, footer a:visited { color: white; }
 .snsbutton li { display: inline-block; height: 20px; width: auto; padding: 0px 5px 0px 5px; }
 .snsbutton, .footercontact { padding-inline-start: 0px; margin: 10px 10px 10px 10px; }
 
-@media screen and (min-width: 342px){
+@media screen and (min-width: 382px){
   .screenshot { width: 240px }
 }
 

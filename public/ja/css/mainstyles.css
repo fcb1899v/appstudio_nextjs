@@ -1,16 +1,30 @@
+@font-face {
+	font-family: 'Cornerstone';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/cornerstone.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/cornerstone.ttf);
+}
+
+@font-face {
+	font-family: 'Pacifico';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/Pacifico.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/Pacifico.ttf);
+}
+
 /* Common */
 h1 { font-size: 28px; }
 h2 { font-size: 28px; font-weight: bold; }
 h3 { font-size: 24px; font-weight: bold; padding-top: 20px; }
 .image { width: 600px; height: auto;}
 .movie { width: 600px; aspect-ratio: 16/9; }
+.cornerstone { font-family: "Cornerstone"; font-weight: normal; font-size: 36px; }
+.pacifico { font-family: "Pacifico"; font-weight: normal; font-size: 36px; margin-bottom: 15px; }
+
 
 /* Color */
 .accentlight { background-color: #FE5000; color: white }
 .accent { color: #FE5000; }
 .dark { background-color: #2D2926; color: white }
 .white { background-color: white; color: #2D2926 }
-.gray { background-color: #EEEEEE; color: #2D2926 }
 
 /* body */
 body{
