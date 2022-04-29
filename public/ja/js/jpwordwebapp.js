@@ -230,8 +230,8 @@
   var i = 0;
   var index = 0;
   var jpwordcharlist = jpworddefault;
-  var hiraganachar = document.getElementById("hiraganachar");
-  var katakanachar = document.getElementById("katakanachar");
+  var hiraganachar = document.getElementById("hiragana");
+  var katakanachar = document.getElementById("katakana");
   var image1 = document.getElementById("image1");
   var image2 = document.getElementById("image2");
   var word11 = document.getElementById("word11");
