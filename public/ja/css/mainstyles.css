@@ -60,6 +60,7 @@ footer { font-size: 14px; padding: 20px 0px 20px 0px; margin-top: -20px;}
 footer li { margin: 10px 10px 10px 10px; display:inline-block; }
 footer p { margin-block-start: 0px; margin-block-end: 0px; }
 footer a, footer a:visited { color: white; }
+.footer_contact { padding-top: 15px; }
 
 /* Privacy Policy */
 .policytop { padding: 100px 0px 60px 0px; }

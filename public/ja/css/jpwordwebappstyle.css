@@ -1,37 +1,48 @@
-body{
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
-  margin: 0;
-  text-align: center;
-  background-color: white;
-  color: black;
-}
-
 @font-face {
 	font-family: 'KodomoRounded';
 	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/KodomoRounded.otf);
   src: url(https://nakajimamasao-appstudio.web.app/font/KodomoRounded.otf);
 }
 
-.googleplay-badge:hover,
-.appstore-badge:hover,
-.overlay a:hover,
-.policylist a:hover {
-  opacity: 0.6;
+/* Common */
+body{
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  margin: 0; text-align: center; font-size: 16px; font-weight: normal;
 }
+h1 { font-size: 20px; padding: 10px 10px 10px 10px; }
+span { display: inline-block; padding: 0px 0px 5px 5px; }
+.kodomorounded { font-family: 'KodomoRounded'; }
+.image { width: 100%; height: auto; margin-bottom: 10px; }
+.screenshot { width: 100%; height: auto; }
 
-header {
-  font-family: 'KodomoRounded';
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  font-size: 10px;
-  left: 0;
-  right: 0;
-  background-color: #ffa500;
-  color: white;
+/* Color */
+.accentlight { background-color: #ffa500; color: white }
+.accentdark { background-color: #0077ff; color: white }
+.dark { background-color: #383635; color: white }
+.light { background-color: white; color: #ffa500 }
+
+/* Badge */
+.badge_container { margin: 20px 0px 20px 0px; }
+.badge_container a, .badge_container a:visited { color: white;}
+.appstore_badge, .googleplay_badge { height: 50px; padding: 5px 5px 15px 5px; }
+.appstore_badge:hover, .googleplay_badge:hover { opacity: 0.6; }
+
+/* Header */
+header { position: fixed; display: flex; justify-content: center; align-items: center; height: 70px; left: 0; right: 0;}
+.sp-menu #open, .overlay #close { position: absolute; right: 20px; font-size: 32px; cursor: pointer; }
+.sp-menu #open { margin-top: -20px; }
+.sp-menu #open.hide { display: none; }
+.imgmenu, .imgclose { filter: invert(100%); -webkit-filter: invert(100%); }
+.overlay { 
+  position: fixed; top: 0; bottom: 0; right: 0; width: 320px; background: rgba(0, 0, 0, 0.5); 
+  padding-top: 24px; opacity: 0; pointer-events: none; transition: all 500ms 0s ease;
 }
+.overlay li { list-style-type: none; margin-top: 24px; }
+.overlay a { font-size: 16px; color: white; }
+.overlay a:hover { opacity: 0.6; }
+.overlay.show { opacity: 1; pointer-events: auto; }
+.overlay #close{ margin-top: -10px; }
+
 
 header h1 {
   font-size: 32px;
@@ -54,60 +65,6 @@ header h1 {
   .pc_hid {
     display: block;
   }
-}
-
-.sp-menu #open,
-.overlay #close {
-  position: absolute;
-  right: 20px;
-  font-size: 32px;
-  cursor: pointer;
-}
-
-.sp-menu #open{
-  margin-top: -20px;
-}
-
-.overlay #close{
-  margin-top: -10px;
-}
-
-.sp-menu #open.hide {
-  display: none;
-}
-
-.imgmenu,
-.imgclose {
-  filter: invert(100%);
-  -webkit-filter: invert(100%);
-}
-
-.overlay{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 320px;
-  background: rgba(0, 0, 0, 0.5);
-  padding-top: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 500ms 0s ease;
-}
-
-.overlay li{
-  list-style-type: none;
-  margin-top: 24px;
-}
-
-.overlay a{
-  font-size: 16px;
-  color: white;
-}
-
-.overlay.show {
-  opacity: 1;
-  pointer-events: auto;
 }
 
 #hiraganachar,
