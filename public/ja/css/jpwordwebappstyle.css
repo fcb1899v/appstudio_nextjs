@@ -7,7 +7,7 @@
 /* Common */
 body{
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
-  margin: 0; text-align: center; font-size: 20px; font-weight: normal;
+  margin: 0; text-align: center; font-size: 14px; font-weight: normal;
 }
 h1 { font-size: 20px; padding: 0px 10px 0px 10px; margin: 0; }
 span { display: inline-block; padding: 0px 0px 5px 5px; }
@@ -28,14 +28,14 @@ span { display: inline-block; padding: 0px 0px 5px 5px; }
 .appstore_badge:hover, .googleplay_badge:hover { opacity: 0.6; }
 
 /* Header */
-header { position: fixed; display: flex; justify-content: center; align-items: center; height: 70px; left: 0; right: 0;}
+header { position: fixed; display: flex; justify-content: center; align-items: center; height: 70px; left: 0; right: 0; z-index: 1;}
 .sp-menu #open, .overlay #close { position: absolute; right: 20px; font-size: 32px; cursor: pointer; }
 .sp-menu #open { margin-top: -20px; }
 .sp-menu #open.hide { display: none; }
 .imgmenu, .imgclose { filter: invert(100%); -webkit-filter: invert(100%); }
 .overlay { 
   position: fixed; top: 0; bottom: 0; right: 0; width: 320px; background: rgba(0, 0, 0, 0.5); 
-  padding-top: 24px; opacity: 0; pointer-events: none; transition: all 500ms 0s ease;
+  padding-top: 24px; opacity: 0; pointer-events: none; transition: all 500ms 0s ease; 
 }
 .overlay li { list-style-type: none; margin-top: 24px; }
 .overlay a { font-size: 16px; color: white; }
@@ -44,11 +44,11 @@ header { position: fixed; display: flex; justify-content: center; align-items: c
 .overlay #close{ margin-top: -10px; }
 
 /* main */
-.main { padding: 20px 5px 0px 5px; }
-.char { font-size: 60px; font-weight: bold; padding: 80px 0px 30px 0px; }
+.main { padding: 100px 5px 30px 5px; z-index: 0;}
+.char { font-size: 60px; font-weight: bold; }
 .container, .image_container { display: inline-block; width: 45%; }
 .word1, .word2 { letter-spacing: -5px; padding: 0; margin: 0; }
-.word { font-size: 14px; display: inline-block; letter-spacing: normal; margin-bottom: 10px; }
+.word { display: inline-block; letter-spacing: normal; margin-bottom: 10px; }
 #word12, #word22 { color: #ffa500; text-decoration: underline; }
 .image_box { position: relative; width: 100%; top: 0; left: 0; bottom: 0; right: 0; margin: auto; }
 .image_box:before { content: ""; display: block; padding-top: 100%; }
