@@ -108,6 +108,14 @@
     crossorigin="anonymous">
   </script>
      
+  <!-- Youtube -->
+  <script>
+    var tag = document.createElement('script');   
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
+
 </head>
 
 <body>
@@ -135,22 +143,16 @@
       </span>
     </div>
   </header>
-  
+
   <section class="top light">
-    <iframe class="movie" id="top_movie" 
-      src="https://www.youtube.com/embed/CQuYL0wG47E?autoplay=1&mute=1&disablekb=1&controls=0&rel=0&playsinline=1&loop=1&playlist=CQuYL0wG47E"
-      title="LETS ELEVATOR" 
-      frameborder="0" 
-      allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" 
-      allowfullscreen>
+    <iframe class="movie" id="top_movie" title="LETS ELEVATOR" frameborder="0" allowfullscreen
+      src="https://www.youtube.com/embed/CQuYL0wG47E?rel=0&enablejsapi=1" 
+      allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+      onClick="gtag('event','youtube',{'event_category':'elevator','event_label':'ja','value':1});">
     </iframe>
     <div class="top_container">
-      <nav>
-        <img id="top_title" src="img/elevator/apptitle2.png">
-      </nav>
-      <nav>
-        <img id="top_icon" src="img/elevator/appicon.png">
-      </nav>
+      <nav><img id="top_title" src="img/elevator/apptitle2.png"></nav>
+      <nav><img id="top_icon" src="img/elevator/appicon.png"></nav>
       <nav>
         <span class="cornerstone" id="top_dlnumber">25,000</span>
         <span id="top_overdl">ダウンロード突破！</span>
@@ -161,19 +163,13 @@
       </nav>
       <nav class="badge_container">
         <a href="https://apps.apple.com/jp/app/id1577024337#?platform=iphone" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          onclick="gtag('event', 'select_content', {
-            content_type: 'Get iOS app',
-            item_id: 'get_ios'});">
+          target="_blank" rel="noopener noreferrer"
+          onClick="gtag('event','to_store',{'event_category':'elevator','event_label':'ios_app','value':1});">
           <img class="appstore_badge" src="img/AppStore_Badge_US_BK.svg">
         </a>
         <a href="https://play.google.com/store/apps/details?id=com.nakajimamasaoappstudio.letselevator" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          onclick="gtag('event', 'select_content', {
-            content_type: 'Get Android app',
-            item_id: 'get_android'});">
+          target="_blank" rel="noopener noreferrer"
+          onClick="gtag('event','to_store',{'event_category':'elevator','event_label':'android_app','value':1});">
           <img class="googleplay_badge" src="img/google-play-badge.png">
         </a>
       </nav>
@@ -182,14 +178,8 @@
 
   <section class="features accentlight">
     <div class="features_container">
-      <p>
-        <span>ボタン操作だけの</span>
-        <span>リアルなエレベーター</span>  
-      </p>
-      <p>
-        <span>臨場感あふれる表示と</span>
-        <span>アナウンスを楽しもう！</span>  
-      </p>
+      <p><span>ボタン操作だけの</span><span>リアルなエレベーター</span></p>
+      <p><span>臨場感あふれる表示と</span><span>アナウンスを楽しもう！</span></p>
       <img class="screenshot" src="img/elevator/screenshot_off.png">
       <img class="screenshot" src="img/elevator/screenshot_on.png">
     </div>
@@ -201,14 +191,8 @@
 
   <section class="bignews dark">
     <h1 class="cornerstone accent" id="bignews_title">BIG NEWS</h1>
-    <p>
-      <span>あの1000のボタンで有名な</span>
-      <span>島田電機製作所とコラボが決定！</span>
-    </p>
-    <p>
-      <span>『1000のボタンモード』</span>
-      <span>でうわさのボタンを押してみよう！</span>
-    </p>
+    <p><span>あの1000のボタンで有名な</span><span>島田電機製作所とコラボが決定！</span></p>
+    <p><span>『1000のボタンモード』</span><span>でうわさのボタンを押してみよう！</span></p>
     <blockquote class="twitter-tweet" data-align="center">
       <p lang="ja" dir="ltr">工場見学後の「1000のボタン」の様子、ちびっ子の「押せるボタンは全て押す」という決意が伝わってきてとてもいいです 
         <a href="https://t.co/1g5Xhwbc4d">pic.twitter.com/1g5Xhwbc4d</a>
@@ -239,29 +223,21 @@
   </section>
   
   <section class="dlnow light">
-    <iframe class="movie" id="dlnow_movie"
-      src="https://www.youtube.com/embed/CQuYL0wG47E?rel=0" 
-      title="LETS ELEVATOR" 
-      frameborder="0" 
-      allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" 
-      allowfullscreen>
+    <iframe class="movie" id="dlnow_movie" title="LETS ELEVATOR" frameborder="0" allowfullscreen
+      src="https://www.youtube.com/embed/CQuYL0wG47E?rel=0&enablejsapi=1" 
+      allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+      onClick="gtag('event','youtube',{'event_category':'elevator','event_label':'ja','value':1});">
     </iframe>
     <h1>いますぐダウンロード</h1>
     <div class="badge_container">
       <a href="https://apps.apple.com/jp/app/id1577024337#?platform=iphone" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        onclick="gtag('event', 'select_content', {
-          content_type: 'Get iOS app',
-          item_id: 'get_ios'});">
+        target="_blank" rel="noopener noreferrer"
+        onClick="gtag('event','to_store',{'event_category':'elevator','event_label':'ios_app','value':1});">
         <img class="appstore_badge" src="img/AppStore_Badge_US_BK.svg">
       </a>
       <a href="https://play.google.com/store/apps/details?id=com.nakajimamasaoappstudio.letselevator" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        onclick="gtag('event', 'select_content', {
-          content_type: 'Get Android app',
-          item_id: 'get_Android'});">
+        target="_blank" rel="noopener noreferrer"
+        onClick="gtag('event','to_store',{'event_category':'elevator','event_label':'android_app','value':1});">
         <img class="googleplay_badge" src="img/google-play-badge.png">
       </a>
     </div>
@@ -274,7 +250,8 @@
       <div>
         <a class="twitter-share-button" href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
           data-url="https://nakajimamasao-appstudio.web.app/ja/letselevator.html" 
-          data-lang="ja" data-show-count="false">
+          data-lang="ja" data-show-count="false"
+          onClick="gtag('event','to_sns',{'event_category':'elevator','event_label':'twitter','value':0});">
         </a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
@@ -282,14 +259,16 @@
     <li class="fb">
       <div class="fb-share-button" 
         data-href="https://nakajimamasao-appstudio.web.app/ja/letselevator.html" 
-        data-layout="button_count" data-size="small" data-mobile-iframe="true">
+        data-layout="button_count" data-size="small" data-mobile-iframe="true"
+        onClick="gtag('event','to_sns',{'event_category':'elevator','event_label':'facebook','value':0});">
       </div>     
     </li>
     <li class="line">
       <div class="line-it-button" 
         data-lang="ja" data-type="share-a" data-ver="3" 
         data-url="https://nakajimamasao-appstudio.web.app/ja/letselevator.html" 
-        data-color="default" data-size="small" data-count="false" style="display: none;">
+        data-color="default" data-size="small" data-count="false" style="display: none;"
+        onClick="gtag('event','to_sns',{'event_category':'elevator','event_label':'line','value':0});">
       </div>
       <script 
         src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" 
@@ -298,7 +277,10 @@
     </li>
     <ul class="footer_contact">
       <li class="github">
-        <a href="https://github.com/fcb1899v" target="_blank" rel="noopener noreferrer">Github: fcb1899v</a>
+        <a href="https://github.com/fcb1899v" target="_blank" rel="noopener noreferrer"
+          onClick="gtag('event','contact',{'event_category':'elevator','event_label':'github','value':0});">
+          Github: fcb1899v
+        </a>
       </li>  
       <li class="email"><p>e-mail: fcb1899v3@gmail.com</p></li>    
     </ul>
