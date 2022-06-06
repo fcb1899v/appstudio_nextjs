@@ -1,0 +1,84 @@
+@font-face {
+	font-family: 'Beon';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/beon.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/beon.ttf);
+}
+
+/* Common */
+body{
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  margin: 0; text-align: center; font-size: 18px; font-weight: normal; background-color: #383635;
+}
+.en { font-size: 20px; }
+h1 { font-size: 28px; margin: 10px 10px 10px 10px; }
+h2 { font-size: 24px; margin: 10px 10px 10px 10px; }
+span { display: inline-block; padding: 0px 0px 5px 5px; }
+.beon { font-family: "Beon"; font-weight: normal; }
+.image { width: 100%; height: auto; margin: 10px 10px 10px 10px; }
+.screenshot { width: 70%; height: auto; margin: 10px 10px 10px 10px; }
+
+/* Color */
+.accentlight { background-color: #57BFA3; color: white }
+.accent { color: #57BFA3; }
+.dark { background-color: #383635; color: white }
+.light { background-color: white; color: #383635 }
+
+/* Badge */
+.badge_container { margin: 20px 0px 20px 0px; }
+.badge_container a, .badge_container a:visited { color: white;}
+.appstore_badge, .googleplay_badge { height: 50px; padding: 5px 5px 15px 5px; }
+.googleplay-badge:hover, .appstore-badge:hover { opacity: 0.6; }
+
+/* Header */
+header { position: fixed; display: flex; justify-content: center; align-items: center; height: 70px; left: 0; right: 0;}
+#apptitle { font-size: 40px; padding: 5px 0px 0px 0px; }
+.sp-menu #open, .overlay #close { position: absolute; right: 20px; font-size: 32px; cursor: pointer; }
+.sp-menu #open { margin-top: -20px; }
+.sp-menu #open.hide { display: none; }
+.imgmenu, .imgclose { filter: invert(100%); -webkit-filter: invert(100%); }
+.overlay { 
+  position: fixed; top: 0; bottom: 0; right: 0; width: 320px; background: rgba(0, 0, 0, 0.5); 
+  padding-top: 24px; opacity: 0; pointer-events: none; transition: all 500ms 0s ease;
+}
+.overlay li { list-style-type: none; margin-top: 24px; }
+.overlay a { font-size: 16px; color: white; }
+.overlay a:hover { opacity: 0.6; }
+.overlay.show { opacity: 1; pointer-events: auto; }
+.overlay #close{ margin-top: -10px; }
+
+/* Top */
+.top { padding: 115px 20px 40px 20px; background-color:#383635 ; }
+#top_icon { width: 150px; height: auto; margin: 20px 30px 20px 30px; }
+#top_image { width: 90%; }
+.top_subtitle { margin-top: 10px;}
+
+/* Features */
+.features { padding: 25px 20px 30px 20px; }
+#allsignals { width: 90%; }
+
+/* Download Now */
+.dlnow { background-color: white; padding: 25px 0px 10px 0px; }
+#dlnow_en { font-size: 36px; }
+
+/* Footer */
+footer { font-size: 14px; padding: 20px 0px 20px 0px;}
+footer p { margin-block-start: 0px; margin-block-end: 0px; margin-bottom: 0; }
+footer a, footer a:visited { color: white; }
+.snsbutton li { display: inline-block; height: 20px; width: auto; padding: 0px 5px 0px 5px; }
+.snsbutton, .footer_contact { padding-inline-start: 0px; margin: 10px 10px 10px 10px; }
+
+@media screen and (min-width: 382px){
+  .screenshot { width: 240px }
+}
+
+@media screen and (min-width: 520px){
+  .image { width: 480px; }  
+  #top_image, #allsignals { width: 450px; }
+}
+
+@media screen and (min-width:1200px){
+  .top { padding: 105px 20px 30px 20px; }
+  .top_container { float: left; width: 50%; height: auto; padding-top: 40px;}
+  .features_container { float: left; width: 50%; height: auto; }
+  #settings { padding-bottom: 240px; }
+}
