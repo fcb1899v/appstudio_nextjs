@@ -1,103 +1,134 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" dir="ltr">
 
-  <head>
-    <meta charset="utf-8">
-    <title>たのしくまなぶ・ひらがな・カタカナ</title>
-    <link rel="stylesheet" href="css/jpwordwebappstyle.css">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="たのしくまなぶ・ひらがな・カタカナ" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="単語読み上げ機能とかわいいイラストにより、ひらがな・カタカナを効果的に学ぶことができます。" />
-    <meta property="og:url" content="https://nakajimamasao-appstudio.web.app/ja/jpwordwebapp.html"/>
-    <meta property="og:image" content="img/jpword/appicon.png" />
-    <meta property="og:site_name" content="jpword" />
-    <meta property="og:locale" content="ja_JP" />
-    <meta name="msapplication-square70x70logo" content="img/jpword/favicons/site-tile-70x70.png">
-    <meta name="msapplication-square150x150logo" content="img/jpword/favicons/site-tile-150x150.png">
-    <meta name="msapplication-wide310x150logo" content="img/jpword/favicons/site-tile-310x150.png">
-    <meta name="msapplication-square310x310logo" content="img/jpword/favicons/site-tile-310x310.png">
-    <meta name="msapplication-TileColor" content="#0078d7">
-    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="img/jpword/favicons/favicon.ico">
-    <link rel="icon" type="image/vnd.microsoft.icon" href="img/jpword/favicons/favicon.ico">
-    <link rel="apple-touch-icon" sizes="57x57" href="img/jpword/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="img/jpword/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/jpword/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/jpword/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/jpword/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="img/jpword/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="img/jpword/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/jpword/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/jpword/favicons/apple-touch-icon-180x180.png">
-    <link rel="apple-touch-icon" type="image/png" href="img/jpword/favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="36x36" href="img/jpword/favicons/android-chrome-36x36.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="img/jpword/favicons/android-chrome-48x48.png">
-    <link rel="icon" type="image/png" sizes="72x72" href="img/jpword/favicons/android-chrome-72x72.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/jpword/favicons/android-chrome-96x96.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="img/jpword/favicons/android-chrome-128x128.png">
-    <link rel="icon" type="image/png" sizes="144x144" href="img/jpword/favicons/android-chrome-144x144.png">
-    <link rel="icon" type="image/png" sizes="152x152" href="img/jpword/favicons/android-chrome-152x152.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="img/jpword/favicons/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="256x256" href="img/jpword/favicons/android-chrome-256x256.png">
-    <link rel="icon" type="image/png" sizes="384x384" href="img/jpword/favicons/android-chrome-384x384.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="img/jpword/favicons/android-chrome-512x512.png">
-    <link rel="icon" type="image/png" sizes="36x36" href="img/jpword/favicons/icon-36x36.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="img/jpword/favicons/icon-48x48.png">
-    <link rel="icon" type="image/png" sizes="72x72" href="img/jpword/favicons/icon-72x72.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/jpword/favicons/icon-96x96.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="img/jpword/favicons/icon-128x128.png">
-    <link rel="icon" type="image/png" sizes="144x144" href="img/jpword/favicons/icon-144x144.png">
-    <link rel="icon" type="image/png" sizes="152x152" href="img/jpword/favicons/icon-152x152.png">
-    <link rel="icon" type="image/png" sizes="160x160" href="img/jpword/favicons/icon-160x160.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="img/jpword/favicons/icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="196x196" href="img/jpword/favicons/icon-196x196.png">
-    <link rel="icon" type="image/png" sizes="256x256" href="img/jpword/favicons/icon-256x256.png">
-    <link rel="icon" type="image/png" sizes="384x384" href="img/jpword/favicons/icon-384x384.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="img/jpword/favicons/icon-512x512.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/jpword/favicons/icon-16x16.png">
-    <link rel="icon" type="image/png" sizes="24x24" href="img/jpword/favicons/icon-24x24.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/jpword/favicons/icon-32x32.png">
-    <link rel="icon" type="image/png" href="img/jpword/favicons/icon-192x192.png">
-    <link rel="manifest" href="img/jpword/favicons/manifest.json">
-  
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="たのしくまなぶ・ひらがな・カタカナ" />
-    <meta name="twitter:description" content="単語読み上げ機能とかわいいイラストにより、ひらがな・カタカナを効果的に学ぶことができます。" />
-    <meta name="twitter:text:description" content="単語読み上げ機能とかわいいイラストにより、ひらがな・カタカナを効果的に学ぶことができます。" />
-    <meta name="twitter:url" content="https://nakajimamasao-appstudio.web.app/ja/studyjpword.html" />
-    <meta name="twitter:image" content="img/jpword/appicon.png" />
-  </head>
-  
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+  <meta charset="utf-8">
+  <title>たのしくまなぶ・ひらがな・カタカナ</title>
+  <link rel="stylesheet" href="css/jpwordwebappstyle.css">
 
+  <!-- common tag -->
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="format-detection" content="telephone=no,email=no,address=no">
+  <meta name="author" content="2021 Nakajima Masao">
+  <meta name="description" content="単語読み上げ機能とかわいいイラストにより、ひらがな・カタカナを効果的に学ぶことができます。"/>
+  <meta name="keywords" content="ひらがな, カタカナ, hiragana, katakana, Japanese, 日本語, にほんご, 単語"/>
+  <link rel="canonical" href="https://nakajimamasao-appstudio.web.app/ja/jpwordwebapp.html">
+
+  <!-- for SNS -->  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="たのしくまなぶ・ひらがな・カタカナ" />
+  <meta property="og:description" content="単語読み上げ機能とかわいいイラストにより、ひらがな・カタカナを効果的に学ぶことができます。" />
+  <meta property="og:url" content="https://nakajimamasao-appstudio.web.app/ja/jpwordwebapp.html"/>
+  <meta property="og:image" content="img/jpword/appicon.png" />
+  <meta property="og:site_name" content="jpword" />
+  <meta property="og:locale" content="ja_JP" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="img/jpword/appicon.png" />
+  <!-- <meta name="twitter:site" content="@{twitterid}">
+  <meta name="twitter:creator" content="@{twitterid}"> -->
+
+  <!-- Windows -->
+  <meta name="msapplication-square70x70logo" content="img/jpword/favicons/site-tile-70x70.png">
+  <meta name="msapplication-square150x150logo" content="img/jpword/favicons/site-tile-150x150.png">
+  <meta name="msapplication-wide310x150logo" content="img/jpword/favicons/site-tile-310x150.png">
+  <meta name="msapplication-square310x310logo" content="img/jpword/favicons/site-tile-310x310.png">
+  <meta name="msapplication-TileColor" content="#0077ff">
+
+  <!-- Smartphone -->
+  <meta name="theme-color" content="#0077ff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="img/jpword/favicons/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="img/jpword/favicons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="img/jpword/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="img/jpword/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/jpword/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/jpword/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/jpword/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="img/jpword/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="img/jpword/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="img/jpword/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/jpword/favicons/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" type="image/png" href="img/jpword/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="36x36" href="img/jpword/favicons/android-chrome-36x36.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="img/jpword/favicons/android-chrome-48x48.png">
+  <link rel="icon" type="image/png" sizes="72x72" href="img/jpword/favicons/android-chrome-72x72.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="img/jpword/favicons/android-chrome-96x96.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="img/jpword/favicons/android-chrome-128x128.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="img/jpword/favicons/android-chrome-144x144.png">
+  <link rel="icon" type="image/png" sizes="152x152" href="img/jpword/favicons/android-chrome-152x152.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/jpword/favicons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="img/jpword/favicons/android-chrome-256x256.png">
+  <link rel="icon" type="image/png" sizes="384x384" href="img/jpword/favicons/android-chrome-384x384.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="img/jpword/favicons/android-chrome-512x512.png">
+  <link rel="icon" type="image/png" sizes="36x36" href="img/jpword/favicons/icon-36x36.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="img/jpword/favicons/icon-48x48.png">
+  <link rel="icon" type="image/png" sizes="72x72" href="img/jpword/favicons/icon-72x72.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="img/jpword/favicons/icon-96x96.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="img/jpword/favicons/icon-128x128.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="img/jpword/favicons/icon-144x144.png">
+  <link rel="icon" type="image/png" sizes="152x152" href="img/jpword/favicons/icon-152x152.png">
+  <link rel="icon" type="image/png" sizes="160x160" href="img/jpword/favicons/icon-160x160.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/jpword/favicons/icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="196x196" href="img/jpword/favicons/icon-196x196.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="img/jpword/favicons/icon-256x256.png">
+  <link rel="icon" type="image/png" sizes="384x384" href="img/jpword/favicons/icon-384x384.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="img/jpword/favicons/icon-512x512.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/jpword/favicons/icon-16x16.png">
+  <link rel="icon" type="image/png" sizes="24x24" href="img/jpword/favicons/icon-24x24.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/jpword/favicons/icon-32x32.png">
+  <link rel="icon" type="image/png" href="img/jpword/favicons/icon-192x192.png">
+  <link rel="manifest" href="img/jpword/favicons/manifest.json">
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0FGZZJ71Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R0FGZZJ71Y');
+  </script>
+
+  <!-- Google Adsense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585283309075901"
+    crossorigin="anonymous">
+  </script>
+
+</head>
+  
 <body>
-  <header>
-    <h1 class="apptitle">たのしくまなぶ・ひらがな・カタカナ</h1>  
-
+  
+  <header class="accentlight">
+    <h1 class="kodomorounded" id="apptitle">たのしくまなぶ　<br class="block">ひらがな・カタカナ</h1>  
     <div class="overlay">
       <span id="close">
         <img class="imgclose" src="img/close.svg">
       </span>
       <nav>
-        <li class="home">
-          <a href="index.html">ホーム</a>
-        </li>
-        <li class="support">
-          <a href="support.html">サポートセンター</a>
-        </li>    
-        <li class="privacypolicy">
-          <a href="privacypolicy.html">利用規約・プライバシーポリシー</a>
-        </li>    
-        <li class="mytransitmakers">
-          <a href="mytransitmakers.html">マイ乗換ルートメーカー</a>
-        </li>
-        <li class="studyphonics">
-          <a href="studyphonics.html">Study Phonics</a>
-        </li>    
-        <li class="studyjpword">
-          <a href="studyjpword.html">ひらがな・カタカナ</a>
-        </li>    
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="letselevator.html">レッツ・エレベーター</a></li>
+        <li><a href="letssignal.html">レッツ・シン・ゴー</a></li>
+        <li><a href="letstoilet.html">レッツ・トイレ</a></li>
+        <li><a href="allowance.html">かわいいおこづかい帳</a></li>
+        <li><a href="studyjpword.html">ひらがな・カタカナ</a></li>    
+        <li><a href="studyphonics.html">Study Phonics</a></li> 
+        <li><a href="mytransitmakers.html">マイ乗換ルートメーカー</a></li>
+        <li><a href="support.html">サポートセンター</a></li>    
+        <li><a href="privacypolicy.html">利用規約・プライバシーポリシー</a></li>    
       </nav>
     </div>
     <div class="sp-menu">
@@ -107,141 +138,133 @@
     </div>
   </header>
   
-  <section class="word">
-    <div class="container0">
-      <div id=hiraganachar>あ</div>
+  <section class="main light">
+    <div class="container">
+      <div class="char" id=hiragana>あ</div>
     </div>
-    <div class="container0">
-      <div id=katakanachar>ア</div>
+    <div class="container">
+      <div class="char" id=katakana>ア</div>
     </div>
-  </section>
 
-  <section class="word">
-    <div class="container1">
+    <div class="container">
       <ul class="word1">
-        <div id="word11"></div>
-        <div id="word12">あ</div>
-        <div id="word13">ひる</div>
+        <div class="word" id="word11"></div>
+        <div class="word" id="word12">あ</div>
+        <div class="word" id="word13">ひる</div>
       </ul>
     </div>
-    <div class="container1">
+    <div class="container">
       <ul class="word2">
-        <div id="word21"></div>
-        <div id="word22">ア</div>
-        <div id="word23">イスクリーム</div>
+        <div class="word" id="word21"></div>
+        <div class="word" id="word22">ア</div>
+        <div class="word" id="word23">イスクリーム</div>
       </ul>
     </div>  
-  </section>
 
-  <section class="word">
-    <div class="container2">
-      <div class="imagebox">
-        <img id="image1" src="img/jpwordwebapp/image/ahiru.png">
+    <div class="image_container">
+      <div class="image_box">
+        <img class="image" id="image1" src="img/jpwordwebapp/image/ahiru.png">
       </div>      
     </div>
-    <div class="container2">
-      <div class="imagebox">
-        <img id="image2" src="img/jpwordwebapp/image/aisukurimu.png">
+    <div class="image_container">
+      <div class="image_box">
+        <img class="image" id="image2" src="img/jpwordwebapp/image/aisukurimu.png">
       </div>
     </div>  
-  </section>
 
-  <section class="word">
-    <div class="container3">
-      <button id="soundbutton1">
-        <img id="soundimage1" src="img/jpwordwebapp/audiotrack.png"/>
+    <div class="container">
+      <button class="button sound_button blue" id="soundbutton1">
+        <img class="button_image" src="img/jpwordwebapp/audiotrack.png"/>
       </button>
     </div>
-    <div class="container3">
-      <button id="soundbutton2">
-        <img id="soundimage2" src="img/jpwordwebapp/audiotrack.png"/>
+    <div class="container">
+      <button class="button sound_button blue" id="soundbutton2">
+        <img class="button_image" src="img/jpwordwebapp/audiotrack.png"/>
       </button>
     </div>  
-  </section>
 
-  <section class="word">
-    <div class="container4">
-      <button id="returnbutton">
-        <img id="returnimage" src="img/jpwordwebapp/keyboard_return.png"/>
+    <div class="container">
+      <button class="button operation_button accentlight" id="returnbutton">
+        <img class="button_image" src="img/jpwordwebapp/keyboard_return.png"/>
       </button>
-      <button id="shufflebutton">
-        <img id="shuffleimage" src="img/jpwordwebapp/shuffle.png"/>
+      <button class="button operation_button accentlight" id="shufflebutton">
+        <img class="button_image" src="img/jpwordwebapp/shuffle.png"/>
       </button>
     </div>
-    <div class="container4">
-      <button id="backbutton">
-        <img id="backimage" src="img/jpwordwebapp/arrow_back_ios.png"/>
+    <div class="container">
+      <button class="button operation_button accentlight" id="backbutton">
+        <img class="button_image" src="img/jpwordwebapp/arrow_back_ios.png"/>
       </button>
-      <button id="nextbutton">
-        <img id="nextimage" src="img/jpwordwebapp/arrow_forward_ios.png"/>
+      <button class="button operation_button accentlight" id="nextbutton">
+        <img class="button_image" src="img/jpwordwebapp/arrow_forward_ios.png"/>
       </button>
     </div>  
+
   </section>
 
   <section class="selectchar">
     <div id="gridjpword"></div>
     <script src="js/jpwordwebapp.js"></script> 
   </section>
+
+  <section class="dlnow accentdark">
+    <h1 class="kodomorounded">いますぐダウンロード</h1>
+    <div class="badge_container">
+      <a href="https://apps.apple.com/jp/app/id1550720866#?platform=iphone" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        onclick="gtag('event', 'select_content', {
+          content_type: 'Get iOS app',
+          item_id: 'get_ios'});">>
+        <img class="appstore_badge" src="img/AppStore_Badge_US_BK.svg">
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.nakajimamasao.studyjpword" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        onclick="gtag('event', 'select_content', {
+          content_type: 'Get Android app',
+          item_id: 'get_android'});">
+        <img class="googleplay_badge" src="img/google-play-badge.png">
+      </a>
+    </div>
+  </section>
+
 </body>
 
-<footer>
+<footer class="dark">
   <ul class="snsbutton">
     <li class="twitter">
-      <div class="twitter-share-button">
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
-          class="twitter-share-button" 
+      <div>
+        <a class="twitter-share-button" href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
           data-url="https://nakajimamasao-appstudio.web.app/ja/studyjpword.html" 
-          data-lang="ja" 
-          data-show-count="false">
-          Tweet
+          data-lang="ja" data-show-count="false">
         </a>
-        <script 
-          async src="https://platform.twitter.com/widgets.js" 
-          charset="utf-8">
-        </script>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
     </li>
     <li class="fb">
       <div class="fb-share-button" 
         data-href="https://nakajimamasao-appstudio.web.app/ja/studyjpword.html" 
-        data-layout="button_count"
-        data-size="small" 
-        data-mobile-iframe="true">
+        data-layout="button_count" data-size="small" data-mobile-iframe="true">
       </div>     
-      <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-      </script>
     </li>
     <li class="line">
       <div class="line-it-button" 
-        data-lang="ja" 
-        data-type="share-a" 
-        data-ver="3" 
+        data-lang="ja" data-type="share-a" data-ver="3" 
         data-url="https://nakajimamasao-appstudio.web.app/ja/studyjpword.html" 
-        data-color="default" 
-        data-size="small" 
-        data-count="false" 
-        style="display: none;">
+        data-color="default" data-size="small" data-count="false" style="display: none;">
       </div>
       <script 
         src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" 
-        async="async" 
-        defer="defer">
+        async="async" defer="defer">
       </script>      
     </li>
-    <ul class="footercontact">
+    <ul class="footer_contact">
       <li class="github">
         <a href="https://github.com/fcb1899v" target="_blank" rel="noopener noreferrer">Github: fcb1899v</a>
       </li>  
-      <li class="email">
-        <p>e-mail: fcb1899v3@gmail.com</p>
-      </li>    
-    </ul>  
+      <li class="email"><p>e-mail: letselevator@gmail.com</p></li>    
+    </ul>
   </ul>
 </footer>
 

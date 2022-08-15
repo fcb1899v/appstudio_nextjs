@@ -230,8 +230,8 @@
   var i = 0;
   var index = 0;
   var jpwordcharlist = jpworddefault;
-  var hiraganachar = document.getElementById("hiraganachar");
-  var katakanachar = document.getElementById("katakanachar");
+  var hiraganachar = document.getElementById("hiragana");
+  var katakanachar = document.getElementById("katakana");
   var image1 = document.getElementById("image1");
   var image2 = document.getElementById("image2");
   var word11 = document.getElementById("word11");
@@ -322,18 +322,16 @@
              );
   };
   
-  function speechWord(text) {
+  function speechWord(word) {
     if (!'SpeechSynthesisUtterance' in window) {
       alert('Speech synthesis(音声合成) APIには未対応です.');
       console.log('Speech synthesis(音声合成) APIには未対応です.');
       return;
     }  
     var msg = new SpeechSynthesisUtterance();
-    var voices = window.speechSynthesis.getVoices();  
-    msg.text = text;
-    msg.voice = voices[0];
-    msg.volume = 1;
     msg.lang = "ja";
+    msg.text = word;
+    msg.volume = 1;
     speechSynthesis.speak(msg);
   }
 

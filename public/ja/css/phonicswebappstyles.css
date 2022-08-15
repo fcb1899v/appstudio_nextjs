@@ -1,274 +1,92 @@
+
+/* Common */
 body{
-  margin: 0;
-  font-family: "Helvetica Neue",
-  Arial,
-  "Hiragino Kaku Gothic ProN",
-  "Hiragino Sans",
-  Meiryo,
-  sans-serif;
-  text-align: center;
-  background-color: white;
-  color: black;
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  margin: 0; text-align: center; font-size: 18px; font-weight: normal;
 }
+h1 { font-size: 24px; padding: 0px 10px 0px 10px; margin: 0; }
+span { display: inline-block; padding: 0px 0px 5px 5px; }
+.image { width: 100%; height: auto; }
+.screenshot { width: 100%; height: auto; }
 
-.googleplay-badge:hover,
-.appstore-badge:hover,
-.overlay a:hover,
-.policylist a:hover {
-  opacity: 0.6;
+/* Color */
+.accentlight { background-color: #FF69B4; color: white }
+.accentdark { background-color: #03A9F4; color: white }
+.dark { background-color: #383635; color: white }
+.light { background-color: white; color: #FF69B4 }
+
+/* Badge */
+.badge_container { margin: 20px 0px 10px 0px; }
+.badge_container a, .badge_container a:visited { color: #03A9F4;}
+.appstore_badge, .googleplay_badge { height: 50px; padding: 5px 5px 15px 5px; }
+.appstore_badge:hover, .googleplay_badge:hover { opacity: 0.6; }
+
+/* Header */
+header { position: fixed; display: flex; justify-content: center; align-items: center; height: 70px; left: 0; right: 0; z-index: 1;}
+.sp-menu #open, .overlay #close { position: absolute; right: 20px; font-size: 32px; cursor: pointer; }
+.sp-menu #open { margin-top: -20px; }
+.sp-menu #open.hide { display: none; }
+.imgmenu, .imgclose { filter: invert(100%); -webkit-filter: invert(100%); }
+.overlay { 
+  position: fixed; top: 0; bottom: 0; right: 0; width: 320px; background: rgba(0, 0, 0, 0.5); 
+  padding-top: 24px; opacity: 0; pointer-events: none; transition: all 500ms 0s ease;
 }
+.overlay li { list-style-type: none; margin-top: 24px; }
+.overlay a { font-size: 16px; color: white; }
+.overlay a:hover { opacity: 0.6; }
+.overlay.show { opacity: 1; pointer-events: auto; }
+.overlay #close{ margin-top: -10px; }
 
-header {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  font-size: 13px;
-  left: 0;
-  right: 0;
-  background-color: #FF69B4;
-  color: white;
-}
-
-.sp-menu #open,
-.overlay #close {
-  position: absolute;
-  right: 20px;
-  font-size: 32px;
-  cursor: pointer;
-}
-
-.sp-menu #open{
-  margin-top: -20px;
-}
-
-.overlay #close{
-  margin-top: -10px;
-}
-
-.sp-menu #open.hide {
-  display: none;
-}
-
-.imgmenu,
-.imgclose {
-  filter: invert(100%);
-  -webkit-filter: invert(100%);
-}
-
-.overlay{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 320px;
-  background: rgba(0, 0, 0, 0.5);
-  padding-top: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 500ms 0s ease;
-}
-
-.overlay li{
-  list-style-type: none;
-  margin-top: 24px;
-}
-
-.overlay a{
-  font-size: 16px;
-  color: white;
-}
-
-.overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.word {
-  font-size:22px;
-}
-
-#phonicschar {
-  font-size: 125px;
-  font-weight: bold;
-  padding-top: 90px;
-  margin-bottom: 20px;
-}
-
-.container1, .container2, 
-.container3, .container4{
-  display: inline-block;
-  width: 45%;
-}
-
-#word11, #word12, #word13,
-#word21, #word22, #word23{
-  display: inline-block;
-  letter-spacing: normal;
-  margin-bottom: 10px;
-}
-
-.word1, .word2{
-  letter-spacing: -.4em;
-  padding: 0;
-  margin: 0;
-}
-
-#word12, #word22{
-  color: #FF69B4;
-  text-decoration: underline;
-}
-
-.imagebox {
-  position: relative;
-  width: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-}
-
-.imagebox:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-}
-
-.container2 img{
-  object-fit: contain;
-  width: 80%;
-  height: 80%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
+/* main */
+.main { padding: 100px 5px 30px 5px; z-index: 0;}
+#phonicschar { font-size: 125px; font-weight: bold; }
+.container, .image_container { display: inline-block; width: 45%; }
+.word1, .word2 { letter-spacing: -5px; padding: 0; margin: 0; }
+.word { display: inline-block; letter-spacing: normal; margin-bottom: 10px; }
+#word12, #word22 { color: #FF69B4; text-decoration: underline; }
+.image_box { position: relative; width: 100%; top: 0; left: 0; bottom: 0; right: 0; margin: auto; }
+.image_box:before { content: ""; display: block; padding-top: 100%; }
+.image { 
+  object-fit: contain; width: 80%; height: 80%; position: absolute; 
+  top: 0; left: 0; bottom: 0; right: 0; margin: auto; 
 } 
-
-/* 横幅が500px以上の場合に適用するスタイル */
-@media (min-width: 500px) {
-  .imagebox {
-    width: 250px;
-  }
-  
-  .container2 img {
-    max-width: 250px;
-    max-height: 250px;  
-  }
-}
-
-#soundbutton1, #soundbutton2 {
-  width: 90%;
-  height: 40px;
-  font-size:24px;
-  color:#FFFFFF;
-  text-align:center;
-  background:#03A9F4;
-  border-color: #03A9F4;
-  border-radius: 20px;
-  margin-bottom: 30px;
-}
-
-#soundimage1, #soundimage2 {  
-  height: 100%;
-  filter: invert();  
-}
-
-#returnimage, #shuffleimage,
-#backimage, #nextimage {  
-  height: 90%;
-  vertical-align: middle;
-  filter: invert();  
-}
-
-#returnbutton, #shufflebutton,
-#backbutton, #nextbutton {
-  width: 40%;
-  height: 40px;
-  font-size:24px;
-  color:#FFFFFF;
-  text-align:center;
-  background:#FF69B4;
-  border-color: #FF69B4;
-  border-radius: 20px;
-  margin-bottom: 50px;
-}
-
-#returnbutton, #backbutton{
-  margin-right: 15px;
-}
-
-.selectchar {
-  text-align: left !important;
-}
-
+.button_image { height: 90%; vertical-align: middle; filter: invert();  }
+.button { height: 40px; font-size:20px; border-radius: 20px; }
+.sound_button { width: 90%; margin-bottom: 30px; border-color:#03A9F4; }
+.operation_button { width: 40%; margin-bottom: 50px; border-color: #FF69B4; }
+#returnbutton, #backbutton { margin-right: 15px; }
+.selectchar { text-align: left !important; }
 .gridphonics {
-  font-size: 20px;
-  font-weight: bold;
-  background-color: #03A9F4;
-  color: white;
-  width: 90px;
-  height: 90px;
-  margin: 2px 2px 2px 2px;
-  display: inline-block;
-  text-align: center;
-  line-height: 90px;
-  cursor: pointer;
-  transition: 0.8s;
+  width: calc(18vmin); height: calc(18vmin); line-height: calc(18vmin); margin: 2px 2px 2px 2px; 
+  top: 0; bottom: 0; left: 0; right: 0; display: inline-block; cursor: pointer; transition: 0.8s;
+  font-size: 20px; font-weight: bold; background-color: #03A9F4; color: white;
 }
 
-/* 横幅が500px以下の場合に適用するスタイル */
-@media (max-width: 500px) {
-  .gridphonics {
-    width: calc(18vmin);
-    height: calc(18vmin);
-    line-height: calc(18vmin);
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+/* Download Now */
+.dlnow { padding: 30px 0px 10px 0px; margin-top: 60px; }
+
+/* Footer */
+footer { font-size: 14px; padding: 20px 0px 20px 0px;}
+footer p { margin-block-start: 0px; margin-block-end: 0px; margin-bottom: 0; }
+footer a, footer a:visited { color: white; }
+.snsbutton li { display: inline-block; height: 20px; width: auto; padding: 0px 5px 0px 5px; }
+.snsbutton, .footer_contact { padding-inline-start: 0px; margin: 10px 10px 10px 10px; }
+
+@media screen and (min-width: 420px){
+  h1 { font-size: 24px; }
+  .word { font-size: 20px; }
+  .try_webapp { font-size: 20px; }
 }
 
-footer {
-  color: white;
-  font-size: 14px;
-  background-color: #2d2926;
-  padding: 10px 0px 10px 0px;
+@media screen and (min-width: 500px){
+  .word { font-size: 24px; }
+  .image_box { width: 250px; }
+  .image { max-width: 250px; max-height: 250px; }
+  .gridphonics { width: 90px; height: 90px; line-height: 90px; font-size: 24px; }
 }
 
-footer p {
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-}
-
-footer a:visited{
-  color: white;
-}
-
-.snsbutton li{
-  display: inline-block;
-  padding: 0px 5px 10px 5px;
-}
-
-.snsbutton,
-.footercontact {
-  padding-inline-start: 0px;
-  margin: 10px 10px 0px 10px;
-}
-
-.twitter{
-  margin-right: -3px;
-  width: 90px;
-}
-
-.fb{
-  line-height: 0.65;
-}
-
-.line{
-  width:90px;
+@media screen and (min-width: 600px){
+  h1 { font-size: 32px; }
+  .word { font-size: 28px; }
+  .try_webapp { font-size: 24px; }
 }

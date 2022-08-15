@@ -342,18 +342,16 @@
     return this;
   }
 
-  function speechWord(text) {
+  function speechWord(word) {
     if (!'SpeechSynthesisUtterance' in window) {
       alert('Speech synthesis(音声合成) APIには未対応です.');
       console.log('Speech synthesis(音声合成) APIには未対応です.');
       return;
     }  
     var msg = new SpeechSynthesisUtterance();
-    var voices = window.speechSynthesis.getVoices();  
-    msg.text = text;
-    msg.voice = voices[0];
-    msg.volume = 1;
     msg.lang = "en-US";
+    msg.text = word;
+    msg.volume = 1;
     speechSynthesis.speak(msg);
   }
 

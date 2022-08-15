@@ -1,201 +1,134 @@
+@font-face {
+	font-family: 'Cornerstone';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/cornerstone.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/cornerstone.ttf);
+}
+
+/* Common */
 body{
-  margin: 0;
-  font-family: "Helvetica Neue",
-  Arial,
-  "Hiragino Kaku Gothic ProN",
-  "Hiragino Sans",
-  Meiryo,
-  sans-serif;
-  text-align: center;
-  background-color: white;
-  color: #FF9800;
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  margin: 0; text-align: center; font-size: 18px; font-weight: normal;
+}
+.en { font-size: 20px; }
+h1 { font-size: 24px; padding: 10px 10px 10px 10px; }
+h2 { font-size: 20px; padding: 10px 10px 10px 10px; }
+span { display: inline-block; padding: 0px 0px 5px 5px; }
+.cornerstone { font-family: "Cornerstone"; font-weight: normal; }
+.image { width: 100%; height: auto;}
+.movie { width: 100%; aspect-ratio: 16/9; vertical-align: bottom; }
+.screenshot { width: 40%; height: auto; margin: 10px 10px 10px 10px; }
+
+/* Color */
+.accentlight { background-color: #F7B249; color: white }
+.accent { color: #F7B249; }
+.dark { background-color: #383635; color: white }
+.light { background-color: white; color: #383635 }
+
+/* Badge */
+.badge_container { margin: 20px 0px 20px 0px; }
+.badge_container a, .badge_container a:visited { color: white;}
+.appstore_badge, .googleplay_badge { height: 50px; padding: 5px 5px 15px 5px; }
+.appstore_badge:hover, .googleplay_badge:hover { opacity: 0.6; }
+
+/* Header */
+header { position: fixed; display: flex; justify-content: center; align-items: center; height: 70px; left: 0; right: 0;}
+#apptitle { font-size: 32px; padding: 5px 0px 0px 0px; }
+.sp-menu #open, .overlay #close { position: absolute; right: 20px; font-size: 32px; cursor: pointer; }
+.sp-menu #open { margin-top: -20px; }
+.sp-menu #open.hide { display: none; }
+.imgmenu, .imgclose { filter: invert(100%); -webkit-filter: invert(100%); }
+.overlay { 
+  position: fixed; top: 0; bottom: 0; right: 0; width: 320px; background: rgba(0, 0, 0, 0.5); 
+  padding-top: 24px; opacity: 0; pointer-events: none; transition: all 500ms 0s ease;
+}
+.overlay li { list-style-type: none; margin-top: 24px; }
+.overlay a { font-size: 16px; color: white; }
+.overlay a:hover { opacity: 0.6; }
+.overlay.show { opacity: 1; pointer-events: auto; }
+.overlay #close{ margin-top: -10px; }
+
+/* Banner */
+.banner_button {   
+  position: fixed; z-index: 8; transition: 1s; 
+  bottom: 10px; width: Calc(100% - 20px); padding: 15px 0px; margin: 0px 10px; 
+  background-color: rgba(255, 255, 255, 0.9); 
+  color: var(--black); text-shadow: none; border-radius: 15px; 
+  border: solid 3px var(--black); box-shadow: 2px 2px 2px 1px var(--black);  
+}
+.banner_button a, .banner_button a:visited { 
+  color: var(--black); text-decoration: none; font-weight: bold; 
+}
+.banner_button img { margin-right: 10px; }
+.banner_button.hide { transform:translateY(100px); transition: 1s; }
+.cart_icon { height: 25px; vertical-align: -5px; }
+
+
+/* Top */
+.top { padding-bottom: 10px; }
+.top_container { padding: 120px 20px 0px 20px}
+.top_overdl_en { font-size: 32px; font-weight: normal; }
+#top_movie { padding: 20px 0px 50px 0px; }
+#top_title { width: auto; height: 100px; }
+#top_icon { width: 100px; height: auto; margin: 20px 30px 20px 30px; }
+#top_dlnumber { font-size: 50px; font-weight: normal; }
+#top_overdl { font-size: 22px; font-weight: bold; }
+.top_subtitle { margin-top: 10px;}
+
+/* Features */
+.features{ padding: 25px 20px 30px 20px; }
+#features_howtouse { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+#features_howtouse_en { font-size: 32px; margin-bottom: 10px; }
+
+/* Big News */
+.bignews { font-size: 18px; padding: 30px 0px 30px 0px; }
+.bignews_container { padding: 0px 0px 10px 0px; }
+#bignews_title { font-size: 40px; margin: 10px 10px 20px 10px; }
+.bignews_modetitle { font-size: 22px; margin: 40px 0px 10px 0px; }
+.bignews_modetitle_en { font-size: 32px; margin: 40px 0px 10px 0px; }
+.bignews_subtitle { margin: 10px 10px 10px 10px; font-weight: bold; }
+.bignews_subtitle_en { font-size: 22px; margin: 10px 10px 10px 10px; font-weight: bold; }
+#bignews_challenge { padding-top: 10px;}
+.bignews_image { width: 100%; padding-bottom: 20px }
+.twitter-tweet { width: 90% !important; font-size: 16px; padding: 20px 0px 10px 0px; margin-left: auto; margin-right: auto; }
+
+/* Download Now */
+.dlnow { padding-bottom: 10px; }
+#dlnow_en { font-size: 36px; }
+#dlnow_movie { padding-bottom: 15px; }
+
+/* Footer */
+footer { font-size: 14px; padding: 20px 0px 20px 0px;}
+footer p { margin-block-start: 0px; margin-block-end: 0px; margin-bottom: 0; }
+footer a, footer a:visited { color: white; }
+.snsbutton li { display: inline-block; height: 20px; width: auto; padding: 0px 5px 0px 5px; }
+.snsbutton, .footer_contact { padding-inline-start: 0px; margin: 10px 10px 10px 10px; }
+
+
+@media screen and (min-width: 450px){
+  .screenshot { width: 180px; }
+  #apptitle { font-size: 36px; }
 }
 
-.googleplay-badge:hover,
-.appstore-badge:hover,
-.overlay a:hover,
-.policylist a:hover {
-  opacity: 0.6;
+@media screen and (min-width: 600px){
+  h1 { font-size: 28px; }
+  h2 { font-size: 24px; }
+  .movie, .image { width: 600px; }
+  #apptitle { font-size: 40px; }
+  #top_movie { padding-top: 120px; }
+  #features_howtouse { font-size: 26px; }
+  #features_howtouse_en { font-size: 40px; }
+  #bignews_title { font-size: 50px; }
+  .bignews_modetitle { font-size: 26px; }
+  .bignews_modetitle_en { font-size: 40px; }
+  #dlnow_en { font-size: 44px; }
+  #dlnow_movie { padding-top: 50px; }
 }
 
-header {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  font-size: 11px;
-  left: 0;
-  right: 0;
-  background-color: #FF9800;
-  color: white;
-}
-
-@media (min-width: 540px) {
-  header h1{
-    font-size: 28px;
-  }
-}
-
-.sp-menu #open,
-.overlay #close {
-  position: absolute;
-  right: 20px;
-  font-size: 32px;
-  cursor: pointer;
-}
-
-.sp-menu #open{
-  margin-top: -20px;
-}
-
-.overlay #close{
-  margin-top: -10px;
-}
-
-.sp-menu #open.hide {
-  display: none;
-}
-
-.imgmenu,
-.imgclose {
-  filter: invert(100%);
-  -webkit-filter: invert(100%);
-}
-
-.overlay{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 320px;
-  background: rgba(0, 0, 0, 0.5);
-  padding-top: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 500ms 0s ease;
-}
-
-.overlay li{
-  list-style-type: none;
-  margin-top: 24px;
-}
-
-.overlay a{
-  font-size: 16px;
-  color: white;
-}
-
-.overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.top {
-  font-size: 18px;
-}
-
-.container {
-  padding-top: 110px;
-  margin: 0px 70px 10px 70px;
-}
-
-.container li{
-  list-style: none ;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.badgecontainer a,
-.badgecontainer a:visited{
-  color: #FF9800;
-}
-
-.googleplay-badge{
-  width: 175px; 
-}
-
-.appstore-badge{
-  width: 135px; 
-  margin:11px 0px;
-  padding-left: 12px;
-}
-
-.topimage{
-  padding-top: 20px;
-  width: 100%;
-  vertical-align: bottom;
-}
-
-.features{
-  font-size: 16px;
-  background-color: white;
-  color: #FF9800;
-  padding: 40px 0px 20px 0px;
-}
-
-.features h1{
-  font-size: 24px;
-  margin: 0px 0px 20px 0px;
-}
-
-.container1 div{
-  display: inline-block;
-}
-
-.container2 li{
-  list-style: none ;
-  display: inline-block;
-  margin: 0px 25px 10px 25px;
-}
-
-.screenshot1{
-  width: 100%;
-  margin: 10px 0px 10px 0px;
-}
-
-.downloadnow {
-  background-color: #FF9800;
-  color: white;
-  padding: 15px 0px 25px 0px;
-}
-
-footer {
-  color: white;
-  font-size: 14px;
-  background-color: #2d2926;
-  padding: 10px 0px 10px 0px;
-}
-
-footer p {
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-}
-
-footer a:visited{
-  color: white;
-}
-
-.snsbutton li{
-  display: inline-block;
-  padding: 0px 5px 10px 5px;
-}
-
-.snsbutton,
-.footercontact {
-  padding-inline-start: 0px;
-  margin: 10px 10px 0px 10px;
-}
-
-.twitter{
-  margin-right: -3px;
-  width: 90px;
-}
-
-.fb{
-  line-height: 0.65;
-}
-
-.line{
-  width:90px;
+@media screen and (min-width:1200px){
+  .top { padding: 40px 0px 60px 0px; }
+  .top_container { float: left; width: 40%; height: auto; padding-top: 80px; }
+  .features_container { float: left; width: 50%; height: auto; }
+  #features_howtouse, #features_howtouse_en { margin: 5px 0px 0px 0px; }
+  .bignews_container { float: left; width: 50%; height: auto; }
+  #bignews_challenge { margin-top: 0 !important; padding-top: 0 !important; }
 }

@@ -1,231 +1,111 @@
+@font-face {
+	font-family: 'Cornerstone';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/cornerstone.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/cornerstone.ttf);
+}
+
+@font-face {
+	font-family: 'Beon';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/beon.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/beon.ttf);
+}
+
+@font-face {
+	font-family: 'Pacifico';
+	src: url(/Users/nakajimamasao/OneDrive/Document/Apps/nakajimamasao-appstudio/public/font/Pacifico.ttf);
+  src: url(https://nakajimamasao-appstudio.web.app/font/Pacifico.ttf);
+}
+
+/* Common */
+h1 { font-size: 17px; }
+h2 { font-size: 22px; font-weight: bold; }
+.image { width: 100%; height: auto;}
+.movie { width: 100%; aspect-ratio: 16/9; }
+.cornerstone { font-family: "Cornerstone"; font-weight: normal; font-size: 36px; }
+.beon { font-family: "Beon"; font-weight: normal; font-size: 36px; }
+.pacifico { font-family: "Pacifico"; font-weight: normal; font-size: 28px; margin-bottom: 15px; }
+
+/* Color */
+.accentlight { background-color: #FE5000; color: white }
+.accent { color: #FE5000; }
+.dark { background-color: #2D2926; color: white }
+.white { background-color: white; color: #2D2926 }
+
+/* body */
 body{
-  margin: 0;
-  font-family: "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans",
-    Meiryo,
-    sans-serif;
-  text-align: center;
-  background-color: white;
-  color: #2d2926;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+  margin: 0; text-align: center;
 }
 
-header {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  font-size: 11px;
-  left: 0;
-  right: 0;
-  color: white;
-  background-color: #fe5000;
+/* header */
+header { position: fixed; display: flex; justify-content: center; align-items: center; height: 70px; left: 0; right: 0; }
+.sp-menu #open, .overlay #close { position: absolute; right: 20px; font-size: 32px; cursor: pointer; }
+.sp-menu #open{ margin-top: -20px; }
+.sp-menu #open.hide { display: none; }
+.overlay #close{ margin-top: -10px; }
+.imgmenu, .imgclose { filter: invert(100%); -webkit-filter: invert(100%); }
+.overlay { 
+  position: fixed; top: 0; bottom: 0; right: 0; width: 320px; background: rgba(0, 0, 0, 0.5);
+  padding-top: 24px; opacity: 0; pointer-events: none; transition: all 500ms 0s ease;
+} 
+.overlay li { list-style-type: none; margin-top: 24px;}
+.overlay a { font-size: 16px; color: white; }
+.overlay.show { opacity: 1; pointer-events: auto; }
+
+/* top */
+.top { padding: 100px 0px 30px 0px; }
+.top a, .top a:visited { color: #2d2926; }
+.badge_container a, .badge_container a:visited { color: white; }
+.appstore_badge, .googleplay_badge { height: 40px; padding: 25px 5px 40px 5px; }
+.trywebapp{ margin: -20px 0px 70px 0px; font-size: 22px; font-weight: bold; }
+.trywebapp a, .trywebapp a:visited { color: black; }
+
+/* Support */
+form { padding: 10px 5% 10px 5%; margin: 0 auto; font-size: 16px; font-weight: normal; }
+.item { width: 100%; display:inline-flex; align-items: center; padding: 10px 0px 10px 0px; }
+input[type="text"], input[type="email"]{ width: 100%; border: solid 1px #2D2926; border-radius: 5px; padding: 10px; font-size: 16px; }
+select { appearance: none; cursor: pointer; order: solid 1px #2D2926; border-radius: 5px; padding: 10px; font-size: 16px; }
+label { width: 100px; }
+textarea {height: 160px; width: 100%; padding: 10px; font-size: 14px; font-family: inherit; border: solid 1px #2D2926; border-radius: 5px; font-size: 16px; }
+button{ font-size: 18px; font-weight: bold; padding: 10px 25px; margin: 25px auto; border-radius: 5px; cursor: pointer;  }
+.contact { padding: 30px 0px 30px 0px; }
+.alert { font-weight: bold; padding: 10px 0px 10px 0px; font-size: 18px; }
+
+/* footer */
+footer { font-size: 14px; padding: 20px 0px 20px 0px; margin-top: -20px;}
+footer li { margin: 10px 10px 10px 10px; display:inline-block; }
+footer p { margin-block-start: 0px; margin-block-end: 0px; }
+footer a, footer a:visited { color: white; }
+.footer_contact { padding-top: 15px; }
+
+/* Privacy Policy */
+.policytop { padding: 100px 0px 60px 0px; }
+.policylist { text-align: left; margin: 0px 30px 15px 30px; }
+.policylist li { padding: 10px 0px 0px 0px; }
+.policylist a { color: #2d2926; }
+
+@media (min-width: 360px) {
+  h1 { font-size: 20px; }
+  h2 { font-size: 24px; }
+  .pacifico { font-size: 30px; }
+  .appstore_badge, .googleplay_badge { height: 50px; }
 }
 
-header h1{
-  font-size: 28px;
+@media (min-width: 420px) {
+  h1 { font-size: 24px; }
+  .pacifico { font-size: 32px; }
 }
 
-.sp-menu #open,
-.overlay #close {
-  position: absolute;
-  right: 20px;
-  font-size: 32px;
-  cursor: pointer;
+@media (min-width: 500px) {
+  h1 { font-size: 28px; }
+  form { padding: 10px 10% 10px 10%; } 
+}
+@media (min-width: 600px) {
+  h1 { font-size: 32px; }
+  .image, .movie { width: 600px; }
+  form { padding: 10px 15% 10px 15%; } 
 }
 
-.sp-menu #open{
-  margin-top: -20px;
-}
-
-.overlay #close{
-  margin-top: -10px;
-}
-
-.sp-menu #open.hide {
-  display: none;
-}
-
-.imgmenu,
-.imgclose {
-  filter: invert(100%);
-  -webkit-filter: invert(100%);
-}
-
-.overlay{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 320px;
-  background: rgba(0, 0, 0, 0.5);
-  padding-top: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 500ms 0s ease;
-}
-
-.overlay li{
-  list-style-type: none;
-  margin-top: 24px;
-}
-
-.overlay a{
-  font-size: 16px;
-  color: white;
-}
-
-.overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.top {
-  padding-top: 75px;
-  font-size: 18px;
-}
-
-.top a:visited {
-  color: #2d2926;
-}
-
-.top p {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.transitimage,
-.elevatorimage,
-.phonicsimage,
-.jpwordimage {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 70%;
-}
-
-.transitimage {
-  padding-top: 30px; 
-  background-color: #03DAC5;
-}
-
-.mytransitmakers,
-.letselevator,
-.studyphonics,
-.studyjpword {
-  margin-top: 50px;
-}
-
-.badgecontainer a{
-  color: white;
-}
-
-.googleplay-badge{
-  width: 175px; 
-}
-
-.appstore-badge{
-  width: 135px; 
-  margin: 11px 0px;
-  padding-left: 12px;
-}
-
-.trywebapp {
-  margin-bottom: 70px;
-}
-
-footer ul {
-  padding-inline-start: 0px;
-  margin: 10px 0px 10px 0px;
-}
-
-footer li {
-  margin: 0px 10px 0px 10px;
-  display:inline-block;
-}
-
-footer p {
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-}
-
-footer {
-  color: white;
-  font-size: 14px;
-  margin-top: 20px;
-  background-color: #2d2926;
-  padding: 10px 0px 10px 0px;
-}
-
-footer a:visited{
-  color: white;
-}
-
-.policytop {
-  background-color: white;
-  color: #2d2926;
-  padding: 100px 0px 20px 0px;
-}
-
-.policytop h1{
-  font-size: 22px;
-}
-
-.policylist{
-  text-align: left; 
-  width: auto;
-  margin: 0px 25px 15px 25px; 
-}
-
-.policylist a{
-  color: #2d2926;
-  margin-left: 10px;
-}
-
-.policytop h2{
-  font-size: 18px;
-}
-
-.policytop h2{
-  font-size: 20px;
-  padding-top: 15px;
-}
-
-.contact {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-@media (max-width: 500px) {
-  header h1{
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 420px) {
-  header h1{
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 380px) {
-  header h1{
-    font-size: 18px;
-  }
-  .policytop h1{
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 340px) {
-  header h1{
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 300px) {
-  header h1{
-    font-size: 14px;
-  }
+@media (min-width: 800px) {
+  form { padding: 10px 20% 10px 20%; } 
 }
