@@ -106,7 +106,7 @@ footer a, footer a:visited { color: white; }
 .sns__list { display: flex; justify-content: center; align-items: center; }
 .sns__list ul { padding-inline-start: 0px; }
 .sns__item img { height: 30px; margin: 10px; }
-.sns__button { background-color: #383635; border-radius: 20px; margin: 5px 10px 0px 10px;}
+.sns__button { background-color: #383635; border-radius: 20px; margin: 10px 10px 0px 10px;}
 
 
 @media screen and (min-width: 450px){
