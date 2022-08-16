@@ -82,5 +82,9 @@ R
 README.md
 .DS_Store
 
-#image
+#assets
 img/
+font/
+
+#vendor
+vendor/

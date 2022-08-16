@@ -44,23 +44,14 @@ $(function(){
   var bottom = $('.banner_button');
   var content = $('.content');
   $(window).on('scroll', function(){
-
-    if($(this).scrollTop() > window.innerHeight / 2){
+    if($(this).scrollTop() > 0){
       //上にスクロールしたとき
       bottom.removeClass('hide');
+      content.addClass('active');
     }else{
       //下にスクロールしたとき
       bottom.addClass('hide');
-    }
-
-    if (window.innerWidth < 700) {
-      if($(this).scrollTop() > 0){
-          //上にスクロールしたとき
-          content.addClass('active');
-        }else{
-          //下にスクロールしたとき
-          content.removeClass('active');
-        }    
+      content.removeClass('active');
     }
   });
 });
