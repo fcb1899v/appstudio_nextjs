@@ -68,3 +68,11 @@ node_modules/
 # ads
 ads.txt
 app-ads.txt
+
+#composer
+composer.json
+composer.lock
+
+#firebase
+firebase_old.json
+firebase.json
