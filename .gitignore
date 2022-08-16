@@ -76,3 +76,9 @@ composer.lock
 #firebase
 firebase_old.json
 firebase.json
+.firebaserc
+
+#vscode
+launch.json
+
+
