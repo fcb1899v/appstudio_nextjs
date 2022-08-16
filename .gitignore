@@ -9,6 +9,9 @@ firebase-debug.*.log*
 
 # Firebase cache
 .firebase/
+firebase_old.json
+firebase.json
+.firebaserc
 
 # Firebase config
 
@@ -73,12 +76,8 @@ app-ads.txt
 composer.json
 composer.lock
 
-#firebase
-firebase_old.json
-firebase.json
-.firebaserc
-
 #vscode
 launch.json
-
-
+R
+README.md
+.DS_Store
