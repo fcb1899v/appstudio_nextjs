@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* color */
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 128, 128, 128;
+  --lamp: #F7B249;
+  --dark: #383635;
+  --jaYellow: #ffa500;
+  --jaBlue: #0077ff;
+  --enPink: #FF69B4;
+  --enBlue: #03A9F4; 
+  --signalGreen: #57BFA3;
+  --toiletBlue: #86bdda;
+  --transitGreen: #03DAC5;
+  --transitBlue: #3700B3;
+  --transpBlack: rgba(0, 0, 0, 0.9);
+  --transpWhite: rgba(255, 255, 255, 0.9);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+/* CSS */
+body { padding: 0; margin: 0; font-family: "Open Sans", sans-serif !important; font-size: 18px; line-height: 1.5;}
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; }
+.main { display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 100vh; margin: 0; padding-Top: 70px; }
+.dark_container { color: white; background: linear-gradient(to bottom, transparent, black) gray; }
+.light_container { color: black; background: linear-gradient(to bottom, transparent, white) lightgray; }
+.youtube { width: 100%; aspect-ratio: 16 / 9; }
+.youtube iframe { width: 100%; height: 100%; }
+.flex_center {display: flex; justify-content: center; align-items: center;}
+.flex_center_wrap {display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+.flex_left_wrap {display: flex; justify-content: left; align-items: left; flex-wrap: wrap;}
+.block_center {display: block; justify-content: center; align-items: center;}
+.header { position: fixed; z-index: 100; top: 0; width: 100%; height: 70px;}
+.menu {position: fixed; width: 100vw; top: 0; transition: all 0.5s ease-in-out;}
+.container {width: 100vw; padding: 20px 0}
+.image { width: 100%; height: auto;}
+.beon { font-family: var(--font-beon) !important }
+.cornerStone { font-family: var(--font-cornerstone) !important }
+.pacifico { font-family: var(--font-pacifico) !important }
+.kodomo { font-family: var(--font-kodomo) !important }
+.riipop { font-family: var(--font-riipop) !important }
+.yasashisa { font-family: var(--font-yasashisa) !important }
+
+/* Animation */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes fadeInScale { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
