@@ -25,9 +25,9 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
   if (myApp(width, isJa).length > 0) {
     for (let j = 0; j < myApp(width, isJa).length; j++) {
       if (j != appNumber) {
-        app_links.push(<div className={myApp(width, isJa)[j].font.menu}>
-          <li onClick={toMenu} key={`headerMenu_${j}`} style={appLinkStyle(j)}>
-            <Link href={myApp(width, isJa)[j].link.link} key={`appLink_${j}`}>
+        app_links.push(<div className={myApp(width, isJa)[j].font.menu} key={`headerMenu_${j}`} >
+          <li onClick={toMenu} style={appLinkStyle(j)}>
+            <Link href={myApp(width, isJa)[j].link.link}>
               {myApp(width, isJa)[j].text.menu}
             </Link>
           </li>
@@ -67,6 +67,14 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
     height: openMenu ? "100vh": 0, 
     backgroundColor: "rgba(0, 0, 0, 0.9)"
   }
+  const MenuIconStyle: CSSProperties = {
+    width: 25,
+    height: "auto",
+  }
+  const appIconSytle: CSSProperties = {
+    width: 180,
+    height: "auto",
+  }
   const appLinksStyle: CSSProperties = {
     listStyleType: 'none', 
     fontSize: '1rem', 
@@ -82,12 +90,12 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
     </div>
     <div className="menu" style={menuStyle}>
       <div onClick={toMenu} style={{marginTop: 25, marginLeft: 25}}>
-        <Image src={menuIconImage} alt="close" width={24} height={24} priority={true}/>
+        <Image src={menuIconImage} alt="close" width={24} height={24} priority={true} style={MenuIconStyle}/>
       </div>
       {openMenu && (<div>
         <div onClick={toMenu} className="flex_center" style={{padding: '10px 0'}}>
           <Link href={myApp(width, isJa)[0].link.link}>
-            <Image src={myApp(width, isJa)[0].icon} alt={title} width={180} height={180} priority={true}/>
+            <Image src={myApp(width, isJa)[0].icon} alt={title} width={300} height={300} priority={true} style={appIconSytle}/>
           </Link>
         </div>
         <div style={appLinksStyle}>{app_links}</div>
