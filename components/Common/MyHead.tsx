@@ -32,7 +32,6 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa })  => {
       <meta property="og:url" content={`${urlHeader}/${folder}`} />
       <meta property="og:image" content={`/images/${folder}/logo.png`} />
       <meta property="og:locale" content={`ja_JP`} />
-      <link rel="canonical" href={`${urlHeader}/${folder}`} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
@@ -47,7 +46,9 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa })  => {
       <meta name="msapplication-TileColor" content={color}/>
       <meta name="theme-color" content={color}/>
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-      <link rel="shortcut icon" type="image/vnd.microsoft.icon" href={`/images/${folder}/favicons/favicon.ico`} />
+      <link rel="canonical" href={`${urlHeader}/${folder}`} />
+      <link rel="icon" href={`${urlHeader}/images/${folder}/favicons/favicon.ico`}/>
+      {/* <link rel="shortcut icon" href={`${urlHeader}/images/${folder}/favicons/favicon.ico`} />
       <link rel="apple-touch-icon" sizes="57x57" href={`/images/${folder}/favicons/apple-touch-icon-57x57.png`} />
       <link rel="apple-touch-icon" sizes="60x60" href={`/images/${folder}/favicons/apple-touch-icon-60x60.png`} />
       <link rel="apple-touch-icon" sizes="72x72" href={`/images/${folder}/favicons/apple-touch-icon-72x72.png`} />
@@ -85,7 +86,8 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa })  => {
       <link rel="icon" type="image/png" sizes="16x16" href={`/images/${folder}/favicons/icon-16x16.png`} />
       <link rel="icon" type="image/png" sizes="24x24" href={`/images/${folder}/favicons/icon-24x24.png`} />
       <link rel="icon" type="image/png" sizes="32x32" href={`/images/${folder}/favicons/icon-32x32.png`} />
-      <link rel="icon" type="image/png" href={`/images/${folder}/favicons/icon-192x192.png`} />
+      <link rel="icon" type="image/png" href={`/images/${folder}/favicons/icon-192x192.png`} /> */}
+      <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_FORM}`} cross-origin="anonymous"></script>
     </Head>
   )
 }

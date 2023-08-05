@@ -1,11 +1,5 @@
-import { beon, cornerStone, kodomo, pacifico, riipop, yasashisa } from '../../public/fonts/fonts'
 import './globals.css'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  // title: 'Nakajima Masao App Studio',
-  // description: '',
-}
+import { beon, cornerStone, kodomo, pacifico, riipop, yasashisa } from '../../public/fonts/fonts'
 
 export default function RootLayout({
   children,

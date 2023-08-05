@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import Link from 'next/link';
 import Image from 'next/image';
 import { myApp, myMenu, mySNS } from "../../public/utils/constants";
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect } from 'react';
 
 interface Props {
   appNumber: number
