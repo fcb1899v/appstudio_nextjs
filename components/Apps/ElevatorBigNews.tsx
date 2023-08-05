@@ -30,8 +30,8 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
   }
   const bigNewsStyle: CSSProperties = {
     width: "100vw", 
-    color: myApp(width, isJa)[appNumber].color.background, 
-    backgroundColor: myApp(width, isJa)[appNumber].color.title, 
+    color: myApp(width, isJa)[appNumber].color.title, 
+    background: myApp(width, isJa)[appNumber].color.features, 
     padding: "40px 0"
   }
   const messageStyle: CSSProperties = {

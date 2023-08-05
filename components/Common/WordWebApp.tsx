@@ -37,7 +37,6 @@ const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
 
     useEffect(() => {
       setCharNumber(charNumber);
-      console.log(charNumber)
       setFirstChar(charList[charNumber]);
       if (!isPhonics) setSecondChar(hiraganaToKatakana(charList[charNumber]));
       setWords(getWords(charList[charNumber]));

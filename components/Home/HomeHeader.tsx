@@ -25,9 +25,9 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
   if (myApp(width, isJa).length > 0) {
     for (let i = 1; i < myApp(width, isJa).length; i++) {
       app_links.push(
-        <div className={myApp(width, isJa)[i].font.menu}>
-          <li onClick={toMenu} key={`headerMenu_${i}`} style={appLinkStyle(i)}>
-            <Link href={myApp(width, isJa)[i].link.link} key={`appLink_${i}`}>{myApp(width, isJa)[i].text.menu}</Link>
+        <div className={myApp(width, isJa)[i].font.menu} key={`headerMenu_${i}`}>
+          <li onClick={toMenu} style={appLinkStyle(i)}>
+            <Link href={myApp(width, isJa)[i].link.link}>{myApp(width, isJa)[i].text.menu}</Link>
           </li>
         </div>
       )  
@@ -55,24 +55,33 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
     height: openMenu ? "100vh": 0, 
     backgroundColor: "rgba(0, 0, 0, 0.9)"
   }
+  const MenuIconStyle: CSSProperties = {
+    width: 25,
+    height: "auto",
+  }
+  const appIconStyle: CSSProperties = {
+    width: 180,
+    height: "auto",
+    padding: '10px 0',
+  }
   const appLinksStyle: CSSProperties = {
     listStyleType: 'none', 
-    padding: "20px 0 5px 0"
+    padding: "20px 0 5px 0",
   }
 
   return (<div className="header" style={homeHeaderStyle}>
     <div className={isPC ? "flex_left": "flex_center"} style={{margin: menuMargin}}>
-      <Image src={headerLogo} alt={title} width={480} height={270} priority={true} style={headerIconStyle}/>
+      <Image src={headerLogo} alt={title} width={300} height={300} priority={true} style={headerIconStyle}/>
     </div>
     {!isPC && (
       <div className="menu" style={menuStyle}>
         <div onClick={toMenu} style={{marginTop: 25, marginLeft: 25}}>
-          <Image src={menuIconImage} alt="close" width={24} height={24} priority={true}/>
+          <Image src={menuIconImage} alt="close" width={50} height={50} priority={true} style={MenuIconStyle}/>
         </div>
         {openMenu && (
           <div>
-            <div onClick={toMenu} className="flex_center" style={{padding: '10px 0'}}>
-              <Image src={icon} alt={title} width={180} height={180} priority={true}/>
+            <div onClick={toMenu} className="flex_center">
+              <Image src={icon} alt={title} width={300} height={300} priority={true} style={appIconStyle}/>
             </div>
             <div style={appLinksStyle}>{app_links}</div>
             <MyFooter appNumber={0} width={width} isJa={isJa} menuNumber={menuNumber} isHome={true}/>
