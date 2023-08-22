@@ -129,9 +129,9 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
           <Image src={myBadge[1].image} alt={myBadge[1].title} width={162} height={80} priority={true} style={expandAndroidStyle}/>
         </Link>
       </div>
-      <div style={expandButtonStyle}>
-        <Link href={expandLink}>{expandButton}</Link>
-      </div>
+      <Link href={expandLink}>
+        <div style={expandButtonStyle}>{expandButton}</div>
+      </Link>
     </div>}
   </div>
 }
