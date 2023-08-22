@@ -12,6 +12,11 @@ const Home: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
+    if (window.navigator.language != "ja") {
+      console.log(window.navigator.language);
+      window.location.href = "/"
+      return;
+    }
     if (typeof window !== "undefined") {
       const handleResize = () => {setWindowSize({ 
         width: window.innerWidth,
@@ -35,9 +40,9 @@ const Home: NextPage = () => {
   return (
     <div>
       <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
+      <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
+      <HomeHeader menuNumber={menuNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
-        <HomeHeader menuNumber={menuNumber} width={width} isJa={isJa}/>
         <HomeAppsList width={width} height={height} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={true}/>
       </main>

@@ -1,5 +1,6 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
+import { GA_TRACKING_ID } from '../../lib/gtag'
 import { myApp } from '../../public/utils/constants'
 
 interface Props {
@@ -17,7 +18,7 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa })  => {
   const urlHeader = "https://nakajimamasao-appstudio.web.app"
 
   return (
-    <Head>
+    <Head>      
       <title>{title}</title>
       <meta http-equiv="X-UA-Compatible" content={`IE=edge,chrome=1`} />
       <meta name="description" content={description} />
@@ -48,7 +49,7 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa })  => {
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
       <link rel="canonical" href={`${urlHeader}/${folder}`} />
       <link rel="icon" href={`${urlHeader}/images/${folder}/favicons/favicon.ico`}/>
-      {/* <link rel="shortcut icon" href={`${urlHeader}/images/${folder}/favicons/favicon.ico`} />
+      <link rel="shortcut icon" href={`${urlHeader}/images/${folder}/favicons/favicon.ico`} />
       <link rel="apple-touch-icon" sizes="57x57" href={`/images/${folder}/favicons/apple-touch-icon-57x57.png`} />
       <link rel="apple-touch-icon" sizes="60x60" href={`/images/${folder}/favicons/apple-touch-icon-60x60.png`} />
       <link rel="apple-touch-icon" sizes="72x72" href={`/images/${folder}/favicons/apple-touch-icon-72x72.png`} />
@@ -86,8 +87,8 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa })  => {
       <link rel="icon" type="image/png" sizes="16x16" href={`/images/${folder}/favicons/icon-16x16.png`} />
       <link rel="icon" type="image/png" sizes="24x24" href={`/images/${folder}/favicons/icon-24x24.png`} />
       <link rel="icon" type="image/png" sizes="32x32" href={`/images/${folder}/favicons/icon-32x32.png`} />
-      <link rel="icon" type="image/png" href={`/images/${folder}/favicons/icon-192x192.png`} /> */}
-      <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_FORM}`} cross-origin="anonymous"></script>
+      <link rel="icon" type="image/png" href={`/images/${folder}/favicons/icon-192x192.png`} />
+      <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE}`} cross-origin="anonymous"></script>
     </Head>
   )
 }

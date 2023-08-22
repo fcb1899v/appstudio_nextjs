@@ -3,7 +3,7 @@ import React, {CSSProperties, useState} from "react"
 import Link from "next/link";
 import Image from "next/image";
 import MyFooter from ".././Common/MyFooter";
-import { myApp, } from "../../public/utils/constants";
+import { isPC, myApp, } from "../../public/utils/constants";
 
 interface Props {
   menuNumber: number
@@ -15,31 +15,12 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
   
   const [openMenu, setOpenMenu] = useState(false);
   const toMenu = () => setOpenMenu(!openMenu);
-  const appLinkStyle = (j: number): CSSProperties => ({
-    textAlign: 'center', 
-    fontSize: myApp(width, isJa)[j].size.menu,
-    textDecoration: "none",
-    padding: '8px 0', 
-  });
-  const app_links = [];
-  if (myApp(width, isJa).length > 0) {
-    for (let i = 1; i < myApp(width, isJa).length; i++) {
-      app_links.push(
-        <div className={myApp(width, isJa)[i].font.menu} key={`headerMenu_${i}`}>
-          <li onClick={toMenu} style={appLinkStyle(i)}>
-            <Link href={myApp(width, isJa)[i].link.link}>{myApp(width, isJa)[i].text.menu}</Link>
-          </li>
-        </div>
-      )  
-    }
-  }
 
-  const isPC = (width > 1024);
   const title = myApp(width, isJa)[0].text.title;
   const icon = myApp(width, isJa)[0].icon;
   const headerLogo = `/images/appstudio/header_logo.png`;
   const menuTitle = openMenu ? "close": "menu";
-  const menuMargin = isPC ? "5px 0 auto 100px": "5px 0 auto 0"
+  const menuMargin = isPC(width) ? "5px 0 auto 100px": "5px 0 auto 0"
   const menuIconImage = `/images/button/${menuTitle}.png`;
 
   const homeHeaderStyle: CSSProperties = {
@@ -47,7 +28,7 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
     backgroundColor: "black"
   }
   const headerIconStyle: CSSProperties = {
-    height: isPC ? 60: 50, 
+    height: isPC(width) ? 60: 50, 
     width: "auto",
     marginTop: 5,
   }
@@ -63,33 +44,44 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
     width: 180,
     height: "auto",
     padding: '10px 0',
+    color: "white",
   }
   const appLinksStyle: CSSProperties = {
     listStyleType: 'none', 
     padding: "20px 0 5px 0",
   }
+  const appLinkStyle = (j: number): CSSProperties => ({
+    textAlign: 'center', 
+    fontSize: myApp(width, isJa)[j].size.menu,
+    textDecoration: "none",
+    padding: '7px 0', 
+  });
 
-  return (<div className="header" style={homeHeaderStyle}>
-    <div className={isPC ? "flex_left": "flex_center"} style={{margin: menuMargin}}>
+  return <header className="header" style={homeHeaderStyle}>
+    <div className={isPC(width) ? "flex_left": "flex_center"} style={{margin: menuMargin}}>
       <Image src={headerLogo} alt={title} width={300} height={300} priority={true} style={headerIconStyle}/>
     </div>
-    {!isPC && (
-      <div className="menu" style={menuStyle}>
-        <div onClick={toMenu} style={{marginTop: 25, marginLeft: 25}}>
-          <Image src={menuIconImage} alt="close" width={50} height={50} priority={true} style={MenuIconStyle}/>
-        </div>
-        {openMenu && (
-          <div>
-            <div onClick={toMenu} className="flex_center">
-              <Image src={icon} alt={title} width={300} height={300} priority={true} style={appIconStyle}/>
-            </div>
-            <div style={appLinksStyle}>{app_links}</div>
-            <MyFooter appNumber={0} width={width} isJa={isJa} menuNumber={menuNumber} isHome={true}/>
-          </div>
-        )}
+    {!isPC(width) && <div className="menu" style={menuStyle}>
+      <div onClick={toMenu} style={{marginTop: 25, marginLeft: 25}}>
+        <Image src={menuIconImage} alt="close" width={50} height={50} priority={true} style={MenuIconStyle}/>
       </div>
-    )}
-  </div>);
+      {openMenu && <div>
+        <div onClick={toMenu} className="flex_center">
+          <Image src={icon} alt={title} width={300} height={300} priority={true} style={appIconStyle}/>
+        </div>
+        <div style={appLinksStyle}>
+          {myApp(width, isJa).map((myApp, i) => (i != 0) && 
+            <div className={myApp.font.menu} key={`headerMenu_${i}`}>
+              <li onClick={toMenu} style={appLinkStyle(i)}>
+                <Link href={myApp.link.link}>{myApp.text.menu}</Link>
+              </li>
+            </div>
+          )}
+        </div>
+        <MyFooter appNumber={0} width={width} isJa={isJa} menuNumber={menuNumber} isHome={true}/>
+      </div>}
+    </div>}
+  </header>
 }
 
 export default MyHeader

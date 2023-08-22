@@ -37,9 +37,9 @@ const Elevator: NextPage = () => {
   return (
     <div>
       <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
+      <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
+      <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsImageTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <WordWebApp appNumber={appNumber} width={width} isJa={isJa}/>

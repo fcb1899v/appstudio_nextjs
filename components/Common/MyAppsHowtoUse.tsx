@@ -13,7 +13,8 @@ interface Props {
 const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => {
 
   const title = isJa ? "＜使い方＞": "HOW TO USE";
-  const image = myApp(width, isJa)[appNumber].image.howtouse
+  const titleFont = myApp(width, isJa)[appNumber].font.title;
+  const image = myApp(width, isJa)[appNumber].image.howtouse;
 
   const howtouseStyle = {
     color: "white", 
@@ -33,10 +34,10 @@ const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => 
     padding: "10px 0",
   }
 
-  return (<div style={howtouseStyle}>
-    <h2 className={myApp(width, isJa)[appNumber].font.title} style={titleStyle}>{title}</h2>
+  return <div style={howtouseStyle}>
+    <h2 className={titleFont} style={titleStyle}>{title}</h2>
     <Image src={image} alt={`howtouse`} width={1920} height={1080} priority={true} className="image" style={imageStyle}/>
-  </div>)
+  </div>
 }
 
 export default MyAppsHowtoUse

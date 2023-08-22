@@ -13,7 +13,9 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa, }) => {
 
   const isChild = (appNumber == 6 || appNumber ==7)
   const title = (isJa && isChild) ? "＜とくちょう＞": isJa ? "＜特徴＞": "FEATURES";
+  const titleFont = myApp(width, isJa)[appNumber].font.title;
   const messages = myApp(width, isJa)[appNumber].text.features!;
+  const messageFont = myApp(width, isJa)[appNumber].font.message;
   const images = myApp(width, isJa)[appNumber].image.features!;
 
   const explainStyle : CSSProperties = {
@@ -43,19 +45,19 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa, }) => {
     margin: "0px auto",
   }
 
-  return (<div className="container" style={explainStyle}>
-    <h2 className={myApp(width, isJa)[appNumber].font.title} style={titleStyle}>{title}</h2>
-    {images.map((_, i) => (<div key={`image_${i}`}>
+  return <div className="container" style={explainStyle}>
+    <h2 className={titleFont} style={titleStyle}>{title}</h2>
+    {images.map((image, i) => <div key={`image_${i}`}>
       <div className="flex_center_wrap" style={messagesStyle}>
-        {messages.map((_, j) => (<div className="flex_center_wrap" key={`message_${j}`} style={messageStyle}>
-          {messages[j].map((_, k) => (<p key={`message_${j}_${k}`} className={myApp(width, isJa)[appNumber].font.message}>
-            {messages[j][k]} 
-          </p>))}
-        </div>))}
+        {messages.map((message, j) => 
+          <div className="flex_center_wrap" key={`message_${j}`} style={messageStyle}>
+            {message.map((_, k) => <p key={`message_${j}_${k}`} className={messageFont}>{message[k]} </p>)}
+          </div>
+        )}
       </div>
-      <Image src={images[i]} alt={`features_${appNumber}`} width={1920} height={1080} priority={true} style={imageStyle}/>
-    </div>))}
-  </div>)
+      <Image src={image} alt={`features_${appNumber}`} width={1920} height={1080} priority={true} style={imageStyle}/>
+    </div>)}
+  </div>
 }
 
 export default MyAppsFeatures

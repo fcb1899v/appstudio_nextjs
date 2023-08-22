@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import YouTube from 'react-youtube';
-import { myApp } from '../../public/utils/constants';
+import { isSP, myApp } from '../../public/utils/constants';
 import { CSSProperties } from 'react';
 
 interface Props {
@@ -11,11 +11,10 @@ interface Props {
   
 const YoutubeMovie: NextPage<Props> = ({appNumber, width, isJa}) => {
       
-  const isSP = (width < 600)
   const videoId = myApp(width, isJa)[appNumber].link.youtube
 
   const youtubeStyle: CSSProperties = {
-    margin: isSP ? "0px auto": "20px auto", 
+    margin: isSP(width) ? "0px auto": "20px auto", 
     width: "100vw" , 
     maxWidth: 600
   }
@@ -28,11 +27,11 @@ const YoutubeMovie: NextPage<Props> = ({appNumber, width, isJa}) => {
     enablejsapi: 1
   }
   
-  return (<div style={youtubeStyle}>
+  return <div style={youtubeStyle}>
     <YouTube videoId={videoId} className="youtube" opts={{playerVars: playerVars}}
     //   onPlay={() => {gtag('event', 'youtube', { event_category: 'elevator', event_label: 'ja', value: 1 })}}
     />
-  </div>)
+  </div>
 }
   
 export default YoutubeMovie;
