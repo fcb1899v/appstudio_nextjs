@@ -49,7 +49,7 @@ const ContactBody: NextPage<Props> = ({isJa}) => {
       setSentMessage(true);
       setTimeout(() => { window.location.href = "/";}, 3000);     
     }
-  }, [name, email, message, sentMessage, submitted]);
+  }, [isJa, name, email, message, sentMessage, submitted]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -84,7 +84,7 @@ const ContactBody: NextPage<Props> = ({isJa}) => {
     fontSize: 20, 
     margin: "0px 10px 4px 5px"
   }
-  const buttonStyle = {
+  const buttonStyle: CSSProperties = {
     width: "100%", 
     marginTop: 5, 
     borderRadius: 25,
@@ -92,40 +92,38 @@ const ContactBody: NextPage<Props> = ({isJa}) => {
     backgroundColor: buttonColor[0], 
     color: buttonColor[1],
   }
-  const alertStyle = {
+  const alertStyle: CSSProperties = {
     color: '#F7B249', 
     fontWeight: "bold",
     margin: "20px 0",
   }
 
-  return (
-    <div style={contactStyle}>
-      <h2 style={titleStyle}>{myForm(isJa)[0].title}</h2>
-      <p style={alertStyle}>{alertMessage}</p>
-      <form action={myForm(isJa)[0].url} method="POST" target="hidden_iframe" onSubmit={handleSubmit}>
-        <TextField style={textFieldStyle} type="text" required
-          name={myForm(isJa)[0].number.name} color="warning" variant="filled"
-          label={<><AccountIcon style={labelStyle}/>{myForm(isJa)[0].label.name}</>} 
-          value={name} onChange={handleFamilyNameChange} 
-        />
-        <TextField style={textFieldStyle} type="text" required 
-          name={myForm(isJa)[0].number.email} color="warning" variant="filled"
-          label={<><MailIcon style={labelStyle}/>{myForm(isJa)[0].label.email}</>} 
-          value={email} onChange={handleEmailChange}
-        />
-        <TextField 
-          style={textFieldStyle} type="text" required multiline rows={6}
-          name={myForm(isJa)[0].number.message} color="warning" variant="filled"
-          label={<><Edit style={labelStyle}/>{myForm(isJa)[0].label.message}</>} 
-          value={message} onChange={handleMessageChange}
-        />
-        <Button type="submit" style={buttonStyle}>
-          <p>{myForm(isJa)[0].submit}</p>
-        </Button>
-      </form>
-      <iframe name="hidden_iframe" style={{display:"none"}} onLoad={handleIframeLoad}></iframe>
-    </div>
-  );
-};
+  return <div style={contactStyle}>
+    <h2 style={titleStyle}>{myForm(isJa)[0].title}</h2>
+    <p style={alertStyle}>{alertMessage}</p>
+    <form action={myForm(isJa)[0].url} method="POST" target="hidden_iframe" onSubmit={handleSubmit}>
+      <TextField style={textFieldStyle} type="text" required
+        name={myForm(isJa)[0].number.name} color="warning" variant="filled"
+        label={<><AccountIcon style={labelStyle}/>{myForm(isJa)[0].label.name}</>} 
+        value={name} onChange={handleFamilyNameChange} 
+      />
+      <TextField style={textFieldStyle} type="text" required 
+        name={myForm(isJa)[0].number.email} color="warning" variant="filled"
+        label={<><MailIcon style={labelStyle}/>{myForm(isJa)[0].label.email}</>} 
+        value={email} onChange={handleEmailChange}
+      />
+      <TextField 
+        style={textFieldStyle} type="text" required multiline rows={6}
+        name={myForm(isJa)[0].number.message} color="warning" variant="filled"
+        label={<><Edit style={labelStyle}/>{myForm(isJa)[0].label.message}</>} 
+        value={message} onChange={handleMessageChange}
+      />
+      <Button type="submit" style={buttonStyle}>
+        <p>{myForm(isJa)[0].submit}</p>
+      </Button>
+    </form>
+    <iframe name="hidden_iframe" style={{display:"none"}} onLoad={handleIframeLoad}></iframe>
+  </div> 
+}
 
 export default ContactBody

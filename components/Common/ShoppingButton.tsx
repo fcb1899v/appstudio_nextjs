@@ -10,20 +10,20 @@ interface Props {
 
 const ShoppingButton: NextPage<Props> = ({appNumber}) => {
 
-  const [isVisible, setIsVisible] = useState(true);
   const link = 'https://letselevator.designstore.jp/'
   const image = `/images/sns/present_w.svg`
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const isTop = (window.scrollY == 0);
-      setIsVisible(!isTop);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  // const [isVisible, setIsVisible] = useState(true);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const isTop = (window.scrollY == 0);
+  //     setIsVisible(!isTop);
+  //   };
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
 
   const shoppingButtonStyle: CSSProperties = {
     position: "fixed", 
@@ -33,13 +33,9 @@ const ShoppingButton: NextPage<Props> = ({appNumber}) => {
     cursor: "pointer"
   }
 
-  return (
-    <div style={shoppingButtonStyle}>
-      {isVisible && (<Link href={link}>
-        <Image src={image} alt={'shopping'} width={30} height={30}/>
-      </Link>)}
-    </div>
-  );
-};
+  return <Link href={link} style={shoppingButtonStyle}>
+    <Image src={image} alt={'shopping'} width={30} height={30}/>
+  </Link>
+}
 
 export default ShoppingButton;

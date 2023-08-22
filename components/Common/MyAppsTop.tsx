@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import '../../src/app/globals.css';
 import Image from "next/image"
 import MyAppsBadges from "./MyAppsBadges";
-import { myApp } from "../../public/utils/constants";
+import { isPC, myApp } from "../../public/utils/constants";
 import { CSSProperties } from "react";
 
 interface Props {
@@ -13,16 +13,16 @@ interface Props {
   
 const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => { 
     
-  const isPC = width > 1024
-  const title = myApp(width, isJa)[appNumber].text.title
-  const icon = myApp(width, isJa)[appNumber].icon
-  const message = myApp(width, isJa)[appNumber].text.message
-  const font = myApp(width, isJa)[appNumber].font.message
-  const picture = myApp(width, isJa)[appNumber].image.picture!
+  const title = myApp(width, isJa)[appNumber].text.title;
+  const titleFont = myApp(width, isJa)[appNumber].font.title;
+  const icon = myApp(width, isJa)[appNumber].icon;
+  const messages = myApp(width, isJa)[appNumber].text.message;
+  const messageFont = myApp(width, isJa)[appNumber].font.message;
+  const picture = myApp(width, isJa)[appNumber].image.picture!;
 
   const topStyle: CSSProperties = {
-    width: isPC ? 540: "100%", 
-    padding: isPC ? "0px 10px": "25px 10px 0px 10px",
+    width: isPC(width) ? 540: "100%", 
+    padding: isPC(width) ? "0px 10px": "25px 10px 0px 10px",
   }
   const titleStyle: CSSProperties = {
     textAlign: "center", 
@@ -45,26 +45,26 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
   const imageStyle: CSSProperties = {
     width: "100%", 
     maxWidth: 500, 
-    margin: isPC ? 0: "30px auto 0 auto"
+    margin: isPC(width) ? 0: "30px auto 0 auto"
   }
 
-  return (<div className="container">
-    <div className={isPC ? "flex_center": "block_center"}>
+  return <div className="container">
+    <div className={isPC(width) ? "flex_center": "block_center"}>
       <div style={topStyle}>
-        <h1 className={myApp(width, isJa)[appNumber].font.title} key={"title"} style={titleStyle}>{title}</h1>
+        <h1 className={titleFont} key={"title"} style={titleStyle}>{title}</h1>
         <Image src={icon} alt={"icon"} width={100} height={100} style={iconStyle}/>
-        {message!.map((_, i) => (<div className="flex_center_wrap" key={`message_${i}` }>
-          {message![i].map((_, j) => (<p className={font} key={`message_${i}_${j}`} style={messageStyle}>
-            {message![i][j]}
-          </p>))}
-        </div>))}
+        {messages.map((message, i) => <div className="flex_center_wrap" key={`message_${i}` }>
+          {message.map((_, j) => 
+            <p className={messageFont} key={`message_${i}_${j}`} style={messageStyle}>{message[j]}</p>
+          )}
+        </div>)}
         <div style={{marginTop: 30}}>
           <MyAppsBadges appNumber={appNumber} width={width} isJa={isJa}/>
         </div>
       </div>
       <Image src={picture} alt={"pictures"} width={1080} height={1080} style={imageStyle}/>
     </div>
-  </div>);
-};
+  </div>
+}
 
 export default MyAppsTop

@@ -14,6 +14,7 @@ const AllowanceFeatures: NextPage<Props> = ({width, isJa}) => {
   const title = isJa ? "＜特徴＞": "FEATURES";
   const features = myApp(width, isJa)[appNumber].text.features
   const featuresImage = myApp(width, isJa)[appNumber].image.features
+  const messageFont = myApp(width, isJa)[appNumber].font.message
 
   const featuresStyle : CSSProperties = {
     color: "white", 
@@ -40,17 +41,19 @@ const AllowanceFeatures: NextPage<Props> = ({width, isJa}) => {
     margin: "0px auto",
   }
 
-  return (<div className="container" style={featuresStyle}>
+  return <div className="container" style={featuresStyle}>
     <h2 className={myApp(width, isJa)[appNumber].font.title} style={titleStyle}>{title}</h2>
     <div className="flex_center_wrap">
-      {features.map((_, i) => (<div className="flex_center_wrap" key={`messages_${i}`} style={messageStyle}>
-        {features[i].map((_, j) => (<p key={`message_${i}_${j}`} className={myApp(width, isJa)[appNumber].font.message} style={{marginBottom: 10}}>
-          {features[i][j]} 
-        </p>))}
-        <Image src={featuresImage[i]} key={`images_${i}`}  alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
-      </div>))}
+      {features.map((feature, i) => 
+        <div className="flex_center_wrap" key={`messages_${i}`} style={messageStyle}>
+          {feature.map((_, j) => 
+            <p key={`message_${i}_${j}`} className={messageFont} style={{marginBottom: 10}}>{feature[j]}</p>
+          )}
+          <Image src={featuresImage[i]} key={`images_${i}`}  alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
+        </div>
+      )}
     </div>
-  </div>)
+  </div>
 }
 
 export default AllowanceFeatures
