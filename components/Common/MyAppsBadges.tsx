@@ -12,24 +12,24 @@ interface Props {
 
 const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
 
-  const iosStyle: CSSProperties = {
-    width: isSP(width) ? "40vw": 162, 
-    maxWidth: 162, 
-    height: "auto"
+  const appLink = [
+    myApp(width, isJa)[appNumber].link.ios,
+    myApp(width, isJa)[appNumber].link.android,
+  ]
+  const badgesStyle: CSSProperties = {
+    columnGap: 20, 
+    marginBottom: 10
   }
-  const androidStyle: CSSProperties = {
-    width: isSP(width) ? "44vw": 180, 
-    maxWidth: 180, 
+  const appStyle = (i: number): CSSProperties => ({
+    width: (i == 0) ? (isSP(width) ? "40vw": 162): (isSP(width) ? "44vw": 180), 
+    maxWidth: (i == 0) ? 162: 180, 
     height: "auto"
-  }
+  })
 
-  return <div className="flex_center" style={{columnGap: 20, marginBottom: 10}}>
-    <Link href={myApp(width, isJa)[appNumber].link.ios} key={`iosLink_${appNumber}`}>
-      <Image src={myBadge[0].image} style={iosStyle} alt={myBadge[0].title} width={162} height={80} priority={true}/>
-    </Link>
-    <Link href={myApp(width, isJa)[appNumber].link.android} key={`androidLink_${appNumber}`}>
-      <Image src={myBadge[1].image} style={androidStyle} alt={myBadge[1].title} width={162} height={80} priority={true}/>
-    </Link>
+  return <div className="flex_center" style={badgesStyle}>
+    {myBadge.map((badge, i) => <Link href={appLink[i]} key={`app_${i}`}>
+      <Image src={badge.image} style={appStyle(i)} alt={badge.title} width={162} height={80} priority={true}/>
+    </Link>)}
   </div>
 }
 

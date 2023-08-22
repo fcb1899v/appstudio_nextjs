@@ -16,7 +16,7 @@ const SignalFeatures: NextPage<Props> = ({width, isJa}) => {
   const textColor = myApp(width, isJa)[appNumber].color.background;
   const backgroundColor = myApp(width, isJa)[appNumber].color.title;
   const featuresImages = myApp(width, isJa)[appNumber].image.features!;
-  const featuresMessages = myApp(width, isJa)[appNumber].text.features;
+  const features = myApp(width, isJa)[appNumber].text.features;
 
   const featuresStyle : CSSProperties = {
     color: textColor, 
@@ -29,9 +29,6 @@ const SignalFeatures: NextPage<Props> = ({width, isJa}) => {
     textAlign: "center", 
     padding: 10,
   }
-  const messageStyle : CSSProperties = {
-    maxWidth: 800,
-  }
   const imageStyle: CSSProperties = {
     width: "100%", 
     maxWidth: 800, 
@@ -41,15 +38,13 @@ const SignalFeatures: NextPage<Props> = ({width, isJa}) => {
 
   return <div className="container" style={featuresStyle}>
     <h2 className={titleFont} style={titleStyle}>{title}</h2>
-    <div className="flex_center_wrap">
-      <div style={messageStyle}>
-        {featuresMessages.map((feature, i) => 
-          <div className="flex_center_wrap" key={`messages_${i}`} style={{marginBottom: 15}}>
-            {feature.map((_, j) => <p key={`message_${i}_${j}`}>{feature[j]} </p>)}
-            <Image src={featuresImages[i]} key={`images_${i}`} alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
-          </div>
-        )}
-      </div>
+    <div className="flex_center_wrap" style={{maxWidth: 800}}>
+      {features.map((feature, i) => 
+        <div className="flex_center_wrap" key={`messages_${i}`} style={{marginBottom: 15}}>
+          {feature.map((_, j) => <p key={`message_${i}_${j}`}>{feature[j]} </p>)}
+          <Image src={featuresImages[i]} alt={`image_${i}`} width={1920} height={1080} priority={true} style={imageStyle}/>
+        </div>
+      )}
     </div>
   </div>
 }
