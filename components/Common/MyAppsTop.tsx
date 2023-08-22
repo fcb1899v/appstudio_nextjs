@@ -51,9 +51,9 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
   return <div className="container">
     <div className={isPC(width) ? "flex_center": "block_center"}>
       <div style={topStyle}>
-        <h1 className={titleFont} key={"title"} style={titleStyle}>{title}</h1>
+        <h1 className={titleFont} style={titleStyle}>{title}</h1>
         <Image src={icon} alt={"icon"} width={100} height={100} style={iconStyle}/>
-        {messages.map((message, i) => <div className="flex_center_wrap" key={`message_${i}` }>
+        {messages.map((message, i) => <div className="flex_center_wrap" key={`message_${i}`}>
           {message.map((_, j) => 
             <p className={messageFont} key={`message_${i}_${j}`} style={messageStyle}>{message[j]}</p>
           )}

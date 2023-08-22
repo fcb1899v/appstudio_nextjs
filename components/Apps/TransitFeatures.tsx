@@ -15,7 +15,6 @@ const TransitExplain: NextPage<Props> = ({width, isJa}) => {
   const titleFont = myApp(width, isJa)[appNumber].font.title;
   const features = myApp(width, isJa)[appNumber].text.features;
   const featuresImage = myApp(width, isJa)[appNumber].image.features[0];
-  const back = `/images/transit/back.png`;
 
   const explainStyle : CSSProperties = {
     color: myApp(width, isJa)[appNumber].color.title,
@@ -41,9 +40,6 @@ const TransitExplain: NextPage<Props> = ({width, isJa}) => {
     height: "auto", 
     margin: "0px auto",
   }
-  const backImageStyle: CSSProperties = {
-    width: "100vw",
-  }
 
   return <div className="container" style={explainStyle}>
     <h2 className={titleFont} style={titleStyle}>{title}</h2>
@@ -54,7 +50,7 @@ const TransitExplain: NextPage<Props> = ({width, isJa}) => {
         </div>
       )}
     </div>
-    <Image src={featuresImage} alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
+    <Image src={featuresImage} alt={`featuresImage`} width={1920} height={1080} priority={true} style={imageStyle}/>
   </div>
 }
 

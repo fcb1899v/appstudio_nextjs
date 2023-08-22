@@ -68,7 +68,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
 
   return <header className="header" style={headerStyle}>
     <div className="flex_center" style={headerTitleStyle}>
-      {!isSP(width) && (<Image src={icon} alt="logo" width={50} height={50} priority={true} style={iconStyle}/>)}
+      {!isSP(width) && <Image src={icon} alt="logo" width={50} height={50} priority={true} style={iconStyle}/>}
       <div style={{display: "block"}}>
         {title.split("/").map((title, k) => <h1 className={font} key={`title_${k}`}>{title}</h1>)}
       </div>

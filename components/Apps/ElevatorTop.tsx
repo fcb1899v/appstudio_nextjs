@@ -44,19 +44,19 @@ const ElevatorTop: NextPage<Props> = ({width, isJa}) => {
     maxWidth: 500, 
     margin: isPC(width) ? 0: "30px auto 0 auto"
   }
+  const messageStyle: CSSProperties = {
+    textAlign: "center", 
+    margin: 5
+  }
 
   return <div className="container" style={elevatorTopStyle}>
     <div className={isPC(width) ? "flex_center": "block_center"}>
       <div style={topStyle}>
         <h1 className={titleFont} style={titleStyle}>{title}</h1>
         <Image src={icon} alt={"icon"} width={100} height={100} style={iconStyle}/>
-        {messages.map((message, i) => 
-          <div className="flex_center_wrap" key={`message_${i}`}>
-            {message.map((_, j) => 
-              <p key={`message_${i}_${j}`} style={{textAlign: "center", margin: 5}}>{message[j]}</p>
-            )}
-          </div>
-        )}
+        {messages.map((message, i) => <div className="flex_center_wrap" key={`message_${i}`}>
+          {message.map((_, j) => <p key={`message_${i}_${j}`} style={messageStyle}>{message[j]}</p>)}
+        </div>)}
         <OverDownloads width={width} dlNumber={"50,000"} fontFamily={headerFont} isJa={isJa} size={28}/>
         <MyAppsBadges appNumber={appNumber} width={width} isJa={isJa}/>
       </div>
