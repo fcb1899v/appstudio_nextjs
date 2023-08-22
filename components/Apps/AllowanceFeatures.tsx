@@ -12,6 +12,7 @@ const AllowanceFeatures: NextPage<Props> = ({width, isJa}) => {
 
   const appNumber = 4
   const title = isJa ? "＜特徴＞": "FEATURES";
+  const titleFont = myApp(width, isJa)[appNumber].font.title 
   const features = myApp(width, isJa)[appNumber].text.features
   const featuresImage = myApp(width, isJa)[appNumber].image.features
   const messageFont = myApp(width, isJa)[appNumber].font.message
@@ -42,14 +43,14 @@ const AllowanceFeatures: NextPage<Props> = ({width, isJa}) => {
   }
 
   return <div className="container" style={featuresStyle}>
-    <h2 className={myApp(width, isJa)[appNumber].font.title} style={titleStyle}>{title}</h2>
+    <h2 className={titleFont} style={titleStyle}>{title}</h2>
     <div className="flex_center_wrap">
       {features.map((feature, i) => 
-        <div className="flex_center_wrap" key={`messages_${i}`} style={messageStyle}>
-          {feature.map((_, j) => 
-            <p key={`message_${i}_${j}`} className={messageFont} style={{marginBottom: 10}}>{feature[j]}</p>
+        <div className="flex_center_wrap" key={`feature_${i}`} style={messageStyle}>
+          {feature.map((message, j) => 
+            <p className={messageFont} key={`message_${i}_${j}`} style={{marginBottom: 10}}>{message}</p>
           )}
-          <Image src={featuresImage[i]} key={`images_${i}`}  alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
+          <Image src={featuresImage[i]} alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
         </div>
       )}
     </div>

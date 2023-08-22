@@ -19,6 +19,7 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
   const challenge = isJa ? "30秒チャレンジ": "30 Second Challenge";
   const bigNews = myApp(width, isJa)[appNumber].text.features;
   const bigNewsImage = myApp(width, isJa)[appNumber].image.features;
+  const headerFont = myApp(width, isJa)[appNumber].font.header
   const titleFont = myApp(width, isJa)[appNumber].font.title;
 
   const twitterOption = {
@@ -73,12 +74,10 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
   };
 
   return <div style={bigNewsStyle}>
-    <h1 className={myApp(width, isJa)[appNumber].font.header} style={h1Style}>BIG NEWS</h1>
-    {bigNews.map((news, i) => 
-      <div className="flex_center_wrap" key={`message_${i}`}>
-        {news.map((_, j) => <p key={`message_${i}_${j}`} style={messageStyle}>{news[j]}</p>)}
-      </div>
-    )}
+    <h1 className={headerFont} style={h1Style}>BIG NEWS</h1>
+    {bigNews.map((news, i) => <div className="flex_center_wrap" key={`news_${i}`}>
+      {news.map((_, j) => <p key={`news_${i}_${j}`} style={messageStyle}>{news[j]}</p>)}
+    </div>)}
     <div style={twitterStyle}>
       <TwitterTweetEmbed tweetId={twitterLinkId} options={twitterOption}/>
     </div>

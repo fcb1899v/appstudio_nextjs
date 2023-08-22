@@ -71,6 +71,4 @@ const PrivacyPolicy: NextPage<Props> = ({width, isJa}) => {
   </div>
 }
 
-
-
 export default PrivacyPolicy
