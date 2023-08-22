@@ -12,10 +12,11 @@ const SignalFeatures: NextPage<Props> = ({width, isJa}) => {
 
   const appNumber = 2
   const title = isJa ? "＜特徴＞": "Features";
-  const textColor = myApp(width, isJa)[appNumber].color.background
-  const backgroundColor = myApp(width, isJa)[appNumber].color.title
-  const featuresImages = myApp(width, isJa)[appNumber].image.features!
-  const featuresMessages = myApp(width, isJa)[appNumber].text.features
+  const titleFont = myApp(width, isJa)[appNumber].font.title;
+  const textColor = myApp(width, isJa)[appNumber].color.background;
+  const backgroundColor = myApp(width, isJa)[appNumber].color.title;
+  const featuresImages = myApp(width, isJa)[appNumber].image.features!;
+  const featuresMessages = myApp(width, isJa)[appNumber].text.features;
 
   const featuresStyle : CSSProperties = {
     color: textColor, 
@@ -38,19 +39,19 @@ const SignalFeatures: NextPage<Props> = ({width, isJa}) => {
     margin: "0px auto",
   }
 
-return (<div className="container" style={featuresStyle}>
-    <h2 className={myApp(width, isJa)[appNumber].font.title} style={titleStyle}>{title}</h2>
+  return <div className="container" style={featuresStyle}>
+    <h2 className={titleFont} style={titleStyle}>{title}</h2>
     <div className="flex_center_wrap">
       <div style={messageStyle}>
-        {featuresMessages.map((_, i) => (<div className="flex_center_wrap" key={`messages_${i}`} style={{marginBottom: 15}}>
-          {featuresMessages[i].map((_, j) => (<p key={`message_${i}_${j}`}>
-            {featuresMessages[i][j]} 
-          </p>))}
-          <Image src={featuresImages[i]} key={`images_${i}`}  alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
-        </div>))}
+        {featuresMessages.map((feature, i) => 
+          <div className="flex_center_wrap" key={`messages_${i}`} style={{marginBottom: 15}}>
+            {feature.map((_, j) => <p key={`message_${i}_${j}`}>{feature[j]} </p>)}
+            <Image src={featuresImages[i]} key={`images_${i}`} alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
+          </div>
+        )}
       </div>
     </div>
-  </div>)
+  </div>
 }
 
 export default SignalFeatures

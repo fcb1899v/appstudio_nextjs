@@ -36,9 +36,9 @@ const ContactPage: NextPage = () => {
   return (
     <div>
       <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
+      <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
+      <HomeHeader menuNumber={menuNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
-        <HomeHeader menuNumber={menuNumber} width={width} isJa={isJa}/>
         <PrivacyPolicy width={width} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
       </main>

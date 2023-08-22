@@ -36,9 +36,9 @@ const Elevator: NextPage = () => {
   return (
     <div>
       <MyHead appNumber={appNumber}  width={width} isJa={isJa}/>
+      <MySplash appNumber={appNumber}  width={width} isJa={isJa}/>
+      <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <MySplash appNumber={appNumber}  width={width} isJa={isJa}/>
-        <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={500}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>

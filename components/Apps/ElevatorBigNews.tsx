@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import { CSSProperties } from 'react'
 import { TwitterTweetEmbed } from 'react-twitter-embed';
-import { myApp } from '../../public/utils/constants';
+import { isPC, isSP, myApp } from '../../public/utils/constants';
 
 interface Props {
   width: number
@@ -12,9 +12,6 @@ interface Props {
 const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
 
   const appNumber = 1
-  const isPC = (width > 1024); 
-  const isSP = (width < 600); 
-
   const twitterLinkId = "1450698944393007107"
   const buttonsMode = isJa ? "1000のボタンモード": "1000 Buttons Mode";
   const howtoChange = isJa ? "モード変更方法": "How to change the mode";
@@ -22,6 +19,7 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
   const challenge = isJa ? "30秒チャレンジ": "30 Second Challenge";
   const bigNews = myApp(width, isJa)[appNumber].text.features;
   const bigNewsImage = myApp(width, isJa)[appNumber].image.features;
+  const titleFont = myApp(width, isJa)[appNumber].font.title;
 
   const twitterOption = {
     jang: isJa ? "ja": "en", 
@@ -35,7 +33,7 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
     padding: "40px 0"
   }
   const messageStyle: CSSProperties = {
-    fontSize: (!isJa && isSP) ? 16: 18, 
+    fontSize: (!isJa && isSP(width)) ? 16: 18, 
     textAlign: "center", 
     margin: 5
   }
@@ -57,14 +55,14 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
     fontSize: myApp(width, isJa)[appNumber].size.subTitle, 
     textAlign: "center", 
     fontWeight: isJa ? "bold": "normal", 
-    paddingTop: isPC ? 30: 40,
+    paddingTop: isPC(width) ? 30: 40,
   };
   const h3Style: CSSProperties = {
     fontSize: 20, 
     fontWeight: isJa ? "bold": "normal", 
     textAlign: "center", 
     textDecoration: "underline", 
-    padding: isPC ? "10px 0": "30px 0 10px 0",
+    padding: isPC(width) ? "10px 0": "30px 0 10px 0",
   };
   const tallImageStyle: CSSProperties = {
     maxWidth: 540, 
@@ -74,17 +72,17 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
     maxWidth: 640, 
   };
 
-  return (<div style={bigNewsStyle}>
+  return <div style={bigNewsStyle}>
     <h1 className={myApp(width, isJa)[appNumber].font.header} style={h1Style}>BIG NEWS</h1>
-    {bigNews.map((_, i) => (<div className="flex_center_wrap" key={`message_${i}`}>
-      {bigNews[i].map((_, j) => (<p key={`message_${i}_${j}`} style={messageStyle}>
-        {bigNews[i][j]}
-      </p>))}
-    </div>))}
+    {bigNews.map((news, i) => 
+      <div className="flex_center_wrap" key={`message_${i}`}>
+        {news.map((_, j) => <p key={`message_${i}_${j}`} style={messageStyle}>{news[j]}</p>)}
+      </div>
+    )}
     <div style={twitterStyle}>
       <TwitterTweetEmbed tweetId={twitterLinkId} options={twitterOption}/>
     </div>
-    <h2 className={myApp(width, isJa)[appNumber].font.title} style={h2Style}>{buttonsMode}</h2>
+    <h2 className={titleFont} style={h2Style}>{buttonsMode}</h2>
     <div className="flex_center_wrap" style={containerStyle(20)}>
       <Image src={bigNewsImage[0]} alt={`news_0`} width={1920} height={1080} priority={true} style={tallImageStyle} className='image'/>
       <div>
@@ -92,7 +90,7 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
         <Image src={bigNewsImage[1]} alt={`news_1`} width={1920} height={1080} priority={true} style={imageStyle} className='image'/>
       </div>
     </div>
-    <h2 className={myApp(width, isJa)[appNumber].font.title} style={h2Style}>{reproduceMode}</h2>
+    <h2 className={titleFont} style={h2Style}>{reproduceMode}</h2>
     <div className="flex_center_wrap" style={containerStyle(0)}>
       <div>
         <h3 style={h3Style}>{challenge}</h3>
@@ -103,7 +101,7 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
         <Image src={bigNewsImage[3]} alt={`news_3`} width={1920} height={1080} priority={true} style={imageStyle} className='image'/>
       </div>
     </div>
-  </div>)
+  </div>
 }
 
 export default ElevatorBigNews

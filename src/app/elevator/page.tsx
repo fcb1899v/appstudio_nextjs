@@ -41,10 +41,10 @@ const Elevator: NextPage = () => {
   return (
     <div>
       <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
+      <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
+      <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
+      <ShoppingButton appNumber={appNumber}/>
       <main className="main" style={mainStyle}>
-        <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
-        <ShoppingButton appNumber={appNumber}/>
         <ElevatorTop width={width} isJa={isJa}/>
         <YoutubeMovie appNumber={appNumber} width={width} isJa={isJa}/>
         <ElevatorBigNews width={width} isJa={isJa}/>

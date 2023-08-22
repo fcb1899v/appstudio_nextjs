@@ -12,9 +12,10 @@ const TransitExplain: NextPage<Props> = ({width, isJa}) => {
 
   const appNumber = 5;
   const title = isJa ? "＜特徴＞": "FEATURES";
+  const titleFont = myApp(width, isJa)[appNumber].font.title;
   const features = myApp(width, isJa)[appNumber].text.features;
   const featuresImage = myApp(width, isJa)[appNumber].image.features[0];
-  const back = `/images/transit/back.png`
+  const back = `/images/transit/back.png`;
 
   const explainStyle : CSSProperties = {
     color: myApp(width, isJa)[appNumber].color.title,
@@ -44,17 +45,17 @@ const TransitExplain: NextPage<Props> = ({width, isJa}) => {
     width: "100vw",
   }
 
-  return (<div className="container" style={explainStyle}>
-    <h2 className={myApp(width, isJa)[appNumber].font.title} style={titleStyle}>{title}</h2>
+  return <div className="container" style={explainStyle}>
+    <h2 className={titleFont} style={titleStyle}>{title}</h2>
     <div className="flex_center_wrap" style={messagesStyle}>
-      {features.map((_, i) => (<div className="flex_center_wrap" key={`message_${i}`} style={messageStyle}>
-        {features[i].map((_, j) => (<p key={`message_${i}_${j}`}>
-          {features[i][j]} 
-        </p>))}
-      </div>))}
+      {features.map((feature, i) => 
+        <div className="flex_center_wrap" key={`message_${i}`} style={messageStyle}>
+          {feature.map((_, j) => <p key={`message_${i}_${j}`}>{feature[j]}</p>)}
+        </div>
+      )}
     </div>
     <Image src={featuresImage} alt={`explain_ped`} width={1920} height={1080} priority={true} style={imageStyle}/>
-  </div>)
+  </div>
 }
 
 export default TransitExplain

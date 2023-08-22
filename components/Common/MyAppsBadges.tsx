@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { myApp, myBadge} from '../../public/utils/constants'
+import { isSP, myApp, myBadge} from '../../public/utils/constants'
+import { CSSProperties } from 'react'
 
 interface Props {
   appNumber: number
@@ -11,24 +12,25 @@ interface Props {
 
 const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
 
-  const isSP = (width < 540);
-  const badgeWidth = [(isSP ? "40vw": 162), (isSP ? "44vw": 180)];
-  const badgeMaxWidth = [162, 180];
+  const iosStyle: CSSProperties = {
+    width: isSP(width) ? "40vw": 162, 
+    maxWidth: 162, 
+    height: "auto"
+  }
+  const androidStyle: CSSProperties = {
+    width: isSP(width) ? "44vw": 180, 
+    maxWidth: 180, 
+    height: "auto"
+  }
 
-  return (<div>
-    <div className="flex_center" style={{columnGap: 20, marginBottom: 10}}>
-      <Link href={myApp(width, isJa)[appNumber].link.ios} key={`iosLink_${appNumber}`}>
-        <Image src={myBadge[0].image} alt={myBadge[0].title} width={162} height={80} priority={true}
-          style={{width: badgeWidth[0], maxWidth: badgeMaxWidth[0], height: "auto"}} key={`iosImage_${appNumber}`}
-        />
-      </Link>
-      <Link href={myApp(width, isJa)[appNumber].link.android} key={`androidLink_${appNumber}`}>
-        <Image src={myBadge[1].image} alt={myBadge[1].title} width={162} height={80} priority={true}
-          style={{width: badgeWidth[1], maxWidth: badgeMaxWidth[1], height: "auto"}} key={`androidImage_${appNumber}`}
-        />
-      </Link>
-    </div>
-  </div>)
+  return <div className="flex_center" style={{columnGap: 20, marginBottom: 10}}>
+    <Link href={myApp(width, isJa)[appNumber].link.ios} key={`iosLink_${appNumber}`}>
+      <Image src={myBadge[0].image} style={iosStyle} alt={myBadge[0].title} width={162} height={80} priority={true}/>
+    </Link>
+    <Link href={myApp(width, isJa)[appNumber].link.android} key={`androidLink_${appNumber}`}>
+      <Image src={myBadge[1].image} style={androidStyle} alt={myBadge[1].title} width={162} height={80} priority={true}/>
+    </Link>
+  </div>
 }
 
 export default MyAppsBadges

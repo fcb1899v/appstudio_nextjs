@@ -43,7 +43,7 @@ img { max-width: 100%; display: block; }
 .flex_center_wrap {display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
 .flex_left_wrap {display: flex; justify-content: left; align-items: left; flex-wrap: wrap;}
 .block_center {display: block; justify-content: center; align-items: center;}
-.header { position: fixed; z-index: 100; top: 0; width: 100%; height: 70px;}
+.header { position: fixed; z-index: 100; top: 0; width: 100vw; height: 70px;}
 .menu {position: fixed; width: 100vw; top: 0; transition: all 0.5s ease-in-out;}
 .container {width: 100vw; padding: 20px 0}
 .image { width: 100%; height: auto;}
