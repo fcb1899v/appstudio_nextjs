@@ -10,7 +10,7 @@ interface Props {
 
 const SignalFeatures: NextPage<Props> = ({width, isJa}) => {
 
-  const appNumber = 2
+  const appNumber = 3
   const title = isJa ? "＜特徴＞": "Features";
   const titleFont = myApp(width, isJa)[appNumber].font.title;
   const textColor = myApp(width, isJa)[appNumber].color.background;

@@ -30,7 +30,7 @@ const Signal: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 2
+  const appNumber = 3
   const menuNumber = 100
   const isJa = false;
   const width = windowSize.width

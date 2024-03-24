@@ -19,7 +19,7 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa, }) => {
   const images = myApp(width, isJa)[appNumber].image.features!;
 
   const explainStyle : CSSProperties = {
-    color: "white",
+    color: myApp(width, isJa)[appNumber].color.title,
     background: myApp(width, isJa)[appNumber].color.features, 
     padding: "25px 0 20px 0"
   }

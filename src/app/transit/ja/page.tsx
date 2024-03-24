@@ -27,7 +27,7 @@ const Transit: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 5
+  const appNumber = 6
   const menuNumber = 100
   const isJa = true;
   const width = windowSize.width

@@ -37,17 +37,23 @@ const Home: NextPage = () => {
   const height = windowSize.height
   const mainStyle = { background: "linear-gradient(to bottom, transparent, black) gray" }
 
-  return (
-    <div>
-      <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
+  return (<>
+    <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
+    <body>
+      <noscript dangerouslySetInnerHTML={{
+        __html: `
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3PSBCC"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        `,
+      }}/>
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <HomeHeader menuNumber={menuNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
         <HomeAppsList width={width} height={height} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={true}/>
       </main>
-    </div>
-  )
+    </body>
+  </>)
 }
 
 export default Home

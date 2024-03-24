@@ -17,7 +17,7 @@ const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => 
   const image = myApp(width, isJa)[appNumber].image.howtouse;
 
   const howtouseStyle = {
-    color: "white", 
+    color: myApp(width, isJa)[appNumber].color.title,
     backgroundColor: myApp(width, isJa)[appNumber].color.howtouse,
     padding: "20px 0",
     width: "100vw",
