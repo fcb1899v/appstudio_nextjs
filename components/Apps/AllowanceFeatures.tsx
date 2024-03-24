@@ -10,7 +10,7 @@ interface Props {
 
 const AllowanceFeatures: NextPage<Props> = ({width, isJa}) => {
 
-  const appNumber = 4
+  const appNumber = 5
   const title = isJa ? "＜特徴＞": "FEATURES";
   const titleFont = myApp(width, isJa)[appNumber].font.title 
   const features = myApp(width, isJa)[appNumber].text.features

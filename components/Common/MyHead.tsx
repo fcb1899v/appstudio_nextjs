@@ -1,6 +1,6 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
-import { GA_TRACKING_ID } from '../../lib/gtag'
+import { GA_TRACKING_ID, GTM_ID } from '../../lib/gtag'
 import { myApp } from '../../public/utils/constants'
 
 interface Props {
@@ -19,6 +19,33 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa })  => {
 
   return (
     <Head>      
+      {/* <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE}`} cross-origin="anonymous"></script>
+      {(GA_TRACKING_ID != "") && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });`,
+          }}/>
+        </>
+      )}
+      {(GTM_ID != "" && (
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+      ))} */}
       <title>{title}</title>
       <meta http-equiv="X-UA-Compatible" content={`IE=edge,chrome=1`} />
       <meta name="description" content={description} />
@@ -88,7 +115,6 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa })  => {
       <link rel="icon" type="image/png" sizes="24x24" href={`/images/${folder}/favicons/icon-24x24.png`} />
       <link rel="icon" type="image/png" sizes="32x32" href={`/images/${folder}/favicons/icon-32x32.png`} />
       <link rel="icon" type="image/png" href={`/images/${folder}/favicons/icon-192x192.png`} />
-      <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE}`} cross-origin="anonymous"></script>
     </Head>
   )
 }
