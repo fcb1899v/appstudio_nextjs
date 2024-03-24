@@ -13,7 +13,7 @@ interface Props {
   
 const SignalTop: NextPage<Props> = ({width, isJa}) => { 
     
-  const appNumber = 2;
+  const appNumber = 3;
   const title = myApp(width, isJa)[appNumber].text.title;
   const titleFont = myApp(width, isJa)[appNumber].font.title;
   const titleColor = myApp(width, isJa)[appNumber].color.title;

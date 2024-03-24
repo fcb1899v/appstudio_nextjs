@@ -4,11 +4,14 @@ import React, { useEffect, useState } from 'react'
 import '../../../../src/app/globals.css';
 import MyHead from '../../../../components/Common/MyHead'
 import MySplash from '../../../../components/Common/MySplash'
+import ShoppingButton from '../../../../components/Common/ShoppingButton';
 import MyAppsHeader from '../../../../components/Common/MyAppsHeader'
-import MyAppsTop from '../../../../components/Common/MyAppsTop';
-import AllowanceFeatures from '../../../../components/Apps/AllowanceFeatures';
+import MyAppsHowtoUse from '../../../../components/Common/MyAppsHowtoUse';
 import DownloadNow from '../../../../components/Common/DownloadNow';
 import MyFooter from '../../../../components/Common/MyFooter'
+import { myApp } from '../../../../public/utils/constants';
+import MyAppsImageTop from '../../../../components/Common/MyAppsImageTop';
+import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
 
 const Elevator: NextPage = () => {
 
@@ -27,20 +30,23 @@ const Elevator: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 5
+  const appNumber = 2
   const menuNumber = 100
   const isJa = true;
   const width = windowSize.width
-  const mainStyle ={ background: "linear-gradient(to bottom right, #00FFFF 0%, #FF40FF 80%)" }
+  const mainStyle ={
+    backgroundColor: myApp(width, isJa)[appNumber].color.background,
+  }
 
   return (
     <div>
       <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
+      <ShoppingButton appNumber={appNumber}/>
       <main className="main" style={mainStyle}>
-        <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
-        <AllowanceFeatures width={width} isJa={isJa}/>
+        <MyAppsImageTop appNumber={appNumber} width={width} isJa={isJa}/>
+        <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
       </main>

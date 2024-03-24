@@ -13,7 +13,6 @@ import MyFooter from '../../../../components/Common/MyFooter'
 import ElevatorTop from '../../../../components/Apps/ElevatorTop';
 import ElevatorBigNews from '../../../../components/Apps/ElevatorBigNews';
 import { myApp } from '../../../../public/utils/constants';
-import { cornerStone } from '../../../../public/fonts/fonts';
 
 const Elevator: NextPage = () => {
 

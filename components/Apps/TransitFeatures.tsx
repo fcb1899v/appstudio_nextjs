@@ -10,13 +10,13 @@ interface Props {
 
 const TransitExplain: NextPage<Props> = ({width, isJa}) => {
 
-  const appNumber = 5;
+  const appNumber = 6;
   const title = isJa ? "＜特徴＞": "FEATURES";
   const titleFont = myApp(width, isJa)[appNumber].font.title;
   const features = myApp(width, isJa)[appNumber].text.features;
   const featuresImage = myApp(width, isJa)[appNumber].image.features[0];
 
-  const explainStyle : CSSProperties = {
+  const featuresStyle : CSSProperties = {
     color: myApp(width, isJa)[appNumber].color.title,
     backgroundColor: myApp(width, isJa)[appNumber].color.background, 
     paddingBottom: 20
@@ -41,7 +41,7 @@ const TransitExplain: NextPage<Props> = ({width, isJa}) => {
     margin: "0px auto",
   }
 
-  return <div className="container" style={explainStyle}>
+  return <div className="container" style={featuresStyle}>
     <h2 className={titleFont} style={titleStyle}>{title}</h2>
     <div className="flex_center_wrap" style={messagesStyle}>
       {features.map((feature, i) => 

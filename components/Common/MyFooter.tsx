@@ -34,6 +34,8 @@ const MyFooter: NextPage<Props> = ({appNumber, width, isJa, menuNumber, isHome})
     rowGap: 5,
   }
   const snsStyle: CSSProperties = {
+    width: 35,
+    height: "auto",
     margin: "30px 15px 15px 15px",
   }
   const trademarkStyle: CSSProperties = {
@@ -44,7 +46,7 @@ const MyFooter: NextPage<Props> = ({appNumber, width, isJa, menuNumber, isHome})
   return <footer className={isPC(width) ? "flex_center": "block_center"} style={footerStyle}>
     <div className="flex_center" style={{marginBottom: 15}}>
       {mySNS.map((sns, i) => <Link href={sns.link} key={`snsLink_${i}`}>
-        <Image src={sns.image} alt={sns.title} width={35} height={35} style={snsStyle}/>
+        <Image src={sns.image} alt={sns.title} width={100} height={100} style={snsStyle}/>
       </Link>)}
     </div>
     <div>

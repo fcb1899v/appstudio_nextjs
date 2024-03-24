@@ -27,7 +27,7 @@ const Elevator: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 5
+  const appNumber = 6
   const menuNumber = 100
   const isJa = false;
   const width = windowSize.width
