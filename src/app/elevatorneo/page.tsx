@@ -6,12 +6,10 @@ import MyHead from '../../../components/Common/MyHead'
 import MySplash from '../../../components/Common/MySplash'
 import ShoppingButton from '../../../components/Common/ShoppingButton';
 import MyAppsHeader from '../../../components/Common/MyAppsHeader'
-import MyAppsHowtoUse from '../../../components/Common/MyAppsHowtoUse';
 import DownloadNow from '../../../components/Common/DownloadNow';
 import MyFooter from '../../../components/Common/MyFooter'
 import { myApp } from '../../../public/utils/constants';
-import { cornerStone } from '../../../public/fonts/fonts';
-import MyAppsImageTop from '../../../components/Common/MyAppsImageTop';
+import MyAppsOverDLTop from '../../../components/Common/MyAppsOverDLTop';
 import MyAppsFeatures from '../../../components/Common/MyAppsFeatures';
 
 const Elevator: NextPage = () => {
@@ -44,7 +42,7 @@ const Elevator: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <ShoppingButton appNumber={appNumber}/>
       <main className="main" style={mainStyle}>
-        <MyAppsImageTop appNumber={appNumber} width={width} isJa={isJa}/>
+        <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>

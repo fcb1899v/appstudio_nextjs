@@ -10,10 +10,9 @@ import MyAppsHowtoUse from '../../../components/Common/MyAppsHowtoUse';
 import YoutubeMovie from '../../../components/Common/YoutubeMovie';
 import DownloadNow from '../../../components/Common/DownloadNow';
 import MyFooter from '../../../components/Common/MyFooter'
-import ElevatorTop from '../../../components/Apps/ElevatorTop';
+import MyAppsOverDLTop from '../../../components/Common/MyAppsOverDLTop';
 import ElevatorBigNews from '../../../components/Apps/ElevatorBigNews';
 import { myApp } from '../../../public/utils/constants';
-import { cornerStone } from '../../../public/fonts/fonts';
 
 const Elevator: NextPage = () => {
 
@@ -45,7 +44,7 @@ const Elevator: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <ShoppingButton appNumber={appNumber}/>
       <main className="main" style={mainStyle}>
-        <ElevatorTop width={width} isJa={isJa}/>
+        <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
         <YoutubeMovie appNumber={appNumber} width={width} isJa={isJa}/>
         <ElevatorBigNews width={width} isJa={isJa}/>
         <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/>
