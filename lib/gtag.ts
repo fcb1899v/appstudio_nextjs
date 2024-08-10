@@ -4,7 +4,6 @@ import { useEffect } from "react";
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || "";
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
 
-
 // PVを測定する
 export const pageview = (url: string): void => {
   console.log(GA_TRACKING_ID);

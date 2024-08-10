@@ -5,14 +5,14 @@ import '../../../src/app/globals.css';
 import MyHead from '../../../components/Common/MyHead'
 import MySplash from '../../../components/Common/MySplash'
 import MyAppsHeader from '../../../components/Common/MyAppsHeader'
-import MyAppsFeatures from '../../../components/Common/MyAppsFeatures';
+import MyAppsTop from '../../../components/Common/MyAppsTop';
+import CrossingFeatures from '../../../components/Apps/CrossingFeatures';
 import MyAppsHowtoUse from '../../../components/Common/MyAppsHowtoUse';
 import DownloadNow from '../../../components/Common/DownloadNow';
 import MyFooter from '../../../components/Common/MyFooter'
-import MyAppsOverDLTop from '../../../components/Common/MyAppsOverDLTop';
 import { myApp } from '../../../public/utils/constants';
 
-const Signal: NextPage = () => {
+const Crossing: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -29,7 +29,7 @@ const Signal: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 3
+  const appNumber = 9
   const menuNumber = 100
   const isJa = false;
   const width = windowSize.width
@@ -41,9 +41,9 @@ const Signal: NextPage = () => {
       <MySplash appNumber={appNumber} width={width}isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/>
+        <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
+        <CrossingFeatures width={width} isJa={isJa}/>
+        {/* <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/> */}
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
       </main>
@@ -51,4 +51,4 @@ const Signal: NextPage = () => {
   )
 }
 
-export default Signal
+export default Crossing
