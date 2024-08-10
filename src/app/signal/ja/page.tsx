@@ -5,13 +5,12 @@ import '../../../../src/app/globals.css';
 import MyHead from '../../../../components/Common/MyHead'
 import MySplash from '../../../../components/Common/MySplash'
 import MyAppsHeader from '../../../../components/Common/MyAppsHeader'
-import SignalTop from '../../../../components/Apps/SignalTop';
+import MyAppsOverDLTop from '../../../../components/Common/MyAppsOverDLTop';
 import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
 import MyAppsHowtoUse from '../../../../components/Common/MyAppsHowtoUse';
 import DownloadNow from '../../../../components/Common/DownloadNow';
 import MyFooter from '../../../../components/Common/MyFooter'
 import { myApp } from '../../../../public/utils/constants';
-import { beon } from '../../../../public/fonts/fonts';
 
 const Signal: NextPage = () => {
 
@@ -43,7 +42,7 @@ const Signal: NextPage = () => {
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <SignalTop width={width} isJa={isJa}/>
+        <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
