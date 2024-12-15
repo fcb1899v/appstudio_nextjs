@@ -51,10 +51,10 @@ const MyFooter: NextPage<Props> = ({appNumber, width, isJa, menuNumber}) => {
     </div>
     <div>
       <div className="flex_center_wrap" style={menuLinksStyle}>
-        {myMenu(isJa).map((myMenu, j) => (j != menuNumber) && 
+        {myMenu(isJa).map((menu, j) => (menu.menuNumber != menuNumber) && 
           <div className={"flex_center"} key={`menu_${j}`} style={menuLinkStyle}>
             {(j > (isHome ? 1: 0)) && <span style={{marginRight: 5}}>|</span>}
-            <Link href={myMenu.link}>{myMenu.title}</Link>
+            <Link href={menu.link}>{menu.title}</Link>
           </div> 
         )}
       </div>

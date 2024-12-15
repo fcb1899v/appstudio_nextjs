@@ -61,11 +61,11 @@ const TermsPage: NextPage<Props> = ({width, isJa}) => {
     <p style={termsLabelStyle}>{policyLabel(isJa)}</p>
     <p style={dateStyle}>{createdDate(isJa)}</p>
     <p style={dateStyle}>{updatedDate(isJa)}</p>
-    {policyTitle(isJa).map((policy, k) => <div style={containerStyle} key={`policyTitle_${k}`}>
-      <h1 style={termsTitleStyle}>{`${k+1}. ${policyTitle(isJa)[k]}`}</h1>
+    {policyTitle(isJa).map((title, k) => <div style={containerStyle} key={`policyTitle_${k}`}>
+      <h1 style={termsTitleStyle}>{`${k+1}. ${title}`}</h1>
       <p style={messageStyle} key={`policyMessage_${k}`}>{policyMessage(isJa)[k]}</p>
-      {(k == 2) && policyLink.link.map((link, m) => <li style={policyLinkTitleStyle} key={`policyLink_${k}_${m}`}>
-        <Link href={policyLink.url[m]}>{link}</Link>
+      {(k == 2) && policyLink.map((link, m) => <li style={policyLinkTitleStyle} key={`policyLink_${m}`}>
+        <Link href={link.url}>{link.title}</Link>
       </li>)}
     </div>)}
   </div>

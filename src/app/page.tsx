@@ -11,26 +11,26 @@ import { myAppNumber, myMenuNumber } from '../../public/utils/constants';
 
 const HomePage: NextPage = () => {
 
-  const [windowSize, setWindowSize] = useState({width: 0, height: 0});
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
-    if (window.navigator.language == "ja") {
-      console.log(window.navigator.language);
-      window.location.href = "/ja"
-      return;
-    }
-    if (typeof window !== "undefined") {
-      const handleResize = () => {setWindowSize({ 
+    setIsClient(true);
+    const handleResize = () => {
+      setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
-      });};
-      window.addEventListener("resize", handleResize);
-      handleResize();
-      return () => window.removeEventListener("resize", handleResize);
-    } else {
-      return;
-    }
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  if (!isClient) {
+    return null;
+  }
+    
   const appNumber = myAppNumber.home
   const menuNumber = myMenuNumber.home
   const isJa = false
