@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { isSP, myApp, myBadge} from '../../public/utils/constants'
+import { isSP, myApp, myAppNumber, myBadge} from '../../public/utils/constants'
 import { CSSProperties } from 'react'
 
 interface Props {
@@ -21,8 +21,8 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
     marginBottom: 10
   }
   const appStyle = (i: number): CSSProperties => ({
-    width: (i == 0) ? (isSP(width) ? "40vw": 162): (isSP(width) ? "44vw": 180), 
-    maxWidth: (i == 0) ? 162: 180, 
+    width: (i == myAppNumber.home) ? (isSP(width) ? "40vw": 162): (isSP(width) ? "44vw": 180), 
+    maxWidth: (i == myAppNumber.home) ? 162: 180, 
     height: "auto",
     maxHeight: "auto"
   })

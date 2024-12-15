@@ -1,19 +1,19 @@
 import { NextPage } from 'next'
 import Link from 'next/link';
 import Image from 'next/image';
-import { isPC, isSP, myApp, myMenu, mySNS } from "../../public/utils/constants";
-import { CSSProperties, useEffect } from 'react';
+import { isPC, isSP, myAppNumber, myMenu, myMenuNumber, mySNS } from "../../public/utils/constants";
+import { CSSProperties } from 'react';
 
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
   menuNumber: number
-  isHome: boolean
 }
 
-const MyFooter: NextPage<Props> = ({appNumber, width, isJa, menuNumber, isHome}) => {
+const MyFooter: NextPage<Props> = ({appNumber, width, isJa, menuNumber}) => {
   
+  const isHome = (appNumber == myAppNumber.home && menuNumber == myMenuNumber.home)
   const trademark = "©Nakajima Masao App Studio. ALL RIGHTS RESERVED."
 
   const menuLinkStyle: CSSProperties = {
