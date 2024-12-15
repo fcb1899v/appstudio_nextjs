@@ -3,7 +3,7 @@ import React, {CSSProperties, useState} from "react"
 import Link from "next/link";
 import Image from "next/image";
 import MyFooter from ".././Common/MyFooter";
-import { isPC, myApp, myAppNumber, } from "../../public/utils/constants";
+import { isPC, myApp } from "../../public/utils/constants";
 
 interface Props {
   menuNumber: number
@@ -59,7 +59,9 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
 
   return <header className="header" style={homeHeaderStyle}>
     <div className={isPC(width) ? "flex_left": "flex_center"} style={{margin: menuMargin}}>
-      <Image src={headerLogo} alt={title} width={300} height={300} priority={true} style={headerIconStyle}/>
+      <Link href={myApp(width, isJa)[0].link.link}>
+        <Image src={headerLogo} alt={title} width={300} height={300} priority={true} style={headerIconStyle}/>
+      </Link>
     </div>
     {!isPC(width) && <div className="menu" style={menuStyle}>
       <div onClick={toMenu} style={{marginTop: 25, marginLeft: 25}}>
@@ -70,15 +72,15 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
           <Image src={icon} alt={title} width={300} height={300} priority={true} style={appIconStyle}/>
         </div>
         <div style={appLinksStyle}>
-          {myApp(width, isJa).map((myApp, i) => (i != myAppNumber.home) && 
-            <div className={myApp.font.menu} key={`headerMenu_${i}`}>
+          {myApp(width, isJa).map((myApp, i) => (i != menuNumber) && 
+            (<div className={myApp.font.menu} key={`headerMenu_${i}`}>
               <li onClick={toMenu} style={appLinkStyle(i)}>
                 <Link href={myApp.link.link}>{myApp.text.menu}</Link>
               </li>
-            </div>
+            </div>)
           )}
         </div>
-        <MyFooter appNumber={myAppNumber.home} width={width} isJa={isJa} menuNumber={menuNumber}/>
+        <MyFooter appNumber={0} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </div>}
     </div>}
   </header>

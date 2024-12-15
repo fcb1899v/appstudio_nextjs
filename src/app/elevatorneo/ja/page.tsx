@@ -14,20 +14,25 @@ import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
 
 const ElevatorNeoPage: NextPage = () => {
 
-  const [windowSize, setWindowSize] = useState({width: 0, height: 0});
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => {setWindowSize({ 
+    setIsClient(true);
+    const handleResize = () => {
+      setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
-      });};
-      window.addEventListener("resize", handleResize);
-      handleResize();
-      return () => window.removeEventListener("resize", handleResize);
-    } else {
-      return;
-    }
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   const appNumber = myAppNumber.elevatorNeo
   const menuNumber = myMenuNumber.other

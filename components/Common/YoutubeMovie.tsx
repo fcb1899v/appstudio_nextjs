@@ -29,9 +29,11 @@ const YoutubeMovie: NextPage<Props> = ({appNumber, width, isJa}) => {
   
   return <div style={youtubeStyle}>
     <YouTube videoId={videoId} className="youtube" opts={{playerVars: playerVars}}
-    //   onPlay={() => {gtag('event', 'youtube', { event_category: 'elevator', event_label: 'ja', value: 1 })}}
+      onPlay={() => {gtag('event', 'youtube', { event_category: 'elevator', event_label: 'ja', value: 1 })}}
     />
   </div>
 }
   
+
+
 export default YoutubeMovie;
