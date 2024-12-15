@@ -6,11 +6,12 @@ import MyHead from '../../../components/Common/MyHead'
 import MySplash from '../../../components/Common/MySplash'
 import MyAppsHeader from '../../../components/Common/MyAppsHeader'
 import MyAppsTop from '../../../components/Common/MyAppsTop';
-import TransitFeatures from '../../../components/Apps/TransitFeatures';
+import MyAppsFeatures from '../../../components/Common/MyAppsFeatures';
 import DownloadNow from '../../../components/Common/DownloadNow';
 import MyFooter from '../../../components/Common/MyFooter'
+import { myAppNumber, myMenuNumber } from '../../../public/utils/constants';
 
-const Elevator: NextPage = () => {
+const TransitPage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -27,8 +28,8 @@ const Elevator: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 6
-  const menuNumber = 100
+  const appNumber = myAppNumber.transit
+  const menuNumber = myMenuNumber.other
   const isJa = false;
   const width = windowSize.width
   const mainStyle = { background: "linear-gradient(to bottom, #3700B3, #03DAC5)" }
@@ -40,12 +41,12 @@ const Elevator: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
         <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
-        <TransitFeatures width={width} isJa={isJa}/>
+        <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
   )
 }
 
-export default Elevator
+export default TransitPage

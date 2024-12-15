@@ -11,10 +11,10 @@ import YoutubeMovie from '../../../components/Common/YoutubeMovie';
 import DownloadNow from '../../../components/Common/DownloadNow';
 import MyFooter from '../../../components/Common/MyFooter'
 import MyAppsOverDLTop from '../../../components/Common/MyAppsOverDLTop';
-import ElevatorBigNews from '../../../components/Apps/ElevatorBigNews';
-import { myApp } from '../../../public/utils/constants';
+import ElevatorBigNews from '../../../components/Common/ElevatorBigNews';
+import { myApp, myAppNumber, myMenuNumber } from '../../../public/utils/constants';
 
-const Elevator: NextPage = () => {
+const ElevatorPage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -31,8 +31,8 @@ const Elevator: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 1
-  const menuNumber = 100
+  const appNumber = myAppNumber.elevator
+  const menuNumber = myMenuNumber.other
   const isJa = false;
   const width = windowSize.width
   const mainStyle = { backgroundColor: myApp(width, isJa)[appNumber].color.background }
@@ -50,10 +50,10 @@ const Elevator: NextPage = () => {
         <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/>
         <YoutubeMovie appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
   )
 }
 
-export default Elevator
+export default ElevatorPage

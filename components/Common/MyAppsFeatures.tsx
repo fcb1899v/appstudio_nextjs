@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import { CSSProperties } from 'react'
-import { myApp } from '../../public/utils/constants'
+import { myApp, myAppNumber } from '../../public/utils/constants'
 
 interface Props {
   appNumber: number
@@ -9,9 +9,9 @@ interface Props {
   isJa: boolean
 }
 
-const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa, }) => {
+const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
 
-  const isChild = (appNumber == 6 || appNumber ==7)
+  const isChild = (appNumber == myAppNumber.phonics || appNumber == myAppNumber.japanese)
   const title = (isJa && isChild) ? "＜とくちょう＞": isJa ? "＜特徴＞": "FEATURES";
   const titleFont = myApp(width, isJa)[appNumber].font.title;
   const messages = myApp(width, isJa)[appNumber].text.features!;
@@ -49,9 +49,9 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa, }) => {
     <h2 className={titleFont} style={titleStyle}>{title}</h2>
     {images.map((image, i) => <div key={`image_${i}`}>
       <div className="flex_center_wrap" style={messagesStyle}>
-        {messages.map((message, j) => 
+        {messages[i].map((message, j) => 
           <div className="flex_center_wrap" key={`message_${j}`} style={messageStyle}>
-            {message.map((_, k) => <p key={`message_${j}_${k}`} className={messageFont}>{message[k]} </p>)}
+            <p className={messageFont}>{message} </p>
           </div>
         )}
       </div>

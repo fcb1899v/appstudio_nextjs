@@ -5,12 +5,13 @@ import '../../../src/app/globals.css';
 import MyHead from '../../../components/Common/MyHead'
 import MySplash from '../../../components/Common/MySplash'
 import MyAppsHeader from '../../../components/Common/MyAppsHeader'
-import AllowanceFeatures from '../../../components/Apps/AllowanceFeatures';
+import MyAppsTop from '../../../components/Common/MyAppsTop';
+import MyAppsFeatures from '../../../components/Common/MyAppsFeatures';
 import DownloadNow from '../../../components/Common/DownloadNow';
 import MyFooter from '../../../components/Common/MyFooter'
-import MyAppsTop from '../../../components/Common/MyAppsTop';
+import { myAppNumber, myMenuNumber } from '../../../public/utils/constants';
 
-const Elevator: NextPage = () => {
+const AllowancePage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -27,8 +28,8 @@ const Elevator: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 5
-  const menuNumber = 100
+  const appNumber = myAppNumber.allowance
+  const menuNumber = myMenuNumber.other
   const isJa = false;
   const width = windowSize.width
   const mainStyle ={ background: "linear-gradient(to bottom right, #00FFFF 0%, #FF40FF 80%)" }
@@ -40,12 +41,12 @@ const Elevator: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
         <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
-        <AllowanceFeatures width={width} isJa={isJa}/>
+        <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
   )
 }
 
-export default Elevator
+export default AllowancePage

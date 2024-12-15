@@ -10,8 +10,9 @@ import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
 import DownloadNow from '../../../../components/Common/DownloadNow';
 import MyFooter from '../../../../components/Common/MyFooter'
 import WordWebApp from '../../../../components/Common/WordWebApp';
+import { myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
 
-const Elevator: NextPage = () => {
+const PhonicsPage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -28,8 +29,8 @@ const Elevator: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 7;
-  const menuNumber = 100;
+  const appNumber = myAppNumber.phonics;
+  const menuNumber = myMenuNumber.other;
   const isJa = true;
   const width = windowSize.width;
   const mainStyle = { background: "linear-gradient(to bottom, #03A9F4 10%, #FF69B4 70%)" }
@@ -44,10 +45,10 @@ const Elevator: NextPage = () => {
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <WordWebApp appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
   )
 }
 
-export default Elevator
+export default PhonicsPage

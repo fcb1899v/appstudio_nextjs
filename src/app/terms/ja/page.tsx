@@ -7,8 +7,9 @@ import MySplash from '../../../../components/Common/MySplash';
 import HomeHeader from '../../../../components/Home/HomeHeader';
 import PrivacyPolicy from '../../../../components/Home/PrivacyPolicy';
 import MyFooter from '../../../../components/Common/MyFooter';
+import { myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
 
-const ContactPage: NextPage = () => {
+const TermsPage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -25,8 +26,8 @@ const ContactPage: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 0
-  const menuNumber = 1
+  const appNumber = myAppNumber.home
+  const menuNumber = myMenuNumber.contact
   const isJa = true;
   const width = windowSize.width
   const mainStyle = {
@@ -40,10 +41,10 @@ const ContactPage: NextPage = () => {
       <HomeHeader menuNumber={menuNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
         <PrivacyPolicy width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
   )
 }
   
-export default ContactPage;
+export default TermsPage;

@@ -6,13 +6,12 @@ import MyHead from '../../../../components/Common/MyHead'
 import MySplash from '../../../../components/Common/MySplash'
 import MyAppsHeader from '../../../../components/Common/MyAppsHeader'
 import MyAppsTop from '../../../../components/Common/MyAppsTop';
-import CrossingFeatures from '../../../../components/Apps/CrossingFeatures';
-import MyAppsHowtoUse from '../../../../components/Common/MyAppsHowtoUse';
+import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
 import DownloadNow from '../../../../components/Common/DownloadNow';
 import MyFooter from '../../../../components/Common/MyFooter'
-import { myApp } from '../../../../public/utils/constants';
+import { myApp, myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
 
-const Crossing: NextPage = () => {
+const CrossingPage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -30,8 +29,8 @@ const Crossing: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 9
-  const menuNumber = 100
+  const appNumber = myAppNumber.crossing
+  const menuNumber = myMenuNumber.other
   const isJa = true;
   const width = windowSize.width
   const mainStyle ={ backgroundColor: myApp(width, isJa)[appNumber].color.background }
@@ -43,13 +42,12 @@ const Crossing: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
         <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
-        <CrossingFeatures width={width} isJa={isJa}/>
-        {/* <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/> */}
+        <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
   )
 }
 
-export default Crossing
+export default CrossingPage

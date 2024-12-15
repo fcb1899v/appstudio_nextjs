@@ -3,7 +3,7 @@ import React, {CSSProperties, useState} from "react"
 import Link from "next/link";
 import Image from "next/image";
 import MyFooter from "./MyFooter";
-import { isSP, myApp, myMenu } from "../../public/utils/constants";
+import { isSP, myApp } from "../../public/utils/constants";
 
 interface Props {
   appNumber: number
@@ -90,7 +90,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
             </Link>)
           )}
         </div>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={0} isHome={true}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={0}/>
       </div>}
     </div>
   </header>

@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import { CSSProperties } from 'react'
 import { TwitterTweetEmbed } from 'react-twitter-embed';
-import { isPC, isSP, myApp } from '../../public/utils/constants';
+import { isPC, isSP, myApp, myAppNumber } from '../../public/utils/constants';
 
 interface Props {
   width: number
@@ -11,7 +11,7 @@ interface Props {
 
 const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
 
-  const appNumber = 1
+  const appNumber = myAppNumber.elevator
   const twitterLinkId = "1450698944393007107"
   const buttonsMode = isJa ? "1000のボタンモード": "1000 Buttons Mode";
   const howtoChange = isJa ? "モード変更方法": "How to change the mode";

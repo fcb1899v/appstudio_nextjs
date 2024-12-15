@@ -7,8 +7,9 @@ import MySplash from '../../components/Common/MySplash'
 import HomeHeader from '../../components/Home/HomeHeader'
 import HomeAppsList from '../../components/Home/HomeAppsList'
 import MyFooter from '../../components/Common/MyFooter'
+import { myAppNumber, myMenuNumber } from '../../public/utils/constants';
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -30,8 +31,8 @@ const Home: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 0
-  const menuNumber = 0
+  const appNumber = myAppNumber.home
+  const menuNumber = myMenuNumber.home
   const isJa = false
   const width = windowSize.width
   const height = windowSize.height
@@ -50,10 +51,10 @@ const Home: NextPage = () => {
       <HomeHeader menuNumber={menuNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
         <HomeAppsList width={width} height={height} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={true}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </body>
   </>)
 }
 
-export default Home
+export default HomePage
