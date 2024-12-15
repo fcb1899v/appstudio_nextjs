@@ -3,7 +3,7 @@ import React, {CSSProperties, useState} from "react"
 import Link from "next/link";
 import Image from "next/image";
 import MyFooter from ".././Common/MyFooter";
-import { isPC, myApp, } from "../../public/utils/constants";
+import { isPC, myApp, myAppNumber, } from "../../public/utils/constants";
 
 interface Props {
   menuNumber: number
@@ -70,7 +70,7 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
           <Image src={icon} alt={title} width={300} height={300} priority={true} style={appIconStyle}/>
         </div>
         <div style={appLinksStyle}>
-          {myApp(width, isJa).map((myApp, i) => (i != 0) && 
+          {myApp(width, isJa).map((myApp, i) => (i != myAppNumber.home) && 
             <div className={myApp.font.menu} key={`headerMenu_${i}`}>
               <li onClick={toMenu} style={appLinkStyle(i)}>
                 <Link href={myApp.link.link}>{myApp.text.menu}</Link>
@@ -78,7 +78,7 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
             </div>
           )}
         </div>
-        <MyFooter appNumber={0} width={width} isJa={isJa} menuNumber={menuNumber} isHome={true}/>
+        <MyFooter appNumber={myAppNumber.home} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </div>}
     </div>}
   </header>

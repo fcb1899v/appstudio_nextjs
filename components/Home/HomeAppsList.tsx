@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import React, { CSSProperties, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { isPC, isSP, myApp, myBadge} from '../../public/utils/constants'
+import { isPC, isSP, myApp, myAppNumber, myBadge} from '../../public/utils/constants'
 
 interface Props {
   width: number
@@ -112,13 +112,13 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
   return <div>
     <div style={appListStyle}>
       {myApp(width, isJa).map((myApp, i) => 
-        (i != 0) && <div onClick={(event) => handleTap(i, event)} key={`apps_${i}`} style={appStyle} className={appClass}>
+        (i != myAppNumber.home) && <div onClick={(event) => handleTap(i, event)} key={`apps_${i}`} style={appStyle} className={appClass}>
           <h2 className={myApp.font.menu} style={appTitleStyle(i)}>{myApp.text.menu}</h2>
           <Image src={`/images/${myApp.folder}/icon.png`} alt={myApp.text.menu} width={300} height={300} priority={true} style={appIconStyle}/>
         </div>
       )}
     </div>
-    {(expandNumber != 0) && <div onClick={(event) => handleTap(0, event)} style={expandStyle}>
+    {(expandNumber != myAppNumber.home) && <div onClick={(event) => handleTap(0, event)} style={expandStyle}>
       <h2 className={expandTitleFont} style={expandTitleStyle}>{expandTitle}</h2>
       <Image src={expandImage} alt={`image_${expandNumber}`} width={1920} height={1080} priority={true} style={expandImageStyle}/>
       <div className="flex_center" style={expandBadgeStyle}>

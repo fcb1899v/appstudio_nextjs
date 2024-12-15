@@ -10,9 +10,9 @@ import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
 import MyAppsHowtoUse from '../../../../components/Common/MyAppsHowtoUse';
 import DownloadNow from '../../../../components/Common/DownloadNow';
 import MyFooter from '../../../../components/Common/MyFooter'
-import { myApp } from '../../../../public/utils/constants';
+import { myApp, myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
 
-const Signal: NextPage = () => {
+const SignalPage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -30,8 +30,8 @@ const Signal: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 3
-  const menuNumber = 100
+  const appNumber = myAppNumber.signal
+  const menuNumber = myMenuNumber.other
   const isJa = true;
   const width = windowSize.width
   const mainStyle ={ backgroundColor: myApp(width, isJa)[appNumber].color.background }
@@ -46,10 +46,10 @@ const Signal: NextPage = () => {
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
   )
 }
 
-export default Signal
+export default SignalPage

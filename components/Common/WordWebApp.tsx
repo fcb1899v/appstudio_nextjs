@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import { CSSProperties, useEffect, useRef, useState } from 'react'
-import { isSP, myApp } from '../../public/utils/constants'
+import { isSP, myApp, myAppNumber } from '../../public/utils/constants'
 import { defaultCharList, defaultFirstChar, defaultImages, defaultSecondChar, defaultWords  } from '../../public/utils/functions'
 import { getImages, getWords, hiraganaToKatakana, shuffle, speechWord } from '../../public/utils/functions'
 import MusicIcon from '@mui/icons-material/MusicNote';
@@ -19,7 +19,7 @@ interface Props {
 
 const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
 
-  const isPhonics = (appNumber == 6);
+  const isPhonics = (appNumber == myAppNumber.phonics);
   const title = isJa ? "＜おためし＞": "TRIAL";
 
   const audioColor = myApp(width, isJa)[appNumber].color.header;

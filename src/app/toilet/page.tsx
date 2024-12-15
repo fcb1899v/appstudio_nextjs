@@ -9,8 +9,9 @@ import MyAppsTop from '../../../components/Common/MyAppsTop';
 import MyAppsHowtoUse from '../../../components/Common/MyAppsHowtoUse';
 import DownloadNow from '../../../components/Common/DownloadNow';
 import MyFooter from '../../../components/Common/MyFooter'
+import { myAppNumber, myMenuNumber } from '../../../public/utils/constants';
 
-const Elevator: NextPage = () => {
+const ToiletPage: NextPage = () => {
 
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
@@ -27,8 +28,8 @@ const Elevator: NextPage = () => {
     }
   }, []);
 
-  const appNumber = 4
-  const menuNumber = 100
+  const appNumber = myAppNumber.toilet
+  const menuNumber = myMenuNumber.other
   const isJa = false;
   const width = windowSize.width
   const mainStyle = { backgroundImage: 'url("/images/toilet/back.png")', backgroundRepeat: 'repeat' }
@@ -42,10 +43,10 @@ const Elevator: NextPage = () => {
         <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={500}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber} isHome={false}/>
+        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
   )
 }
 
-export default Elevator
+export default ToiletPage

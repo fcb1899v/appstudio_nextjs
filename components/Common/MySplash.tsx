@@ -2,7 +2,7 @@
 import { NextPage } from "next";
 import React, { useState, useEffect, CSSProperties } from "react"
 import Image from "next/image"
-import { myApp } from "../../public/utils/constants";
+import { myApp, myAppNumber } from "../../public/utils/constants";
 
 interface Props {
   appNumber: number
@@ -38,7 +38,7 @@ const MySplash: NextPage<Props> = ({appNumber, width, isJa}) => {
 
   const iconStyle: CSSProperties = {
     position: 'absolute', 
-    width: (appNumber == 0) ? 200: 100,
+    width: (appNumber == myAppNumber.home) ? 200: 100,
     height: "auto",
     zIndex: 1000, 
     top: '45%', 
