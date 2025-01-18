@@ -21,6 +21,8 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa }) => {
 
   const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || "";
   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
+  const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+  const RECAPTCHA_SECRET_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY || "";
   
   return (
     <>
