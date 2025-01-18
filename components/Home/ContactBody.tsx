@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState} from 'react';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Button, TextField } from '@mui/material';
 import '../../src/app/globals.css';
 import AccountIcon from '@mui/icons-material/AccountCircle';
@@ -11,7 +12,9 @@ interface Props {
   isJa: boolean
 }
 
-const ContactBody: NextPage<Props> = ({isJa}) => { 
+const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
+
+const ContactBodyInner: NextPage<Props> = ({isJa}) => { 
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,6 +23,12 @@ const ContactBody: NextPage<Props> = ({isJa}) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [sentMessage, setSentMessage] = useState(false);
   const [buttonColor, setButtonColor] = useState(['gray', 'white']);
+
+  // For Recaptcha v3
+  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  // onChange handler of input form
   const handleFamilyNameChange = (e: any) => { setName(e.target.value); };
   const handleEmailChange = (e: any) => { setEmail(e.target.value); };
   const handleMessageChange = (e: any) => { setMessage(e.target.value); };
@@ -51,14 +60,39 @@ const ContactBody: NextPage<Props> = ({isJa}) => {
     }
   }, [isJa, name, email, message, sentMessage, submitted]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (buttonColor[1] == "black") {
-      setSubmitted(true);
-      alert(myForm(isJa)[0].alert.confirm);
-      e.target.submit();
-    } 
+      if (!executeRecaptcha) {
+        console.log("Execute recaptcha not yet available.");
+        return;
+      }
+      try {
+        const token = await executeRecaptcha("submit_form");
+        setRecaptchaToken(token);
+  
+        // App Router でも "/api/recaptcha" でOK
+        const response_server = await fetch("/api/recaptcha", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
+    
+        if (!response_server.ok) {
+          console.error("reCAPTCHA verification failed on server.");
+          return
+        }
+
+        setSubmitted(true);
+        alert(myForm(isJa)[0].alert.confirm);
+  
+        (e.target as HTMLFormElement).submit();
+      } catch (err) {
+        console.error(err);
+      }
+    }
   };
+
   const handleIframeLoad = (e: any) => {};
 
   const contactStyle: CSSProperties = {
@@ -118,6 +152,11 @@ const ContactBody: NextPage<Props> = ({isJa}) => {
         label={<><Edit style={labelStyle}/>{myForm(isJa)[0].label.message}</>} 
         value={message} onChange={handleMessageChange}
       />
+      <input
+        type="hidden"
+        name="g-recaptcha-response"
+        value={recaptchaToken}
+      />
       <Button type="submit" style={buttonStyle}>
         <p>{myForm(isJa)[0].submit}</p>
       </Button>
@@ -126,4 +165,12 @@ const ContactBody: NextPage<Props> = ({isJa}) => {
   </div> 
 }
 
-export default ContactBody
+const ContactBody: NextPage<Props> = ({ isJa }) => {
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={siteKey} language={isJa ? 'ja': 'en'}>
+      <ContactBodyInner isJa={isJa} />
+    </GoogleReCaptchaProvider>
+  );
+};
+
+export default ContactBody;
