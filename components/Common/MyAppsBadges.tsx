@@ -12,6 +12,20 @@ interface Props {
 
 const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
 
+  const folder = myApp(width, isJa)[appNumber].folder;
+
+  const handleButtonClick = (buttonName: string) => {
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'button_click',
+        eventCategory: 'Button',
+        eventAction: 'Click',
+        eventLabel: buttonName,
+      });
+    }
+    console.log(`button_click:${buttonName}`)
+  };
+
   const appLink = [
     myApp(width, isJa)[appNumber].link.ios,
     myApp(width, isJa)[appNumber].link.android,
@@ -27,10 +41,14 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
     maxHeight: "auto"
   })
 
+  const buttonName = (i: number): string => `${folder}_${i == 0 ? "iOS": "Android"}_${isJa ? "ja_": "_"}open`
+
   return <div className="flex_center" style={badgesStyle}>
-    {myBadge.map((badge, i) => <Link href={appLink[i]} key={`app_${i}`}>
-      <Image src={badge.image} style={appStyle(i)} alt={badge.title} width={360} height={160} priority={true}/>
-    </Link>)}
+    {myBadge.map((badge, i) => 
+      <Link href={appLink[i]} key={`app_${i}`} onClick={(_) => {handleButtonClick(buttonName(i));}}>
+        <Image src={badge.image} style={appStyle(i)} alt={badge.title} width={360} height={160} priority={true}/>
+      </Link>
+    )}
   </div>
 }
 
