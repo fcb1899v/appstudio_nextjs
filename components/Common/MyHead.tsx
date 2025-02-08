@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Script from 'next/script';
 import Head from 'next/head';
 import { myApp } from '../../public/utils/constants';
+import { useEffect, useState } from 'react';
 
 interface Props {
   appNumber: number;
@@ -21,9 +22,16 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa }) => {
 
   const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || "";
   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
-  const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
-  const RECAPTCHA_SECRET_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY || "";
-  
+
+  const [hasConsent, setHasConsent] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("cookie_consent");
+    if (saved === 'accepted') {
+      setHasConsent(true);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -84,7 +92,7 @@ const MyHead: NextPage<Props> = ({ appNumber, width, isJa }) => {
       )}
 
       {/* Google Tag Manager */}
-      {GTM_ID && (
+      {hasConsent && GTM_ID && (
         <Script
           id="google-tag-manager"
           strategy="afterInteractive"
