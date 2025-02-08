@@ -8,7 +8,11 @@ import MyFooter from '../../../components/Common/MyFooter'
 import HomeHeader from '../../../components/Home/HomeHeader'
 import HomeAppsList from '../../../components/Home/HomeAppsList'
 import { myAppNumber, myMenuNumber } from '../../../public/utils/constants';
-import { GetServerSideProps } from 'next';
+import MyAppsOverDLTop from '../../../components/Common/MyAppsOverDLTop';
+import YoutubeMovie from '../../../components/Common/YoutubeMovie';
+import ElevatorBigNews from '../../../components/Common/ElevatorBigNews';
+import MyAppsHowtoUse from '../../../components/Common/MyAppsHowtoUse';
+import DownloadNow from '../../../components/Common/DownloadNow';
 
 const HomePage: NextPage = () => {
 

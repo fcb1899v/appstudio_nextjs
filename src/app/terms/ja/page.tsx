@@ -5,7 +5,7 @@ import '../../../../src/app/globals.css';
 import MyHead from '../../../../components/Common/MyHead';
 import MySplash from '../../../../components/Common/MySplash';
 import HomeHeader from '../../../../components/Home/HomeHeader';
-import PrivacyPolicy from '../../../../components/Home/PrivacyPolicy';
+import TermsContents from '../../../../components/Home/TermsContents';
 import MyFooter from '../../../../components/Common/MyFooter';
 import { myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
 
@@ -45,7 +45,7 @@ const TermsPage: NextPage = () => {
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <HomeHeader menuNumber={menuNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <PrivacyPolicy width={width} isJa={isJa}/>
+        <TermsContents isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
     </div>
