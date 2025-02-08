@@ -53,6 +53,7 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
   const appLinkStyle = (j: number): CSSProperties => ({
     textAlign: 'center', 
     fontSize: myApp(width, isJa)[j].size.menu,
+    fontFamily: myApp(width, isJa)[j].font.menu,
     textDecoration: "none",
     padding: '7px 0', 
   });
@@ -73,7 +74,7 @@ const MyHeader: NextPage<Props> = ({ menuNumber, width, isJa }) => {
         </div>
         <div style={appLinksStyle}>
           {myApp(width, isJa).map((myApp, i) => (i != menuNumber) && 
-            (<div className={myApp.font.menu} key={`headerMenu_${i}`}>
+            (<div key={`headerMenu_${i}`}>
               <li onClick={toMenu} style={appLinkStyle(i)}>
                 <Link href={myApp.link.link}>{myApp.text.menu}</Link>
               </li>

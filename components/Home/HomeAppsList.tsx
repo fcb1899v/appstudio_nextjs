@@ -3,6 +3,7 @@ import React, { CSSProperties, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { isPC, isSP, myApp, myAppNumber, myBadge} from '../../public/utils/constants'
+import CookieConsentBanner from './CookieConsentBanner'
 
 interface Props {
   width: number
@@ -45,6 +46,7 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
     placeItems: 'center', 
     gridTemplateColumns: `repeat(${appRow}, 1fr)`,
     padding: isPC(width) ? "30px 100px": "30px 0",
+    marginBottom: 100
   }
   const appIconStyle: CSSProperties = {
     width: 120,
@@ -53,7 +55,8 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
   }
   const appTitleStyle = (i: number): CSSProperties => ({
     fontSize: myApp(width, isJa)[i].size.menu,
-    fontWeight: (myApp(width, isJa)[i].font == undefined) ? 'bold': 'normal', 
+    fontWeight: (myApp(width, isJa)[i].font.menu == undefined) ? 'bold': 'normal', 
+    fontFamily: myApp(width, isJa)[i].font.menu,
     textAlign: "center", 
     whiteSpace: "nowrap",
     marginBottom: '1rem',
@@ -73,7 +76,7 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
   }
   const expandTitleStyle: CSSProperties = {
     color: "white",
-    fontSize: (myApp(width, isJa)[expandNumber].font == undefined) ? '1.5rem': '1.8rem', 
+    fontSize: (myApp(width, isJa)[expandNumber].font.menu == undefined) ? '1.5rem': '1.8rem', 
     fontWeight: "bold",
     textAlign: "center", 
     marginBottom: '1rem', 
@@ -113,7 +116,7 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
     <div style={appListStyle}>
       {myApp(width, isJa).map((myApp, i) => 
         (i != myAppNumber.home) && <div onClick={(event) => handleTap(i, event)} key={`apps_${i}`} style={appStyle} className={appClass}>
-          <h2 className={myApp.font.menu} style={appTitleStyle(i)}>{myApp.text.menu}</h2>
+          <h2 style={appTitleStyle(i)}>{myApp.text.menu}</h2>
           <Image src={`/images/${myApp.folder}/icon.png`} alt={myApp.text.menu} width={300} height={300} priority={true} style={appIconStyle}/>
         </div>
       )}

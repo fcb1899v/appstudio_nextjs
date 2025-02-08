@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { isPC, isSP, myAppNumber, myMenu, myMenuNumber, mySNS } from "../../public/utils/constants";
 import { CSSProperties } from 'react';
+import CookieConsentBanner from '../Home/CookieConsentBanner';
 
 interface Props {
   appNumber: number
@@ -59,7 +60,8 @@ const MyFooter: NextPage<Props> = ({appNumber, width, isJa, menuNumber}) => {
         )}
       </div>
       <p style={trademarkStyle}>{trademark}</p>
-    </div>        
+    </div>
+    {<CookieConsentBanner isJa={isJa}/>}      
   </footer>
 }
 
