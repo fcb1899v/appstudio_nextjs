@@ -1,43 +1,30 @@
 "use client";
 import type { NextPage } from 'next'
-import React, { useEffect, useState } from 'react'
-import '../../../../src/app/globals.css';
-import MyHead from '../../../../components/Common/MyHead'
-import MySplash from '../../../../components/Common/MySplash'
-import MyAppsHeader from '../../../../components/Common/MyAppsHeader'
-import MyAppsTop from '../../../../components/Common/MyAppsTop';
-import MyAppFeatures from '../../../../components/Common/MyAppsFeatures';
-import DownloadNow from '../../../../components/Common/DownloadNow';
-import MyFooter from '../../../../components/Common/MyFooter'
-import { myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
+import React from 'react'
+import '@/app/globals.css';
+import MyHead from '@/components/Common/MyHead'
+import MySplash from '@/components/Common/MySplash'
+import MyAppsHeader from '@/components/Common/MyAppsHeader'
+import MyAppsTop from '@/components/Common/MyAppsTop';
+import MyAppsFeatures from '@/components/Common/MyAppsFeatures';
+import DownloadNow from '@/components/Common/DownloadNow';
+import MyFooter from '@/components/Common/MyFooter'
+import { myAppNumber, myMenuNumber } from '@/utils/constants';
+import { useWindowSize } from '@/hooks/useWindowSize';
+import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 
 const AllowancePage: NextPage = () => {
-
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const { windowSize, isClient } = useWindowSize();
 
   if (!isClient) {
     return null;
   }
 
-  const appNumber = myAppNumber.allowance
-  const menuNumber = myMenuNumber.other
+  const appNumber = myAppNumber.allowance;
+  const menuNumber = myMenuNumber.other;
   const isJa = true;
-  const width = windowSize.width
-  const mainStyle ={ background: "linear-gradient(to bottom right, #00FFFF 0%, #FF40FF 80%)" }
+  const { width } = windowSize;
+  const mainStyle = { background: "linear-gradient(to bottom right, #00FFFF 0%, #FF40FF 80%)" };
 
   return (
     <div>
@@ -46,12 +33,13 @@ const AllowancePage: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
         <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyAppFeatures appNumber={appNumber} width={width} isJa={isJa}/>
+        <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
+      <CookieConsentBanner isJa={isJa} />
     </div>
-  )
-}
+  );
+};
 
-export default AllowancePage
+export default AllowancePage;
