@@ -25,7 +25,6 @@ export async function POST(request: Request) {
       body: params,
     });
     const verifyData = await verifyRes.json();
-    console.log("verifyData:", verifyData);
 
     if (!verifyData.success) {
       return NextResponse.json(
@@ -36,8 +35,7 @@ export async function POST(request: Request) {
 
     // Successful response
     return NextResponse.json({ ok: true, message: "Recaptcha verified!" });
-  } catch (error) {
-    console.error(error);
+  } catch {
     return NextResponse.json({ ok: false, message: "Server error" }, { status: 500 });
   }
 }

@@ -43,8 +43,5 @@ next-env.d.ts
 # vscode
 .vscode/
 
-# public
-public/
-
 # package
 package-lock.json
