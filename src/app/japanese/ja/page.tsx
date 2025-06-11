@@ -1,16 +1,16 @@
 "use client";
 import type { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
-import '../../../../src/app/globals.css';
-import MyHead from '../../../../components/Common/MyHead'
-import MySplash from '../../../../components/Common/MySplash'
-import MyAppsHeader from '../../../../components/Common/MyAppsHeader'
-import MyAppsImageTop from '../../../../components/Common/MyAppsImageTop';
-import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
-import DownloadNow from '../../../../components/Common/DownloadNow';
-import MyFooter from '../../../../components/Common/MyFooter'
-import WordWebApp from '../../../../components/Common/WordWebApp';
-import { myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
+import '@/app/globals.css';
+import MyHead from '@/components/Common/MyHead'
+import MySplash from '@/components/Common/MySplash'
+import MyAppsHeader from '@/components/Common/MyAppsHeader'
+import MyAppsImageTop from '@/components/Common/MyAppsImageTop';
+import MyAppsFeatures from '@/components/Common/MyAppsFeatures';
+import DownloadNow from '@/components/Common/DownloadNow';
+import MyFooter from '@/components/Common/MyFooter'
+import WordWebApp from '@/components/Common/WordWebApp';
+import { myAppNumber, myMenuNumber } from '@/utils/constants';
 
 const JapanesePage: NextPage = () => {
 

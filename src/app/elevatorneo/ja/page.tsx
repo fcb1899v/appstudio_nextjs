@@ -1,16 +1,16 @@
 "use client";
 import type { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
-import '../../../../src/app/globals.css';
-import MyHead from '../../../../components/Common/MyHead'
-import MySplash from '../../../../components/Common/MySplash'
-import ShoppingButton from '../../../../components/Common/ShoppingButton';
-import MyAppsHeader from '../../../../components/Common/MyAppsHeader'
-import DownloadNow from '../../../../components/Common/DownloadNow';
-import MyFooter from '../../../../components/Common/MyFooter'
-import { myApp, myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
-import MyAppsOverDLTop from '../../../../components/Common/MyAppsOverDLTop';
-import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
+import '@/app/globals.css';
+import MyHead from '@/components/Common/MyHead'
+import MySplash from '@/components/Common/MySplash'
+import ShoppingButton from '@/components/Common/ShoppingButton';
+import MyAppsHeader from '@/components/Common/MyAppsHeader'
+import DownloadNow from '@/components/Common/DownloadNow';
+import MyFooter from '@/components/Common/MyFooter'
+import { myApp, myAppNumber, myMenuNumber } from '@/utils/constants';
+import MyAppsOverDLTop from '@/components/Common/MyAppsOverDLTop';
+import MyAppsFeatures from '@/components/Common/MyAppsFeatures';
 
 const ElevatorNeoPage: NextPage = () => {
 
@@ -47,7 +47,7 @@ const ElevatorNeoPage: NextPage = () => {
       <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
-      <ShoppingButton appNumber={appNumber}/>
+      <ShoppingButton width={width}/>
       <main className="main" style={mainStyle}>
         <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>

@@ -1,15 +1,15 @@
 "use client";
 import type { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
-import '../../../../src/app/globals.css';
-import MyHead from '../../../../components/Common/MyHead'
-import MySplash from '../../../../components/Common/MySplash'
-import MyAppsHeader from '../../../../components/Common/MyAppsHeader'
-import MyAppsTop from '../../../../components/Common/MyAppsTop';
-import MyAppsFeatures from '../../../../components/Common/MyAppsFeatures';
-import DownloadNow from '../../../../components/Common/DownloadNow';
-import MyFooter from '../../../../components/Common/MyFooter'
-import { myAppNumber, myMenuNumber } from '../../../../public/utils/constants';
+import '@/app/globals.css';
+import MyHead from '@/components/Common/MyHead'
+import MySplash from '@/components/Common/MySplash'
+import MyAppsHeader from '@/components/Common/MyAppsHeader'
+import MyAppsTop from '@/components/Common/MyAppsTop';
+import MyAppsFeatures from '@/components/Common/MyAppsFeatures';
+import DownloadNow from '@/components/Common/DownloadNow';
+import MyFooter from '@/components/Common/MyFooter'
+import { myAppNumber, myMenuNumber } from '@/utils/constants';
 
 const TransitPage: NextPage = () => {
 
