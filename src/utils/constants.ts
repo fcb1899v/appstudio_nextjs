@@ -141,7 +141,7 @@ export const myApp = (width: number, isJa: boolean) => [
       header: (width < 400) ? "LETS/ELEVATOR": "LETS ELEVATOR",
       title: isJa ? "レッツ・エレベーター・ネオ": "LETS ELEVATOR NEO",
       menu: isJa ? "レッツ・エレベーター・ネオ": "LETS ELEVATOR NEO",
-      dlnumber: "20,000",
+      dlnumber: "50,000",
       message: isJa ? [
         ["大好きなエレベーター遊びが", "いつでも・どこでも"], 
         ["話題の生成AIで作成された", "超リアルなエレベーターアプリ"]
@@ -199,7 +199,7 @@ export const myApp = (width: number, isJa: boolean) => [
       header: "LETS SIGNAL",
       menu: isJa ? "レッツ・シン・ゴー": "LETS SIGNAL",
       title: isJa ? "レッツ・シン・ゴー": "LETS SIGNAL",
-      dlnumber: "10,000",
+      dlnumber: "30,000",
       message: isJa ? [
         ["大好きな信号遊びが", "いつでも・どこでも"], 
         ["押しボタン操作だけの", "リアルな信号アプリ"]
@@ -255,6 +255,7 @@ export const myApp = (width: number, isJa: boolean) => [
       header: "LETS CROSSING",
       menu: isJa ? "レッツ・カンカン": "LETS CROSSING",
       title: isJa ? "レッツ・カンカン": "LETS CROSSING",
+      dlnumber: "10,000",
       message: isJa ? [
         ["大好きな踏切遊びが", "いつでも・どこでも"], 
         ["話題の生成AIによる", "世界初！撮り鉄体験アプリ"],
@@ -315,6 +316,7 @@ export const myApp = (width: number, isJa: boolean) => [
       header: "LETS TOILET",
       menu: isJa ? "レッツ・トイレ": "LETS TOILET",
       title: isJa ? "レッツ・トイレ": "LETS TOILET",
+      dlnumber: "5,000",
       message: isJa ? [
         ["大好きなトイレ遊びが", "いつでも・どこでも"], 
         ["ボタン操作だけの", "リアルなトイレ"]

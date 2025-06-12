@@ -15,6 +15,7 @@ import ElevatorBigNews from '@/components/Common/ElevatorBigNews';
 import { myApp, myAppNumber, myMenuNumber } from '@/utils/constants';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
+import AnalyticsTracker from '@/components/Common/AnalyticsTracker';
 
 const ElevatorPage: NextPage = () => {
   const { windowSize, isClient } = useWindowSize();
@@ -27,13 +28,19 @@ const ElevatorPage: NextPage = () => {
   const menuNumber = myMenuNumber.other;
   const isJa = true;
   const { width } = windowSize;
-  const mainStyle = {
-    backgroundColor: myApp(width, isJa)[appNumber].color.background,
-  };
+  const appData = myApp(width, isJa)[appNumber];
+  const mainStyle = { background: myApp(width, isJa)[appNumber].color.background };
 
   return (
     <div>
       <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
+      <AnalyticsTracker 
+        pageTitle={appData.text.title}
+        pagePath="/elevator/ja"
+        appName={appData.app}
+        language={isJa ? 'ja' : 'en'}
+        deviceType={width < 600 ? 'mobile' : width < 1024 ? 'tablet' : 'desktop'}
+      />
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <ShoppingButton width={width}/>

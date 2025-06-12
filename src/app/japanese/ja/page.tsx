@@ -1,59 +1,63 @@
 "use client";
 import type { NextPage } from 'next'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import '@/app/globals.css';
 import MyHead from '@/components/Common/MyHead'
 import MySplash from '@/components/Common/MySplash'
+import ShoppingButton from '@/components/Common/ShoppingButton';
 import MyAppsHeader from '@/components/Common/MyAppsHeader'
-import MyAppsImageTop from '@/components/Common/MyAppsImageTop';
 import MyAppsFeatures from '@/components/Common/MyAppsFeatures';
+import WordWebApp from '@/components/Common/WordWebApp';
+import MyAppsHowtoUse from '@/components/Common/MyAppsHowtoUse';
+import YoutubeMovie from '@/components/Common/YoutubeMovie';
 import DownloadNow from '@/components/Common/DownloadNow';
 import MyFooter from '@/components/Common/MyFooter'
-import WordWebApp from '@/components/Common/WordWebApp';
-import { myAppNumber, myMenuNumber } from '@/utils/constants';
+import MyAppsOverDLTop from '@/components/Common/MyAppsOverDLTop';
+import { myApp, myAppNumber, myMenuNumber } from '@/utils/constants';
+import { useWindowSize } from '@/hooks/useWindowSize';
+import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
+import AnalyticsTracker from '@/components/Common/AnalyticsTracker';
 
 const JapanesePage: NextPage = () => {
-
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const { windowSize, isClient } = useWindowSize();
 
   if (!isClient) {
     return null;
   }
 
-  const appNumber = myAppNumber.japanese
-  const menuNumber = myMenuNumber.other
+  const appNumber = myAppNumber.japanese;
+  const menuNumber = myMenuNumber.other;
   const isJa = true;
-  const width = windowSize.width
-  const mainStyle ={ background: "linear-gradient(to bottom, #0077FF 10%, #FFA500 70%)" }
+  const { width } = windowSize;
+  const appData = myApp(width, isJa)[appNumber];
+  const mainStyle = { background: myApp(width, isJa)[appNumber].color.background };
 
   return (
     <div>
       <MyHead appNumber={appNumber} width={width} isJa={isJa}/>
+      <AnalyticsTracker 
+        pageTitle={appData.text.title}
+        pagePath="/japanese/ja"
+        appName={appData.app}
+        language={isJa ? 'ja' : 'en'}
+        deviceType={width < 600 ? 'mobile' : width < 1024 ? 'tablet' : 'desktop'}
+      />
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
+      <ShoppingButton width={width}/>
       <main className="main" style={mainStyle}>
-        <MyAppsImageTop appNumber={appNumber} width={width} isJa={isJa}/>
+        <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
+        <YoutubeMovie appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <WordWebApp appNumber={appNumber} width={width} isJa={isJa}/>
+        <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/>
+        <YoutubeMovie appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
+      <CookieConsentBanner isJa={isJa} />
     </div>
-  )
-}
+  );
+};
 
-export default JapanesePage
+export default JapanesePage;

@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 import '@/app/globals.css';
 import Image from "next/image"
-import MyAppsBadges from "./MyAppsBadges";
 import { isPC, myApp } from "@/utils/constants";
 import { CSSProperties } from "react";
 
@@ -58,9 +57,6 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
             <p className={messageFont} key={`message_${i}_${j}`} style={messageStyle}>{message[j]}</p>
           )}
         </div>)}
-        <div style={{marginTop: 30}}>
-          <MyAppsBadges appNumber={appNumber} width={width} isJa={isJa}/>
-        </div>
       </div>
       <Image src={picture} alt={"pictures"} width={1080} height={1080} style={imageStyle}/>
     </div>
