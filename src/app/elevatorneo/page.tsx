@@ -22,8 +22,8 @@ const ElevatorNeoPage: NextPage = () => {
     return null;
   }
 
-  const appNumber = myAppNumber.elevatorNeo
-  const menuNumber = myMenuNumber.other
+  const appNumber = myAppNumber.elevatorNeo;
+  const menuNumber = myMenuNumber.other;
   const isJa = false;
   const { width } = windowSize;
   const appData = myApp(width, isJa)[appNumber];
@@ -50,7 +50,7 @@ const ElevatorNeoPage: NextPage = () => {
       </main>
       <CookieConsentBanner isJa={isJa} />
     </div>
-  )
-}
+  );
+};
 
-export default ElevatorNeoPage
+export default ElevatorNeoPage;
