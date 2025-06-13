@@ -7,11 +7,9 @@ import MySplash from '@/components/Common/MySplash'
 import ShoppingButton from '@/components/Common/ShoppingButton';
 import MyAppsHeader from '@/components/Common/MyAppsHeader'
 import MyAppsFeatures from '@/components/Common/MyAppsFeatures';
-import MyAppsHowtoUse from '@/components/Common/MyAppsHowtoUse';
-import YoutubeMovie from '@/components/Common/YoutubeMovie';
 import DownloadNow from '@/components/Common/DownloadNow';
 import MyFooter from '@/components/Common/MyFooter'
-import MyAppsOverDLTop from '@/components/Common/MyAppsOverDLTop';
+import MyAppsTop from '@/components/Common/MyAppsTop';
 import { myApp, myAppNumber, myMenuNumber } from '@/utils/constants';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
@@ -45,11 +43,8 @@ const CrossingPage: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <ShoppingButton width={width}/>
       <main className="main" style={mainStyle}>
-        <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
-        <YoutubeMovie appNumber={appNumber} width={width} isJa={isJa}/>
+        <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/>
-        <YoutubeMovie appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>

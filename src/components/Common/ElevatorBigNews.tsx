@@ -51,7 +51,7 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
     width: "100vw", 
     color: myApp(width, isJa)[appNumber].color.title, 
     background: myApp(width, isJa)[appNumber].color.features, 
-    padding: "40px 0"
+    padding: "20px 0"
   }
   const messageStyle: CSSProperties = {
     fontSize: (!isJa && isSP(width)) ? 16: 18, 

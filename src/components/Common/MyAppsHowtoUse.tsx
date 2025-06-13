@@ -28,9 +28,7 @@ const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => 
     width: "100%",
   }
   const titleStyle: CSSProperties = { 
-    fontSize: isSP(width) ? 
-      Math.min(myApp(width, isJa)[appNumber].size.subTitle, 24) : 
-      myApp(width, isJa)[appNumber].size.subTitle, 
+    fontSize: myApp(width, isJa)[appNumber].size.subTitle, 
     fontWeight: isJa ? "bold": "normal", 
     textAlign: "center", 
     padding: isSP(width) ? "5px 10px" : "10px",
@@ -38,6 +36,8 @@ const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => 
   const imageStyle: CSSProperties = {
     maxWidth: isSP(width) ? "95%" : maxWidth, 
     width: "100%",
+    maxHeight: isSP(width) ? "400px" : "600px",
+    objectFit: "contain" as const,
     margin: "0 auto",
     padding: isSP(width) ? "5px 0" : "10px 0",
   }

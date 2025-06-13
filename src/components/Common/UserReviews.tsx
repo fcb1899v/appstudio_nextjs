@@ -102,7 +102,7 @@ const UserReviews: NextPage<Props> = ({appNumber, width, isJa}) => {
     maxWidth: 1200,
     margin: '0 auto',
     padding: '40px 20px',
-    backgroundColor: myApp(width, isJa)[appNumber].color.features,
+    background: myApp(width, isJa)[appNumber].color.features,
   }
 
   const titleStyle: CSSProperties = {

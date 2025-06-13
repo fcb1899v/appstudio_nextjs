@@ -10,7 +10,7 @@ import MyAppsHowtoUse from '@/components/Common/MyAppsHowtoUse';
 import YoutubeMovie from '@/components/Common/YoutubeMovie';
 import DownloadNow from '@/components/Common/DownloadNow';
 import MyFooter from '@/components/Common/MyFooter'
-import MyAppsOverDLTop from '@/components/Common/MyAppsOverDLTop';
+import MyAppsTop from '@/components/Common/MyAppsTop';
 import ElevatorBigNews from '@/components/Common/ElevatorBigNews';
 import { myApp, myAppNumber, myMenuNumber } from '@/utils/constants';
 import { useWindowSize } from '@/hooks/useWindowSize';
@@ -29,7 +29,7 @@ const ElevatorPage: NextPage = () => {
   const isJa = false;
   const { width } = windowSize;
   const appData = myApp(width, isJa)[appNumber];
-  const mainStyle = { background: myApp(width, isJa)[appNumber].color.background };
+  const mainStyle = { backgroundColor: myApp(width, isJa)[appNumber].color.background };
 
   return (
     <div>
@@ -45,7 +45,7 @@ const ElevatorPage: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <ShoppingButton width={width}/>
       <main className="main" style={mainStyle}>
-        <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
+        <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
         <YoutubeMovie appNumber={appNumber} width={width} isJa={isJa}/>
         <ElevatorBigNews width={width} isJa={isJa}/>
         <MyAppsHowtoUse appNumber={appNumber} width={width} isJa={isJa} maxWidth={800}/>

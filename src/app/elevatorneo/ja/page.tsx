@@ -8,7 +8,7 @@ import ShoppingButton from '@/components/Common/ShoppingButton';
 import MyAppsHeader from '@/components/Common/MyAppsHeader'
 import DownloadNow from '@/components/Common/DownloadNow';
 import MyFooter from '@/components/Common/MyFooter'
-import MyAppsOverDLTop from '@/components/Common/MyAppsOverDLTop';
+import MyAppsTop from '@/components/Common/MyAppsTop';
 import MyAppsFeatures from '@/components/Common/MyAppsFeatures';
 import { myApp, myAppNumber, myMenuNumber } from '@/utils/constants';
 import { useWindowSize } from '@/hooks/useWindowSize';
@@ -43,7 +43,7 @@ const ElevatorNeoPage: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <ShoppingButton width={width}/>
       <main className="main" style={mainStyle}>
-        <MyAppsOverDLTop appNumber={appNumber} width={width} isJa={isJa}/>
+        <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
         <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>

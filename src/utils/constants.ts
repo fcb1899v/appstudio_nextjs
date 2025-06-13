@@ -166,7 +166,7 @@ export const myApp = (width: number, isJa: boolean) => [
     size: {
       header: (width < 500) ? 36: 44,
       menu: isJa ? 18: 24,
-      title: (isJa && (width < 500)) ? 30: isJa ? 32: 44,
+      title: (isJa && (width < 500)) ? 26: isJa ? 32: 44,
       subTitle: isJa ? 26: 40,
       message: undefined,
     },
@@ -220,9 +220,9 @@ export const myApp = (width: number, isJa: boolean) => [
       message: undefined,
     },
     size: {
-      header: (width < 360) ? 39: 44,
+      header: (width < 500) ? 36: 44,
       menu: isJa ? 18: 24,
-      title: isJa ? 36: 44,
+      title: isJa ? 32: 40,
       subTitle: isJa ? 26: 40,  
       message: undefined,
     },
@@ -233,7 +233,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--signalGreen)",
-      background: "linear-gradient(to bottom, var(--dark) 10%, var(--signalGreen) 70%)",
+      background: "var(--dark)",
       title: "var(--white)",
       message: "var(--white)",      
       features: "linear-gradient(to bottom, var(--dark) 10%, var(--signalGreen) 70%)",
@@ -278,10 +278,10 @@ export const myApp = (width: number, isJa: boolean) => [
       message: undefined,
     },
     size: {
-      header: (width < 360) ? 39: 44,
+      header: (width < 500) ? 36: 44,
       menu: isJa ? 18: 24,
-      title: isJa ? 36: 44,
-      subTitle: isJa ? 26: 40,  
+      title: isJa ? 32: 40,
+      subTitle: isJa ? 26: 40,
       message: undefined,
     },
     image: {
@@ -294,7 +294,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--crossingRed)",
-      background: "linear-gradient(to bottom, var(--white) 0%, var(--crossingRed) 50%)",
+      background: "var(--white)",
       title: "var(--dark)",
       message: "var(--dark)",      
       features: "linear-gradient(to bottom, var(--white) 0%, var(--crossingRed) 50%)",
@@ -333,7 +333,7 @@ export const myApp = (width: number, isJa: boolean) => [
       message: undefined,
     },
     size: {
-      header: (width < 400) ? 36: 44,
+      header: (width < 500) ? 36: 44,
       menu: isJa ? 18: 24,
       title: isJa ? 32: 44,
       subTitle: isJa ? 26: 40,  
@@ -341,12 +341,13 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     image: {
       picture: `/images/toilet/pictures.png`,
+      background: "/images/toilet/back.png", // 白い壁紙の背景画像
       features: [""],
       howtouse: `/images/toilet/howtouse_${isJa ? "ja": "en"}.png`,  
     },
     color: {
       header: "var(--toiletBlue)",
-      background: "linear-gradient(to bottom, var(--toiletBlue) 0%, var(--white) 100%)",
+      background: "var(--white)", 
       title: "var(--dark)",
       message: "var(--dark)",
       features: "var(--dark)",
@@ -388,9 +389,8 @@ export const myApp = (width: number, isJa: boolean) => [
       message: isJa ? "riipop": "pacifico",
     },
     size: {
-      header: (isJa && width < 450) ? 28: isJa ? 30: (width < 450) ? 30 :36,
-      menu: isJa ? 18: 22,
-      title: (isJa && width < 400) ? 24: (isJa && width < 500) ? 28: isJa ? 32: 36,
+      header: (isJa && width < 400) ? 24: (isJa && width < 500) ? 28: isJa ? 30: 36,
+      title: (isJa && width < 400) ? 24: (isJa && width < 500) ? 28: isJa ? 30: 36,
       subTitle: 28,
       message: (isJa && (width < 400)) ? 19: (width < 400) ? 22: 24,  
     },
