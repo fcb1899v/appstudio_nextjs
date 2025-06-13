@@ -41,5 +41,4 @@ const YoutubeMovie: NextPage<Props> = ({appNumber, width, isJa}) => {
 }
   
 
-
 export default YoutubeMovie;
