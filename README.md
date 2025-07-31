@@ -1,6 +1,6 @@
 # Nakajima Masao App Studio Next.js Website
 
-A Next.js-based website providing landing pages for multiple mobile applications.
+A modern Next.js-based website providing landing pages for multiple educational and utility mobile applications. Built with TypeScript, Material-UI, and Firebase hosting.
 
 ## 🚀 Tech Stack
 
@@ -13,17 +13,19 @@ A Next.js-based website providing landing pages for multiple mobile applications
 - **Deployment**: Firebase Hosting
 - **Cookie Management**: Cookiebot
 - **SEO**: Structured Data, Sitemap, Robots.txt
+- **Security**: reCAPTCHA v3 integration
 
 ## 📋 Features
 
-- **Multi-language Support**: Japanese and English switching
-- **Responsive Design**: Mobile, tablet, and desktop compatible
-- **GDPR Compliance**: Cookie consent management system
-- **Analytics**: Detailed user behavior tracking
-- **SEO Optimization**: Meta tags and structured data support
-- **Performance Optimization**: Static export and image optimization
-- **Form Handling**: Contact form with reCAPTCHA integration
-- **API Integration**: Submit form API endpoints
+- **Multi-language Support**: Japanese and English switching with automatic language detection
+- **Responsive Design**: Mobile-first design, tablet, and desktop compatible
+- **GDPR Compliance**: Comprehensive cookie consent management system
+- **Analytics**: Detailed user behavior tracking and performance monitoring
+- **SEO Optimization**: Meta tags, structured data, and search engine optimization
+- **Performance Optimization**: Static export, image optimization, and lazy loading
+- **Form Handling**: Contact form with reCAPTCHA v3 spam protection
+- **API Integration**: Secure form submission endpoints
+- **Accessibility**: WCAG compliant design and navigation
 
 ## 🛠️ Setup
 
@@ -31,12 +33,13 @@ A Next.js-based website providing landing pages for multiple mobile applications
 
 - Node.js 18.0.0 or higher
 - npm or yarn
+- Firebase CLI (for deployment)
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/fcb1899v/appstudio_nextjs.git
 cd appstudio_next
 
 # Install dependencies
@@ -130,40 +133,42 @@ src/
 
 ## 🍪 GDPR Compliance
 
-This project implements a GDPR-compliant cookie consent management system:
+This project implements a comprehensive GDPR-compliant cookie consent management system:
 
-- **Cookie Consent Banner**: Users can select cookie types
+- **Cookie Consent Banner**: User-friendly consent interface with detailed options
 - **Detailed Control**: Individual control for necessary, analytics, and marketing cookies
-- **Google Analytics**: Loaded only with analytics consent
-- **AdSense**: Loaded only with marketing consent
+- **Google Analytics**: Loaded only with explicit analytics consent
+- **AdSense**: Loaded only with explicit marketing consent
 - **Cookie Management**: Automatic cleanup on consent withdrawal
+- **Privacy Policy**: Clear information about data usage
 
 ### Cookie Types
 
 1. **Necessary Cookies**: Always enabled, required for basic functionality
-2. **Analytics Cookies**: Google Analytics tracking (consent required)
-3. **Marketing Cookies**: AdSense and advertising (consent required)
+2. **Analytics Cookies**: Google Analytics tracking (explicit consent required)
+3. **Marketing Cookies**: AdSense and advertising (explicit consent required)
 
 ## 📊 Analytics
 
-Detailed user behavior tracking implementation:
+Comprehensive user behavior tracking implementation:
 
-- Page view tracking
-- Scroll depth measurement
-- Time on page measurement
-- Menu interaction tracking
-- App download tracking
-- External link click tracking
+- **Page View Tracking**: Automatic tracking of all page visits
+- **Scroll Depth Measurement**: User engagement analysis
+- **Time on Page Measurement**: Content effectiveness metrics
+- **Menu Interaction Tracking**: Navigation pattern analysis
+- **App Download Tracking**: Conversion rate monitoring
+- **External Link Click Tracking**: Outbound link analytics
+- **Performance Monitoring**: Core Web Vitals tracking
 
 ## 🚀 Deployment
 
 ### Firebase Hosting
 
 ```bash
-# Build
+# Build the project
 npm run build
 
-# Deploy
+# Deploy to Firebase
 npm run deploy
 ```
 
@@ -171,6 +176,7 @@ npm run deploy
 
 - **Vercel**: `vercel --prod`
 - **Netlify**: Deploy `out/` directory after `npm run build`
+- **GitHub Pages**: Deploy static files from `out/` directory
 
 ## 🧪 Development Commands
 
@@ -189,35 +195,43 @@ npm run lint
 
 # Deploy to Firebase
 npm run deploy
+
+# Optimize images
+npm run optimize-images
+
+# Build with image optimization
+npm run build-optimized
 ```
 
 ## 📱 Supported Apps
 
-- **Japanese**: Japanese language learning app
-- **Phonics**: English pronunciation learning app
-- **Allowance**: Allowance management app
-- **Crossing**: Traffic signal waiting game
-- **Signal**: Traffic signal simulator
-- **Toilet**: Toilet training app
-- **Transit**: Public transportation app
-- **Elevator**: Elevator simulator
-- **Elevator Neo**: Enhanced elevator simulator
+- **Japanese**: Japanese language learning app with vocabulary and pronunciation
+- **Phonics**: English pronunciation learning app with interactive lessons
+- **Allowance**: Allowance management app for children
+- **Crossing**: Traffic signal waiting game for road safety education
+- **Signal**: Traffic signal simulator for learning traffic rules
+- **Toilet**: Toilet training app for young children
+- **Transit**: Public transportation app for route planning
+- **Elevator**: Elevator simulator for building navigation
+- **Elevator Neo**: Enhanced elevator simulator with advanced features
 
 ## 🔒 Security Features
 
-- **reCAPTCHA Integration**: Form spam protection
-- **Environment Variable Protection**: Sensitive data not exposed
-- **GDPR Compliance**: User privacy protection
-- **Secure API Endpoints**: Protected form submission
-- **No Debug Information**: Production-ready code
+- **reCAPTCHA v3 Integration**: Advanced form spam protection
+- **Environment Variable Protection**: Sensitive data securely managed
+- **GDPR Compliance**: Comprehensive user privacy protection
+- **Secure API Endpoints**: Protected form submission with validation
+- **No Debug Information**: Production-ready code with security best practices
+- **Content Security Policy**: XSS protection and secure resource loading
 
 ## 📈 Performance Features
 
-- **Static Export**: Optimized for speed
-- **Image Optimization**: Automatic image compression
-- **Lazy Loading**: Components loaded on demand
-- **SEO Optimization**: Meta tags and structured data
-- **Analytics Integration**: Performance monitoring
+- **Static Export**: Optimized for maximum speed and SEO
+- **Image Optimization**: Automatic image compression and WebP conversion
+- **Lazy Loading**: Components and images loaded on demand
+- **SEO Optimization**: Meta tags, structured data, and search engine optimization
+- **Analytics Integration**: Real-time performance monitoring
+- **Core Web Vitals**: Optimized for Google's performance metrics
 
 ## 🤝 Contributing
 
@@ -226,6 +240,14 @@ npm run deploy
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+### Development Guidelines
+
+- Follow TypeScript best practices
+- Ensure responsive design for all components
+- Maintain accessibility standards
+- Add appropriate tests for new features
+- Update documentation for any changes
 
 ## 📄 License
 
@@ -282,10 +304,19 @@ Please review the individual dependency licenses in `package-lock.json` for comp
 
 ## 📞 Support
 
-For issues and questions, please use [Issues](https://github.com/your-repo/issues).
+For issues and questions, please use [GitHub Issues](https://github.com/fcb1899v/appstudio_nextjs/issues).
 
 ## 🔗 Links
 
-- **Live Site**: [https://your-domain.com](https://your-domain.com)
-- **GitHub Repository**: [https://github.com/your-repo](https://github.com/your-repo)
-- **Documentation**: [https://your-docs.com](https://your-docs.com)
+- **GitHub Repository**: [https://github.com/fcb1899v/appstudio_nextjs](https://github.com/fcb1899v/appstudio_nextjs)
+- **Predecessor Repository**: [https://github.com/fcb1899v/nakajimamasao-appstudio](https://github.com/fcb1899v/nakajimamasao-appstudio) (legacy)
+
+## 📝 Changelog
+
+### Latest Updates
+- Updated all dependencies to latest versions
+- Enhanced security with reCAPTCHA v3
+- Improved performance with static export
+- Added comprehensive GDPR compliance
+- Integrated Google Analytics 4
+- Optimized for Core Web Vitals
