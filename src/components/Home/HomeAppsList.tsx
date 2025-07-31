@@ -44,6 +44,7 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
           display: "grid",
           placeItems: "center",
           padding: isPC(width) ? "30px 100px" : "30px 0",
+          marginTop: 70,
           marginBottom: 100,
           gridTemplateColumns: `repeat(${appRow}, 1fr)`,
         }}

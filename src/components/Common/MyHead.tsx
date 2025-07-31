@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { myApp } from '@/utils/constants';
 import { useEffect, useState } from 'react';
 import { AppProps } from '@/types/common';
+import StructuredData from './StructuredData';
 
 const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
   const appData = myApp(width, isJa)[appNumber];
@@ -26,6 +27,27 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
     const saved = localStorage.getItem("cookie_consent");
     if (saved === 'accepted') {
       setHasConsent(true);
+    }
+
+    // パフォーマンス監視
+    if (typeof window !== 'undefined' && 'performance' in window) {
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.entryType === 'navigation') {
+            const navEntry = entry as PerformanceNavigationTiming;
+            if (typeof window !== 'undefined' && window.gtag) {
+              window.gtag('event', 'performance_timing', {
+                event_category: 'performance',
+                event_label: 'page_load',
+                value: Math.round(navEntry.loadEventEnd - navEntry.loadEventStart),
+                custom_parameter_1: navEntry.domContentLoadedEventEnd - navEntry.domContentLoadedEventStart,
+                custom_parameter_2: navEntry.loadEventEnd - navEntry.fetchStart
+              });
+            }
+          }
+        }
+      });
+      observer.observe({ entryTypes: ['navigation'] });
     }
   }, []);
 
@@ -79,10 +101,40 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         <meta name="msapplication-TileColor" content={color.header} />
         <meta name="msapplication-TileImage" content={`/images/${folder}/favicons/site-tile-150x150.png`} />
         <meta name="theme-color" content={color.header} />
+
+        {/* LCP最適化 - 重要な画像のプリロード */}
+        {appNumber === 0 && (
+          <link rel="preload" as="image" href="/images/appstudio/icon.png" />
+        )}
+        <link rel="preload" as="image" href={`/images/${folder}/icon.png`} />
+
+        {/* 構造化データ */}
+        <StructuredData 
+          appNumber={appNumber} 
+          width={width} 
+          isJa={isJa} 
+          pageType={appNumber > 0 ? 'product' : 'website'} 
+        />
       </Head>
 
-      {/* Ads by Google */}
-      {client && <Script async src={adsenseLink} crossOrigin="anonymous" strategy="lazyOnload"/>}
+      {/* Ads by Google - 遅延読み込み */}
+      {client && (
+        <Script 
+          async 
+          src={adsenseLink} 
+          crossOrigin="anonymous" 
+          strategy="lazyOnload"
+          onLoad={() => {
+            // 広告が読み込まれた後の処理
+            if (typeof window !== 'undefined' && window.gtag) {
+              window.gtag('event', 'adsense_loaded', {
+                event_category: 'performance',
+                event_label: 'adsense'
+              });
+            }
+          }}
+        />
+      )}
 
       {/* Google Analyticsのスクリプトをnext/scriptで追加 */}
       {GA_TRACKING_ID && (
@@ -101,11 +153,17 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
               window.gtag = gtag;
               gtag('js', new Date());
               
-              // 基本設定
+              // 最適化された設定
               gtag('config', '${GA_TRACKING_ID}', {
                 page_title: '${title}',
                 page_location: window.location.href,
                 page_path: window.location.pathname,
+                // パフォーマンス最適化設定
+                anonymize_ip: true,
+                allow_google_signals: false,
+                allow_ad_personalization_signals: false,
+                // 不要な機能を無効化
+                send_page_view: false,
                 custom_map: {
                   'custom_parameter_1': 'app_name',
                   'custom_parameter_2': 'language',
@@ -113,7 +171,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
                 }
               });
               
-              // カスタムパラメータを送信
+              // カスタムページビュー（必要な時だけ送信）
               gtag('event', 'page_view', {
                 app_name: '${appData.app}',
                 language: '${isJa ? 'ja' : 'en'}',
@@ -122,33 +180,25 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
                 page_location: window.location.href,
                 page_path: window.location.pathname
               });
-              
-              // ページビューの詳細追跡
-              gtag('event', 'page_view', {
-                send_to: '${GA_TRACKING_ID}',
-                page_title: '${title}',
-                page_location: window.location.href,
-                page_path: window.location.pathname,
-                app_name: '${appData.app}',
-                language: '${isJa ? 'ja' : 'en'}',
-                device_type: '${width < 600 ? 'mobile' : width < 1024 ? 'tablet' : 'desktop'}'
-              });
             `}          
           </Script>          
         </>
       )}
 
-      {/* Google Tag Manager */}
+      {/* Google Tag Manager - 条件付き読み込み */}
       {hasConsent && GTM_ID && (
         <Script
           id="google-tag-manager"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-              var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-              j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-              f.parentNode.insertBefore(j,f);
+              (function(w,d,s,l,i){
+                w[l]=w[l]||[];
+                w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+                var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+                j.async=true;
+                j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','${GTM_ID}');
             `,
           }}

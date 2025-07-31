@@ -1,5 +1,5 @@
 "use client";
-import type { NextPage } from 'next'
+import { NextPage } from 'next'
 import React from 'react'
 import '@/app/globals.css';
 import MyHead from '@/components/Common/MyHead'
@@ -10,6 +10,7 @@ import { myAppNumber, myMenuNumber } from '@/utils/constants';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 import AnalyticsTracker from '@/components/Common/AnalyticsTracker';
+import TermsContents from '@/components/Home/TermsContents';
 
 const TermsPage: NextPage = () => {
   const { windowSize, isClient } = useWindowSize();
@@ -37,7 +38,8 @@ const TermsPage: NextPage = () => {
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
+        <TermsContents isJa={isJa}/>
+        <MyFooter width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
       <CookieConsentBanner isJa={isJa} />
     </div>

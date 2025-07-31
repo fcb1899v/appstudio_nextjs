@@ -39,7 +39,7 @@ const TermsPage: NextPage = () => {
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
         <TermsContents isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
+        <MyFooter width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
       <CookieConsentBanner isJa={isJa} />
     </div>
