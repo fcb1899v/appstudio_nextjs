@@ -1,12 +1,13 @@
 import { NextPage } from 'next'
 import React, { CSSProperties, useEffect, useState} from 'react';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import '@/app/globals.css';
 import AccountIcon from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import Edit from '@mui/icons-material/Edit';
-import { myForm } from "@/utils/constants";
+import IoSquareOutline from '@mui/icons-material/CropSquare';
+import { myForm, myApp, myAppNumber } from "@/utils/constants";
 
 interface Props {
   isJa: boolean
@@ -18,6 +19,7 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [selectedApp, setSelectedApp] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -31,15 +33,18 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
   // onChange handler of input form
   const handleFamilyNameChange = (e: React.ChangeEvent<HTMLInputElement>) => { setName(e.target.value); };
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleAppChange = (event: any) => { setSelectedApp(event.target.value); };
   const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => { setMessage(e.target.value); };
 
   useEffect(() => {
     setAlertMessage(
       (sentMessage) ? myForm(isJa)[0].alert.success:
-      (name === "" && email === "" && message === "") ? myForm(isJa)[0].alert.default:
+      (name === "" && email === "" && message === "" && selectedApp === "") ? myForm(isJa)[0].alert.default:
       (name === "") ? myForm(isJa)[0].alert.name:
       (email === "") ? myForm(isJa)[0].alert.email:
       (!email.match(/.+@.+\..+/)) ? myForm(isJa)[0].alert.invalid:
+      (selectedApp === "") ? myForm(isJa)[0].alert.app:
       (message === "") ? myForm(isJa)[0].alert.message:
       myForm(isJa)[0].alert.submit
     );
@@ -48,29 +53,33 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
         name != "" && 
         email != "" && 
         email.match(/.+@.+\..+/) && 
+        selectedApp != "" &&
         message != "" 
       ) ? ['#F7B249', 'black']: ['gray', 'white']
     );
     if (submitted) {
       setName("");
       setEmail("");
-      setMessage("");  
+      setSelectedApp("");
+      setMessage("");
       setSentMessage(true);
       setTimeout(() => { window.location.href = "/";}, 3000);     
     }
-  }, [isJa, name, email, message, sentMessage, submitted]);
+  }, [isJa, name, email, selectedApp, message, sentMessage, submitted]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (buttonColor[1] == "black") {
-      if (!executeRecaptcha) {
+      if (!executeRecaptcha || typeof executeRecaptcha !== 'function') {
+        alert(myForm(isJa)[0].alert.error);
         return;
       }
+      
       try {
         const token = await executeRecaptcha("submit_form");
         setRecaptchaToken(token);
   
-        // App Router でも "/api/recaptcha" でOK
+        // サーバーサイドでreCAPTCHA検証
         const response_server = await fetch("/api/recaptcha", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -78,15 +87,33 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
         });
 
         if (!response_server.ok) {
-          return
+          alert(myForm(isJa)[0].alert.error);
+          return;
         }
 
-        setSubmitted(true);
-        alert(myForm(isJa)[0].alert.confirm);
-  
-        (e.target as HTMLFormElement).submit();
+        // reCAPTCHA検証成功後、Googleフォームに送信
+        const formResponse = await fetch('/api/submit-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            app: selectedApp,
+            message: message
+          }),
+        });
+
+        const result = await formResponse.json();
+        if (result.success) {
+          setSubmitted(true);
+          alert(myForm(isJa)[0].alert.confirm);
+        } else {
+          alert('送信に失敗しました: ' + result.message);
+        }
       } catch {
-        // エラーハンドリング
+        alert(myForm(isJa)[0].alert.error);
       }
     }
   };
@@ -130,25 +157,74 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
     margin: "20px 0",
   }
 
+  // 共通の入力フィールドスタイル
+  const inputFieldSx = {
+    '& .MuiFilledInput-input': {
+      paddingLeft: '20px',
+      paddingRight: '20px'
+    }
+  };
+
+  // 複数行入力フィールド用スタイル
+  const multilineFieldSx = {
+    '& .MuiFilledInput-input': {
+      padding: '10px'
+    }
+  };
+
+  // セレクトボックス用スタイル
+  const selectSx = {
+    '& .MuiSelect-select': {
+      textAlign: 'left',
+      justifyContent: 'flex-start',
+      paddingLeft: '20px',
+      paddingRight: '20px'
+    }
+  };
+
+  // アプリ一覧を取得（ホーム以外）
+  const appList = myApp(1024, isJa).filter((_, index) => index !== myAppNumber.home);
+
   return <div style={contactStyle}>
     <h2 style={titleStyle}>{myForm(isJa)[0].title}</h2>
     <p style={alertStyle}>{alertMessage}</p>
-    <form action={myForm(isJa)[0].url} method="POST" target="hidden_iframe" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <TextField style={textFieldStyle} type="text" required
         name={myForm(isJa)[0].number.name} color="warning" variant="filled"
         label={<><AccountIcon style={labelStyle}/>{myForm(isJa)[0].label.name}</>} 
         value={name} onChange={handleFamilyNameChange} 
+        sx={inputFieldSx}
       />
       <TextField style={textFieldStyle} type="text" required 
         name={myForm(isJa)[0].number.email} color="warning" variant="filled"
         label={<><MailIcon style={labelStyle}/>{myForm(isJa)[0].label.email}</>} 
         value={email} onChange={handleEmailChange}
+        sx={inputFieldSx}
       />
+      <FormControl style={textFieldStyle} variant="filled" color="warning" required>
+        <InputLabel><IoSquareOutline style={labelStyle}/>{myForm(isJa)[0].label.app}</InputLabel>
+        <Select
+          value={selectedApp}
+          onChange={handleAppChange}
+          name={myForm(isJa)[0].number.app}
+          sx={selectSx}
+        >
+          <MenuItem value="">
+            <em>{isJa ? "アプリを選択してください" : "Please select an app"}</em>
+          </MenuItem>
+          {appList.map((app, index) => (
+            <MenuItem key={index} value={app.text.menu}>
+              {app.text.menu}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <TextField 
         style={textFieldStyle} type="text" required multiline rows={6}
         name={myForm(isJa)[0].number.message} color="warning" variant="filled"
         label={<><Edit style={labelStyle}/>{myForm(isJa)[0].label.message}</>} 
         value={message} onChange={handleMessageChange}
+        sx={multilineFieldSx}
       />
       <input
         type="hidden"
