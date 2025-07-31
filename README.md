@@ -1,52 +1,56 @@
 # AppStudio Next.js Project
 
-このプロジェクトは、複数のモバイルアプリのランディングページを提供するNext.jsベースのWebサイトです。
+A Next.js-based website providing landing pages for multiple mobile applications.
 
-## 🚀 技術スタック
+## 🚀 Tech Stack
 
-- **Framework**: Next.js 15.1.0
-- **Language**: TypeScript 5.5.4
-- **Styling**: Tailwind CSS
+- **Framework**: Next.js 15.3.3
+- **Language**: TypeScript 5.8.3
+- **Styling**: CSS Modules, Material-UI
+- **UI Components**: Material-UI (@mui/material, @mui/icons-material)
 - **Analytics**: Google Analytics 4
 - **Advertising**: Google AdSense
 - **Deployment**: Firebase Hosting
 - **Cookie Management**: Cookiebot
+- **SEO**: Structured Data, Sitemap, Robots.txt
 
-## 📋 機能
+## 📋 Features
 
-- **多言語対応**: 日本語・英語の切り替え
-- **レスポンシブデザイン**: モバイル・タブレット・デスクトップ対応
-- **GDPR準拠**: Cookie同意管理システム
-- **アナリティクス**: 詳細なユーザー行動追跡
-- **SEO最適化**: メタタグ・構造化データ対応
-- **パフォーマンス最適化**: 静的エクスポート・画像最適化
+- **Multi-language Support**: Japanese and English switching
+- **Responsive Design**: Mobile, tablet, and desktop compatible
+- **GDPR Compliance**: Cookie consent management system
+- **Analytics**: Detailed user behavior tracking
+- **SEO Optimization**: Meta tags and structured data support
+- **Performance Optimization**: Static export and image optimization
+- **Form Handling**: Contact form with reCAPTCHA integration
+- **API Integration**: Submit form API endpoints
 
-## 🛠️ セットアップ
+## 🛠️ Setup
 
-### 前提条件
+### Prerequisites
 
-- Node.js 18.0.0以上
-- npm または yarn
+- Node.js 18.0.0 or higher
+- npm or yarn
 
-### インストール
+### Installation
 
 ```bash
-# リポジトリをクローン
+# Clone the repository
 git clone <repository-url>
 cd appstudio_next
 
-# 依存関係をインストール
+# Install dependencies
 npm install
 
-# 開発サーバーを起動
+# Start development server
 npm run dev
 ```
 
-ブラウザで [http://localhost:3000](http://localhost:3000) を開いて結果を確認してください。
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-## 🔧 環境変数
+## 🔧 Environment Variables
 
-プロジェクトルートに `.env.local` ファイルを作成し、以下の変数を設定してください：
+Create a `.env.local` file in the project root and set the following variables:
 
 ```bash
 # Google Analytics
@@ -61,113 +65,227 @@ NEXT_PUBLIC_ADSENSE=ca-pub-XXXXXXXXXX
 # Cookiebot
 NEXT_PUBLIC_COOKIEBOT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 
-# 環境設定
+# reCAPTCHA (for contact form)
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
+
+# Environment
 NODE_ENV=development
 ```
 
-## 📁 プロジェクト構造
+## 📁 Project Structure
 
 ```
 src/
 ├── app/                 # Next.js App Router
-│   ├── globals.css     # グローバルスタイル
-│   ├── layout.tsx      # ルートレイアウト
-│   └── page.tsx        # ホームページ
-├── components/         # Reactコンポーネント
-│   ├── Common/         # 共通コンポーネント
-│   ├── Home/           # ホームページ専用
-│   └── Apps/           # アプリ専用
-├── hooks/              # カスタムフック
-├── utils/              # ユーティリティ関数
-└── types/              # TypeScript型定義
+│   ├── globals.css     # Global styles
+│   ├── layout.tsx      # Root layout
+│   ├── page.tsx        # Home page
+│   ├── api/            # API routes
+│   │   ├── recaptcha/  # reCAPTCHA verification
+│   │   └── submit-form/ # Contact form submission
+│   └── [app]/          # App-specific pages
+│       ├── page.tsx    # English pages
+│       └── ja/page.tsx # Japanese pages
+├── components/         # React components
+│   ├── Common/         # Shared components
+│   │   ├── AnalyticsTracker.tsx
+│   │   ├── CookieConsentBanner.tsx
+│   │   ├── MyAppsBadges.tsx
+│   │   ├── MyAppsFeatures.tsx
+│   │   ├── MyAppsHeader.tsx
+│   │   ├── MyAppsTop.tsx
+│   │   ├── MyFooter.tsx
+│   │   ├── MyHead.tsx
+│   │   ├── MySplash.tsx
+│   │   ├── StructuredData.tsx
+│   │   ├── YoutubeMovie.tsx
+│   │   ├── EnhancedFeatures.tsx
+│   │   ├── UserReviews.tsx
+│   │   ├── AppScreenshots.tsx
+│   │   ├── DownloadNow.tsx
+│   │   ├── ElevatorBigNews.tsx
+│   │   ├── MyAppsHowtoUse.tsx
+│   │   ├── WordWebApp.tsx
+│   │   └── firebaseConfig.ts
+│   └── Home/           # Home page components
+│       ├── ContactBody.tsx
+│       ├── HomeAppsList.tsx
+│       ├── PrivacyPolicy.tsx
+│       └── TermsContents.tsx
+├── hooks/              # Custom hooks
+│   ├── useAnalytics.ts
+│   ├── useCookieConsent.ts
+│   ├── useGeoLocation.ts
+│   ├── usePageTracking.ts
+│   └── useWindowSize.ts
+├── utils/              # Utility functions
+│   ├── analytics.ts
+│   ├── constants.ts
+│   └── functions.ts
+└── types/              # TypeScript type definitions
+    ├── app.ts
+    ├── common.ts
+    └── env.d.ts
 ```
 
-## 🍪 GDPR準拠
+## 🍪 GDPR Compliance
 
-このプロジェクトはGDPR準拠のCookie同意管理システムを実装しています：
+This project implements a GDPR-compliant cookie consent management system:
 
-- **Cookie同意バナー**: ユーザーがCookieの種類を選択可能
-- **詳細制御**: 必要・分析・マーケティングCookieの個別制御
-- **Google Analytics**: 分析同意時のみ読み込み
-- **AdSense**: マーケティング同意時のみ読み込み
-- **Cookie管理**: 同意撤回時の自動クリーンアップ
+- **Cookie Consent Banner**: Users can select cookie types
+- **Detailed Control**: Individual control for necessary, analytics, and marketing cookies
+- **Google Analytics**: Loaded only with analytics consent
+- **AdSense**: Loaded only with marketing consent
+- **Cookie Management**: Automatic cleanup on consent withdrawal
 
-### Cookieの種類
+### Cookie Types
 
-1. **必要Cookie**: 常に有効、基本機能に必須
-2. **分析Cookie**: Google Analytics追跡（同意必要）
-3. **マーケティングCookie**: AdSense・広告（同意必要）
+1. **Necessary Cookies**: Always enabled, required for basic functionality
+2. **Analytics Cookies**: Google Analytics tracking (consent required)
+3. **Marketing Cookies**: AdSense and advertising (consent required)
 
-## 📊 アナリティクス
+## 📊 Analytics
 
-詳細なユーザー行動追跡を実装：
+Detailed user behavior tracking implementation:
 
-- ページビュー追跡
-- スクロール深度測定
-- 滞在時間測定
-- メニュー操作追跡
-- アプリダウンロード追跡
-- 外部リンククリック追跡
+- Page view tracking
+- Scroll depth measurement
+- Time on page measurement
+- Menu interaction tracking
+- App download tracking
+- External link click tracking
 
-## 🚀 デプロイ
+## 🚀 Deployment
 
 ### Firebase Hosting
 
 ```bash
-# ビルド
+# Build
 npm run build
 
-# デプロイ
+# Deploy
 npm run deploy
 ```
 
-### その他のプラットフォーム
+### Other Platforms
 
 - **Vercel**: `vercel --prod`
-- **Netlify**: `npm run build` 後に `out/` ディレクトリをデプロイ
+- **Netlify**: Deploy `out/` directory after `npm run build`
 
-## 🧪 開発コマンド
+## 🧪 Development Commands
 
 ```bash
-# 開発サーバー起動
+# Start development server
 npm run dev
 
-# 本番ビルド
+# Production build
 npm run build
 
-# 本番サーバー起動
+# Start production server
 npm run start
 
-# リンター実行
+# Run linter
 npm run lint
 
-# Firebaseデプロイ
+# Deploy to Firebase
 npm run deploy
 ```
 
-## 📱 対応アプリ
+## 📱 Supported Apps
 
-- **Japanese**: 日本語学習アプリ
-- **Phonics**: 英語発音学習アプリ
-- **Allowance**: おこづかい管理アプリ
-- **Crossing**: 信号待ちゲーム
-- **Signal**: 信号シミュレーター
-- **Toilet**: トイレトレーニングアプリ
-- **Transit**: 交通機関アプリ
-- **Elevator**: エレベーターシミュレーター
+- **Japanese**: Japanese language learning app
+- **Phonics**: English pronunciation learning app
+- **Allowance**: Allowance management app
+- **Crossing**: Traffic signal waiting game
+- **Signal**: Traffic signal simulator
+- **Toilet**: Toilet training app
+- **Transit**: Public transportation app
+- **Elevator**: Elevator simulator
+- **Elevator Neo**: Enhanced elevator simulator
 
-## 🤝 コントリビューション
+## 🔒 Security Features
 
-1. このリポジトリをフォーク
-2. 機能ブランチを作成 (`git checkout -b feature/amazing-feature`)
-3. 変更をコミット (`git commit -m 'Add amazing feature'`)
-4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
-5. プルリクエストを作成
+- **reCAPTCHA Integration**: Form spam protection
+- **Environment Variable Protection**: Sensitive data not exposed
+- **GDPR Compliance**: User privacy protection
+- **Secure API Endpoints**: Protected form submission
+- **No Debug Information**: Production-ready code
 
-## 📄 ライセンス
+## 📈 Performance Features
 
-このプロジェクトはMITライセンスの下で公開されています。
+- **Static Export**: Optimized for speed
+- **Image Optimization**: Automatic image compression
+- **Lazy Loading**: Components loaded on demand
+- **SEO Optimization**: Meta tags and structured data
+- **Analytics Integration**: Performance monitoring
 
-## 📞 サポート
+## 🤝 Contributing
 
-問題や質問がある場合は、[Issues](https://github.com/your-repo/issues) でお知らせください。
+1. Fork this repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+### 📦 Package Licenses
+
+**Core Dependencies:**
+- **Next.js**: MIT
+- **React**: MIT
+- **React DOM**: MIT
+- **TypeScript**: Apache-2.0
+- **Firebase**: Apache-2.0
+- **Firebase Functions**: MIT
+- **Firebase Tools**: MIT
+- **React Firebase Hooks**: Apache-2.0
+
+**UI & Styling:**
+- **Material-UI (@mui/material)**: MIT
+- **Material-UI Icons (@mui/icons-material)**: MIT
+- **React Icons**: MIT
+- **Sass**: MIT
+
+**Development Tools:**
+- **ESLint**: MIT
+- **ESLint Config Next**: MIT
+- **TypeScript ESLint Parser**: MIT
+- **TypeScript ESLint Plugin**: MIT
+
+**HTTP & API:**
+- **Axios**: MIT
+- **CORS**: MIT
+
+**Authentication & Security:**
+- **React Google reCAPTCHA v3**: MIT
+
+**Routing & Navigation:**
+- **React Router DOM**: MIT
+
+**Media & Content:**
+- **React YouTube**: MIT
+
+**Image Processing:**
+- **Sharp**: Apache-2.0
+
+**Language & Localization:**
+- **Accept Language**: MIT
+
+**Note**: This project uses various dependencies with different licenses. The main project is MIT licensed, but dependencies include:
+- MIT (majority)
+- Apache-2.0 (Firebase, TypeScript, Sharp, React Firebase Hooks)
+
+Please review the individual dependency licenses in `package-lock.json` for complete license information.
+
+## 📞 Support
+
+For issues and questions, please use [Issues](https://github.com/your-repo/issues).
+
+## 🔗 Links
+
+- **Live Site**: [https://your-domain.com](https://your-domain.com)
+- **GitHub Repository**: [https://github.com/your-repo](https://github.com/your-repo)
+- **Documentation**: [https://your-docs.com](https://your-docs.com)
