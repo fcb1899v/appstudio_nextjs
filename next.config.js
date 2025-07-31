@@ -11,6 +11,15 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@mui/material', '@mui/icons-material'],
   },
+  // Exclude legacy files from build
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.module.rules.push({
+      test: /\.html$/,
+      include: /public\/legacy/,
+      use: 'ignore-loader'
+    });
+    return config;
+  },
   async headers() {
     // 開発環境ではCSPを無効化
     if (process.env.NODE_ENV === 'development') {
