@@ -2,19 +2,17 @@ import { NextPage } from 'next'
 import React, {CSSProperties} from "react"
 import Link from 'next/link';
 import Image from 'next/image';
-import { isPC, isSP, myAppNumber, myMenu, myMenuNumber, mySNS } from "@/utils/constants";
+import { isPC, isSP, myMenu, mySNS } from "@/utils/constants";
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 
 interface Props {
-  appNumber: number
   width: number
   isJa: boolean
   menuNumber: number
 }
 
-const MyFooter: NextPage<Props> = ({appNumber, width, isJa, menuNumber}) => {
+const MyFooter: NextPage<Props> = ({width, isJa, menuNumber}) => {
   
-  const isHome = (appNumber == myAppNumber.home && menuNumber == myMenuNumber.home)
   const trademark = "©Nakajima Masao App Studio. ALL RIGHTS RESERVED."
 
   const menuLinkStyle: CSSProperties = {
@@ -52,9 +50,8 @@ const MyFooter: NextPage<Props> = ({appNumber, width, isJa, menuNumber}) => {
     </div>
     <div>
       <div className="flex_center_wrap" style={menuLinksStyle}>
-        {myMenu(isJa).map((menu, j) => (menu.menuNumber != menuNumber) && 
-          <div className={"flex_center"} key={`menu_${j}`} style={menuLinkStyle}>
-            {(j > (isHome ? 1: 0)) && <span style={{marginRight: 5}}>|</span>}
+        {myMenu(isJa).map((menu, j) => <div className={"flex_center"} key={`menu_${j}`} style={menuLinkStyle}>
+            {(j > 0) && <span style={{marginRight: 5}}>|</span>}
             <a href={menu.link} onClick={(e) => {
               e.stopPropagation();
             }}>{menu.title}</a>

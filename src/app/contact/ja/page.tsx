@@ -6,6 +6,7 @@ import MyHead from '@/components/Common/MyHead'
 import MySplash from '@/components/Common/MySplash'
 import MyAppsHeader from '@/components/Common/MyAppsHeader'
 import MyFooter from '@/components/Common/MyFooter'
+import ContactBody from '@/components/Home/ContactBody';
 import { myAppNumber, myMenuNumber } from '@/utils/constants';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
@@ -37,7 +38,8 @@ const ContactPage: NextPage = () => {
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
       <main className="main" style={mainStyle}>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
+        <ContactBody isJa={isJa}/>
+        <MyFooter width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
       <CookieConsentBanner isJa={isJa} />
     </div>

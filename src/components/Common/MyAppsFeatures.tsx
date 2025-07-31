@@ -54,8 +54,8 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
     margin: isSP(width) ? "8px 15px" : "10px 20px", 
   }
   const imageStyle: CSSProperties = {
-    width: "100%", 
-    maxWidth: isSP(width) ? "95%" : 800, 
+    width: "95%", 
+    maxWidth: 800, 
     maxHeight: isSP(width) ? "400px" : "600px",
     height: "auto",
     objectFit: "contain" as const, 

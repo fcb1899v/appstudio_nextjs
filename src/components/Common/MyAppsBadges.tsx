@@ -54,11 +54,11 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
       columnGap: 20,
       marginBottom: 10
     }}>
-      {myBadge.map((badge, i) => 
-        <Link href={appLink[i]} key={`app_${i}`} onClick={() => {
-          const platform = i === 0 ? 'ios' : 'android';
-          handleButtonClick(buttonName(i), platform, appLink[i]);
-        }}>
+    {myBadge.map((badge, i) => 
+      <Link href={appLink[i]} key={`app_${i}`} onClick={() => {
+        const platform = i === 0 ? 'ios' : 'android';
+        handleButtonClick(buttonName(i), platform, appLink[i]);
+      }}>
           <Image 
             src={badge.image} 
             alt={badge.title} 
@@ -73,9 +73,9 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
             }}
             priority={true}
           />
-        </Link>
-      )}
-    </div>
+      </Link>
+    )}
+  </div>
   );
 };
 

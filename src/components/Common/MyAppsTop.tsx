@@ -19,22 +19,23 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
 
   const containerStyle: CSSProperties = {
     backgroundColor: appData.color.background,
+    paddingTop: '70px',
     ...(hasImageBackground && {
       backgroundImage: `url('${appData.image.background}')`,
       backgroundSize: 'auto 100%',
       backgroundPosition: 'center bottom',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'scroll',
-      paddingBottom: '40px'
     })
   };
 
   return (
-    <div className="container" style={containerStyle}>
+    <div style={containerStyle}>
       <div className={isPC(width) ? "flex_center": "block_center"}>
         <div style={{
-          width: isPC(width) ? 540: "100%", 
-          padding: isPC(width) ? "0px 10px": "25px 10px 0px 10px",
+          width: "95%", 
+          maxWidth: isPC(width) ? "40%" : "95%",
+          margin: isPC(width) ? "0 0 0 auto" : "0 auto"
         }}>
           {isTitleImage ? (
             <Image 
@@ -59,7 +60,6 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
                 fontSize: appData.size.title, 
                 fontWeight: isJa ? "bold": "normal",
                 lineHeight: 1.2,
-                marginTop: 30,
               }}
             >
               {appData.text.title}
@@ -103,7 +103,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
                 color: appData.color.title,
                 listStyle: "none", 
                 fontSize: isSP(width) ? 24 : 28,
-                margin: isSP(width) ? "10px 10px 40px 10px": "10px 0 15px 0", 
+                margin: isSP(width) ? "20px 10px 30px 10px": "20px 0 30px 0", 
                 columnGap: isSP(width) ? 15 : 20,
               }}>
                 {!isJa && <li style={{ marginBottom: isSP(width) ? -8 : -10 }}>Over</li>}
@@ -117,12 +117,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
               </div>
             </div>
           )}
-          
-          <div style={{
-            marginTop: appData.text.dlnumber ? 0 : isSP(width) ? "30px" : "40px"
-          }}>
-            <MyAppsBadges appNumber={appNumber} width={width} isJa={isJa}/>
-          </div>
+          <MyAppsBadges appNumber={appNumber} width={width} isJa={isJa}/>
         </div>
         
         <Image 
@@ -131,9 +126,12 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
           width={1080} 
           height={1080} 
           style={{
-            width: "100%", 
-            maxWidth: 500, 
-            margin: "30px auto"
+            width: "95%", 
+            maxWidth: isPC(width) ? "40%" : "95%",
+            maxHeight: "600px",
+            height: "auto",
+            objectFit: "contain",
+            margin: isPC(width) ? "10px auto 20px 0" : "20px auto"
           }}
         />
       </div>

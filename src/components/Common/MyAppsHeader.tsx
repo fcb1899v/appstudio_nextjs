@@ -2,8 +2,9 @@ import { NextPage } from "next"
 import React, { useState } from "react"
 import Link from "next/link";
 import Image from "next/image";
+import { HiMenu, HiX } from "react-icons/hi";
 import MyFooter from "./MyFooter";
-import { isSP, myApp } from "@/utils/constants";
+import { isSP, myApp, isPC } from "@/utils/constants";
 import { useAnalytics } from '@/hooks/useAnalytics';
 
 interface Props {
@@ -16,7 +17,11 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
   const { trackMenuClick, trackEvent } = useAnalytics();
   const [openMenu, setOpenMenu] = useState(false);
   const appData = myApp(width, isJa)[appNumber];
-  
+  const title = appData.text.header;
+  const icon = (appNumber === 0) ? `/images/appstudio/icon.png` : appData.icon;
+  const link = appData.link.link;  
+  const homeHeaderLogo = `/images/appstudio/header_logo.png`;
+
   const toMenu = () => {
     setOpenMenu(!openMenu);
     
@@ -49,71 +54,50 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
     });
   };
 
-  const title = appData.text.header;
-  const font = appData.font.header;
-  const icon = (appNumber === 0) ? `/images/appstudio/header_logo.png` : appData.icon;
-  const link = appData.link.link;
-  
-  const menuTitle = openMenu ? "close": "menu";
-  const menuIconImage = `/images/button/${menuTitle}.png`;
-
   return (
     <header 
       className="header" 
       style={{
-        color: "white", 
-        backgroundColor: appData.color.header,
+        backgroundColor: appNumber === 0 ? "var(--black)": "var(--transparent)",
       }}
     >
       <div 
         className="flex_center" 
         style={{
-          fontSize: appData.size.header, 
-          textAlign: "center", 
-          lineHeight: 1,
           height: 70, 
-          columnGap: 20, 
-          padding: "5px 40px 0 50px",
+          padding: isSP(width) ? "5px 20px 0 30px" : "5px 40px 0 50px",
+          justifyContent: "flex-end",
         }}
       >
-        {appNumber === 0 ? (
-          <Image 
-            src={icon} 
-            alt="logo" 
-            width={300} 
-            height={300} 
-            priority={true} 
-            style={{
-              height: isSP(width) ? 50 : 60,
-              width: "auto",
-              marginTop: 5,
-            }}
-          />
-        ) : (
-          <>
-            {!isSP(width) && (
+        {appNumber === 0 && (
+          <div style={{
+            display: "flex",
+            justifyContent: isPC(width) ? "flex-start" : "center",
+            flex: 1,
+          }}>
+            <Link href={myApp(width, isJa)[0].link.link}>
               <Image 
-                src={icon} 
-                alt="logo" 
-                width={50} 
-                height={50} 
+                src={homeHeaderLogo} 
+                alt={myApp(width, isJa)[0].text.title} 
+                width={300} 
+                height={300} 
                 priority={true} 
                 style={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: 11.5,
-                  border: "1px solid white",
-                  marginBottom: 5
+                  height: isPC(width) ? 60: 50, 
+                  width: "auto",
+                  marginBottom: 5,
                 }}
               />
-            )}
-            <div style={{display: "block"}}>
-              {title.split("/").map((title, k) => (
-                <h1 className={font} key={`title_${k}`}>{title}</h1>
-              ))}
-            </div>
-          </>
+            </Link>
+          </div>
         )}
+        
+        <div onClick={toMenu} style={{cursor: "pointer"}}>
+          <HiMenu 
+            size={isSP(width) ? 30: 40}
+            color={appData.color.title}
+          />
+        </div>
       </div>
       
       <div 
@@ -123,34 +107,40 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
           backgroundColor: "rgba(0, 0, 0, 0.9)"
         }}
       >
-        <div onClick={toMenu} style={{marginTop: 25, marginLeft: 25}}>
-          <Image 
-            src={menuIconImage} 
-            alt="close" 
-            width={24} 
-            height={24} 
-            priority={true} 
-            style={{
-              width: 25,
-              height: "auto"
-            }}
-          />
-        </div>
         
         {openMenu && (
           <div>
+            <div onClick={toMenu} style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              height: 70, 
+              padding: isSP(width) ? "5px 20px 0 30px" : "5px 40px 0 50px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              cursor: "pointer",
+              zIndex: 1000
+            }}>
+              <HiX 
+                size={isSP(width) ? 30: 40} 
+                color={"var(--white)"}
+              />
+            </div>
+
             <div onClick={toMenu} className="flex_center" style={{padding: '10px 0'}}>
               <Link href={link}>
                 <Image 
                   src={icon} 
                   alt={title} 
-                  width={100} 
+                  width={(appNumber === 0) ? 165: 96} 
                   height={100} 
                   priority={true} 
                   style={{
+                    marginTop: 70,
                     borderRadius: 22.5,
-                    filter: "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))",
-                    boxShadow: "0px 0px 20px 1px rgba(255, 255, 255, 0.5)"
+                    filter: (appNumber === 0) ? "none": "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))",
+                    boxShadow: (appNumber === 0) ? "none": "0px 0px 20px 1px rgba(255, 255, 255, 0.5)",
                   }}
                 />
               </Link>
@@ -177,6 +167,9 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
                         toMenu();
                       }} 
                       className={myApp.font.menu}
+                      style={{
+                        color: "var(--white)"
+                      }}
                     >
                       {myApp.text.menu}
                     </a>
@@ -185,10 +178,11 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
               )}
             </div>
             
-            <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={0}/>
+            <MyFooter width={width} isJa={isJa} menuNumber={0}/>
           </div>
         )}
       </div>
+      
     </header>
   );
 };

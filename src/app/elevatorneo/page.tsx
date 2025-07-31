@@ -4,7 +4,6 @@ import React from 'react'
 import '@/app/globals.css';
 import MyHead from '@/components/Common/MyHead'
 import MySplash from '@/components/Common/MySplash'
-import ShoppingButton from '@/components/Common/ShoppingButton';
 import MyAppsHeader from '@/components/Common/MyAppsHeader'
 import DownloadNow from '@/components/Common/DownloadNow';
 import MyFooter from '@/components/Common/MyFooter'
@@ -41,12 +40,11 @@ const ElevatorNeoPage: NextPage = () => {
       />
       <MySplash appNumber={appNumber} width={width} isJa={isJa}/>
       <MyAppsHeader appNumber={appNumber} width={width} isJa={isJa}/>
-      <ShoppingButton width={width}/>
       <main className="main" style={mainStyle}>
         <MyAppsTop appNumber={appNumber} width={width} isJa={isJa}/>
         <MyAppsFeatures appNumber={appNumber} width={width} isJa={isJa}/>
         <DownloadNow appNumber={appNumber} width={width} isJa={isJa}/>
-        <MyFooter appNumber={appNumber} width={width} isJa={isJa} menuNumber={menuNumber}/>
+        <MyFooter width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
       <CookieConsentBanner isJa={isJa} />
     </div>

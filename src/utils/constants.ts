@@ -149,13 +149,7 @@ export const myApp = (width: number, isJa: boolean) => [
         ["Play with your favorite elevator ", "anytime, anywhere"],
         ["Super realistic elevator sim app ", "powered by generative Al"],
       ],
-      features: isJa ? [
-        ["話題の生成AIでデザインされた", "超リアルなエレベーター"],
-        ["エレベーターマイルを貯めて", "階数と画像をカスタマイズ"]
-      ]: [
-        ["Powered by cutting-edge generative AI", "providing users with "],
-        ["customizable experiences ", "and unparalleled delight"]
-      ],
+      features: [[],[],[],[],[],],
     },
     font: {
       header: "cornerStone",
@@ -172,7 +166,13 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     image: {
       picture: `/images/elevatorneo/introduction_${isJa ? "ja": "en"}.png`,
-      features: [`/images/elevatorneo/screenshots_${isJa ? "ja": "en"}.png`],
+      features: [
+        `/images/elevatorneo/menu_${isJa ? "ja": "en"}.png`,
+        `/images/elevatorneo/settings1_${isJa ? "ja": "en"}.png`,
+        `/images/elevatorneo/settings2_${isJa ? "ja": "en"}.png`,
+        `/images/elevatorneo/settings3_${isJa ? "ja": "en"}.png`,
+        `/images/elevatorneo/settings4_${isJa ? "ja": "en"}.png`,
+      ],
       howtouse: `/images/elevator/howtouse_${isJa ? "ja": "en"}.png`,
     },
     color: {
@@ -634,11 +634,13 @@ export const myForm = (isJa: boolean) => [
     label: {
       name: isJa ? "お名前": "Name",
       email: isJa ? "メールアドレス": "Email address",
+      app: isJa ? "アプリ": "App",
       message: isJa ? "お問い合わせ内容": "Inquiry",
     },
     number: {
       name: "entry.1179215924", 
       email: "entry.21222962", 
+      app: "entry.914237572",
       message: "entry.1423252519",
     },
     alert: {
@@ -646,6 +648,7 @@ export const myForm = (isJa: boolean) => [
       name: isJa ? 'お名前を入力してください': 'Enter your name',
       email: isJa ? 'メールアドレスを入力してください': 'Enter your email',
       invalid: isJa ? 'メールアドレスをご確認ください': 'Confirm your email address',
+      app: isJa ? 'アプリを選択してください': 'Please select an app',
       message: isJa ? 'お問い合わせ内容を入力してください': 'enter your inquiry',
       success: isJa ? 'お問い合わせありがとうございました': 'Thank you for your inquiry',
       submit: isJa ? '送信ボタンを押してください': 'Press the submit button',
