@@ -4,10 +4,10 @@ A Next.js-based website providing landing pages for multiple mobile applications
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js 15.3.3
+- **Framework**: Next.js 15.4.5
 - **Language**: TypeScript 5.8.3
 - **Styling**: CSS Modules, Material-UI
-- **UI Components**: Material-UI (@mui/material, @mui/icons-material)
+- **UI Components**: Material-UI (@mui/material 7.2.0, @mui/icons-material 7.2.0)
 - **Analytics**: Google Analytics 4
 - **Advertising**: Google AdSense
 - **Deployment**: Firebase Hosting
@@ -234,45 +234,45 @@ This project is licensed under the MIT License.
 ### 📦 Package Licenses
 
 **Core Dependencies:**
-- **Next.js**: MIT
-- **React**: MIT
-- **React DOM**: MIT
-- **TypeScript**: Apache-2.0
-- **Firebase**: Apache-2.0
-- **Firebase Functions**: MIT
-- **Firebase Tools**: MIT
-- **React Firebase Hooks**: Apache-2.0
+- **Next.js**: 15.4.5 (MIT)
+- **React**: 19.1.1 (MIT)
+- **React DOM**: 19.1.1 (MIT)
+- **TypeScript**: 5.8.3 (Apache-2.0)
+- **Firebase**: 12.0.0 (Apache-2.0)
+- **Firebase Functions**: 6.4.0 (MIT)
+- **Firebase Tools**: 14.11.2 (MIT)
+- **React Firebase Hooks**: 5.1.1 (Apache-2.0)
 
 **UI & Styling:**
-- **Material-UI (@mui/material)**: MIT
-- **Material-UI Icons (@mui/icons-material)**: MIT
-- **React Icons**: MIT
-- **Sass**: MIT
+- **Material-UI (@mui/material)**: 7.2.0 (MIT)
+- **Material-UI Icons (@mui/icons-material)**: 7.2.0 (MIT)
+- **React Icons**: 5.5.0 (MIT)
+- **Sass**: 1.89.2 (MIT)
 
 **Development Tools:**
-- **ESLint**: MIT
-- **ESLint Config Next**: MIT
-- **TypeScript ESLint Parser**: MIT
-- **TypeScript ESLint Plugin**: MIT
+- **ESLint**: 9.32.0 (MIT)
+- **ESLint Config Next**: 15.4.5 (MIT)
+- **TypeScript ESLint Parser**: 8.38.0 (MIT)
+- **TypeScript ESLint Plugin**: 8.38.0 (MIT)
 
 **HTTP & API:**
-- **Axios**: MIT
-- **CORS**: MIT
+- **Axios**: 1.11.0 (MIT)
+- **CORS**: 2.8.5 (MIT)
 
 **Authentication & Security:**
-- **React Google reCAPTCHA v3**: MIT
+- **React Google reCAPTCHA v3**: 1.11.0 (MIT)
 
 **Routing & Navigation:**
-- **React Router DOM**: MIT
+- **React Router DOM**: 7.7.1 (MIT)
 
 **Media & Content:**
-- **React YouTube**: MIT
+- **React YouTube**: 10.1.0 (MIT)
 
 **Image Processing:**
-- **Sharp**: Apache-2.0
+- **Sharp**: 0.34.3 (Apache-2.0)
 
 **Language & Localization:**
-- **Accept Language**: MIT
+- **Accept Language**: 3.0.20 (MIT)
 
 **Note**: This project uses various dependencies with different licenses. The main project is MIT licensed, but dependencies include:
 - MIT (majority)
