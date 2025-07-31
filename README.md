@@ -1,4 +1,4 @@
-# AppStudio Next.js Project
+# Nakajima Masao App Studio Next.js Website
 
 A Next.js-based website providing landing pages for multiple mobile applications.
 
