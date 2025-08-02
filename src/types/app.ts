@@ -1,3 +1,7 @@
+/**
+ * Interface for app text content
+ * Defines the structure for text elements in app configurations
+ */
 export interface AppText {
   header: string;
   menu: string;
@@ -7,6 +11,10 @@ export interface AppText {
   features: string[][];
 }
 
+/**
+ * Interface for app font configurations
+ * Defines custom font settings for different text elements
+ */
 export interface AppFont {
   header?: string;
   menu?: string;
@@ -14,6 +22,10 @@ export interface AppFont {
   message?: string;
 }
 
+/**
+ * Interface for app size configurations
+ * Defines font sizes for different text elements
+ */
 export interface AppSize {
   header: number;
   menu: number;
@@ -22,6 +34,10 @@ export interface AppSize {
   message?: number;
 }
 
+/**
+ * Interface for app image configurations
+ * Defines image paths for app screenshots and features
+ */
 export interface AppImage {
   picture?: string;
   pictures?: string;
@@ -29,6 +45,10 @@ export interface AppImage {
   howtouse: string;
 }
 
+/**
+ * Interface for app color configurations
+ * Defines color schemes for different UI elements
+ */
 export interface AppColor {
   header: string;
   background: string;
@@ -38,6 +58,10 @@ export interface AppColor {
   howtouse: string;
 }
 
+/**
+ * Interface for app link configurations
+ * Defines URLs for app pages and external links
+ */
 export interface AppLink {
   link: string;
   ios: string;
@@ -45,6 +69,11 @@ export interface AppLink {
   youtube: string;
 }
 
+/**
+ * Main app interface
+ * Defines the complete structure for app configurations
+ * Combines all other interfaces into a single app definition
+ */
 export interface App {
   app: string;
   appNumber: number;
@@ -58,6 +87,10 @@ export interface App {
   link: AppLink;
 }
 
+/**
+ * Interface for app number constants
+ * Defines unique identifiers for each app in the system
+ */
 export interface AppNumber {
   home: number;
   elevator: number;
@@ -71,6 +104,10 @@ export interface AppNumber {
   japanese: number;
 }
 
+/**
+ * Interface for menu number constants
+ * Defines unique identifiers for menu navigation items
+ */
 export interface MenuNumber {
   home: number;
   terms: number;

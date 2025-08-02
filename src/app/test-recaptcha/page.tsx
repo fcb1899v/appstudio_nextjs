@@ -4,18 +4,37 @@ import { useEffect, useState } from 'react';
 
 /* eslint-disable no-console */
 
+/**
+ * Test reCAPTCHA page component for debugging and testing
+ * Provides a testing interface for reCAPTCHA functionality including script loading,
+ * token generation, and error handling. Includes comprehensive debugging information
+ * and manual script loading capabilities for development and troubleshooting purposes.
+ * Handles client-side rendering and provides detailed feedback for reCAPTCHA integration.
+ * 
+ * This page is used for:
+ * - Testing reCAPTCHA script loading
+ * - Verifying token generation
+ * - Debugging integration issues
+ * - Manual script loading when automatic loading fails
+ */
 export default function TestRecaptchaPage() {
+  // State management for test results and loading status
   const [testResult, setTestResult] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  
+  // Get reCAPTCHA site key from environment variables
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
-  // reCAPTCHAスクリプトを手動で読み込む
+  /**
+   * Load reCAPTCHA script manually when component mounts
+   * Handles both automatic and manual script loading scenarios
+   */
   useEffect(() => {
     const loadRecaptchaScript = () => {
       if (typeof window !== 'undefined' && !window.grecaptcha) {
         const script = document.createElement('script');
-        // reCAPTCHA v3の正しいURL
+        // Load reCAPTCHA v3 with the correct URL format
         script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
         script.async = true;
         script.defer = true;
@@ -28,6 +47,7 @@ export default function TestRecaptchaPage() {
         };
         document.head.appendChild(script);
       } else if (window.grecaptcha) {
+        // Script already loaded
         setRecaptchaLoaded(true);
       }
     };
@@ -35,7 +55,10 @@ export default function TestRecaptchaPage() {
     loadRecaptchaScript();
   }, [siteKey]);
 
-  // 開発環境でのみデバッグ情報を表示
+  /**
+   * Display comprehensive debug information in development environment
+   * Logs all relevant reCAPTCHA configuration and status information
+   */
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       console.log('=== reCAPTCHA Test Page Debug ===');
@@ -48,7 +71,10 @@ export default function TestRecaptchaPage() {
     }
   }, [recaptchaLoaded, siteKey]);
 
-  // ページ読み込み時の状態を表示
+  /**
+   * Display page load status after a delay
+   * Provides initial status information to the user
+   */
   useEffect(() => {
     const timer = setTimeout(() => {
       const windowGrecaptcha = typeof window !== 'undefined' ? typeof window.grecaptcha : 'undefined';
@@ -58,6 +84,10 @@ export default function TestRecaptchaPage() {
     return () => clearTimeout(timer);
   }, [recaptchaLoaded, siteKey]);
 
+  /**
+   * Test reCAPTCHA functionality with comprehensive error handling
+   * Attempts to generate a token and provides detailed feedback
+   */
   const testRecaptcha = async () => {
     if (!window.grecaptcha) {
       setTestResult('Error: reCAPTCHA not loaded');
@@ -66,7 +96,7 @@ export default function TestRecaptchaPage() {
 
     setIsLoading(true);
     try {
-      // デバッグ情報を追加
+      // Add comprehensive debug information
       console.log('=== reCAPTCHA Debug Info ===');
       console.log('window.grecaptcha:', window.grecaptcha);
       // @ts-ignore - grecaptcha is loaded dynamically
@@ -78,7 +108,7 @@ export default function TestRecaptchaPage() {
       console.log('Site Key:', siteKey);
       console.log('============================');
 
-      // reCAPTCHAの初期化完了を待つ
+      // Wait for reCAPTCHA initialization to complete
       // @ts-ignore - grecaptcha is loaded dynamically
       if (window.grecaptcha.ready) {
         console.log('Using ready callback...');
@@ -86,7 +116,7 @@ export default function TestRecaptchaPage() {
         window.grecaptcha.ready(async () => {
           console.log('Ready callback executed');
           
-          // execute関数が利用可能になるまで待つ
+          // Wait for execute function to become available with retry logic
           let attempts = 0;
           const maxAttempts = 10;
           
@@ -125,7 +155,7 @@ export default function TestRecaptchaPage() {
         });
       } else {
         console.log('No ready callback, trying direct execution...');
-        // readyコールバックがない場合は直接実行
+        // Direct execution if ready callback is not available
         // @ts-ignore - grecaptcha is loaded dynamically
         const token = await window.grecaptcha.execute(siteKey, { action: 'test' });
         console.log('Token generated successfully (direct)');
@@ -139,6 +169,10 @@ export default function TestRecaptchaPage() {
     }
   };
 
+  /**
+   * Manual script loading function for troubleshooting
+   * Allows users to manually trigger script loading if automatic loading fails
+   */
   const loadRecaptchaScript = () => {
     if (typeof window !== 'undefined' && !window.grecaptcha) {
       const script = document.createElement('script');
@@ -155,15 +189,20 @@ export default function TestRecaptchaPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-8">
+      {/* Main container for test interface */}
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+        {/* Page title */}
         <h1 className="text-2xl font-bold text-gray-800 mb-6">reCAPTCHA Test Page</h1>
         
+        {/* Test controls and status display */}
         <div className="space-y-4">
+          {/* Current status display */}
           <div className="bg-gray-50 p-4 rounded">
             <h2 className="font-semibold mb-2">Current Status:</h2>
             <pre className="text-sm text-gray-700 whitespace-pre-wrap">{testResult}</pre>
           </div>
 
+          {/* Test reCAPTCHA button */}
           <button
             onClick={testRecaptcha}
             disabled={!recaptchaLoaded || isLoading}
@@ -172,6 +211,7 @@ export default function TestRecaptchaPage() {
             {isLoading ? 'Testing...' : 'Test reCAPTCHA'}
           </button>
 
+          {/* Manual script loading button */}
           <button
             onClick={loadRecaptchaScript}
             className="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
@@ -179,6 +219,7 @@ export default function TestRecaptchaPage() {
             Load reCAPTCHA Script Manually
           </button>
 
+          {/* Test result display */}
           {testResult && (
             <div className="bg-gray-50 p-4 rounded">
               <h2 className="font-semibold mb-2">Test Result:</h2>

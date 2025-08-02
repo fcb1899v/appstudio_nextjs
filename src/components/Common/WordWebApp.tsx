@@ -17,6 +17,10 @@ interface Props {
   isJa: boolean
 }
 
+/**
+ * Component for displaying a web-based word app
+ * @param words - Array of words to display
+ */
 const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
 
   const isPhonics = (appNumber == myAppNumber.phonics);

@@ -3,15 +3,28 @@ import Image from 'next/image'
 import { CSSProperties, useEffect, useRef } from 'react'
 import { isPC, isSP, myApp, myAppNumber } from '@/utils/constants';
 
+/**
+ * Interface for elevator big news component props
+ * Defines the properties required for rendering elevator news section
+ */
 interface Props {
   width: number
   isJa: boolean
 }
 
+/**
+ * Component for displaying big news or announcements for the Elevator app
+ * Shows special features and Twitter integration
+ * @param width - Screen width for responsive design
+ * @param isJa - Language preference (Japanese or English)
+ */
 const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
 
+  // App number for elevator app
   const appNumber = myAppNumber.elevator
+  // Twitter post ID for embedding
   const twitterLinkId = "1450698944393007107"
+  // Localized text for different features
   const buttonsMode = isJa ? "1000のボタンモード": "1000 Buttons Mode";
   const howtoChange = isJa ? "モード変更方法": "How to change the mode";
   const reproduceMode = isJa ? "再現！1000のボタン": "Reproduce! 1000 Buttons";
@@ -23,11 +36,15 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
 
   const twitterRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * Initialize Twitter embed when component mounts
+   * Creates and configures Twitter widget for embedding
+   */
   useEffect(() => {
     if (!twitterRef.current) return;
-    // 既存の埋め込みをクリア
+    // Clear existing embed
     twitterRef.current.innerHTML = '';
-    // blockquoteを追加
+    // Add blockquote element
     const blockquote = document.createElement('blockquote');
     blockquote.className = 'twitter-tweet';
     blockquote.setAttribute('data-lang', isJa ? 'ja' : 'en');
@@ -40,13 +57,17 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
     blockquote.style.maxWidth = '550px';
     blockquote.innerHTML = `<a href='https://twitter.com/x/status/${twitterLinkId}?ref_src=twsrc%5Etfw'></a>`;
     twitterRef.current.appendChild(blockquote);
-    // scriptを追加
+    // Add Twitter widget script
     const script = document.createElement('script');
     script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
     script.setAttribute('async', 'true');
     twitterRef.current.appendChild(script);
   }, [isJa]);
 
+  /**
+   * Style for the big news container
+   * Applies dynamic colors and full width layout
+   */
   const bigNewsStyle: CSSProperties = {
     width: "100vw", 
     color: myApp(width, isJa)[appNumber].color.title, 

@@ -4,18 +4,33 @@ import Image from 'next/image'
 import { isSP, myApp, myAppNumber, myBadge} from '@/utils/constants'
 import { useAnalytics } from '@/hooks/useAnalytics'
 
+/**
+ * Interface for app badges component props
+ * Defines the properties required for rendering app store badges
+ */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
 
+/**
+ * Component for displaying app store badges
+ * Shows download links for iOS and Android with analytics tracking
+ * Provides responsive design and comprehensive analytics
+ */
+
+// App store badges component for download links
 const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
+  // Get analytics tracking functions
   const { trackAppDownload, trackEvent } = useAnalytics();
+  
+  // Get app data and configuration
   const appData = myApp(width, isJa)[appNumber];
   const folder = appData.folder;
   const appName = appData.app;
 
+  // Handle app download button click and track analytics
   const handleButtonClick = (buttonName: string, platform: 'ios' | 'android', url: string) => {
     trackAppDownload(appName, platform, isJa ? 'ja' : 'en');
     
@@ -33,6 +48,7 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
       }
     });
 
+    // Additional data layer tracking
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
         event: 'button_click',
@@ -46,7 +62,10 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
     }
   };
 
+  // App store links for iOS and Android
   const appLink = [appData.link.ios, appData.link.android];
+  
+  // Generate button name for analytics tracking
   const buttonName = (i: number): string => `${folder}_${i == 0 ? "iOS": "Android"}_${isJa ? "ja_": "_"}open`
 
   return (
@@ -54,11 +73,12 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
       columnGap: 20,
       marginBottom: 10
     }}>
-    {myBadge.map((badge, i) => 
-      <Link href={appLink[i]} key={`app_${i}`} onClick={() => {
-        const platform = i === 0 ? 'ios' : 'android';
-        handleButtonClick(buttonName(i), platform, appLink[i]);
-      }}>
+      {/* App store download badges */}
+      {myBadge.map((badge, i) => (
+        <Link href={appLink[i]} key={`app_${i}`} onClick={() => {
+          const platform = i === 0 ? 'ios' : 'android';
+          handleButtonClick(buttonName(i), platform, appLink[i]);
+        }}>
           <Image 
             src={badge.image} 
             alt={badge.title} 
@@ -73,9 +93,9 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
             }}
             priority={true}
           />
-      </Link>
-    )}
-  </div>
+        </Link>
+      ))}
+    </div>
   );
 };
 

@@ -9,12 +9,25 @@ import Edit from '@mui/icons-material/Edit';
 import IoSquareOutline from '@mui/icons-material/CropSquare';
 import { myForm, myApp, myAppNumber } from "@/utils/constants";
 
+/**
+ * Interface for contact body component props
+ * Defines the properties required for rendering contact form
+ */
 interface Props {
   isJa: boolean
 }
 
+/**
+ * reCAPTCHA site key from environment variables
+ * Used for Google reCAPTCHA v3 integration
+ */
 const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
 
+/**
+ * Inner contact body component with form functionality
+ * Handles form submission with reCAPTCHA validation
+ * @param isJa - Language preference (Japanese or English)
+ */
 const ContactBodyInner: NextPage<Props> = ({isJa}) => { 
 
   const [name, setName] = useState("");
@@ -30,13 +43,20 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
   const [recaptchaToken, setRecaptchaToken] = useState("");
   const { executeRecaptcha } = useGoogleReCaptcha();
 
-  // onChange handler of input form
+  /**
+   * Form input change handlers
+   * Update state when form fields change
+   */
   const handleFamilyNameChange = (e: React.ChangeEvent<HTMLInputElement>) => { setName(e.target.value); };
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAppChange = (event: any) => { setSelectedApp(event.target.value); };
   const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => { setMessage(e.target.value); };
 
+  /**
+   * Effect to handle form validation and state updates
+   * Updates alert messages and button colors based on form state
+   */
   useEffect(() => {
     setAlertMessage(
       (sentMessage) ? myForm(isJa)[0].alert.success:
@@ -67,6 +87,10 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
     }
   }, [isJa, name, email, selectedApp, message, sentMessage, submitted]);
 
+  /**
+   * Handle form submission with reCAPTCHA validation
+   * @param e - Form submission event
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (buttonColor[1] == "black") {
@@ -79,7 +103,7 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
         const token = await executeRecaptcha("submit_form");
         setRecaptchaToken(token);
   
-        // サーバーサイドでreCAPTCHA検証
+        // Verify reCAPTCHA on server side
         const response_server = await fetch("/api/recaptcha", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -91,7 +115,7 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
           return;
         }
 
-        // reCAPTCHA検証成功後、Googleフォームに送信
+        // After reCAPTCHA verification success, submit to Google Forms
         const formResponse = await fetch('/api/submit-form', {
           method: 'POST',
           headers: {
@@ -110,7 +134,7 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
           setSubmitted(true);
           alert(myForm(isJa)[0].alert.confirm);
         } else {
-          alert('送信に失敗しました: ' + result.message);
+          alert('Submission failed: ' + result.message);
         }
       } catch {
         alert(myForm(isJa)[0].alert.error);
@@ -144,7 +168,8 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
     margin: "0px 10px 4px 5px"
   }
   const buttonStyle: CSSProperties = {
-    width: "100%", 
+    width: "60%", 
+    height: "40px",
     marginTop: 5, 
     borderRadius: 25,
     fontSize: 18, 
@@ -154,35 +179,54 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
   const alertStyle: CSSProperties = {
     color: '#F7B249', 
     fontWeight: "bold",
+    fontSize: "16px",
     margin: "20px 0",
   }
 
-  // 共通の入力フィールドスタイル
+  /**
+   * Common input field styling for Material-UI components
+   */
   const inputFieldSx = {
     '& .MuiFilledInput-input': {
       paddingLeft: '20px',
       paddingRight: '20px'
+    },
+    '& .MuiInputLabel-root': {
+      display: 'flex',
+      alignItems: 'center'
     }
   };
 
-  // 複数行入力フィールド用スタイル
+  /**
+   * Multiline input field styling for message textarea
+   */
   const multilineFieldSx = {
     '& .MuiFilledInput-input': {
       padding: '10px'
+    },
+    '& .MuiInputLabel-root': {
+      display: 'flex',
+      alignItems: 'center'
     }
   };
 
-  // セレクトボックス用スタイル
+  /**
+   * Select box styling for app selection dropdown
+   */
   const selectSx = {
     '& .MuiSelect-select': {
       textAlign: 'left',
       justifyContent: 'flex-start',
       paddingLeft: '20px',
       paddingRight: '20px'
+    },
+    '& .MuiInputLabel-root': {
+      display: 'flex',
+      alignItems: 'center'
     }
   };
 
-  // アプリ一覧を取得（ホーム以外）
+  // Get app list excluding home app
   const appList = myApp(1024, isJa).filter((_, index) => index !== myAppNumber.home);
 
   return <div style={contactStyle}>
@@ -202,7 +246,9 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
         sx={inputFieldSx}
       />
       <FormControl style={textFieldStyle} variant="filled" color="warning" required>
-        <InputLabel><IoSquareOutline style={labelStyle}/>{myForm(isJa)[0].label.app}</InputLabel>
+        <InputLabel sx={{ display: 'flex', alignItems: 'center' }}>
+          <IoSquareOutline style={labelStyle}/>{myForm(isJa)[0].label.app}
+        </InputLabel>
         <Select
           value={selectedApp}
           onChange={handleAppChange}
@@ -239,6 +285,11 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
   </div> 
 }
 
+/**
+ * Main contact body component with reCAPTCHA provider
+ * Wraps inner component with Google reCAPTCHA provider
+ * @param isJa - Language preference (Japanese or English)
+ */
 const ContactBody: NextPage<Props> = ({ isJa }) => {
   return (
     <GoogleReCaptchaProvider reCaptchaKey={siteKey} language={isJa ? 'ja': 'en'}>

@@ -1,44 +1,66 @@
+/**
+ * Tailwind CSS Directives
+ * Import Tailwind's base, component, and utility styles
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Variables */
+/**
+ * Global CSS Variables
+ * Defines color scheme and design tokens for the application
+ * These variables are used throughout the app for consistent theming
+ */
 :root {
+  /* RGB values for foreground and background colors */
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 128, 128, 128;
+  
+  /* Basic color palette */
   --white: #FFF;
   --black: #000;
   --transp: rgba(0, 0, 0, 0);
-  --lamp: #F7B249;
-  --dark: #383635;
-  --jaYellow: #ffA500;
-  --crossingRed: #D44028;
-  --crossingYellow: #EEAE42;
-  --jaBlue: #0077FF;
-  --allowancePurple: #8040FF;
-  --allowancePink: #FF40FF;
-  --allowanceBlue: #00FFFF;
-  --enPink: #FF69B4;
-  --enBlue: #03A9F4; 
-  --signalGreen: #57BFA3;
-  --toiletBlue: #86BDDA;
-  --transitGreen: #03DAC5;
-  --transitBlue: #3700B3;
+  
+  /* Brand colors for different apps */
+  --lamp: #F7B249;          /* Elevator app primary color */
+  --dark: #383635;           /* Dark theme color */
+  --jaYellow: #ffA500;       /* Japanese app accent */
+  --crossingRed: #D44028;    /* Crossing app primary */
+  --crossingYellow: #EEAE42; /* Crossing app secondary */
+  --jaBlue: #0077FF;         /* Japanese app primary */
+  --allowancePurple: #8040FF; /* Allowance app primary */
+  --allowancePink: #FF40FF;   /* Allowance app secondary */
+  --allowanceBlue: #00FFFF;   /* Allowance app accent */
+  --enPink: #FF69B4;         /* English app accent */
+  --enBlue: #03A9F4;         /* English app primary */
+  --signalGreen: #57BFA3;    /* Signal app primary */
+  --toiletBlue: #86BDDA;     /* Toilet app primary */
+  --transitGreen: #03DAC5;   /* Transit app primary */
+  --transitBlue: #3700B3;    /* Transit app secondary */
+  
+  /* Transparency utilities */
   --transpBlack: rgba(0, 0, 0, 0.9);
   --transpWhite: rgba(255, 255, 255, 0.9);
 }
 
-/* Base Styles */
+/**
+ * Base Styles Layer
+ * Foundation styles for HTML elements and global defaults
+ * These styles provide the base appearance for all elements
+ */
 @layer base {
+  /* Universal box-sizing for consistent sizing */
   * {
     box-sizing: border-box;
   }
   
+  /* Smooth scrolling for better user experience */
   html {
     scroll-behavior: smooth;
   }
   
+  /* Global body styles for consistent typography and layout */
   body { 
     padding: 0; 
     margin: 0; 
@@ -51,6 +73,7 @@
     color: #fff;
   }
   
+  /* Link styling with smooth transitions */
   a { 
     text-decoration: none; 
     transition: all 0.2s ease-in-out;
@@ -60,6 +83,7 @@
     text-decoration: underline; 
   }
   
+  /* Responsive image handling */
   img { 
     max-width: 100%; 
     display: block; 
@@ -67,8 +91,13 @@
   }
 }
 
-/* Component Styles */
+/**
+ * Component Styles Layer
+ * Reusable component classes and layout utilities
+ * These classes provide common layout patterns and component styles
+ */
 @layer components {
+  /* Main layout container for full-height pages */
   .main { 
     display: flex; 
     flex-direction: column; 
@@ -78,37 +107,46 @@
     margin: 0; 
   }
   
-  /* elevatorneo用の背景クラス */
+  /**
+   * Background class for elevatorneo app
+   * Creates gradient background from white to lamp color
+   */
   .elevatorneo-background {
     background: linear-gradient(to bottom, var(--white) 0%, var(--lamp) 100%);
   }
   
+  /* Dark theme container with gradient overlay */
   .dark_container { 
     color: white; 
     background: linear-gradient(to bottom, transparent, black) gray; 
   }
   
+  /* Light theme container with gradient overlay */
   .light_container { 
     color: black; 
     background: linear-gradient(to bottom, transparent, white) lightgray; 
   }
   
+  /* YouTube video container with aspect ratio */
   .youtube { 
     width: 100%; 
     aspect-ratio: 16 / 9; 
   }
   
+  /* YouTube iframe styling for responsive videos */
   .youtube iframe { 
     width: 100%; 
     height: 100%; 
   }
   
+  /* Flexbox utility for centered content */
   .flex_center {
     display: flex; 
     justify-content: center; 
     align-items: center;
   }
   
+  /* Flexbox utility for centered content with wrapping */
   .flex_center_wrap {
     display: flex; 
     justify-content: center; 
@@ -116,6 +154,7 @@
     flex-wrap: wrap;
   }
   
+  /* Flexbox utility for left-aligned content with wrapping */
   .flex_left_wrap {
     display: flex; 
     justify-content: left; 
@@ -123,12 +162,14 @@
     flex-wrap: wrap;
   }
   
+  /* Block element with centered content */
   .block_center {
     display: block; 
     justify-content: center; 
     align-items: center;
   }
   
+  /* Fixed header positioning */
   .header { 
     position: fixed; 
     z-index: 100; 
@@ -137,6 +178,7 @@
     height: 70px;
   }
   
+  /* Fixed menu with smooth transitions */
   .menu {
     position: fixed; 
     width: 100vw; 
@@ -144,16 +186,19 @@
     transition: all 0.5s ease-in-out;
   }
   
+  /* Standard container with padding */
   .container {
     width: 100vw;
     padding: 20px 0;
   }
   
+  /* Responsive image styling */
   .image { 
     width: 100%; 
     height: auto;
   }
 
+  /* Custom font family classes for different app themes */
   .beon { 
     font-family: "Beon", sans-serif; 
   }
@@ -179,32 +224,42 @@
   }
 }
 
+/**
+ * Animation Keyframes
+ * Defines various animation effects for UI transitions and interactions
+ * These animations provide smooth visual feedback and enhance user experience
+ */
 @keyframes fadeIn { 
-  from { opacity: 0; } 
-  to { opacity: 1; } 
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeOut { 
-  from { opacity: 1; } 
-  to { opacity: 0; } 
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @keyframes slideIn { 
-  from { transform: translateX(-100%); } 
-  to { transform: translateX(0); } 
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
 
 @keyframes fadeInScale { 
   from { 
     opacity: 0; 
     transform: scale(0.8); 
-  } 
+  }
   to { 
     opacity: 1; 
     transform: scale(1); 
-  } 
+  }
 }
 
+/**
+ * Page Transition Animations
+ * Smooth transitions for page navigation and content loading
+ * These animations provide visual continuity between page changes
+ */
 @keyframes pageTransition {
   from {
     opacity: 0;
@@ -238,6 +293,7 @@
   }
 }
 
+/* Page transition utility classes */
 .page-transition {
   animation: pageTransition 0.3s ease-out;
 }
@@ -254,7 +310,13 @@
   animation: pageTransitionZoom 0.3s ease-out;
 }
 
+/**
+ * Responsive Design Media Queries
+ * Adjusts layout and typography for different screen sizes
+ * Ensures optimal viewing experience across all devices
+ */
 @media (max-width: 768px) {
+  /* Tablet and mobile adjustments */
   body {
     font-size: 16px;
   }
@@ -265,6 +327,7 @@
 }
 
 @media (max-width: 480px) {
+  /* Small mobile adjustments */
   body {
     font-size: 14px;
   }

@@ -1,3 +1,7 @@
+/**
+ * Global type declarations for environment variables
+ * Extends NodeJS.ProcessEnv interface to include custom environment variables
+ */
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
