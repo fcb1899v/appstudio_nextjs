@@ -1,9 +1,23 @@
 import { AppNumber, MenuNumber } from '@/types/app';
 
+/**
+ * Check if screen width is smartphone size
+ * @param width - Screen width in pixels
+ * @returns True if width is less than 600px
+ */
 export const isSP = (width: number) => (width < 600);
+
+/**
+ * Check if screen width is PC size
+ * @param width - Screen width in pixels
+ * @returns True if width is greater than 1024px
+ */
 export const isPC = (width: number) => (width > 1024);
 
-///Number
+/**
+ * App number constants for navigation and identification
+ * Each app has a unique number for routing and state management
+ */
 export const myAppNumber: AppNumber = {
   home: 0,
   elevator: 1,
@@ -16,13 +30,24 @@ export const myAppNumber: AppNumber = {
   phonics: 8,
   japanese: 9
 }
+
+/**
+ * Menu number constants for navigation
+ * Used for menu routing and state management
+ */
 export const myMenuNumber: MenuNumber = {
   home: 0,
   terms: 1,
   contact: 2,
   other: 100,
 }
-///App
+/**
+ * Main app configuration array
+ * Contains all app data including text, styling, and navigation
+ * @param width - Screen width for responsive design
+ * @param isJa - Whether to use Japanese or English text
+ * @returns Array of app configurations
+ */
 export const myApp = (width: number, isJa: boolean) => [
   {
     app: "Home",
@@ -56,6 +81,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--black)",
+      spHeader: "var(--black)", 
       background: "var(--black)",
       title: "var(--white)",
       message: "var(--white)",
@@ -119,6 +145,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--lamp)",
+      spHeader: "var(--dark)",
       background: "var(--dark)",
       title: "var(--white)",
       message: "var(--dark)",
@@ -177,6 +204,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--dark)",
+      spHeader: "var(--white)",
       background: "var(--white)",
       title: "var(--dark)",
       message: "var(--dark)",
@@ -233,6 +261,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--signalGreen)",
+      spHeader: "var(--dark)",
       background: "var(--dark)",
       title: "var(--white)",
       message: "var(--white)",      
@@ -294,6 +323,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--crossingRed)",
+      spHeader: "var(--white)",
       background: "var(--white)",
       title: "var(--dark)",
       message: "var(--dark)",      
@@ -347,6 +377,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--toiletBlue)",
+      spHeader: "var(--white)",
       background: "var(--white)", 
       title: "var(--dark)",
       message: "var(--dark)",
@@ -404,6 +435,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--allowancePurple)",
+      spHeader: "var(--allowancePurple)",
       background: "linear-gradient(to bottom right, #00FFFF 0%, #FF40FF 80%)",
       text: "var(--allowancePurple)",
       title: "var(--white)", 
@@ -458,6 +490,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--transitBlue)",
+      spHeader: "var(--transitBlue)",
       background: "linear-gradient(to bottom, #3700B3, #03DAC5)",
       title: "var(--white)",
       message: "var(--white)",
@@ -504,6 +537,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--enBlue)",
+      spHeader: "var(--enBlue)",
       background: "linear-gradient(to bottom, #03A9F4 10%, #FF69B4 70%)",
       title: "var(--white)",
       message: "var(--white)",
@@ -550,6 +584,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--jaBlue)",
+      spHeader: "var(--jaBlue)",
       background: "linear-gradient(to bottom, #0077FF 10%, #FFA500 70%)",
       title: "var(--white)",
       message: "var(--white)",

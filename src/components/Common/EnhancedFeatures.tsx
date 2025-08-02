@@ -9,6 +9,11 @@ interface Props {
   isJa: boolean
 }
 
+/**
+ * Component for displaying enhanced features of the app
+ * Shows advanced or premium features with descriptions
+ * @param features - Array of enhanced feature objects
+ */
 const EnhancedFeatures: NextPage<Props> = ({appNumber, width, isJa}) => {
   // 各アプリの詳細機能データ
   const getDetailedFeatures = () => {

@@ -1,9 +1,17 @@
+/**
+ * Global type declaration for Google Analytics gtag function
+ * Extends Window interface to include gtag function for analytics tracking
+ */
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
   }
 }
 
+/**
+ * Interface for analytics event data structure
+ * Defines the structure for tracking events in Google Analytics
+ */
 interface AnalyticsEvent {
   action: string;
   category: string;
@@ -12,7 +20,16 @@ interface AnalyticsEvent {
   custom_parameters?: Record<string, unknown>;
 }
 
+/**
+ * Custom hook for Google Analytics tracking functionality
+ * Provides methods to track various user interactions and page events
+ * @returns Object containing various tracking functions
+ */
 export const useAnalytics = () => {
+  /**
+   * Generic event tracking function that sends data to Google Analytics
+   * @param event - Analytics event data to track
+   */
   const trackEvent = (event: AnalyticsEvent) => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', event.action, {
@@ -24,6 +41,12 @@ export const useAnalytics = () => {
     }
   };
 
+  /**
+   * Track page view events with custom parameters
+   * @param pageTitle - Title of the page being viewed
+   * @param pagePath - Path of the page being viewed
+   * @param customParams - Additional parameters to include with the event
+   */
   const trackPageView = (pageTitle: string, pagePath: string, customParams?: Record<string, unknown>) => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'page_view', {
@@ -35,6 +58,12 @@ export const useAnalytics = () => {
     }
   };
 
+  /**
+   * Track app download events for iOS and Android platforms
+   * @param appName - Name of the app being downloaded
+   * @param platform - Platform (ios or android)
+   * @param language - User's language preference
+   */
   const trackAppDownload = (appName: string, platform: 'ios' | 'android', language: string) => {
     trackEvent({
       action: 'app_download',
@@ -48,6 +77,12 @@ export const useAnalytics = () => {
     });
   };
 
+  /**
+   * Track when users view app-specific pages
+   * @param appName - Name of the app being viewed
+   * @param language - User's language preference
+   * @param deviceType - Type of device being used
+   */
   const trackAppView = (appName: string, language: string, deviceType: string) => {
     trackEvent({
       action: 'app_view',
@@ -61,6 +96,11 @@ export const useAnalytics = () => {
     });
   };
 
+  /**
+   * Track navigation menu clicks
+   * @param menuItem - Name of the menu item clicked
+   * @param language - User's language preference
+   */
   const trackMenuClick = (menuItem: string, language: string) => {
     trackEvent({
       action: 'menu_click',
@@ -73,6 +113,11 @@ export const useAnalytics = () => {
     });
   };
 
+  /**
+   * Track clicks on external links (app store, social media, etc.)
+   * @param url - URL of the external link
+   * @param linkType - Type of external link (app store, social media, etc.)
+   */
   const trackExternalLink = (url: string, linkType: string) => {
     trackEvent({
       action: 'external_link',
@@ -85,6 +130,11 @@ export const useAnalytics = () => {
     });
   };
 
+  /**
+   * Track scroll depth to measure user engagement
+   * @param scrollDepth - Percentage of page scrolled (0-100)
+   * @param pagePath - Path of the page being scrolled
+   */
   const trackScroll = (scrollDepth: number, pagePath: string) => {
     trackEvent({
       action: 'scroll',
@@ -98,6 +148,11 @@ export const useAnalytics = () => {
     });
   };
 
+  /**
+   * Track time spent on page for engagement analysis
+   * @param timeSpent - Time spent on page in seconds
+   * @param pagePath - Path of the page being tracked
+   */
   const trackTimeOnPage = (timeSpent: number, pagePath: string) => {
     trackEvent({
       action: 'time_on_page',
@@ -111,6 +166,9 @@ export const useAnalytics = () => {
     });
   };
 
+  /**
+   * Return all tracking functions for use in components
+   */
   return {
     trackEvent,
     trackPageView,

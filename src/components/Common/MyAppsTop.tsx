@@ -5,18 +5,31 @@ import MyAppsBadges from "./MyAppsBadges";
 import { isPC, myApp, isSP } from "@/utils/constants";
 import { CSSProperties } from "react";
 
+/**
+ * Interface for top section component props
+ * Defines the properties required for rendering the app top section
+ */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
-  
+
+/**
+ * Top section component for app pages
+ * Shows the main visual, app title, and download buttons
+ * Displays app icon, title, description, and download badges
+ */
+
+// Top section component for app pages
 const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => { 
 
+  // Get app data and configuration
   const appData = myApp(width, isJa)[appNumber];
   const isTitleImage = appData.text.title && appData.text.title.startsWith('/images/');
   const hasImageBackground = appData.image.background && appData.image.background.startsWith('/images/');
 
+  // Container style with dynamic background configuration
   const containerStyle: CSSProperties = {
     backgroundColor: appData.color.background,
     paddingTop: '70px',
@@ -31,12 +44,15 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
 
   return (
     <div style={containerStyle}>
+      {/* Main content container */}
       <div className={isPC(width) ? "flex_center": "block_center"}>
+        {/* Left content area with title and description */}
         <div style={{
           width: "95%", 
           maxWidth: isPC(width) ? "40%" : "95%",
           margin: isPC(width) ? "0 0 0 auto" : "0 auto"
         }}>
+          {/* App title - image or text */}
           {isTitleImage ? (
             <Image 
               src={appData.text.title} 
@@ -52,7 +68,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
               }} 
               priority={true}
             />
-          ) : (
+          ): (
             <h1 className={appData.font.title} 
               style={{
                 textAlign: "center", 
@@ -66,6 +82,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
             </h1>
           )}
           
+          {/* App icon with shadow effects */}
           <Image 
             src={appData.icon} 
             alt="icon" 
@@ -79,6 +96,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
             }}
           />
           
+          {/* App description messages */}
           {appData.text.message.map((message, i) => (
             <div className="flex_center_wrap" key={`message_${i}`}>
               {message.map((_, j) => (
@@ -97,13 +115,14 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
             </div>
           ))}
           
+          {/* Download number display */}
           {appData.text.dlnumber && (
             <div className={appData.font.header}>
               <div className="flex_center_wrap" style={{
                 color: appData.color.title,
                 listStyle: "none", 
                 fontSize: isSP(width) ? 24 : 28,
-                margin: isSP(width) ? "20px 10px 30px 10px": "20px 0 30px 0", 
+                margin: isSP(width) ? "10px 10px 10px 10px": "10px 0 10px 0", 
                 columnGap: isSP(width) ? 15 : 20,
               }}>
                 {!isJa && <li style={{ marginBottom: isSP(width) ? -8 : -10 }}>Over</li>}
@@ -117,9 +136,14 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
               </div>
             </div>
           )}
-          <MyAppsBadges appNumber={appNumber} width={width} isJa={isJa}/>
+          
+          {/* Download badges */}
+          <div style={{ marginTop: !appData.text.dlnumber ? 20 : 0 }}>
+            <MyAppsBadges appNumber={appNumber} width={width} isJa={isJa}/>
+          </div>
         </div>
         
+        {/* App screenshot image */}
         <Image 
           src={appData.image.picture!} 
           alt="pictures" 

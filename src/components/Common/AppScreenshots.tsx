@@ -3,16 +3,31 @@ import Image from 'next/image'
 import { CSSProperties, useState } from 'react'
 import { isPC, myApp, myAppNumber } from '@/utils/constants'
 
+/**
+ * Interface for app screenshots component props
+ * Defines the properties required for rendering app screenshots
+ */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
 
+/**
+ * Component for displaying app screenshots
+ * Shows a gallery of images for the app with thumbnail navigation
+ * @param appNumber - App identifier for dynamic content
+ * @param width - Screen width for responsive design
+ * @param isJa - Language preference (Japanese or English)
+ */
 const AppScreenshots: NextPage<Props> = ({appNumber, width, isJa}) => {
   const [selectedImage, setSelectedImage] = useState(0)
   
-  // 各アプリのスクリーンショット配列
+  /**
+   * Get screenshots array for each app
+   * Returns array of screenshot image URLs based on app number
+   * @returns Array of screenshot image URLs for the current app
+   */
   const getScreenshots = () => {
     const screenshots = {
       [myAppNumber.elevator]: [
@@ -65,6 +80,7 @@ const AppScreenshots: NextPage<Props> = ({appNumber, width, isJa}) => {
 
   const screenshots = getScreenshots()
   
+  // Return null if no screenshots are available for this app
   if (screenshots.length === 0) {
     return null
   }
@@ -104,6 +120,11 @@ const AppScreenshots: NextPage<Props> = ({appNumber, width, isJa}) => {
     marginTop: 20,
   }
 
+  /**
+   * Generate thumbnail style based on index
+   * @param index - Index of the thumbnail
+   * @returns CSS properties for thumbnail styling
+   */
   const thumbnailStyle = (index: number): CSSProperties => ({
     width: isPC(width) ? 80 : 60,
     height: isPC(width) ? 160 : 120,
@@ -114,6 +135,10 @@ const AppScreenshots: NextPage<Props> = ({appNumber, width, isJa}) => {
     opacity: selectedImage === index ? 1 : 0.7,
   })
 
+  /**
+   * Handle thumbnail click to change selected image
+   * @param index - Index of the clicked thumbnail
+   */
   const handleThumbnailClick = (index: number) => {
     setSelectedImage(index)
   }

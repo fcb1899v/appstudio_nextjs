@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react';
 
-// GDPRが適用される国・地域のリスト
+/**
+ * List of countries and regions where GDPR is applicable
+ * Includes EU member states, EEA member states, and the United Kingdom
+ */
 const GDPR_COUNTRIES = [
-  // EU加盟国
+  // EU member states
   'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
-  // EEA加盟国（EU + ノルウェー、アイスランド、リヒテンシュタイン）
+  // EEA member states (EU + Norway, Iceland, Liechtenstein)
   'NO', 'IS', 'LI',
-  // イギリス
+  // United Kingdom
   'GB'
 ];
 
+/**
+ * Interface for geolocation data structure
+ * Defines the structure for user location and GDPR compliance data
+ */
 interface GeoLocationData {
   country: string;
   isGDPRApplicable: boolean;
@@ -17,7 +24,13 @@ interface GeoLocationData {
   error: string | null;
 }
 
+/**
+ * Custom hook for detecting user's geographic location and GDPR compliance
+ * Uses IP geolocation API to determine user's country and GDPR applicability
+ * @returns GeoLocationData object containing country and GDPR status
+ */
 export const useGeoLocation = (): GeoLocationData => {
+  // State for storing geolocation data
   const [data, setData] = useState<GeoLocationData>({
     country: '',
     isGDPRApplicable: false,
@@ -26,12 +39,17 @@ export const useGeoLocation = (): GeoLocationData => {
   });
 
   useEffect(() => {
+    /**
+     * Function to detect user's location using IP geolocation
+     * Fetches location data from IP Geolocation API and caches results
+     */
     const detectLocation = async () => {
       try {
-        // まずlocalStorageで保存された判定結果を確認
+        // First check for saved detection results in localStorage
         const savedCountry = localStorage.getItem('user_country');
         const savedGDPRStatus = localStorage.getItem('gdpr_applicable');
         
+        // Use saved data if available to avoid unnecessary API calls
         if (savedCountry && savedGDPRStatus) {
           setData({
             country: savedCountry,
@@ -42,14 +60,15 @@ export const useGeoLocation = (): GeoLocationData => {
           return;
         }
 
-        // IP Geolocation APIを使用して国を判定
+        // Use IP Geolocation API to determine country
         const response = await fetch('https://ipapi.co/json/');
         const geoData = await response.json();
         
         const country = geoData.country_code || '';
         const isGDPRApplicable = GDPR_COUNTRIES.includes(country);
         
-        // 結果をlocalStorageに保存（24時間有効）
+        // Save results to localStorage (valid for 24 hours)
+        // This reduces API calls and improves performance
         localStorage.setItem('user_country', country);
         localStorage.setItem('gdpr_applicable', isGDPRApplicable.toString());
         localStorage.setItem('geo_detection_time', Date.now().toString());
@@ -61,7 +80,8 @@ export const useGeoLocation = (): GeoLocationData => {
           error: null
         });
       } catch {
-        // エラーハンドリング
+        // Error handling - default to Japan if detection fails
+        // This ensures the app continues to work even if geolocation fails
         setData({
           country: 'JP',
           isGDPRApplicable: false,
@@ -73,7 +93,8 @@ export const useGeoLocation = (): GeoLocationData => {
       }
     };
 
-    // 24時間経過した場合は再判定
+    // Re-detect location if 24 hours have passed since last detection
+    // This ensures location data stays relatively current
     const lastDetection = localStorage.getItem('geo_detection_time');
     const now = Date.now();
     const oneDay = 24 * 60 * 60 * 1000;
@@ -81,7 +102,8 @@ export const useGeoLocation = (): GeoLocationData => {
     if (!lastDetection || (now - parseInt(lastDetection)) > oneDay) {
       detectLocation();
     } else {
-      // 保存されたデータを使用
+      // Use saved data if within 24-hour window
+      // This avoids unnecessary API calls for recent detections
       const savedCountry = localStorage.getItem('user_country') || 'JP';
       const savedGDPRStatus = localStorage.getItem('gdpr_applicable') === 'true';
       

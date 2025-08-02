@@ -6,14 +6,24 @@ import { useEffect, useState } from 'react';
 import { AppProps } from '@/types/common';
 import StructuredData from './StructuredData';
 
+/**
+ * Head component for managing page metadata and external scripts
+ * Handles SEO, social media tags, analytics, and performance monitoring
+ * for all app pages. Provides comprehensive meta information including
+ * Open Graph tags, Twitter cards, favicons, and analytics integration.
+ * Manages cookie consent and conditional script loading for optimal performance.
+ */
+
+// Head component for managing page metadata and external scripts
 const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
+  // Get app data and configuration
   const appData = myApp(width, isJa)[appNumber];
   const { text, folder, color } = appData;
   const title = text.title;
   const description = text.message.map((list) => list.join('')).join(' ');
   const urlHeader = "https://nakajimamasao-appstudio.web.app";
   
-  // 環境変数の型安全な取得
+  // Environment variables for external services
   const client = process.env.NEXT_PUBLIC_ADSENSE || "";
   const adsenseLink = client ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}` : "";
 
@@ -21,15 +31,17 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
   const COOKIEBOT_ID = process.env.NEXT_PUBLIC_COOKIEBOT_ID || "";
 
+  // Cookie consent state management
   const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
+    // Check for existing cookie consent
     const saved = localStorage.getItem("cookie_consent");
     if (saved === 'accepted') {
       setHasConsent(true);
     }
 
-    // パフォーマンス監視
+    // Performance monitoring setup
     if (typeof window !== 'undefined' && 'performance' in window) {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
@@ -53,8 +65,9 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
 
   return (
     <>
+      {/* Page head with meta information and SEO */}
       <Head>
-        {/* 基本メタ情報 */}
+        {/* Basic meta information */}
         <title>{title}</title>
         <meta httpEquiv="x-ua-compatible" content="IE=edge,chrome=1" />
         <meta name="description" content={description} />
@@ -63,7 +76,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         <meta name="author" content="2023 Nakajima Masao" />
         <meta name="keywords" content="app, studio, nakajima, masao, レッツ・エレベーター, LETS ELEVATOR, 中島, 正雄" />
 
-        {/* Open Graph & Twitter */}
+        {/* Open Graph and Twitter meta tags */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:site_name" content={title} />
@@ -79,7 +92,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         <meta name="twitter:creator" content="@Nakajima_Masao" />
         <meta name="twitter:image" content={`/images/${folder}/introduction_${isJa ? "ja" : "en"}.png`} />
 
-        {/* Favicon & Apple Touch Icons */}
+        {/* Favicon and Apple touch icons */}
         <link rel="icon" type="image/x-icon" href={`/images/${folder}/favicons/favicon.ico`} />
         <link rel="icon" type="image/png" sizes="16x16" href={`/images/${folder}/favicons/icon-16x16.png`} />
         <link rel="icon" type="image/png" sizes="32x32" href={`/images/${folder}/favicons/icon-32x32.png`} />
@@ -102,13 +115,13 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         <meta name="msapplication-TileImage" content={`/images/${folder}/favicons/site-tile-150x150.png`} />
         <meta name="theme-color" content={color.header} />
 
-        {/* LCP最適化 - 重要な画像のプリロード */}
+        {/* LCP optimization - preload important images */}
         {appNumber === 0 && (
           <link rel="preload" as="image" href="/images/appstudio/icon.png" />
         )}
         <link rel="preload" as="image" href={`/images/${folder}/icon.png`} />
 
-        {/* 構造化データ */}
+        {/* Structured data for SEO */}
         <StructuredData 
           appNumber={appNumber} 
           width={width} 
@@ -117,7 +130,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         />
       </Head>
 
-      {/* Ads by Google - 遅延読み込み */}
+      {/* Google AdSense with lazy loading */}
       {client && (
         <Script 
           async 
@@ -125,7 +138,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
           crossOrigin="anonymous" 
           strategy="lazyOnload"
           onLoad={() => {
-            // 広告が読み込まれた後の処理
+            // Track ad loading completion
             if (typeof window !== 'undefined' && window.gtag) {
               window.gtag('event', 'adsense_loaded', {
                 event_category: 'performance',
@@ -136,7 +149,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         />
       )}
 
-      {/* Google Analyticsのスクリプトをnext/scriptで追加 */}
+      {/* Google Analytics with optimized configuration */}
       {GA_TRACKING_ID && (
         <>
           <Script
@@ -153,16 +166,16 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
               window.gtag = gtag;
               gtag('js', new Date());
               
-              // 最適化された設定
+              // Optimized configuration
               gtag('config', '${GA_TRACKING_ID}', {
                 page_title: '${title}',
                 page_location: window.location.href,
                 page_path: window.location.pathname,
-                // パフォーマンス最適化設定
+                // Performance optimization settings
                 anonymize_ip: true,
                 allow_google_signals: false,
                 allow_ad_personalization_signals: false,
-                // 不要な機能を無効化
+                // Disable unnecessary features
                 send_page_view: false,
                 custom_map: {
                   'custom_parameter_1': 'app_name',
@@ -171,7 +184,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
                 }
               });
               
-              // カスタムページビュー（必要な時だけ送信）
+              // Custom page view (only when needed)
               gtag('event', 'page_view', {
                 app_name: '${appData.app}',
                 language: '${isJa ? 'ja' : 'en'}',
@@ -185,7 +198,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         </>
       )}
 
-      {/* Google Tag Manager - 条件付き読み込み */}
+      {/* Google Tag Manager with conditional loading */}
       {hasConsent && GTM_ID && (
         <Script
           id="google-tag-manager"
@@ -205,6 +218,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         />
       )}
 
+      {/* Cookiebot consent management */}
       <Script 
         id="Cookiebot" 
         src="https://consent.cookiebot.com/uc.js" 

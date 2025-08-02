@@ -1,10 +1,22 @@
 import { AppProps } from '@/types/common';
 import { myApp } from '@/utils/constants';
 
+/**
+ * Interface for structured data component props
+ * Extends AppProps and adds page type for SEO optimization
+ */
 interface StructuredDataProps extends AppProps {
   pageType?: 'website' | 'article' | 'product';
 }
 
+/**
+ * Component for generating structured data (JSON-LD) for SEO
+ * Creates schema.org markup for better search engine understanding
+ * @param appNumber - App identifier for dynamic content
+ * @param width - Screen width for responsive design
+ * @param isJa - Language preference (Japanese or English)
+ * @param pageType - Type of page for appropriate schema markup
+ */
 const StructuredData: React.FC<StructuredDataProps> = ({ 
   appNumber, 
   width, 
@@ -18,7 +30,7 @@ const StructuredData: React.FC<StructuredDataProps> = ({
   const urlHeader = "https://nakajimamasao-appstudio.web.app";
   const currentUrl = `${urlHeader}/${folder}`;
 
-  // 基本のWebSite構造化データ
+  // Basic WebSite structured data for general pages
   const websiteStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -41,7 +53,7 @@ const StructuredData: React.FC<StructuredDataProps> = ({
     }
   };
 
-  // アプリページ用のSoftwareApplication構造化データ
+  // SoftwareApplication structured data for app pages
   const softwareApplicationStructuredData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -69,7 +81,7 @@ const StructuredData: React.FC<StructuredDataProps> = ({
     }
   };
 
-  // ページタイプに応じて構造化データを選択
+  // Select structured data based on page type
   const structuredData = pageType === 'product' ? softwareApplicationStructuredData : websiteStructuredData;
 
   return (

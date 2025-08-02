@@ -4,29 +4,46 @@ import React, { useState, useEffect, CSSProperties } from 'react';
 import { cookieConsentMessage, cookieLabel, cookiePolicyLink } from '@/utils/constants';
 import { useGeoLocation } from '@/hooks/useGeoLocation';
 
+/**
+ * Interface for cookie consent banner component props
+ * Defines the language preference for the banner
+ */
 interface Props {
   isJa: boolean
 }
 
+/**
+ * Interface for cookie consent preferences
+ * Defines the structure for user consent to different cookie types
+ */
 interface CookieConsent {
   analytics: boolean;
   marketing: boolean;
   necessary: boolean;
 }
 
+/**
+ * Default consent settings - necessary cookies are always enabled
+ * Provides initial state for cookie consent preferences
+ */
 const DEFAULT_CONSENT: CookieConsent = {
   analytics: false,
   marketing: false,
   necessary: true,
 };
 
+/**
+ * Cookie consent banner component
+ * Displays GDPR-compliant cookie consent banner for users in applicable regions
+ * @param isJa - Language preference (Japanese or English)
+ */
 const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
   const [consent, setConsent] = useState<CookieConsent>(DEFAULT_CONSENT);
   const [open, setOpen] = useState(false);
   const { isGDPRApplicable, isLoading } = useGeoLocation();
 
   useEffect(() => {
-    // GDPRが適用されない国・地域の場合は表示しない
+    // Don't show banner for countries/regions where GDPR is not applicable
     if (!isLoading && !isGDPRApplicable) {
       return;
     }
@@ -37,7 +54,7 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
         const parsedConsent = JSON.parse(savedConsent);
         setConsent(parsedConsent);
       } catch {
-        // 古い形式の同意データがある場合は新しい形式に変換
+        // Convert legacy consent format to new format
         if (savedConsent === 'accepted') {
           const newConsent = { ...DEFAULT_CONSENT, analytics: true, marketing: true };
           setConsent(newConsent);
@@ -49,6 +66,10 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     }
   }, [isGDPRApplicable, isLoading]);
   
+  /**
+   * Accept all cookie types (analytics, marketing, necessary)
+   * Enables all cookie types and saves to localStorage
+   */
   const handleAcceptAll = () => {
     const newConsent = { ...DEFAULT_CONSENT, analytics: true, marketing: true };
     setConsent(newConsent);
@@ -56,6 +77,10 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     localStorage.setItem('cookie_consent', JSON.stringify(newConsent));
   };
 
+  /**
+   * Accept only necessary cookies
+   * Enables only necessary cookies and saves to localStorage
+   */
   const handleAcceptNecessary = () => {
     const newConsent = { ...DEFAULT_CONSENT };
     setConsent(newConsent);
@@ -63,6 +88,10 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     localStorage.setItem('cookie_consent', JSON.stringify(newConsent));
   };
 
+  /**
+   * Update specific consent preferences
+   * @param newConsent - Partial consent object to update
+   */
   const handleUpdateConsent = (newConsent: Partial<CookieConsent>) => {
     const updatedConsent = { ...consent, ...newConsent };
     setConsent(updatedConsent);
@@ -70,7 +99,7 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     localStorage.setItem('cookie_consent', JSON.stringify(updatedConsent));
   };
    
-  // GDPRが適用されない国・地域、またはローディング中、または既に同意済みの場合は表示しない
+  // Don't show banner if GDPR is not applicable, loading, or already consented
   if (!isGDPRApplicable || isLoading || !open) return null;
 
   const bannerStyle: CSSProperties = {

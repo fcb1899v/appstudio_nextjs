@@ -1,5 +1,9 @@
 import { CookieConsent } from '@/hooks/useCookieConsent';
 
+/**
+ * Global type declarations for Google Analytics and Google Tag Manager
+ * Extends the Window interface to include gtag and dataLayer properties
+ */
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
@@ -7,33 +11,45 @@ declare global {
   }
 }
 
+/**
+ * Environment variables for Google Analytics and Google Tag Manager IDs
+ * These are loaded from environment variables and used for tracking configuration
+ */
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || "";
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
 
-// Google Analyticsの初期化
+/**
+ * Initialize Google Analytics with user consent
+ * Sets up dataLayer and configures GA with privacy settings
+ * @param consent - User's cookie consent preferences
+ */
 export const initializeGA = (consent: CookieConsent) => {
   if (!GA_TRACKING_ID || !consent.analytics) {
     return;
   }
 
-  // dataLayerの初期化
+  // Initialize dataLayer array for Google Tag Manager
   window.dataLayer = window.dataLayer || [];
   
-  // gtag関数の定義
+  // Define gtag function for Google Analytics
   window.gtag = function() {
     window.dataLayer.push(arguments);
   };
 
-  // GAの初期化
+  // Initialize Google Analytics with configuration
   window.gtag('js', new Date());
   window.gtag('config', GA_TRACKING_ID, {
     page_path: window.location.pathname,
-    anonymize_ip: true, // IPアドレスの匿名化
-    cookie_flags: 'SameSite=None;Secure', // セキュアなCookie設定
+    anonymize_ip: true, // Anonymize IP addresses for privacy
+    cookie_flags: 'SameSite=None;Secure', // Secure cookie settings
   });
 };
 
-// ページビューの追跡
+/**
+ * Track page views in Google Analytics
+ * @param url - The URL of the page being tracked
+ * @param consent - User's cookie consent preferences
+ */
 export const pageview = (url: string, consent: CookieConsent): void => {
   if (!GA_TRACKING_ID || !consent.analytics) {
     return;
@@ -45,7 +61,15 @@ export const pageview = (url: string, consent: CookieConsent): void => {
   });
 };
 
-// イベントの追跡
+/**
+ * Track custom events in Google Analytics
+ * @param action - The action being tracked
+ * @param category - The category of the event
+ * @param label - The label for the event
+ * @param value - Optional numeric value for the event
+ * @param consent - User's cookie consent preferences
+ * @param parameters - Additional parameters to include with the event
+ */
 export const event = ({
   action,
   category,
@@ -74,7 +98,12 @@ export const event = ({
   });
 };
 
-// カスタムイベントの追跡
+/**
+ * Track custom events with flexible parameters
+ * @param eventName - The name of the event to track
+ * @param parameters - Parameters to include with the event
+ * @param consent - User's cookie consent preferences
+ */
 export const trackCustomEvent = ({
   eventName,
   parameters,
@@ -94,14 +123,18 @@ export const trackCustomEvent = ({
   });
 };
 
-// 同意状態に基づくGAの制御
+/**
+ * Handle consent changes for Google Analytics
+ * Initializes GA when consent is given, removes cookies when consent is withdrawn
+ * @param consent - User's cookie consent preferences
+ */
 export const handleConsentChange = (consent: CookieConsent) => {
   if (consent.analytics) {
     initializeGA(consent);
   } else {
-    // 同意が撤回された場合、既存のCookieを削除
+    // Remove existing cookies when consent is withdrawn
     if (typeof window !== 'undefined') {
-      // GAのCookieを削除
+      // Remove Google Analytics cookies
       document.cookie.split(";").forEach((c) => {
         const eqPos = c.indexOf("=");
         const name = eqPos > -1 ? c.substr(0, eqPos) : c;
