@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { CSSProperties, useEffect, useState} from 'react';
+import { CSSProperties, useEffect, useState, type ChangeEvent, type FormEvent} from 'react';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Button, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import '@/app/globals.css';
@@ -47,11 +47,11 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
    * Form input change handlers
    * Update state when form fields change
    */
-  const handleFamilyNameChange = (e: React.ChangeEvent<HTMLInputElement>) => { setName(e.target.value); };
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); };
+  const handleFamilyNameChange = (e: ChangeEvent<HTMLInputElement>) => { setName(e.target.value); };
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAppChange = (event: any) => { setSelectedApp(event.target.value); };
-  const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => { setMessage(e.target.value); };
+  const handleMessageChange = (e: ChangeEvent<HTMLInputElement>) => { setMessage(e.target.value); };
 
   /**
    * Effect to handle form validation and state updates
@@ -91,7 +91,7 @@ const ContactBodyInner: NextPage<Props> = ({isJa}) => {
    * Handle form submission with reCAPTCHA validation
    * @param e - Form submission event
    */
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (buttonColor[1] == "black") {
       if (!executeRecaptcha || typeof executeRecaptcha !== 'function') {

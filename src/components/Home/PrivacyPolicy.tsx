@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 import '@/app/globals.css';
 import { isSP, 
   termsCreatedDate, termsUpdatedDate, termsLabel, termsTitle, termsMessage, 

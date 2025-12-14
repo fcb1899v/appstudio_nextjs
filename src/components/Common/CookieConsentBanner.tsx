@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import React, { useState, useEffect, CSSProperties } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
 import { cookieConsentMessage, cookieLabel, cookiePolicyLink } from '@/utils/constants';
 import { useGeoLocation } from '@/hooks/useGeoLocation';
 

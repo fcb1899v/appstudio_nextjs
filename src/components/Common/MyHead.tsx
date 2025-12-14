@@ -132,11 +132,10 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
 
       {/* Google AdSense with lazy loading */}
       {client && (
-        <Script 
+        <script 
           async 
           src={adsenseLink} 
-          crossOrigin="anonymous" 
-          strategy="lazyOnload"
+          crossOrigin="anonymous"
           onLoad={() => {
             // Track ad loading completion
             if (typeof window !== 'undefined' && window.gtag) {
@@ -218,14 +217,16 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         />
       )}
 
-      {/* Cookiebot consent management */}
-      <Script 
-        id="Cookiebot" 
-        src="https://consent.cookiebot.com/uc.js" 
-        data-cbid={COOKIEBOT_ID}
-        data-blockingmode="auto" 
-        type="text/javascript"
-      />
+      {/* Cookiebot consent management - only load in production */}
+      {process.env.NODE_ENV !== 'development' && COOKIEBOT_ID && (
+        <Script 
+          id="Cookiebot" 
+          src="https://consent.cookiebot.com/uc.js" 
+          data-cbid={COOKIEBOT_ID}
+          data-blockingmode="auto" 
+          type="text/javascript"
+        />
+      )}
     </>
   );
 };

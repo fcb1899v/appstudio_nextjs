@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, {CSSProperties} from "react"
+import {CSSProperties} from "react"
 import Link from 'next/link';
 import Image from 'next/image';
 import { isPC, isSP, myMenu, mySNS } from "@/utils/constants";
@@ -53,8 +53,9 @@ const MyFooter: NextPage<Props> = ({width, isJa, menuNumber}) => {
   // Social media icon style
   const snsStyle: CSSProperties = {
     width: 35,
-    height: "auto",
+    height: 35,
     margin: "30px 15px 15px 15px",
+    objectFit: "contain",
   }
   
   // Trademark text style with responsive font size

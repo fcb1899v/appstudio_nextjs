@@ -88,6 +88,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
             alt="icon" 
             width={100} 
             height={100} 
+            priority={true}
             style={{
               margin: "30px auto 25px auto", 
               borderRadius: 22.5, 
@@ -149,6 +150,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
           alt="pictures" 
           width={1080} 
           height={1080} 
+          priority={true}
           style={{
             width: "95%", 
             maxWidth: isPC(width) ? "40%" : "95%",

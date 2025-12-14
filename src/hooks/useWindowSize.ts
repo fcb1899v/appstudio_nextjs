@@ -36,14 +36,14 @@ export const useWindowSize = () => {
       });
     };
     
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize);
+    // Add event listener for window resize with passive option
+    window.addEventListener("resize", handleResize, { passive: true });
     
     // Set initial window size
     handleResize();
     
     // Cleanup event listener on unmount
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize, { passive: true } as EventListenerOptions);
   }, []);
 
   return { windowSize, isClient };

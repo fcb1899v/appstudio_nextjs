@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import React, {CSSProperties, useState} from "react"
+import {CSSProperties, useState} from "react"
 import Link from "next/link";
 import Image from "next/image";
 import MyFooter from "./MyFooter";

@@ -1,5 +1,6 @@
 import { AppProps } from '@/types/common';
 import { myApp } from '@/utils/constants';
+import type { FC } from 'react';
 
 /**
  * Interface for structured data component props
@@ -17,7 +18,7 @@ interface StructuredDataProps extends AppProps {
  * @param isJa - Language preference (Japanese or English)
  * @param pageType - Type of page for appropriate schema markup
  */
-const StructuredData: React.FC<StructuredDataProps> = ({ 
+const StructuredData: FC<StructuredDataProps> = ({ 
   appNumber, 
   width, 
   isJa, 

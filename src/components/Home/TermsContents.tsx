@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { CSSProperties, useEffect } from 'react';
+import { CSSProperties, useEffect, Fragment, type ReactNode } from 'react';
 import '@/app/globals.css';
 import Link from 'next/link';
 import { termsLabel, termsCreatedDate, termsUpdatedDate, termsTitle, termsMessage, termsLinkWords,
@@ -118,7 +118,7 @@ const TermsContents: NextPage<Props> = ({isJa}) => {
  * @param linkWords - Array of words and their corresponding href links
  * @returns React node with links embedded in text
  */
-function transformTextWithLinks(text: string, linkWords: {word: string; href: string;}[]): React.ReactNode {
+function transformTextWithLinks(text: string, linkWords: {word: string; href: string;}[]): ReactNode {
   /**
    * Escape special characters in regular expressions
    * @param str - String to escape
@@ -153,7 +153,7 @@ function transformTextWithLinks(text: string, linkWords: {word: string; href: st
       );
     } else {
       // Otherwise, return the text as normal text
-      return <React.Fragment key={index}>{part}</React.Fragment>;
+      return <Fragment key={index}>{part}</Fragment>;
     }
   });
 }

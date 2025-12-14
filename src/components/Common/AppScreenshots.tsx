@@ -167,6 +167,7 @@ const AppScreenshots: NextPage<Props> = ({appNumber, width, isJa}) => {
             alt={`Thumbnail ${index + 1}`}
             width={80}
             height={160}
+            priority={index === 0}
             style={thumbnailStyle(index)}
             onClick={() => handleThumbnailClick(index)}
             className="hover:scale-110 transition-transform duration-200"

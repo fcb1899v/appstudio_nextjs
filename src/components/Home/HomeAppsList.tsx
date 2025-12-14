@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import React, { useState } from 'react'
+import { useState, type MouseEvent } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { isPC, isSP, myApp, myAppNumber, myBadge} from '@/utils/constants'
@@ -30,7 +30,7 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
    * @param number - App number to expand
    * @param event - Mouse event for positioning
    */
-  const handleTap = (number: number, event: React.MouseEvent<HTMLDivElement>) => {
+  const handleTap = (number: number, event: MouseEvent<HTMLDivElement>) => {
     const touchY = isSP(width) ? event.clientY - 130: 110;
     const expandHeight = 0.5474 * width + 212.59;
     const maxExpandY = height - expandHeight - 30;

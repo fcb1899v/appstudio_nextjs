@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type FC } from 'react';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
 /**
@@ -20,7 +20,7 @@ interface AnalyticsTrackerProps {
  */
 
 // Analytics tracking component for user behavior monitoring
-const AnalyticsTracker: React.FC<AnalyticsTrackerProps> = ({
+const AnalyticsTracker: FC<AnalyticsTrackerProps> = ({
   pageTitle,
   pagePath,
   appName,
@@ -70,13 +70,13 @@ const AnalyticsTracker: React.FC<AnalyticsTrackerProps> = ({
       trackTimeOnPage(timeSpent, pagePath);
     };
 
-    // Add event listeners for tracking
-    window.addEventListener('scroll', handleScroll);
+    // Add event listeners for tracking with passive option for scroll
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('beforeunload', handleBeforeUnload);
 
     // Cleanup function to remove listeners and track final time
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll, { passive: true } as EventListenerOptions);
       window.removeEventListener('beforeunload', handleBeforeUnload);
       
       // Track final time spent on page

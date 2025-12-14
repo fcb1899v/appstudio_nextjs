@@ -1,6 +1,5 @@
 "use client";
 import type { NextPage } from 'next'
-import React from 'react';
 import '@/app/globals.css';
 import MyHead from '@/components/Common/MyHead';
 import MySplash from '@/components/Common/MySplash';

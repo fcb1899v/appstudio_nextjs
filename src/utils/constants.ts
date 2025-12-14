@@ -459,15 +459,15 @@ export const myApp = (width: number, isJa: boolean) => [
       header: (isJa && width < 450) ? "マイ乗換ルート/メーカー": isJa ? "マイ乗換ルートメーカー": "My Transit Makers",
       menu: isJa ? "マイ乗換ルートメーカー": "My Transit Makers",
       title: isJa ? "マイ乗換ルートメーカー": "My Transit Makers",
-      message: isJa ? [
-        ["毎日の通勤通学に便利な", "自分だけのための", "乗換案内作成アプリ"]
+      message: isJa ? [[
+        "毎日の通勤・通学を快適に"
+      ]]: [[
+        "Make your daily commute comfortable!"
+      ]],
+      features: isJa ? [[
+        "出発までのカウントダウン","２ルートの同時比較","帰宅/外出のルート切替", "時刻表の自動生成"],
       ]: [[
-        "A personalized transit guide app", "for convenient daily commuting"]
-      ],
-      features: isJa ? [
-        ["出発までのカウントダウン","２ルートの同時比較","帰宅/外出のルート切替", "平日/土日の時刻表切替"],
-      ]: [
-        ["Departure Countdown", "Dual Route Comparison", "Home/Out Route Toggle", "Weekday/Weekend Timetable Toggle"],
+        "Departure Countdown", "Dual Route Comparison", "Home/Out Route Toggle", "Auto generate timetable"],
       ],
     },
     font: {

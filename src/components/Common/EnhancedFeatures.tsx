@@ -260,6 +260,7 @@ const EnhancedFeatures: NextPage<Props> = ({appNumber, width, isJa}) => {
                 alt={feature.title}
                 width={200}
                 height={150}
+                priority={index === 0}
                 style={featureImageStyle}
                 className="hover:scale-110 transition-transform duration-300"
               />

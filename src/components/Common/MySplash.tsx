@@ -1,6 +1,6 @@
 "use client"
 import { NextPage } from "next";
-import React, { useState, useEffect, CSSProperties } from "react"
+import { useState, useEffect, CSSProperties } from "react"
 import Image from "next/image"
 import { myApp, myAppNumber } from "@/utils/constants";
 
