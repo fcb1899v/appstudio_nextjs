@@ -42,7 +42,7 @@ export interface AppImage {
   picture?: string;
   pictures?: string;
   features: string[];
-  howtouse: string;
+  howtouse: string | string[];
 }
 
 /**

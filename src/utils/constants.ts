@@ -484,9 +484,9 @@ export const myApp = (width: number, isJa: boolean) => [
       message: 18,  
     },
     image: {
-      picture: `/images/transit/pictures_${isJa ? "ja": "en"}.png`,
-      features: [`/images/transit/screenshots_${isJa ? "ja": "en"}.png`],
-      howtouse: "",  
+      picture: `/images/transit/pictures_ja.png`,
+      features: [`/images/transit/screenshots1_ja.png`, `/images/transit/screenshots2_ja.png`],
+      howtouse: ["/images/transit/howtouse1_ja.mp4", "/images/transit/howtouse2_ja.mp4", "/images/transit/howtouse3_ja.mp4"],  
     },
     color: {
       header: "var(--transitBlue)",

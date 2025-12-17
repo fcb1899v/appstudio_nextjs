@@ -76,37 +76,69 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
     lineHeight: 0.0,
   }
   
-  // Image style with responsive sizing and contain object fit
+  // Determine if we should use horizontal layout (PC with multiple images)
+  const useHorizontalLayout = !isSP(width) && images.length > 1;
+
+  // Container style for multiple images - horizontal layout on PC, vertical on mobile
+  const imagesContainerStyle: CSSProperties = {
+    display: "flex",
+    flexDirection: useHorizontalLayout ? "row" : "column",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: isSP(width) ? "10px" : "20px",
+    padding: isSP(width) ? "0 10px" : "0 20px",
+    maxWidth: useHorizontalLayout ? 1000 : "100%",
+    margin: "0 auto",
+  }
+
+  // Image style with responsive sizing and contain object fit (same maxHeight as MyAppsHowtoUse)
   const imageStyle: CSSProperties = {
-    width: "95%", 
-    maxWidth: 800, 
+    maxWidth: useHorizontalLayout ? `calc((100% - ${(images.length - 1) * 20}px) / ${images.length})` : (isSP(width) ? "95%" : 800),
+    width: useHorizontalLayout ? "auto" : (isSP(width) ? "100%" : "95%"),
     maxHeight: isSP(width) ? "400px" : "600px",
     height: "auto",
-    objectFit: "contain" as const, 
-    margin: "0px auto",
+    objectFit: "contain" as const,
+    padding: isSP(width) ? "5px 0" : "10px 0",
+    display: "block",
+    flex: useHorizontalLayout ? "1 1 0" : "none",
+    minWidth: useHorizontalLayout ? "200px" : "auto",
   }
+
+  // Get all messages from the first message array (or combine all if needed)
+  const allMessages = messages[0] || [];
 
   return (
     <div className={isFullWidth ? "" : "container"} style={explainStyle}>
       {/* Features section title */}
       <h2 className={titleFont} style={titleStyle}>{title}</h2>
       
-      {/* Features content with images and descriptions */}
-      {images.map((image, i) => (
-        <div key={`image_${i}`}>
-          {/* Feature descriptions */}
-          <div className="flex_center_wrap" style={messagesStyle}>
-            {messages[i].map((message, j) => (
-              <div className="flex_center_wrap" key={`message_${j}`} style={messageStyle}>
-                <p className={messageFont}>{message} </p>
-              </div>
-            ))}
-          </div>
-          
-          {/* Feature image */}
-          <Image src={image} alt={`features_${appNumber}`} width={1920} height={1080} priority={true} style={imageStyle}/>
+      {/* All feature descriptions */}
+      {allMessages.length > 0 && (
+        <div className="flex_center_wrap" style={messagesStyle}>
+          {allMessages.map((message, j) => (
+            <div className="flex_center_wrap" key={`message_${j}`} style={messageStyle}>
+              <p className={messageFont}>{message} </p>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
+      
+      {/* Container for multiple images */}
+      <div style={imagesContainerStyle}>
+        {/* All feature images */}
+        {images.map((image, i) => (
+          <Image 
+            key={`image_${i}`}
+            src={image} 
+            alt={`features_${appNumber}_${i + 1}`} 
+            width={1920} 
+            height={1080} 
+            priority={i === 0} 
+            style={imageStyle}
+          />
+        ))}
+      </div>
     </div>
   )
 }

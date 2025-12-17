@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Image from 'next/image'
-import { CSSProperties } from 'react'
+import { CSSProperties, useRef, useEffect } from 'react'
 import { myApp, isSP } from '@/utils/constants'
 
 /**
@@ -26,10 +26,30 @@ const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => 
   // Get localized title and app configuration
   const title = isJa ? "＜使い方＞": "HOW TO USE";
   const titleFont = myApp(width, isJa)[appNumber].font.title;
-  const image = myApp(width, isJa)[appNumber].image.howtouse;
+  const howtouse = myApp(width, isJa)[appNumber].image.howtouse;
 
-  // Hide component if how to use image is not available
-  if (!image || image === "" || image === "/") {
+  // Convert howtouse to array if it's a string
+  const howtouseArray = Array.isArray(howtouse) ? howtouse : (howtouse ? [howtouse] : []);
+
+  // Refs for video elements to control playback
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Initialize video refs array
+  useEffect(() => {
+    videoRefs.current = videoRefs.current.slice(0, howtouseArray.length);
+  }, [howtouseArray.length]);
+
+  // Handle video play event - stop other videos when one starts playing
+  const handleVideoPlay = (currentIndex: number) => {
+    videoRefs.current.forEach((video, index) => {
+      if (video && index !== currentIndex && !video.paused) {
+        video.pause();
+      }
+    });
+  };
+
+  // Hide component if how to use content is not available
+  if (!howtouse || howtouse === "" || howtouse === "/" || howtouseArray.length === 0) {
     return <div style={{ height: isSP(width) ? "30px" : "40px" }}></div>;
   }
 
@@ -49,14 +69,39 @@ const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => 
     margin: "20px 0",
   };
   
-  // Image style with responsive sizing and contain object fit
-  const imageStyle: CSSProperties = {
-    maxWidth: isSP(width) ? "95%" : maxWidth, 
-    width: "100%",
+  // Determine if we should use horizontal layout (PC with multiple items)
+  const useHorizontalLayout = !isSP(width) && howtouseArray.length > 1;
+
+  // Container style for multiple media items - horizontal layout on PC, vertical on mobile
+  const mediaContainerStyle: CSSProperties = {
+    display: "flex",
+    flexDirection: useHorizontalLayout ? "row" : "column",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: isSP(width) ? "10px" : "20px",
+    padding: isSP(width) ? "0 10px" : "0 20px",
+    maxWidth: useHorizontalLayout ? maxWidth : "100%",
+    margin: "0 auto",
+  }
+
+  // Image/Video style with responsive sizing and contain object fit
+  const mediaStyle: CSSProperties = {
+    maxWidth: useHorizontalLayout ? `calc((100% - ${(howtouseArray.length - 1) * 20}px) / ${howtouseArray.length})` : (isSP(width) ? "95%" : maxWidth),
+    width: useHorizontalLayout ? "auto" : (isSP(width) ? "100%" : "100%"),
     maxHeight: isSP(width) ? "400px" : "600px",
     objectFit: "contain" as const,
-    margin: "0 auto",
     padding: isSP(width) ? "5px 0" : "10px 0",
+    display: "block",
+    flex: useHorizontalLayout ? "1 1 0" : "none",
+    minWidth: useHorizontalLayout ? "200px" : "auto",
+  }
+
+  // Check if file is a video by extension
+  const isVideo = (url: string) => {
+    return url.toLowerCase().endsWith('.mp4') || 
+           url.toLowerCase().endsWith('.webm') || 
+           url.toLowerCase().endsWith('.ogg');
   }
 
   return (
@@ -64,8 +109,42 @@ const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => 
       {/* How to use title */}
       <h2 className={titleFont} style={titleStyle}>{title}</h2>
       
-      {/* How to use instruction image */}
-      <Image src={image} alt={`howtouse`} width={1920} height={1080} priority={true} className="image" style={imageStyle}/>
+      {/* Container for multiple media items */}
+      <div style={mediaContainerStyle}>
+        {/* How to use instruction media (image or video) */}
+        {howtouseArray.map((item, index) => {
+          if (isVideo(item)) {
+            return (
+              <video
+                key={index}
+                ref={(el) => {
+                  videoRefs.current[index] = el;
+                }}
+                src={item}
+                controls
+                style={mediaStyle}
+                className="howtouse-video"
+                onPlay={() => handleVideoPlay(index)}
+              >
+                Your browser does not support the video tag.
+              </video>
+            );
+          } else {
+            return (
+              <Image
+                key={index}
+                src={item}
+                alt={`howtouse ${index + 1}`}
+                width={1920}
+                height={1080}
+                priority={index === 0}
+                className="image"
+                style={mediaStyle}
+              />
+            );
+          }
+        })}
+      </div>
     </div>
   )
 }

@@ -33,8 +33,17 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
 
   // Cookie consent state management
   const [hasConsent, setHasConsent] = useState(false);
+  const [isAuthorizedDomain, setIsAuthorizedDomain] = useState(true);
 
   useEffect(() => {
+    // Check if current domain is authorized for Cookiebot
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      // Skip Cookiebot for preview domains (.web.app) and localhost
+      const isPreviewDomain = hostname.includes('.web.app') || hostname === 'localhost' || hostname === '127.0.0.1';
+      setIsAuthorizedDomain(!isPreviewDomain);
+    }
+
     // Check for existing cookie consent
     const saved = localStorage.getItem("cookie_consent");
     if (saved === 'accepted') {
@@ -217,8 +226,8 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         />
       )}
 
-      {/* Cookiebot consent management - only load in production */}
-      {process.env.NODE_ENV !== 'development' && COOKIEBOT_ID && (
+      {/* Cookiebot consent management - only load in production on authorized domains */}
+      {process.env.NODE_ENV !== 'development' && COOKIEBOT_ID && isAuthorizedDomain && (
         <Script 
           id="Cookiebot" 
           src="https://consent.cookiebot.com/uc.js" 
