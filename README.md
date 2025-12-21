@@ -4,16 +4,18 @@ A modern Next.js-based website providing landing pages for multiple educational 
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS, CSS Modules, Material-UI
+- **Framework**: Next.js 16.0.10 (App Router)
+- **Language**: TypeScript 5.8.3
+- **React**: React 19.1.0 with automatic JSX runtime
+- **Styling**: Tailwind CSS 4.1.11, CSS Modules, Material-UI 7.1.1
 - **UI Components**: Material-UI (@mui/material, @mui/icons-material)
 - **Analytics**: Google Analytics 4
 - **Advertising**: Google AdSense
-- **Deployment**: Firebase Hosting
+- **Deployment**: Firebase Hosting (Firebase 12.0.0)
 - **Cookie Management**: Cookiebot
 - **SEO**: Structured Data, Sitemap, Robots.txt
 - **Security**: reCAPTCHA v3 integration
+- **Build**: Static export with optimized images
 
 ## 📋 Features
 
@@ -31,7 +33,7 @@ A modern Next.js-based website providing landing pages for multiple educational 
 
 ### Prerequisites
 
-- Node.js 18 or higher
+- Node.js 18 or higher (recommended: Node.js 20+)
 - npm or yarn
 - Firebase CLI (for deployment)
 
@@ -78,57 +80,69 @@ NODE_ENV=development
 ## 📁 Project Structure
 
 ```
-src/
-├── app/                 # Next.js App Router
-│   ├── globals.css     # Global styles
-│   ├── layout.tsx      # Root layout
-│   ├── page.tsx        # Home page
-│   ├── api/            # API routes
-│   │   ├── recaptcha/  # reCAPTCHA verification
-│   │   └── submit-form/ # Contact form submission
-│   └── [app]/          # App-specific pages
-│       ├── page.tsx    # English pages
-│       └── ja/page.tsx # Japanese pages
-├── components/         # React components
-│   ├── Common/         # Shared components
-│   │   ├── AnalyticsTracker.tsx
-│   │   ├── CookieConsentBanner.tsx
-│   │   ├── MyAppsBadges.tsx
-│   │   ├── MyAppsFeatures.tsx
-│   │   ├── MyAppsHeader.tsx
-│   │   ├── MyAppsTop.tsx
-│   │   ├── MyFooter.tsx
-│   │   ├── MyHead.tsx
-│   │   ├── MySplash.tsx
-│   │   ├── StructuredData.tsx
-│   │   ├── YoutubeMovie.tsx
-│   │   ├── EnhancedFeatures.tsx
-│   │   ├── UserReviews.tsx
-│   │   ├── AppScreenshots.tsx
-│   │   ├── DownloadNow.tsx
-│   │   ├── ElevatorBigNews.tsx
-│   │   ├── MyAppsHowtoUse.tsx
-│   │   ├── WordWebApp.tsx
-│   │   └── firebaseConfig.ts
-│   └── Home/           # Home page components
-│       ├── ContactBody.tsx
-│       ├── HomeAppsList.tsx
-│       ├── PrivacyPolicy.tsx
-│       └── TermsContents.tsx
-├── hooks/              # Custom hooks
-│   ├── useAnalytics.ts
-│   ├── useCookieConsent.ts
-│   ├── useGeoLocation.ts
-│   ├── usePageTracking.ts
-│   └── useWindowSize.ts
-├── utils/              # Utility functions
-│   ├── analytics.ts
-│   ├── constants.ts
-│   └── functions.ts
-└── types/              # TypeScript type definitions
-    ├── app.ts
-    ├── common.ts
-    └── env.d.ts
+appstudio_next/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── globals.css         # Global styles
+│   │   ├── layout.tsx          # Root layout
+│   │   ├── page.tsx            # Home page
+│   │   ├── api/                # API routes
+│   │   │   ├── recaptcha/      # reCAPTCHA verification
+│   │   │   └── submit-form/    # Contact form submission
+│   │   └── [app]/              # App-specific pages
+│   │       ├── page.tsx        # English pages
+│   │       └── ja/page.tsx    # Japanese pages
+│   ├── components/            # React components
+│   │   ├── Common/             # Shared components
+│   │   │   ├── AnalyticsTracker.tsx
+│   │   │   ├── AppScreenshots.tsx
+│   │   │   ├── CookieConsentBanner.tsx
+│   │   │   ├── DownloadNow.tsx
+│   │   │   ├── ElevatorBigNews.tsx
+│   │   │   ├── EnhancedFeatures.tsx
+│   │   │   ├── MyAppsBadges.tsx
+│   │   │   ├── MyAppsFeatures.tsx
+│   │   │   ├── MyAppsHeader.tsx
+│   │   │   ├── MyAppsHowtoUse.tsx
+│   │   │   ├── MyAppsTop.tsx
+│   │   │   ├── MyFooter.tsx
+│   │   │   ├── MyHead.tsx
+│   │   │   ├── MySplash.tsx
+│   │   │   ├── StructuredData.tsx
+│   │   │   ├── UserReviews.tsx
+│   │   │   ├── WordWebApp.tsx
+│   │   │   ├── YoutubeMovie.tsx
+│   │   │   └── firebaseConfig.ts
+│   │   └── Home/               # Home page components
+│   │       ├── ContactBody.tsx
+│   │       ├── HomeAppsList.tsx
+│   │       ├── PrivacyPolicy.tsx
+│   │       └── TermsContents.tsx
+│   ├── hooks/                  # Custom React hooks
+│   │   ├── useAnalytics.ts
+│   │   ├── useCookieConsent.ts
+│   │   ├── useGeoLocation.ts
+│   │   ├── usePageTracking.ts
+│   │   └── useWindowSize.ts
+│   ├── utils/                  # Utility functions
+│   │   ├── analytics.ts
+│   │   ├── constants.ts
+│   │   └── functions.ts
+│   ├── types/                  # TypeScript type definitions
+│   │   ├── app.ts
+│   │   ├── common.ts
+│   │   └── env.d.ts
+│   └── global.d.ts             # Global type declarations
+├── public/                     # Static assets
+│   ├── images/                 # App images and assets
+│   ├── fonts/                  # Custom fonts
+│   └── legacy/                 # Legacy files (excluded from build)
+├── scripts/                    # Build scripts
+│   └── optimize-images.js
+├── next.config.js              # Next.js configuration
+├── tailwind.config.js          # Tailwind CSS configuration
+├── tsconfig.json                # TypeScript configuration
+└── package.json                # Dependencies and scripts
 ```
 
 ## 🍪 GDPR Compliance
@@ -162,21 +176,38 @@ Comprehensive user behavior tracking implementation:
 
 ## 🚀 Deployment
 
-### Firebase Hosting
+### Firebase Hosting (Recommended)
 
 ```bash
-# Build the project
+# Build the project (creates static files in 'out/' directory)
 npm run build
 
-# Deploy to Firebase
+# Deploy to Firebase Hosting
 npm run deploy
+# or
+firebase deploy
 ```
+
+The project is configured for static export, generating optimized static files in the `out/` directory.
 
 ### Other Platforms
 
-- **Vercel**: `vercel --prod`
-- **Netlify**: Deploy `out/` directory after `npm run build`
-- **GitHub Pages**: Deploy static files from `out/` directory
+- **Vercel**: 
+  ```bash
+  vercel --prod
+  ```
+  Note: Configure `output: 'export'` in `next.config.js` for static export
+
+- **Netlify**: 
+  - Deploy `out/` directory after `npm run build`
+  - Or use Netlify's Next.js integration
+
+- **GitHub Pages**: 
+  - Deploy static files from `out/` directory
+  - Configure GitHub Actions for automated deployment
+
+- **Any Static Hosting**: 
+  - The `out/` directory contains all static files ready for deployment
 
 ## 🧪 Development Commands
 
@@ -217,21 +248,29 @@ npm run build-optimized
 
 ## 🔒 Security Features
 
-- **reCAPTCHA v3 Integration**: Advanced form spam protection
-- **Environment Variable Protection**: Sensitive data securely managed
-- **GDPR Compliance**: Comprehensive user privacy protection
-- **Secure API Endpoints**: Protected form submission with validation
+- **reCAPTCHA v3 Integration**: Advanced form spam protection with invisible verification
+- **Environment Variable Protection**: Sensitive data securely managed via `.env.local`
+- **GDPR Compliance**: Comprehensive user privacy protection with cookie consent
+- **Secure API Endpoints**: Protected form submission with server-side validation
+- **TypeScript Strict Mode**: Enhanced type safety to prevent runtime errors
 - **No Debug Information**: Production-ready code with security best practices
-- **Content Security Policy**: XSS protection and secure resource loading
+- **Content Security Policy**: XSS protection and secure resource loading (configured on server)
+- **HTTPS Only**: All external resources loaded over HTTPS
+- **Input Validation**: Client and server-side form validation
+- **Cookie Security**: Secure cookie handling with consent management
 
 ## 📈 Performance Features
 
-- **Static Export**: Optimized for maximum speed and SEO
-- **Image Optimization**: Automatic image compression and WebP conversion
+- **Static Export**: Fully static site generation for maximum speed and SEO
+- **Image Optimization**: Automatic image compression with Sharp, WebP/AVIF support
 - **Lazy Loading**: Components and images loaded on demand
-- **SEO Optimization**: Meta tags, structured data, and search engine optimization
-- **Analytics Integration**: Real-time performance monitoring
-- **Core Web Vitals**: Optimized for Google's performance metrics
+- **Code Splitting**: Automatic code splitting with Next.js App Router
+- **Package Optimization**: Tree-shaking and package import optimization
+- **SEO Optimization**: Meta tags, structured data, sitemap, and robots.txt
+- **Analytics Integration**: Real-time performance monitoring with GA4
+- **Core Web Vitals**: Optimized for Google's performance metrics (LCP, FID, CLS)
+- **Font Optimization**: Custom fonts with optimized loading
+- **Bundle Size Optimization**: Minimal JavaScript bundle with optimized imports
 
 ## 🤝 Contributing
 
@@ -256,45 +295,50 @@ This project is licensed under the MIT License.
 ### 📦 Package Licenses
 
 **Core Dependencies:**
-- **Next.js** (MIT)
-- **React** (MIT)
-- **React DOM** (MIT)
-- **TypeScript** (Apache-2.0)
-- **Firebase** (Apache-2.0)
-- **Firebase Functions** (MIT)
-- **Firebase Tools** (MIT)
-- **React Firebase Hooks** (Apache-2.0)
+- **Next.js 16.0.10** (MIT)
+- **React 19.1.0** (MIT)
+- **React DOM 19.1.0** (MIT)
+- **TypeScript 5.8.3** (Apache-2.0)
+- **Firebase 12.0.0** (Apache-2.0)
+- **Firebase Functions 7.0.1** (MIT)
+- **Firebase Tools 15.0.0** (MIT)
+- **React Firebase Hooks 5.1.1** (Apache-2.0)
 
 **UI & Styling:**
-- **Material-UI (@mui/material)** (MIT)
-- **Material-UI Icons (@mui/icons-material)** (MIT)
-- **React Icons** (MIT)
-- **Sass** (MIT)
+- **Material-UI (@mui/material) 7.1.1** (MIT)
+- **Material-UI Icons (@mui/icons-material) 7.1.1** (MIT)
+- **React Icons 5.5.0** (MIT)
+- **Sass 1.89.2** (MIT)
+- **Tailwind CSS 4.1.11** (MIT)
+- **Emotion React 11.14.0** (MIT)
+- **Emotion Styled 11.14.0** (MIT)
 
 **Development Tools:**
-- **ESLint** (MIT)
-- **ESLint Config Next** (MIT)
-- **TypeScript ESLint Parser** (MIT)
-- **TypeScript ESLint Plugin** (MIT)
+- **ESLint 9.28.0** (MIT)
+- **ESLint Config Next 16.0.10** (MIT)
+- **TypeScript ESLint Parser 8.34.0** (MIT)
+- **TypeScript ESLint Plugin 8.34.0** (MIT)
+- **PostCSS 8.5.6** (MIT)
+- **Autoprefixer 10.4.21** (MIT)
 
 **HTTP & API:**
-- **Axios** (MIT)
-- **CORS** (MIT)
+- **Axios 1.9.0** (MIT)
+- **CORS 2.8.5** (MIT)
 
 **Authentication & Security:**
-- **React Google reCAPTCHA v3** (MIT)
+- **React Google reCAPTCHA v3 1.11.0** (MIT)
 
 **Routing & Navigation:**
-- **React Router DOM** (MIT)
+- **React Router DOM 7.6.2** (MIT)
 
 **Media & Content:**
-- **React YouTube** (MIT)
+- **React YouTube 10.1.0** (MIT)
 
 **Image Processing:**
-- **Sharp** (Apache-2.0)
+- **Sharp 0.34.2** (Apache-2.0)
 
 **Language & Localization:**
-- **Accept Language** (MIT)
+- **Accept Language 3.0.20** (MIT)
 
 **Note**: This project uses various dependencies with different licenses. The main project is MIT licensed, but dependencies include:
 - MIT (majority)
@@ -313,11 +357,18 @@ For issues and questions, please use [GitHub Issues](https://github.com/fcb1899v
 
 ## 📝 Changelog
 
-### Latest Updates
-- Migrated to Next.js 16 with React 19 automatic JSX runtime
-- Updated all dependencies to latest versions
-- Enhanced security with reCAPTCHA v3
-- Improved performance with static export
-- Added comprehensive GDPR compliance
-- Integrated Google Analytics 4
-- Optimized for Core Web Vitals
+### Version 0.1.9 (Latest)
+- **Next.js 16.0.10**: Migrated to Next.js 16 with App Router
+- **React 19.1.0**: Upgraded to React 19 with automatic JSX runtime
+- **TypeScript 5.8.3**: Latest TypeScript with improved type safety
+- **Material-UI 7.1.1**: Updated to latest Material-UI version
+- **Firebase 12.0.0**: Updated Firebase SDK to latest version
+- **Tailwind CSS 4.1.11**: Upgraded to Tailwind CSS 4
+- Enhanced security with reCAPTCHA v3 integration
+- Improved performance with static export optimization
+- Added comprehensive GDPR compliance with cookie consent management
+- Integrated Google Analytics 4 with detailed tracking
+- Optimized for Core Web Vitals and SEO
+- Added custom React hooks for analytics and cookie management
+- Improved TypeScript type safety across the project
+- Legacy files organized and excluded from build
