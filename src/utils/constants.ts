@@ -81,7 +81,9 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     color: {
       header: "var(--black)",
-      spHeader: "var(--black)", 
+      spHeader: "var(--black)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--white)",
       background: "var(--black)",
       title: "var(--white)",
       message: "var(--white)",
@@ -146,6 +148,8 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--lamp)",
       spHeader: "var(--dark)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--white)",
       background: "var(--dark)",
       title: "var(--white)",
       message: "var(--dark)",
@@ -205,6 +209,8 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--dark)",
       spHeader: "var(--white)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--dark)",
       background: "var(--white)",
       title: "var(--dark)",
       message: "var(--dark)",
@@ -262,6 +268,8 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--signalGreen)",
       spHeader: "var(--dark)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--white)",
       background: "var(--dark)",
       title: "var(--white)",
       message: "var(--white)",      
@@ -324,6 +332,8 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--crossingRed)",
       spHeader: "var(--white)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--dark)",
       background: "var(--white)",
       title: "var(--dark)",
       message: "var(--dark)",      
@@ -378,7 +388,9 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--toiletBlue)",
       spHeader: "var(--white)",
-      background: "var(--white)", 
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--dark)",
+      background: "var(--white)",
       title: "var(--dark)",
       message: "var(--dark)",
       features: "var(--dark)",
@@ -436,6 +448,8 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--allowancePurple)",
       spHeader: "var(--allowancePurple)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--white)",
       background: "linear-gradient(to bottom right, #00FFFF 0%, #FF40FF 80%)",
       text: "var(--allowancePurple)",
       title: "var(--white)", 
@@ -491,6 +505,8 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--transitBlue)",
       spHeader: "var(--transitBlue)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--white)",
       background: "linear-gradient(to bottom, #3700B3, #03DAC5)",
       title: "var(--white)",
       message: "var(--white)",
@@ -538,6 +554,8 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--enBlue)",
       spHeader: "var(--enBlue)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--white)",
       background: "linear-gradient(to bottom, #03A9F4 10%, #FF69B4 70%)",
       title: "var(--white)",
       message: "var(--white)",
@@ -585,6 +603,8 @@ export const myApp = (width: number, isJa: boolean) => [
     color: {
       header: "var(--jaBlue)",
       spHeader: "var(--jaBlue)",
+      headerFg: "var(--white)",
+      spHeaderFg: "var(--white)",
       background: "linear-gradient(to bottom, #0077FF 10%, #FFA500 70%)",
       title: "var(--white)",
       message: "var(--white)",

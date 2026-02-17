@@ -51,6 +51,9 @@ export interface AppImage {
  */
 export interface AppColor {
   header: string;
+  spHeader?: string;
+  headerFg?: string;
+  spHeaderFg?: string;
   background: string;
   title: string;
   message: string;

@@ -81,14 +81,16 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
   const font = myApp(width, isJa)[appNumber].font.header;
   const icon = (appNumber === 0) ? `/images/appstudio/header_logo.png` : myApp(width, isJa)[appNumber].icon;
   const link = myApp(width, isJa)[appNumber].link.link;
-  const backgroundColor = myApp(width, isJa)[appNumber].color.background;
-  
+  const appColor = myApp(width, isJa)[appNumber].color;
+  const headerBgColor = (appNumber === 0 || isPC(width)) ? appColor.header : (appColor.spHeader ?? appColor.header);
+  const headerFgColor = (appNumber === 0 || isPC(width)) ? (appColor.headerFg ?? "white") : (appColor.spHeaderFg ?? "white");
+
   // Header styling with app-specific background color
   const headerStyle: CSSProperties = {
-    color: "white", 
-    backgroundColor: (appNumber === 0 || isPC(width)) ? myApp(width, isJa)[appNumber].color.header: myApp(width, isJa)[appNumber].color.spHeader,
+    color: headerFgColor,
+    backgroundColor: headerBgColor,
   }
-  
+
   // Header title container styling with responsive design
   const headerTitleStyle: CSSProperties = {
     fontSize: myApp(width, isJa)[appNumber].size.header, 
@@ -100,11 +102,11 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
   }
   
   // App icon styling with border and spacing
-  const iconStyle = {
-    borderRadius: 11.5, 
+  const iconStyle: CSSProperties = {
+    borderRadius: 11.5,
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "white",
+    borderColor: headerFgColor,
     marginBottom: 5,
   }
   
@@ -177,7 +179,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
             <div style={{
               width: "100%",
               height: "3px",
-              backgroundColor: openMenu ? "#fff" : (isSP(width) && backgroundColor === "var(--white)" ? "#000" : "#fff"),
+              backgroundColor: openMenu ? "#fff" : headerFgColor,
               marginBottom: "4px",
               transition: "all 0.3s ease",
               transform: openMenu ? "rotate(45deg) translate(8px, 8px)" : "none"
@@ -185,7 +187,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
             <div style={{
               width: "100%",
               height: "3px",
-              backgroundColor: openMenu ? "#fff" : (isSP(width) && backgroundColor === "var(--white)" ? "#000" : "#fff"),
+              backgroundColor: openMenu ? "#fff" : headerFgColor,
               marginBottom: "4px",
               transition: "all 0.3s ease",
               opacity: openMenu ? "0" : "1"
@@ -193,7 +195,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
             <div style={{
               width: "100%",
               height: "3px",
-              backgroundColor: openMenu ? "#fff" : (isSP(width) && backgroundColor === "var(--white)" ? "#000" : "#fff"),
+              backgroundColor: openMenu ? "#fff" : headerFgColor,
               transition: "all 0.3s ease",
               transform: openMenu ? "rotate(-45deg) translate(2px, -2px)" : "none"
             }}></div>

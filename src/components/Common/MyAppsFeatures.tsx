@@ -62,7 +62,7 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
   
   // Messages container style with responsive max width
   const messagesStyle: CSSProperties = {
-    maxWidth: isSP(width) ? "95%" : 1000,
+    maxWidth: isSP(width) ? "95%" : 1200,
     margin: isSP(width) ? "8px auto" : "10px auto"
   }
   
@@ -88,21 +88,25 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
     alignItems: "center",
     gap: isSP(width) ? "10px" : "20px",
     padding: isSP(width) ? "0 10px" : "0 20px",
-    maxWidth: useHorizontalLayout ? 1000 : "100%",
+    maxWidth: useHorizontalLayout ? 1200 : "100%",
     margin: "0 auto",
   }
 
+  // 横長画像を複数並べる時は最小幅を大きくして1枚あたりを大きく表示（折り返しで1行の枚数が減る）
+  const landscapeMinWidth = 480;
+  // 奇数枚の時、最後の1枚が全幅にならないよう「2枚並びの1枚分」を最大幅にする
+  const landscapeMaxWidth = "calc((100% - 20px) / 2)";
   // Image style with responsive sizing and contain object fit (same maxHeight as MyAppsHowtoUse)
   const imageStyle: CSSProperties = {
-    maxWidth: useHorizontalLayout ? `calc((100% - ${(images.length - 1) * 20}px) / ${images.length})` : (isSP(width) ? "95%" : 800),
+    maxWidth: useHorizontalLayout ? landscapeMaxWidth : (isSP(width) ? "95%" : 1000),
     width: useHorizontalLayout ? "auto" : (isSP(width) ? "100%" : "95%"),
-    maxHeight: isSP(width) ? "400px" : "600px",
+    maxHeight: isSP(width) ? "400px" : "750px",
     height: "auto",
     objectFit: "contain" as const,
     padding: isSP(width) ? "5px 0" : "10px 0",
     display: "block",
-    flex: useHorizontalLayout ? "1 1 0" : "none",
-    minWidth: useHorizontalLayout ? "200px" : "auto",
+    flex: useHorizontalLayout ? `1 1 ${landscapeMinWidth}px` : "none",
+    minWidth: useHorizontalLayout ? `${landscapeMinWidth}px` : "auto",
   }
 
   // Get all messages from the first message array (or combine all if needed)

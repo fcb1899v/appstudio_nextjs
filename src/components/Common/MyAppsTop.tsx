@@ -30,13 +30,16 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
   const hasImageBackground = appData.image.background && appData.image.background.startsWith('/images/');
 
   // Container style with dynamic background configuration
+  // 画像背景時は幅100%にして .main の align-items:center で縮まないようにする
   const containerStyle: CSSProperties = {
     backgroundColor: appData.color.background,
     paddingTop: '70px',
     ...(hasImageBackground && {
+      width: '100%',
+      boxSizing: 'border-box',
       backgroundImage: `url('${appData.image.background}')`,
-      backgroundSize: 'auto 100%',
-      backgroundPosition: 'center bottom',
+      backgroundSize: '100% 100%',
+      backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'scroll',
     })
@@ -50,7 +53,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
         <div style={{
           width: "95%", 
           maxWidth: isPC(width) ? "40%" : "95%",
-          margin: isPC(width) ? "0 0 0 auto" : "0 auto"
+          margin: "0 auto"
         }}>
           {/* App title - image or text */}
           {isTitleImage ? (
