@@ -25,10 +25,18 @@ import { NextResponse } from 'next/server';
  */
 
 // reCAPTCHA verification API route for spam prevention
-const secretKey = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY!;
+// Use a server-only env var (no NEXT_PUBLIC_ prefix) for the secret key
+const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
 export async function POST(request: Request) {
   try {
+    if (!secretKey) {
+      return NextResponse.json(
+        { ok: false, message: "Server configuration error" },
+        { status: 500 }
+      );
+    }
+
     // Extract reCAPTCHA token from request body
     const { token } = await request.json();
 

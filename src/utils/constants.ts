@@ -41,6 +41,26 @@ export const myMenuNumber: MenuNumber = {
   contact: 2,
   other: 100,
 }
+
+/**
+ * URL segment to app number. Used for dynamic app routes (e.g. /elevator, /signal).
+ * Excludes home (no dedicated app page at /home).
+ */
+export const APP_SLUG_TO_NUMBER: Record<string, number> = {
+  elevator: myAppNumber.elevator,
+  elevatorneo: myAppNumber.elevatorNeo,
+  signal: myAppNumber.signal,
+  crossing: myAppNumber.crossing,
+  toilet: myAppNumber.toilet,
+  allowance: myAppNumber.allowance,
+  transit: myAppNumber.transit,
+  phonics: myAppNumber.phonics,
+  japanese: myAppNumber.japanese,
+} as const;
+
+/** Valid app slugs for route params */
+export const APP_SLUGS = Object.keys(APP_SLUG_TO_NUMBER) as string[];
+
 /**
  * Main app configuration array
  * Contains all app data including text, styling, and navigation

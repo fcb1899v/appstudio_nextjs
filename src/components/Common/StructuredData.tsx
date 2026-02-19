@@ -1,4 +1,4 @@
-import { AppProps } from '@/types/common';
+import { AppProps } from '@/types/app';
 import { myApp } from '@/utils/constants';
 import type { FC } from 'react';
 

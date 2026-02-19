@@ -1,4 +1,77 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { myApp, myAppNumber } from '@/utils/constants';
+
+/** Max lengths for form fields */
+const LIMITS = {
+  name: 200,
+  email: 254,
+  message: 5000,
+} as const;
+
+/** Simple email format check (RFC 5322 simplified) */
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** Allowed app values: menu labels from myApp (JA/EN), excluding home */
+const ALLOWED_APP_VALUES = new Set<string>([
+  ...myApp(1024, true).map((a) => a.text.menu).filter((_, i) => i !== myAppNumber.home),
+  ...myApp(1024, false).map((a) => a.text.menu).filter((_, i) => i !== myAppNumber.home),
+]);
+
+/**
+ * Validates and sanitizes form body. Returns null if valid, or an error response body.
+ */
+function validateFormBody(body: unknown): { name: string; email: string; app: string; message: string } | NextResponse {
+  if (body === null || typeof body !== 'object' || Array.isArray(body)) {
+    return NextResponse.json({ success: false, message: 'Invalid request body' }, { status: 400 });
+  }
+  const raw = body as Record<string, unknown>;
+  const name = typeof raw.name === 'string' ? raw.name.trim() : '';
+  const email = typeof raw.email === 'string' ? raw.email.trim() : '';
+  const app = typeof raw.app === 'string' ? raw.app.trim() : '';
+  const message = typeof raw.message === 'string' ? raw.message.trim() : '';
+
+  if (!name) {
+    return NextResponse.json({ success: false, message: 'Name is required' }, { status: 400 });
+  }
+  if (name.length > LIMITS.name) {
+    return NextResponse.json(
+      { success: false, message: `Name must be at most ${LIMITS.name} characters` },
+      { status: 400 }
+    );
+  }
+
+  if (!email) {
+    return NextResponse.json({ success: false, message: 'Email is required' }, { status: 400 });
+  }
+  if (!EMAIL_REGEX.test(email)) {
+    return NextResponse.json({ success: false, message: 'Invalid email format' }, { status: 400 });
+  }
+  if (email.length > LIMITS.email) {
+    return NextResponse.json(
+      { success: false, message: `Email must be at most ${LIMITS.email} characters` },
+      { status: 400 }
+    );
+  }
+
+  if (!app) {
+    return NextResponse.json({ success: false, message: 'App selection is required' }, { status: 400 });
+  }
+  if (!ALLOWED_APP_VALUES.has(app)) {
+    return NextResponse.json({ success: false, message: 'Invalid app selection' }, { status: 400 });
+  }
+
+  if (!message) {
+    return NextResponse.json({ success: false, message: 'Message is required' }, { status: 400 });
+  }
+  if (message.length > LIMITS.message) {
+    return NextResponse.json(
+      { success: false, message: `Message must be at most ${LIMITS.message} characters` },
+      { status: 400 }
+    );
+  }
+
+  return { name, email, app, message };
+}
 
 /**
  * Form submission API route for contact form processing
@@ -7,43 +80,50 @@ import { NextRequest, NextResponse } from 'next/server';
  * appropriate success/error responses. Includes proper error handling, development logging,
  * and HTTP status codes for different scenarios including successful submission,
  * validation errors, and server errors.
- * 
+ *
  * This route:
  * - Receives form data from the client
- * - Validates required fields
+ * - Validates and sanitizes required fields (name, email, app, message)
  * - Maps form fields to Google Forms entry IDs
  * - Submits data to Google Forms
  * - Returns appropriate success/error responses
  */
 export async function POST(request: NextRequest) {
   try {
-    // Extract form data from request body
-    const { name, email, app, message } = await request.json();
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: 'Invalid JSON body' },
+        { status: 400 }
+      );
+    }
+
+    const validated = validateFormBody(body);
+    if (validated instanceof NextResponse) {
+      return validated;
+    }
+    const { name, email, app, message } = validated;
+
+    const formId = process.env.NEXT_PUBLIC_GOOGLE_FORM;
+    if (!formId?.trim()) {
+      return NextResponse.json(
+        { success: false, message: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
 
     // Google Forms configuration and URL setup
-    const formUrl = `https://docs.google.com/forms/d/${process.env.NEXT_PUBLIC_GOOGLE_FORM}/formResponse`;
+    const formUrl = `https://docs.google.com/forms/d/${formId}/formResponse`;
     const formData = new URLSearchParams();
-    
+
     // Map form fields to Google Forms entry IDs
     // These IDs correspond to specific form fields in the Google Form
-    formData.append('entry.1179215924', name);        // Name field
-    formData.append('entry.21222962', email);         // Email field
-    formData.append('entry.914237572', app);          // App selection field
-    formData.append('entry.1423252519', message);     // Message field
-
-    // Development environment logging for debugging
-    // Commented out for production to avoid sensitive data logging
-    if (process.env.NODE_ENV === 'development') {
-      // console.log('Submitting to Google Forms:', {
-      //   url: formUrl,
-      //   data: {
-      //     name,
-      //     email,
-      //     app,
-      //     message
-      //   }
-      // });
-    }
+    formData.append('entry.1179215924', name);
+    formData.append('entry.21222962', email);
+    formData.append('entry.914237572', app);
+    formData.append('entry.1423252519', message);
 
     // Submit data to Google Forms with proper headers
     // Uses application/x-www-form-urlencoded format as required by Google Forms
@@ -78,12 +158,12 @@ export async function POST(request: NextRequest) {
     }
   } catch (error) {
     // Handle server errors and return appropriate error response
-    // This catches JSON parsing errors, network errors, and other exceptions
-    // console.error('Form submission error:', error);
-    return NextResponse.json({ 
-      success: false, 
-      message: 'Server error',
-      error: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Form submission error:', error);
+    }
+    return NextResponse.json(
+      { success: false, message: 'Server error' },
+      { status: 500 }
+    );
   }
 } 

@@ -41,6 +41,7 @@ export interface AppSize {
 export interface AppImage {
   picture?: string;
   pictures?: string;
+  background?: string;
   features: string[];
   howtouse: string | string[];
 }
@@ -55,6 +56,7 @@ export interface AppColor {
   headerFg?: string;
   spHeaderFg?: string;
   background: string;
+  text?: string;
   title: string;
   message: string;
   features: string;
@@ -116,4 +118,46 @@ export interface MenuNumber {
   terms: number;
   contact: number;
   other: number;
+}
+
+/**
+ * Interface for window dimensions
+ */
+export interface WindowSize {
+  width: number;
+  height: number;
+}
+
+/**
+ * Interface for app component props
+ */
+export interface AppProps {
+  appNumber: number;
+  width: number;
+  isJa: boolean;
+}
+
+/**
+ * Interface for menu component props
+ */
+export interface MenuProps {
+  menuNumber: number;
+  width: number;
+  isJa: boolean;
+}
+
+/**
+ * Interface for footer component props
+ */
+export interface FooterProps extends AppProps {
+  menuNumber: number;
+}
+
+/**
+ * Interface for apps list component props
+ */
+export interface AppsListProps {
+  width: number;
+  height: number;
+  isJa: boolean;
 } 

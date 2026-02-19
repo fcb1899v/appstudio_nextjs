@@ -1,7 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
@@ -14,15 +14,15 @@ module.exports = {
       },
       fontFamily: {
         'corner-stone': ['var(--corner-stone)', 'serif'],
-        'beon': ['var(--beon)', 'sans-serif'],
-        'pacifico': ['var(--pacifico)', 'cursive'],
-        'kodomo': ['var(--kodomo)', 'sans-serif'],
-        'riipop': ['var(--riipop)', 'sans-serif'],
-        'yasashisa': ['var(--yasashisa)', 'sans-serif'],
+        beon: ['var(--beon)', 'sans-serif'],
+        pacifico: ['var(--pacifico)', 'cursive'],
+        kodomo: ['var(--kodomo)', 'sans-serif'],
+        riipop: ['var(--riipop)', 'sans-serif'],
+        yasashisa: ['var(--yasashisa)', 'sans-serif'],
       },
       colors: {
-        'lamp': '#F7B249',
-        'dark': '#383635',
+        lamp: '#F7B249',
+        dark: '#383635',
         'ja-yellow': '#ffA500',
         'crossing-red': '#D44028',
         'crossing-yellow': '#EEAE42',
@@ -38,7 +38,7 @@ module.exports = {
         'transit-blue': '#3700B3',
       },
       screens: {
-        'xs': '475px',
+        xs: '475px',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -60,4 +60,6 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-}
+};
+
+export default config;

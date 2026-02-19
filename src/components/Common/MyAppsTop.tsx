@@ -15,14 +15,8 @@ interface Props {
   isJa: boolean
 }
 
-/**
- * Top section component for app pages
- * Shows the main visual, app title, and download buttons
- * Displays app icon, title, description, and download badges
- */
-
-// Top section component for app pages
-const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => { 
+/** Top section for app pages: main visual, title, icon, description, download badges */
+const MyAppsTop: NextPage<Props> = ({ appNumber, width, isJa }) => { 
 
   // Get app data and configuration
   const appData = myApp(width, isJa)[appNumber];
@@ -57,9 +51,9 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
         }}>
           {/* App title - image or text */}
           {isTitleImage ? (
-            <Image 
-              src={appData.text.title} 
-              alt="title" 
+            <Image
+              src={appData.text.title}
+              alt="App title" 
               width={isSP(width) ? 300 : 400} 
               height={isSP(width) ? 75 : 100} 
               style={{
@@ -86,9 +80,9 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
           )}
           
           {/* App icon with shadow effects */}
-          <Image 
-            src={appData.icon} 
-            alt="icon" 
+          <Image
+            src={appData.icon}
+            alt="App icon" 
             width={100} 
             height={100} 
             priority={true}
@@ -101,19 +95,19 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
           />
           
           {/* App description messages */}
-          {appData.text.message.map((message, i) => (
+          {appData.text.message.map((lines, i) => (
             <div className="flex_center_wrap" key={`message_${i}`}>
-              {message.map((_, j) => (
-                <p className={appData.font.message} 
-                  key={`message_${i}_${j}`} 
+              {lines.map((line, j) => (
+                <p className={appData.font.message}
+                  key={`message_${i}_${j}`}
                   style={{
                     color: appData.color.title,
                     fontSize: appData.size.message,
-                    textAlign: "center", 
-                    margin: 5, 
+                    textAlign: "center",
+                    margin: 5,
                   }}
                 >
-                  {message[j]}
+                  {line}
                 </p>
               ))}
             </div>
@@ -148,9 +142,10 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
         </div>
         
         {/* App screenshot image */}
-        <Image 
-          src={appData.image.picture!} 
-          alt="pictures" 
+        {appData.image.picture && (
+        <Image
+          src={appData.image.picture}
+          alt="App screenshot" 
           width={1080} 
           height={1080} 
           priority={true}
@@ -163,6 +158,7 @@ const MyAppsTop: NextPage<Props> = ({appNumber, width, isJa}) => {
             margin: isPC(width) ? "10px auto 20px 0" : "20px auto"
           }}
         />
+        )}
       </div>
     </div>
   );

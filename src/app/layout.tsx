@@ -1,5 +1,5 @@
 import './globals.css'
-import { beon, cornerStone, kodomo, pacifico, riipop, yasashisa } from '../../public/fonts/fonts'
+import { beon, cornerStone, kodomo, pacifico, riipop, yasashisa } from '@/lib/fonts'
 import type { ReactNode } from 'react'
 
 /**
@@ -19,7 +19,7 @@ export default function RootLayout({
   children,
 }: RootLayoutProps) {
   return (
-    <html>
+    <html lang="en">
       <head>
         {/* Favicon links for different icon formats */}
         <link rel="icon" href="/favicon.ico" sizes="any" />

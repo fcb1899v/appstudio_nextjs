@@ -1,4 +1,3 @@
-
 /**
  * Firebase configuration object
  * Contains all necessary configuration parameters for Firebase services
@@ -13,4 +12,3 @@ export const firebaseConfig = {
   appId: "YOUR_APP_ID",
   measurementId: "YOUR_MEASUREMENT_ID"
 };
-

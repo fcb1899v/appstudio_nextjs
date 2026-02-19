@@ -3,7 +3,7 @@ import Script from 'next/script';
 import Head from 'next/head';
 import { myApp } from '@/utils/constants';
 import { useEffect, useState } from 'react';
-import { AppProps } from '@/types/common';
+import { AppProps } from '@/types/app';
 import StructuredData from './StructuredData';
 
 /**

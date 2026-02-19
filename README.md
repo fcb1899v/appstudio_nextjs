@@ -73,6 +73,12 @@ NEXT_PUBLIC_COOKIEBOT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 # reCAPTCHA (for contact form)
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
 
+# reCAPTCHA secret key (server-side only; do not use NEXT_PUBLIC_ prefix)
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
+
+# Google Form (contact form submission)
+NEXT_PUBLIC_GOOGLE_FORM=your_google_form_id
+
 # Environment
 NODE_ENV=development
 ```
@@ -81,19 +87,29 @@ NODE_ENV=development
 
 ```
 appstudio_next/
+├── config/                     # Root config (Next.js only; PostCSS/Tailwind stay at root)
+│   ├── next.config.ts          # Next.js configuration
+│   └── README.md
+├── scripts/                    # Build and test scripts (TypeScript, run with tsx)
+│   ├── optimize-images.ts      # Image optimization after build
+│   └── test-recaptcha-api.ts   # reCAPTCHA API test (run with dev server up)
 ├── src/
 │   ├── app/                    # Next.js App Router
 │   │   ├── globals.css         # Global styles
 │   │   ├── layout.tsx          # Root layout
 │   │   ├── page.tsx            # Home page
+│   │   ├── ja/page.tsx         # Japanese home
 │   │   ├── api/                # API routes
 │   │   │   ├── recaptcha/      # reCAPTCHA verification
-│   │   │   └── submit-form/    # Contact form submission
-│   │   └── [app]/              # App-specific pages
-│   │       ├── page.tsx        # English pages
-│   │       └── ja/page.tsx    # Japanese pages
-│   ├── components/            # React components
+│   │   │   └── submit-form/    # Contact form submission (with input validation)
+│   │   ├── [appSlug]/          # Dynamic app pages (e.g. /elevator, /phonics)
+│   │   │   ├── page.tsx        # English app pages
+│   │   │   └── ja/page.tsx     # Japanese app pages
+│   │   ├── contact/            # Contact page (en/ja)
+│   │   └── terms/              # Terms page (en/ja)
+│   ├── components/
 │   │   ├── Common/             # Shared components
+│   │   │   ├── AppPage.tsx     # Shared app showcase layout
 │   │   │   ├── AnalyticsTracker.tsx
 │   │   │   ├── AppScreenshots.tsx
 │   │   │   ├── CookieConsentBanner.tsx
@@ -111,37 +127,37 @@ appstudio_next/
 │   │   │   ├── StructuredData.tsx
 │   │   │   ├── UserReviews.tsx
 │   │   │   ├── WordWebApp.tsx
-│   │   │   ├── YoutubeMovie.tsx
-│   │   │   └── firebaseConfig.ts
-│   │   └── Home/               # Home page components
+│   │   │   └── YoutubeMovie.tsx
+│   │   └── Home/               # Home page and related components
 │   │       ├── ContactBody.tsx
 │   │       ├── HomeAppsList.tsx
 │   │       ├── PrivacyPolicy.tsx
 │   │       └── TermsContents.tsx
+│   ├── config/                 # App config (e.g. Firebase)
+│   │   └── firebaseConfig.ts
 │   ├── hooks/                  # Custom React hooks
 │   │   ├── useAnalytics.ts
 │   │   ├── useCookieConsent.ts
 │   │   ├── useGeoLocation.ts
 │   │   ├── usePageTracking.ts
 │   │   └── useWindowSize.ts
-│   ├── utils/                  # Utility functions
-│   │   ├── analytics.ts
-│   │   ├── constants.ts
-│   │   └── functions.ts
+│   ├── lib/                    # Shared lib (e.g. fonts)
+│   │   └── fonts.ts            # Next.js local font setup
 │   ├── types/                  # TypeScript type definitions
-│   │   ├── app.ts
-│   │   ├── common.ts
-│   │   └── env.d.ts
-│   └── global.d.ts             # Global type declarations
+│   │   ├── app.ts              # App and common component types
+│   │   ├── env.d.ts            # Environment variable types
+│   │   └── global.d.ts         # Global declarations (Window, etc.)
+│   └── utils/                  # Utility functions
+│       ├── analytics.ts
+│       ├── constants.ts
+│       └── functions.ts
 ├── public/                     # Static assets
 │   ├── images/                 # App images and assets
-│   ├── fonts/                  # Custom fonts
+│   ├── fonts/                  # Font files (.ttf, .otf)
 │   └── legacy/                 # Legacy files (excluded from build)
-├── scripts/                    # Build scripts
-│   └── optimize-images.js
-├── next.config.js              # Next.js configuration
-├── tailwind.config.js          # Tailwind CSS configuration
-├── tsconfig.json                # TypeScript configuration
+├── postcss.config.ts           # PostCSS (at root for tooling)
+├── tailwind.config.ts          # Tailwind CSS (at root for tooling)
+├── tsconfig.json               # TypeScript configuration
 └── package.json                # Dependencies and scripts
 ```
 
@@ -196,7 +212,7 @@ The project is configured for static export, generating optimized static files i
   ```bash
   vercel --prod
   ```
-  Note: Configure `output: 'export'` in `next.config.js` for static export
+  Note: Static export is configured in `config/next.config.ts` (`output: 'export'`).
 
 - **Netlify**: 
   - Deploy `out/` directory after `npm run build`
@@ -212,7 +228,7 @@ The project is configured for static export, generating optimized static files i
 ## 🧪 Development Commands
 
 ```bash
-# Start development server
+# Start development server (uses config/next.config.ts)
 npm run dev
 
 # Production build
@@ -227,11 +243,14 @@ npm run lint
 # Deploy to Firebase
 npm run deploy
 
-# Optimize images
+# Optimize images (run after build; processes out/images)
 npm run optimize-images
 
-# Build with image optimization
+# Build then optimize images
 npm run build-optimized
+
+# Test reCAPTCHA API (run with dev server up in another terminal)
+npm run test:recaptcha
 ```
 
 ## 📱 Supported Apps
@@ -249,14 +268,14 @@ npm run build-optimized
 ## 🔒 Security Features
 
 - **reCAPTCHA v3 Integration**: Advanced form spam protection with invisible verification
-- **Environment Variable Protection**: Sensitive data securely managed via `.env.local`
+- **Environment Variable Protection**: Sensitive data (e.g. `RECAPTCHA_SECRET_KEY`) in server-only env vars; no `NEXT_PUBLIC_` for secrets
 - **GDPR Compliance**: Comprehensive user privacy protection with cookie consent
 - **Secure API Endpoints**: Protected form submission with server-side validation
 - **TypeScript Strict Mode**: Enhanced type safety to prevent runtime errors
 - **No Debug Information**: Production-ready code with security best practices
 - **Content Security Policy**: XSS protection and secure resource loading (configured on server)
 - **HTTPS Only**: All external resources loaded over HTTPS
-- **Input Validation**: Client and server-side form validation
+- **Input Validation**: Client and server-side form validation (name, email, app allowlist, message length limits)
 - **Cookie Security**: Secure cookie handling with consent management
 
 ## 📈 Performance Features
@@ -364,11 +383,14 @@ For issues and questions, please use [GitHub Issues](https://github.com/fcb1899v
 - **Material-UI 7.1.1**: Updated to latest Material-UI version
 - **Firebase 12.0.0**: Updated Firebase SDK to latest version
 - **Tailwind CSS 4.1.11**: Upgraded to Tailwind CSS 4
-- Enhanced security with reCAPTCHA v3 integration
-- Improved performance with static export optimization
+- **Config**: Next.js config moved to `config/next.config.ts`; PostCSS and Tailwind configs remain at project root
+- **App routes**: Dynamic `[appSlug]` routes with `generateStaticParams` for static export; shared `AppPage` component
+- **Security**: reCAPTCHA secret key moved to server-only env var (`RECAPTCHA_SECRET_KEY`); form submission API input validation (length, email format, app allowlist)
+- **Structure**: `src/config/` (Firebase), `src/lib/fonts.ts` (fonts), `src/types/` (app + global + env); types consolidated into `app.ts`; scripts in TypeScript (`tsx`)
+- **Testing**: reCAPTCHA API test script (`npm run test:recaptcha`); test-recaptcha page removed
+- Enhanced performance with static export optimization
 - Added comprehensive GDPR compliance with cookie consent management
 - Integrated Google Analytics 4 with detailed tracking
 - Optimized for Core Web Vitals and SEO
 - Added custom React hooks for analytics and cookie management
-- Improved TypeScript type safety across the project
 - Legacy files organized and excluded from build
