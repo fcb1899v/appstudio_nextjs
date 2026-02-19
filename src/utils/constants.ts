@@ -453,6 +453,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     size: {
       header: (isJa && width < 400) ? 24: (isJa && width < 500) ? 28: isJa ? 30: 36,
+      menu: (isJa && width < 400) ? 16: (isJa && width < 500) ? 18: isJa ? 20: 24,
       title: (isJa && width < 400) ? 24: (isJa && width < 500) ? 28: isJa ? 30: 36,
       subTitle: 28,
       message: (isJa && (width < 400)) ? 19: (width < 400) ? 22: 24,  
@@ -561,7 +562,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     size: {
       header: (width < 400) ? 32: 36,
-      menu: isJa ? 22: 20,
+      menu: isJa ? 24: 22,
       title: 32,
       subTitle: 32,
       message: 24,  
@@ -610,7 +611,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     size: {
       header: (isJa && width < 400) ? 25: isJa ? 28: (width < 400) ? 28 :32,
-      menu: isJa ? 22: 20,
+      menu: isJa ? 24: 22,
       title: 32,
       subTitle: 32,
       message: 24,
