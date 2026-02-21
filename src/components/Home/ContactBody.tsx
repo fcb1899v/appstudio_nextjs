@@ -9,7 +9,6 @@ import {
   useRef,
   useState,
   type ChangeEvent,
-  type FormEvent,
 } from 'react';
 import { Button, Snackbar, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import '@/app/globals.css';
@@ -141,15 +140,15 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
 
   // Append ASCII marker at end when Japanese so GAS can detect and strip it; English sends as-is.
   const LANG_MARKER_JA = '[[LANG_JA]]';
-  const messageToSend = isJa ? message + LANG_MARKER_JA : message;
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
     e.preventDefault();
     if (!submitAllowed || !isFormConfigured) return;
     expectingFormSubmitLoad.current = true;
+    const valueToSend = isJa ? message + LANG_MARKER_JA : message;
+    setMessage(valueToSend);
     const form = e.currentTarget;
-    const messageField = form.querySelector<HTMLInputElement>(`input[name="${formConfig.number.message}"]`);
-    if (messageField) messageField.value = messageToSend;
+    const messageField = form.querySelector<HTMLTextAreaElement>(`textarea[name="${formConfig.number.message}"]`);
+    if (messageField) messageField.value = valueToSend;
     form.submit();
     setSubmitAttempted(true);
     setSubmitting(true);

@@ -125,4 +125,23 @@ function onFormSubmit(e) {
     replyTo: 'letselevator@gmail.com',
   };
   GmailApp.sendEmail(email, subject, body, options);
+
+  // After sending the email (same form-submit run), overwrite the inquiry cell so the sheet shows text without [[LANG_JA]].
+  if (e.range && useJapanese) {
+    try {
+      var sheet = e.range.getSheet();
+      var row = e.range.getRow();
+      var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      var col = -1;
+      for (var i = 0; i < headers.length; i++) {
+        if (headers[i] === 'Inquiry' || headers[i] === 'お問い合わせ内容') {
+          col = i + 1;
+          break;
+        }
+      }
+      if (col > 0) sheet.getRange(row, col).setValue(inquiry);
+    } catch (err) {
+      Logger.log('Failed to update inquiry cell: ' + err);
+    }
+  }
 }
