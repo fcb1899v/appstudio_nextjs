@@ -39,7 +39,7 @@ const MyFooter: NextPage<Props> = ({width, isJa, menuNumber}) => {
     width: "100vw", 
     color: "white", 
     backgroundColor: (menuNumber == 100) ? "rgba(0, 0, 0, 0.5)": "transparent", 
-    paddingBottom: 30,
+    paddingBottom: isPC(width) ? 0: 20,
     gap: isPC(width) ? 50: 0,
   }
   

@@ -62,7 +62,7 @@ const ContactPage: NextPage = () => {
       
       {/* Main content area with contact form */}
       <main className="main" style={mainStyle}>
-        <ContactBody isJa={isJa}/>
+        <ContactBody isJa={isJa} width={width} />
         <MyFooter width={width} isJa={isJa} menuNumber={menuNumber}/>
       </main>
       

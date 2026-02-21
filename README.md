@@ -25,8 +25,8 @@ A modern Next.js-based website providing landing pages for multiple educational 
 - **Analytics**: Detailed user behavior tracking and performance monitoring
 - **SEO Optimization**: Meta tags, structured data, and search engine optimization
 - **Performance Optimization**: Static export, image optimization, and lazy loading
-- **Form Handling**: Contact form with reCAPTCHA v3 spam protection
-- **API Integration**: Secure form submission endpoints
+- **Form Handling**: Contact form submitted via API (`/api/submit-form`) to Google Forms; optional reCAPTCHA v2. Server-side submission avoids CORS.
+- **API Integration**: Secure form submission endpoint; optional GAS script for auto-reply email (see `gas/`).
 - **Accessibility**: WCAG compliant design and navigation
 
 ## 🛠️ Setup
@@ -59,25 +59,25 @@ Create a `.env.local` file in the project root and set the following variables:
 
 ```bash
 # Google Analytics
-NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX
+GA_TRACKING_ID=G-XXXXXXXXXX
 
 # Google Tag Manager
-NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+GTM_ID=GTM-XXXXXXX
 
 # Google AdSense
-NEXT_PUBLIC_ADSENSE=ca-pub-XXXXXXXXXX
+ADSENSE_ID=ca-pub-XXXXXXXXXX
 
 # Cookiebot
-NEXT_PUBLIC_COOKIEBOT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+COOKIEBOT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 
 # reCAPTCHA (for contact form)
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
+RECAPTCHA_V3_SITE_KEY=your_recaptcha_v3_site_key
 
-# reCAPTCHA secret key (server-side only; do not use NEXT_PUBLIC_ prefix)
-RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
+# reCAPTCHA secret key (server-side only)
+RECAPTCHA_V3_SECRET_KEY=your_recaptcha_v3_secret_key
 
-# Google Form (contact form submission)
-NEXT_PUBLIC_GOOGLE_FORM=your_google_form_id
+# Google Form (contact form submission). Use the form ID from the URL: /d/FORM_ID/ or /d/e/FORM_ID/
+GOOGLE_FORM_ID=your_google_form_id
 
 # Environment
 NODE_ENV=development
@@ -155,6 +155,8 @@ appstudio_next/
 │   ├── images/                 # App images and assets
 │   ├── fonts/                  # Font files (.ttf, .otf)
 │   └── legacy/                 # Legacy files (excluded from build)
+├── gas/                        # Google Apps Script (form submit trigger, auto-reply email)
+│   └── onFormSubmit.gs         # Deploy as Form submit trigger in the Form’s linked spreadsheet
 ├── postcss.config.ts           # PostCSS (at root for tooling)
 ├── tailwind.config.ts          # Tailwind CSS (at root for tooling)
 ├── tsconfig.json               # TypeScript configuration
@@ -268,7 +270,7 @@ npm run test:recaptcha
 ## 🔒 Security Features
 
 - **reCAPTCHA v3 Integration**: Advanced form spam protection with invisible verification
-- **Environment Variable Protection**: Sensitive data (e.g. `RECAPTCHA_SECRET_KEY`) in server-only env vars; no `NEXT_PUBLIC_` for secrets
+- **Environment Variable Protection**: Env vars used without public exposure; secrets kept server-side
 - **GDPR Compliance**: Comprehensive user privacy protection with cookie consent
 - **Secure API Endpoints**: Protected form submission with server-side validation
 - **TypeScript Strict Mode**: Enhanced type safety to prevent runtime errors
@@ -385,7 +387,7 @@ For issues and questions, please use [GitHub Issues](https://github.com/fcb1899v
 - **Tailwind CSS 4.1.11**: Upgraded to Tailwind CSS 4
 - **Config**: Next.js config moved to `config/next.config.ts`; PostCSS and Tailwind configs remain at project root
 - **App routes**: Dynamic `[appSlug]` routes with `generateStaticParams` for static export; shared `AppPage` component
-- **Security**: reCAPTCHA secret key moved to server-only env var (`RECAPTCHA_SECRET_KEY`); form submission API input validation (length, email format, app allowlist)
+- **Security**: reCAPTCHA secret key moved to server-only env var (`RECAPTCHA_V3_SECRET_KEY`); form submission API input validation (length, email format, app allowlist)
 - **Structure**: `src/config/` (Firebase), `src/lib/fonts.ts` (fonts), `src/types/` (app + global + env); types consolidated into `app.ts`; scripts in TypeScript (`tsx`)
 - **Testing**: reCAPTCHA API test script (`npm run test:recaptcha`); test-recaptcha page removed
 - Enhanced performance with static export optimization

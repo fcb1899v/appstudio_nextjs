@@ -702,10 +702,20 @@ export const myBadge = [
 ];
 
 ///Contact
+/** GOOGLE_FORM_ID: 埋め込みURLの場合は /d/e/ の後の長いキー、編集URLの場合は /d/ の後の短いID */
+const googleFormId = (typeof process.env.GOOGLE_FORM_ID === 'string' && process.env.GOOGLE_FORM_ID.trim()) || '';
+export const isFormConfigured = googleFormId.length > 0;
+const isEmbedFormId = googleFormId.includes('FAIpQL');
+const formActionUrl = isFormConfigured
+  ? isEmbedFormId
+    ? `https://docs.google.com/forms/u/0/d/e/${googleFormId}/formResponse`
+    : `https://docs.google.com/forms/u/0/d/${googleFormId}/formResponse`
+  : '#';
+
 export const myForm = (isJa: boolean) => [
   {
     title: isJa ? "お問い合わせフォーム": "Contact Form",
-    url: `https://docs.google.com/forms/d/${process.env.NEXT_PUBLIC_GOOGLE_FORM}/formResponse`,
+    url: formActionUrl,
     submit: isJa ? "送信": "Submit",
     label: {
       name: isJa ? "お名前": "Name",
@@ -714,8 +724,8 @@ export const myForm = (isJa: boolean) => [
       message: isJa ? "お問い合わせ内容": "Inquiry",
     },
     number: {
-      name: "entry.1179215924", 
-      email: "entry.21222962", 
+      name: "entry.1179215924",
+      email: "entry.21222962",
       app: "entry.914237572",
       message: "entry.1423252519",
     },
@@ -730,6 +740,7 @@ export const myForm = (isJa: boolean) => [
       submit: isJa ? '送信ボタンを押してください': 'Press the submit button',
       confirm: isJa ? 'メールをご確認ください。\n確認メールが届かない場合はもう一度お問い合わせください。': "Check your email. \nContact us again, if you don't receive a confirmation email.",
       error: isJa ? 'メール送信エラー': 'Email sending error',
+      formNotConfigured: isJa ? 'お問い合わせフォームは現在利用できません。しばらく経ってからお試しください。' : 'The contact form is currently unavailable. Please try again later.',
     }
   }
 ]

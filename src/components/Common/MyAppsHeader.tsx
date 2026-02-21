@@ -93,13 +93,13 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
 
   // Header title container styling with responsive design
   const headerTitleStyle: CSSProperties = {
-    fontSize: myApp(width, isJa)[appNumber].size.header, 
-    textAlign: "center", 
+    fontSize: myApp(width, isJa)[appNumber].size.header,
+    textAlign: "center",
     lineHeight: 1,
-    height: 70, 
-    columnGap: 20, 
-    padding: isSP(width) ? "0 40px 0 50px" : "5px 40px 0 50px",
-  }
+    height: 70,
+    columnGap: 20,
+    padding: isSP(width) ? "0 40px 0 50px" : appNumber === 0 ? "0 40px 0 50px" : "5px 40px 0 50px",
+  };
   
   // App icon styling with border and spacing
   const iconStyle: CSSProperties = {
@@ -150,10 +150,11 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
       {/* Header container with app title and menu button */}
       <div className="flex_center" style={headerTitleStyle}>
         {(appNumber === 0) ? (
-          // ホームアプリの場合はロゴタイトルのみ表示
+          // Home: logo only; on PC center vertically (no top padding)
           <Image src={icon} alt="logo" width={300} height={300} priority={true} style={{
             height: isSP(width) ? 50 : 60,
             width: "auto",
+            display: "block",
           }}/>
         ) : isPC(width) ? (
           // その他のアプリの場合は従来通り

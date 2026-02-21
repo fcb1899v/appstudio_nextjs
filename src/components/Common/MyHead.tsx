@@ -24,12 +24,12 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
   const urlHeader = "https://nakajimamasao-appstudio.web.app";
   
   // Environment variables for external services
-  const client = process.env.NEXT_PUBLIC_ADSENSE || "";
+  const client = process.env.ADSENSE_ID || "";
   const adsenseLink = client ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}` : "";
 
-  const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || "";
-  const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
-  const COOKIEBOT_ID = process.env.NEXT_PUBLIC_COOKIEBOT_ID || "";
+  const GA_TRACKING_ID = process.env.GA_TRACKING_ID || "";
+  const GTM_ID = process.env.GTM_ID || "";
+  const COOKIEBOT_ID = process.env.COOKIEBOT_ID || "";
 
   // Cookie consent state management
   const [hasConsent, setHasConsent] = useState(false);

@@ -35,8 +35,10 @@ const ContactPage: NextPage = () => {
   const isJa = true; // Japanese language flag
   const { width } = windowSize;
   
-  // Main container style with black background
-  const mainStyle = { backgroundColor: "var(--black)" };
+  // Main container style with gradient background (same as English contact page)
+  const mainStyle = {
+    background: "linear-gradient(to bottom, transparent, black) gray",
+  };
 
   return (
     <div className="page-transition">
@@ -61,7 +63,7 @@ const ContactPage: NextPage = () => {
       {/* Main content area with contact form */}
       <main className="main" style={mainStyle}>
         {/* Contact form body */}
-        <ContactBody isJa={isJa}/>
+        <ContactBody isJa={isJa} width={width} />
         
         {/* Footer with navigation */}
         <MyFooter width={width} isJa={isJa} menuNumber={menuNumber}/>

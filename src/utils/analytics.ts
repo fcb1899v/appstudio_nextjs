@@ -15,8 +15,8 @@ declare global {
  * Environment variables for Google Analytics and Google Tag Manager IDs
  * These are loaded from environment variables and used for tracking configuration
  */
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || "";
-export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
+export const GA_TRACKING_ID = process.env.GA_TRACKING_ID || "";
+export const GTM_ID = process.env.GTM_ID || "";
 
 /**
  * Initialize Google Analytics with user consent

@@ -26,7 +26,7 @@ import { NextResponse } from 'next/server';
 
 // reCAPTCHA verification API route for spam prevention
 // Use a server-only env var (no NEXT_PUBLIC_ prefix) for the secret key
-const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+const secretKey = process.env.RECAPTCHA_V3_SECRET_KEY;
 
 export async function POST(request: Request) {
   try {

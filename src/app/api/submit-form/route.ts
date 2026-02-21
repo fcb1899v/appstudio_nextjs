@@ -106,28 +106,45 @@ export async function POST(request: NextRequest) {
     }
     const { name, email, app, message } = validated;
 
-    const formId = process.env.NEXT_PUBLIC_GOOGLE_FORM;
-    if (!formId?.trim()) {
+    const formId = process.env.GOOGLE_FORM_ID?.trim();
+    if (!formId) {
       return NextResponse.json(
         { success: false, message: 'Server configuration error' },
         { status: 500 }
       );
     }
 
-    // Google Forms configuration and URL setup
-    const formUrl = `https://docs.google.com/forms/d/${formId}/formResponse`;
-    const formData = new URLSearchParams();
+    const isEmbedFormId = formId.includes('FAIpQL');
+    const formResponseUrl = isEmbedFormId
+      ? `https://docs.google.com/forms/u/0/d/e/${formId}/formResponse`
+      : `https://docs.google.com/forms/u/0/d/${formId}/formResponse`;
 
-    // Map form fields to Google Forms entry IDs
-    // These IDs correspond to specific form fields in the Google Form
+    // Fetch form page to get fbzx (required by Google to record the response)
+    let fbzx: string | null = null;
+    if (isEmbedFormId) {
+      try {
+        const viewformUrl = `https://docs.google.com/forms/d/e/${formId}/viewform`;
+        const formPageRes = await fetch(viewformUrl, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (compatible; FormSubmit/1.0)' },
+        });
+        const html = await formPageRes.text();
+        const fbzxMatch = html.match(/name="fbzx"\s+value="([^"]*)"/) ?? html.match(/name="fbzx" value="([^"]*)"/);
+        if (fbzxMatch?.[1]) fbzx = fbzxMatch[1];
+      } catch (e) {
+        if (process.env.NODE_ENV === 'development') console.error('Failed to fetch fbzx', e);
+      }
+    }
+
+    const formData = new URLSearchParams();
     formData.append('entry.1179215924', name);
     formData.append('entry.21222962', email);
     formData.append('entry.914237572', app);
     formData.append('entry.1423252519', message);
+    formData.append('pageHistory', '0');
+    if (fbzx) formData.append('fbzx', fbzx);
+    formData.append('submit', 'Submit');
 
-    // Submit data to Google Forms with proper headers
-    // Uses application/x-www-form-urlencoded format as required by Google Forms
-    const response = await fetch(formUrl, {
+    const response = await fetch(formResponseUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
