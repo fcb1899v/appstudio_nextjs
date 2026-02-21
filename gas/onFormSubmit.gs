@@ -1,8 +1,10 @@
 /**
  * Runs on form submit trigger. Sends an auto-reply email to the respondent.
- * Form question titles must be either English ("Name", "Email address", "App", "Inquiry")
- * or Japanese ("お名前", "メールアドレス", "アプリ", "お問い合わせ内容").
+ * Trigger: Form submit (spreadsheet linked to the form). No Web App deploy needed.
  *
+ * Reply language: only by [[LANG_JA]] at end of message (sent when user submits from /ja). No fallback by content or locale.
+ *
+ * Form question titles (column names) must match one of the getVal() keys below.
  * Do not run from the Run button; set a trigger: Form > On form submit.
  */
 function onFormSubmit(e) {
@@ -25,11 +27,17 @@ function onFormSubmit(e) {
   var app = getVal(['App', 'アプリ']);
   var inquiry = getVal(['Inquiry', 'お問い合わせ内容']);
 
-  var userLocale = Session.getActiveUserLocale();
+  var markerJa = '[[LANG_JA]]';
+  var useJapanese = false;
+  if (inquiry && inquiry.endsWith(markerJa)) {
+    useJapanese = true;
+    inquiry = inquiry.slice(0, -markerJa.length);
+  }
+
   var subject;
   var body;
 
-  if (userLocale === 'ja') {
+  if (useJapanese) {
     subject = '【自動返信】' + name + ' 様 お問合せありがとうございます';
 
     body =

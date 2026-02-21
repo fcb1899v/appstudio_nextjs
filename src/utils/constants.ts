@@ -702,14 +702,18 @@ export const myBadge = [
 ];
 
 ///Contact
-/** GOOGLE_FORM_ID: 埋め込みURLの場合は /d/e/ の後の長いキー、編集URLの場合は /d/ の後の短いID */
+/**
+ * GOOGLE_FORM_ID: Use the ID from the form's "Send" → "Embed" HTML (the long id after /d/e/ and before /viewform).
+ * Example: .../d/e/FAIpQLSe.../viewform → use FAIpQLSe...
+ * If you get 400 on submit: (1) Use the embed form ID (FAIpQL...), not the edit-page short ID. (2) Ensure number.* entry IDs match your form's question IDs exactly.
+ */
 const googleFormId = (typeof process.env.GOOGLE_FORM_ID === 'string' && process.env.GOOGLE_FORM_ID.trim()) || '';
 export const isFormConfigured = googleFormId.length > 0;
 const isEmbedFormId = googleFormId.includes('FAIpQL');
 const formActionUrl = isFormConfigured
   ? isEmbedFormId
-    ? `https://docs.google.com/forms/u/0/d/e/${googleFormId}/formResponse`
-    : `https://docs.google.com/forms/u/0/d/${googleFormId}/formResponse`
+    ? `https://docs.google.com/forms/d/e/${googleFormId}/formResponse`
+    : `https://docs.google.com/forms/d/${googleFormId}/formResponse`
   : '#';
 
 export const myForm = (isJa: boolean) => [

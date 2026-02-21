@@ -33,9 +33,8 @@ const DEFAULT_CONSENT: CookieConsent = {
 };
 
 /**
- * Cookie consent banner component
- * Displays GDPR-compliant cookie consent banner for users in applicable regions
- * @param isJa - Language preference (Japanese or English)
+ * Cookie consent banner for GDPR: shown only in GDPR-applicable regions (EU/EEA/UK).
+ * Uses useGeoLocation (ipinfo.io, CORS-enabled). When geo fails we show the banner to be safe.
  */
 const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
   const [consent, setConsent] = useState<CookieConsent>(DEFAULT_CONSENT);
@@ -43,10 +42,8 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
   const { isGDPRApplicable, isLoading } = useGeoLocation();
 
   useEffect(() => {
-    // Don't show banner for countries/regions where GDPR is not applicable
-    if (!isLoading && !isGDPRApplicable) {
-      return;
-    }
+    if (isLoading) return;
+    if (!isGDPRApplicable) return;
 
     const savedConsent = localStorage.getItem('cookie_consent');
     if (savedConsent) {
@@ -54,7 +51,6 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
         const parsedConsent = JSON.parse(savedConsent);
         setConsent(parsedConsent);
       } catch {
-        // Convert legacy consent format to new format
         if (savedConsent === 'accepted') {
           const newConsent = { ...DEFAULT_CONSENT, analytics: true, marketing: true };
           setConsent(newConsent);
@@ -99,7 +95,6 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     localStorage.setItem('cookie_consent', JSON.stringify(updatedConsent));
   };
    
-  // Don't show banner if GDPR is not applicable, loading, or already consented
   if (!isGDPRApplicable || isLoading || !open) return null;
 
   const bannerStyle: CSSProperties = {

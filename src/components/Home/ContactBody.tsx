@@ -34,7 +34,7 @@ const isPC = (width: number) => width > 1024;
 const FORM_MAX_WIDTH = 600;
 const RECAPTCHA_WIDTH = 304;
 const RECAPTCHA_GAP = 16;
-/** テキストフィールド間・上下余白の統一値 */
+/** Unified vertical gap between text fields */
 const FIELD_GAP = 20;
 
 interface Props {
@@ -56,9 +56,9 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
   const [touchedApp, setTouchedApp] = useState(false);
   const [touchedMessage, setTouchedMessage] = useState(false);
   const [submitAttempted, setSubmitAttempted] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const recaptchaRendered = useRef(false);
+  const expectingFormSubmitLoad = useRef(false);
   const pc = isPC(width);
 
   useLayoutEffect(() => {
@@ -127,7 +127,6 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
   const anyTouched = touchedName || touchedEmail || touchedApp || touchedMessage;
 
   const alertMessage = useMemo(() => {
-    if (submitError) return submitError;
     if (sentMessage) return formConfig.alert.success;
     if (!submitAttempted && !anyTouched) return '';
     if (isRecaptchaConfigured && canSubmit && !recaptchaPassed)
@@ -138,38 +137,36 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
     if (selectedApp === '') return formConfig.alert.app;
     if (message === '') return formConfig.alert.message;
     return formConfig.alert.submit;
-  }, [formConfig, submitError, sentMessage, canSubmit, recaptchaPassed, submitAttempted, anyTouched, name, email, selectedApp, message, isJa]);
+  }, [formConfig, sentMessage, canSubmit, recaptchaPassed, submitAttempted, anyTouched, name, email, selectedApp, message, isJa]);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  // Append ASCII marker at end when Japanese so GAS can detect and strip it; English sends as-is.
+  const LANG_MARKER_JA = '[[LANG_JA]]';
+  const messageToSend = isJa ? message + LANG_MARKER_JA : message;
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitAttempted(true);
-    setSubmitError(null);
     if (!submitAllowed || !isFormConfigured) return;
+    expectingFormSubmitLoad.current = true;
+    const form = e.currentTarget;
+    const messageField = form.querySelector<HTMLInputElement>(`input[name="${formConfig.number.message}"]`);
+    if (messageField) messageField.value = messageToSend;
+    form.submit();
+    setSubmitAttempted(true);
     setSubmitting(true);
-    try {
-      const res = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, app: selectedApp, message }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && data.success) {
-        setName('');
-        setEmail('');
-        setSelectedApp('');
-        setMessage('');
-        setSentMessage(true);
-        setSnackbarOpen(true);
-        if (isRecaptchaConfigured) setRecaptchaPassed(false);
-      } else {
-        setSubmitError(data.message || (res.status === 500 ? formConfig.alert.error : formConfig.alert.submit));
-      }
-    } catch {
-      setSubmitError(formConfig.alert.error);
-    } finally {
-      setSubmitting(false);
-    }
   };
+
+  const handleIframeLoad = useCallback(() => {
+    if (!expectingFormSubmitLoad.current) return;
+    expectingFormSubmitLoad.current = false;
+    setSubmitting(false);
+    setSnackbarOpen(true);
+    setName('');
+    setEmail('');
+    setSelectedApp('');
+    setMessage('');
+    setSentMessage(true);
+    if (isRecaptchaConfigured) setRecaptchaPassed(false);
+  }, [isRecaptchaConfigured]);
 
   const contactStyle: CSSProperties = {
     display: 'flex',
@@ -274,7 +271,15 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
   return (
     <div style={contactStyle}>
       <h2 style={titleStyle}>{formConfig.title}</h2>
-      <form onSubmit={handleSubmit} style={{ marginTop: 0 }}>
+      <form
+        action={formConfig.url}
+        method="POST"
+        encType="application/x-www-form-urlencoded"
+        target="hidden_iframe"
+        onSubmit={handleSubmit}
+        style={{ marginTop: 0 }}
+      >
+        <input type="hidden" name="pageHistory" value="0" />
         <TextField
           style={textFieldStyle}
           type="text"
@@ -417,6 +422,12 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
           {alertMessage || '\u00A0'}
         </p>
       </form>
+      <iframe
+        name="hidden_iframe"
+        style={{ display: 'none' }}
+        onLoad={handleIframeLoad}
+        title="form target"
+      />
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}

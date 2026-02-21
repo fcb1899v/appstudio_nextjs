@@ -1,120 +1,74 @@
 import { useState, useEffect } from 'react';
 
 /**
- * List of countries and regions where GDPR is applicable
- * Includes EU member states, EEA member states, and the United Kingdom
+ * EU/EEA/UK country codes for GDPR applicability.
  */
 const GDPR_COUNTRIES = [
-  // EU member states
   'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
-  // EEA member states (EU + Norway, Iceland, Liechtenstein)
   'NO', 'IS', 'LI',
-  // United Kingdom
-  'GB'
+  'GB',
 ];
 
-/**
- * Interface for geolocation data structure
- * Defines the structure for user location and GDPR compliance data
- */
-interface GeoLocationData {
+export interface GeoLocationData {
   country: string;
   isGDPRApplicable: boolean;
   isLoading: boolean;
   error: string | null;
 }
 
+const STORAGE_KEY_COUNTRY = 'user_country';
+const STORAGE_KEY_GDPR = 'gdpr_applicable';
+const STORAGE_KEY_TIME = 'geo_detection_time';
+const CACHE_MS = 24 * 60 * 60 * 1000;
+
 /**
- * Custom hook for detecting user's geographic location and GDPR compliance
- * Uses IP geolocation API to determine user's country and GDPR applicability
- * @returns GeoLocationData object containing country and GDPR status
+ * Detects if the user is in a GDPR-applicable region (EU/EEA/UK) via IP geolocation.
+ * Uses ipinfo.io (CORS-enabled for browser). Results cached in localStorage for 24h.
  */
-export const useGeoLocation = (): GeoLocationData => {
-  // State for storing geolocation data
+export function useGeoLocation(): GeoLocationData {
   const [data, setData] = useState<GeoLocationData>({
     country: '',
     isGDPRApplicable: false,
     isLoading: true,
-    error: null
+    error: null,
   });
 
   useEffect(() => {
-    /**
-     * Function to detect user's location using IP geolocation
-     * Fetches location data from IP Geolocation API and caches results
-     */
-    const detectLocation = async () => {
+    const run = async () => {
+      const savedTime = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY_TIME) : null;
+      const now = Date.now();
+      if (savedTime && now - parseInt(savedTime, 10) < CACHE_MS) {
+        const country = localStorage.getItem(STORAGE_KEY_COUNTRY) || '';
+        const gdpr = localStorage.getItem(STORAGE_KEY_GDPR) === 'true';
+        setData({ country, isGDPRApplicable: gdpr, isLoading: false, error: null });
+        return;
+      }
+
       try {
-        // First check for saved detection results in localStorage
-        const savedCountry = localStorage.getItem('user_country');
-        const savedGDPRStatus = localStorage.getItem('gdpr_applicable');
-        
-        // Use saved data if available to avoid unnecessary API calls
-        if (savedCountry && savedGDPRStatus) {
-          setData({
-            country: savedCountry,
-            isGDPRApplicable: savedGDPRStatus === 'true',
-            isLoading: false,
-            error: null
-          });
-          return;
+        const res = await fetch('https://ipinfo.io/json');
+        const json = await res.json();
+        const country = (json.country && String(json.country).toUpperCase().slice(0, 2)) || '';
+        const isGDPRApplicable = GDPR_COUNTRIES.includes(country);
+
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(STORAGE_KEY_COUNTRY, country);
+          localStorage.setItem(STORAGE_KEY_GDPR, String(isGDPRApplicable));
+          localStorage.setItem(STORAGE_KEY_TIME, String(now));
         }
 
-        // Use IP Geolocation API to determine country
-        const response = await fetch('https://ipapi.co/json/');
-        const geoData = await response.json();
-        
-        const country = geoData.country_code || '';
-        const isGDPRApplicable = GDPR_COUNTRIES.includes(country);
-        
-        // Save results to localStorage (valid for 24 hours)
-        // This reduces API calls and improves performance
-        localStorage.setItem('user_country', country);
-        localStorage.setItem('gdpr_applicable', isGDPRApplicable.toString());
-        localStorage.setItem('geo_detection_time', Date.now().toString());
-        
-        setData({
-          country,
-          isGDPRApplicable,
-          isLoading: false,
-          error: null
-        });
+        setData({ country, isGDPRApplicable, isLoading: false, error: null });
       } catch {
-        // Error handling - default to Japan if detection fails
-        // This ensures the app continues to work even if geolocation fails
         setData({
-          country: 'JP',
-          isGDPRApplicable: false,
+          country: '',
+          isGDPRApplicable: true,
           isLoading: false,
-          error: 'Geolocation detection failed'
+          error: 'Geolocation failed',
         });
-      } finally {
-        setData(prevData => ({ ...prevData, isLoading: false }));
       }
     };
 
-    // Re-detect location if 24 hours have passed since last detection
-    // This ensures location data stays relatively current
-    const lastDetection = localStorage.getItem('geo_detection_time');
-    const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000;
-    
-    if (!lastDetection || (now - parseInt(lastDetection)) > oneDay) {
-      detectLocation();
-    } else {
-      // Use saved data if within 24-hour window
-      // This avoids unnecessary API calls for recent detections
-      const savedCountry = localStorage.getItem('user_country') || 'JP';
-      const savedGDPRStatus = localStorage.getItem('gdpr_applicable') === 'true';
-      
-      setData({
-        country: savedCountry,
-        isGDPRApplicable: savedGDPRStatus,
-        isLoading: false,
-        error: null
-      });
-    }
+    run();
   }, []);
 
   return data;
-}; 
+}

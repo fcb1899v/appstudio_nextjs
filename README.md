@@ -27,6 +27,7 @@ A modern Next.js-based website providing landing pages for multiple educational 
 - **Performance Optimization**: Static export, image optimization, and lazy loading
 - **Form Handling**: Contact form submitted via API (`/api/submit-form`) to Google Forms; optional reCAPTCHA v2. Server-side submission avoids CORS.
 - **API Integration**: Secure form submission endpoint; optional GAS script for auto-reply email (see `gas/`).
+- **No Cloud Functions**: Production form submission uses **GAS Web App** (`doPost`) or, as a reference, **direct form POST** to Google Forms (see [soleemare-webpage](https://github.com/nakajimamasao/soleemare-webpage) `InquiryBody` + `inquiryConstant`: `action` = formResponse URL, `target="hidden_iframe"`, iframe `onLoad` for success).
 - **Accessibility**: WCAG compliant design and navigation
 
 ## 🛠️ Setup
@@ -155,8 +156,8 @@ appstudio_next/
 │   ├── images/                 # App images and assets
 │   ├── fonts/                  # Font files (.ttf, .otf)
 │   └── legacy/                 # Legacy files (excluded from build)
-├── gas/                        # Google Apps Script (form submit trigger, auto-reply email)
-│   └── onFormSubmit.gs         # Deploy as Form submit trigger in the Form’s linked spreadsheet
+├── gas/                        # Google Apps Script (form submit trigger + optional Web App doPost)
+│   └── onFormSubmit.gs         # On form submit: auto-reply. doPost: Web App for site POST (no Cloud Functions). in the Form’s linked spreadsheet
 ├── postcss.config.ts           # PostCSS (at root for tooling)
 ├── tailwind.config.ts          # Tailwind CSS (at root for tooling)
 ├── tsconfig.json               # TypeScript configuration
