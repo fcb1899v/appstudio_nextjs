@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager - できるだけ上に配置 */}
+        {/* Google Tag Manager - place as high as possible in head */}
         {GTM_ID && (
           <>
             <script
@@ -62,7 +62,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         ${riipop.variable}
         ${yasashisa.variable}
       `}>
-        {/* Google Tag Manager (noscript) - body 開始直後 */}
+        {/* Google Tag Manager (noscript) - right after body start */}
         {GTM_ID && (
           <noscript>
             <iframe

@@ -15,7 +15,7 @@ interface Props {
  * @param features - Array of enhanced feature objects
  */
 const EnhancedFeatures: NextPage<Props> = ({appNumber, width, isJa}) => {
-  // 各アプリの詳細機能データ
+  // Detailed feature data per app
   const getDetailedFeatures = () => {
     const features = {
       [myAppNumber.elevator]: [

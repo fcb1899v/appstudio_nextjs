@@ -27,7 +27,7 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
   const adsenseLink = client ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}` : "";
 
   useEffect(() => {
-    // Performance monitoring (gtag は GTM の GA4 タグ読み込み後に利用可能)
+    // Performance monitoring (gtag available after GTM GA4 tag loads)
     if (typeof window !== 'undefined' && 'performance' in window) {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
@@ -134,8 +134,8 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         />
       )}
 
-      {/* GA4 は GTM 経由のみ（layout.tsx の GTM コンテナ内の「Google タグ」で計測） */}
-      {/* Cookiebot は GTM の「Cookiebot CMP」タグ（Consent Initialization）で読み込み。サイト側での二重読み込みを避ける */}
+      {/* GA4 is loaded only via GTM (Google Tag in layout.tsx container) */}
+      {/* Cookiebot is loaded by GTM "Cookiebot CMP" tag (Consent Initialization); no duplicate load on site */}
     </>
   );
 };

@@ -92,9 +92,9 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
     margin: "0 auto",
   }
 
-  // 横長画像を複数並べる時は最小幅を大きくして1枚あたりを大きく表示（折り返しで1行の枚数が減る）
+  // For multiple landscape images: increase min-width so each image displays larger (fewer per row when wrapped)
   const landscapeMinWidth = 480;
-  // 奇数枚の時、最後の1枚が全幅にならないよう「2枚並びの1枚分」を最大幅にする
+  // For odd count: set max-width to one item of a 2-column row so the last single item does not span full width
   const landscapeMaxWidth = "calc((100% - 20px) / 2)";
   // Image style with responsive sizing and contain object fit (same maxHeight as MyAppsHowtoUse)
   const imageStyle: CSSProperties = {

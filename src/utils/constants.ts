@@ -401,7 +401,7 @@ export const myApp = (width: number, isJa: boolean) => [
     },
     image: {
       picture: `/images/toilet/pictures.png`,
-      background: "/images/toilet/back.png", // 白い壁紙の背景画像
+      background: "/images/toilet/back.png", // White wallpaper background image
       features: [""],
       howtouse: `/images/toilet/howtouse_${isJa ? "ja": "en"}.png`,  
     },

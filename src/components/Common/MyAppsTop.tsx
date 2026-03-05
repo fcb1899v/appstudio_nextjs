@@ -24,7 +24,7 @@ const MyAppsTop: NextPage<Props> = ({ appNumber, width, isJa }) => {
   const hasImageBackground = appData.image.background && appData.image.background.startsWith('/images/');
 
   // Container style with dynamic background configuration
-  // 画像背景時は幅100%にして .main の align-items:center で縮まないようにする
+  // When using image background, set width 100% so .main align-items:center does not shrink it
   const containerStyle: CSSProperties = {
     backgroundColor: appData.color.background,
     paddingTop: '70px',

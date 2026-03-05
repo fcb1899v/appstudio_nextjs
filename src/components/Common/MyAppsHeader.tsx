@@ -39,7 +39,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
   const toMenu = () => {
     setOpenMenu(!openMenu);
     
-    // メニュー開閉の追跡
+    // Track menu open/close
     trackEvent({
       action: 'menu_toggle',
       category: 'navigation',
@@ -58,10 +58,10 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
    * @param targetAppLink - URL of the target app page
    */
   const handleMenuClick = (targetAppName: string, targetAppLink: string) => {
-    // メニュークリックの追跡
+    // Track menu click
     trackMenuClick(targetAppName, isJa ? 'ja' : 'en');
     
-    // 詳細なナビゲーション追跡
+    // Detailed navigation tracking
     trackEvent({
       action: 'navigation_click',
       category: 'navigation',
@@ -157,7 +157,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
             display: "block",
           }}/>
         ) : isPC(width) ? (
-          // その他のアプリの場合は従来通り
+          // Other apps: keep default behavior
           <>
             {/* Desktop app icon display */}
             {!isSP(width) && <Image src={icon} alt="logo" width={50} height={50} priority={true} style={iconStyle}/>}
@@ -228,7 +228,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
                     <a href={myApp.link.link} onClick={(e) => {
                       e.stopPropagation();
                       handleMenuClick(myApp.text.menu, myApp.link.link);
-                      toMenu(); // メニューを閉じる
+                      toMenu(); // Close menu
                     }} className={myApp.font.menu} style={{color: "var(--white)"}}>{myApp.text.menu}</a>
                   </li>
                 </div>)
