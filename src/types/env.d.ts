@@ -8,6 +8,7 @@ declare global {
       ADSENSE_ID?: string;
       GA_TRACKING_ID?: string;
       GTM_ID?: string;
+      NEXT_PUBLIC_GTM_ID?: string;
       COOKIEBOT_ID?: string;
       RECAPTCHA_V3_SITE_KEY?: string;
       RECAPTCHA_V3_SECRET_KEY?: string;

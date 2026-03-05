@@ -59,17 +59,17 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 Create a `.env.local` file in the project root and set the following variables:
 
 ```bash
-# Google Analytics
-GA_TRACKING_ID=G-XXXXXXXXXX
+# Google Analytics（ページビューは GTM の「Google タグ」で計測。カスタムイベント用に ID を設定する場合）
+# GA_TRACKING_ID=G-R0FGZZJ71Y
 
-# Google Tag Manager
-GTM_ID=GTM-XXXXXXX
+# Google Tag Manager（全ページの head/body にインストール。GA4 は GTM 内で設定）
+GTM_ID=GTM-T3PSBCC
 
 # Google AdSense
 ADSENSE_ID=ca-pub-XXXXXXXXXX
 
-# Cookiebot
-COOKIEBOT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+# Cookiebot（同意管理は GTM の「Cookiebot CMP」タグで読み込み。サイト側では読み込まない）
+# COOKIEBOT_ID は GTM 側で設定。カスタム CookieConsentBanner と併用する場合は二重表示に注意
 
 # reCAPTCHA (for contact form)
 RECAPTCHA_V3_SITE_KEY=your_recaptcha_v3_site_key

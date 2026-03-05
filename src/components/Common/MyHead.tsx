@@ -1,8 +1,7 @@
 import type { NextPage } from 'next';
-import Script from 'next/script';
 import Head from 'next/head';
 import { myApp } from '@/utils/constants';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AppProps } from '@/types/app';
 import StructuredData from './StructuredData';
 
@@ -27,30 +26,8 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
   const client = process.env.ADSENSE_ID || "";
   const adsenseLink = client ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}` : "";
 
-  const GA_TRACKING_ID = process.env.GA_TRACKING_ID || "";
-  const GTM_ID = process.env.GTM_ID || "";
-  const COOKIEBOT_ID = process.env.COOKIEBOT_ID || "";
-
-  // Cookie consent state management
-  const [hasConsent, setHasConsent] = useState(false);
-  const [isAuthorizedDomain, setIsAuthorizedDomain] = useState(true);
-
   useEffect(() => {
-    // Check if current domain is authorized for Cookiebot
-    if (typeof window !== 'undefined') {
-      const hostname = window.location.hostname;
-      // Skip Cookiebot for preview domains (.web.app) and localhost
-      const isPreviewDomain = hostname.includes('.web.app') || hostname === 'localhost' || hostname === '127.0.0.1';
-      setIsAuthorizedDomain(!isPreviewDomain);
-    }
-
-    // Check for existing cookie consent
-    const saved = localStorage.getItem("cookie_consent");
-    if (saved === 'accepted') {
-      setHasConsent(true);
-    }
-
-    // Performance monitoring setup
+    // Performance monitoring (gtag は GTM の GA4 タグ読み込み後に利用可能)
     if (typeof window !== 'undefined' && 'performance' in window) {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
@@ -157,85 +134,8 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         />
       )}
 
-      {/* Google Analytics with optimized configuration */}
-      {GA_TRACKING_ID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script
-            id="google-analytics"
-            strategy="afterInteractive"
-          >
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
-              gtag('js', new Date());
-              
-              // Optimized configuration
-              gtag('config', '${GA_TRACKING_ID}', {
-                page_title: '${title}',
-                page_location: window.location.href,
-                page_path: window.location.pathname,
-                // Performance optimization settings
-                anonymize_ip: true,
-                allow_google_signals: false,
-                allow_ad_personalization_signals: false,
-                // Disable unnecessary features
-                send_page_view: false,
-                custom_map: {
-                  'custom_parameter_1': 'app_name',
-                  'custom_parameter_2': 'language',
-                  'custom_parameter_3': 'device_type'
-                }
-              });
-              
-              // Custom page view (only when needed)
-              gtag('event', 'page_view', {
-                app_name: '${appData.app}',
-                language: '${isJa ? 'ja' : 'en'}',
-                device_type: '${width < 600 ? 'mobile' : width < 1024 ? 'tablet' : 'desktop'}',
-                page_title: '${title}',
-                page_location: window.location.href,
-                page_path: window.location.pathname
-              });
-            `}          
-          </Script>          
-        </>
-      )}
-
-      {/* Google Tag Manager with conditional loading */}
-      {hasConsent && GTM_ID && (
-        <Script
-          id="google-tag-manager"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){
-                w[l]=w[l]||[];
-                w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-                var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-                j.async=true;
-                j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-                f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}');
-            `,
-          }}
-        />
-      )}
-
-      {/* Cookiebot consent management - only load in production on authorized domains */}
-      {process.env.NODE_ENV !== 'development' && COOKIEBOT_ID && isAuthorizedDomain && (
-        <Script 
-          id="Cookiebot" 
-          src="https://consent.cookiebot.com/uc.js" 
-          data-cbid={COOKIEBOT_ID}
-          data-blockingmode="auto" 
-          type="text/javascript"
-        />
-      )}
+      {/* GA4 は GTM 経由のみ（layout.tsx の GTM コンテナ内の「Google タグ」で計測） */}
+      {/* Cookiebot は GTM の「Cookiebot CMP」タグ（Consent Initialization）で読み込み。サイト側での二重読み込みを避ける */}
     </>
   );
 };
