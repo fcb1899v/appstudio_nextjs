@@ -6,6 +6,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Load Yasashisa from static path to avoid next/font bundling issues on static export */
+@font-face {
+  font-family: 'Yasashisa';
+  src: url('/fonts/yasashisagothic.otf') format('opentype');
+  font-display: swap;
+}
+
 /**
  * Global CSS Variables
  * Defines color scheme and design tokens for the application
@@ -42,6 +49,10 @@
   /* Transparency utilities */
   --transpBlack: rgba(0, 0, 0, 0.9);
   --transpWhite: rgba(255, 255, 255, 0.9);
+
+  /* Yasashisa font (loaded via @font-face from /fonts/) */
+  --font-yasashisa: 'Yasashisa', sans-serif;
+  --yasashisa: 'Yasashisa', sans-serif;
 }
 
 /**

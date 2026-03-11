@@ -23,7 +23,8 @@ const CACHE_MS = 24 * 60 * 60 * 1000;
 
 /**
  * Detects if the user is in a GDPR-applicable region (EU/EEA/UK) via IP geolocation.
- * Uses ipinfo.io (CORS-enabled for browser). Results cached in localStorage for 24h.
+ * Uses ipapi.co (CORS-enabled for browser). Results cached in localStorage for 24h.
+ * On failure, defaults to isGDPRApplicable: true to be safe.
  */
 export function useGeoLocation(): GeoLocationData {
   const [data, setData] = useState<GeoLocationData>({
@@ -45,9 +46,10 @@ export function useGeoLocation(): GeoLocationData {
       }
 
       try {
-        const res = await fetch('https://ipinfo.io/json');
+        const res = await fetch('https://ipapi.co/json/');
+        if (!res.ok) throw new Error('Geo request failed');
         const json = await res.json();
-        const country = (json.country && String(json.country).toUpperCase().slice(0, 2)) || '';
+        const country = (json.country_code && String(json.country_code).toUpperCase().slice(0, 2)) || '';
         const isGDPRApplicable = GDPR_COUNTRIES.includes(country);
 
         if (typeof window !== 'undefined') {

@@ -34,7 +34,7 @@ const DEFAULT_CONSENT: CookieConsent = {
 
 /**
  * Cookie consent banner for GDPR: shown only in GDPR-applicable regions (EU/EEA/UK).
- * Uses useGeoLocation (ipinfo.io, CORS-enabled). When geo fails we show the banner to be safe.
+ * Uses useGeoLocation (ipapi.co, CORS-enabled). When geo fails we show the banner to be safe.
  */
 const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
   const [consent, setConsent] = useState<CookieConsent>(DEFAULT_CONSENT);

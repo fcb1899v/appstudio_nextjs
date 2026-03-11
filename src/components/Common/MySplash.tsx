@@ -54,19 +54,31 @@ const MySplash: NextPage<Props> = ({appNumber, width, isJa}) => {
 
   // Icon style with centered positioning and responsive size
   const iconStyle: CSSProperties = {
-    position: 'absolute', 
-    width: (appNumber == myAppNumber.home) ? 200: 100,
-    height: "auto",
-    zIndex: 1000, 
-    top: '45%', 
-    left: '50%', 
-    transform: 'translate(-50%, -50%)'
-  }
+    position: 'absolute',
+    width: (appNumber == myAppNumber.home) ? 200 : 100,
+    height: 'auto',
+    zIndex: 1000,
+    top: '45%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  };
+
+  // Use intrinsic aspect ratio: home icon is 1082x630, others assume square for Next/Image
+  const isHome = appNumber === myAppNumber.home;
+  const imgWidth = isHome ? 1082 : 256;
+  const imgHeight = isHome ? 630 : 256;
 
   return (
     <div className="dark_container" style={splashStyle}>
       {/* Splash screen app icon */}
-      <Image src={icon} alt={title} width={256} height={256} priority={true} style={iconStyle}/>
+      <Image
+        src={icon}
+        alt={title}
+        width={imgWidth}
+        height={imgHeight}
+        priority
+        style={iconStyle}
+      />
     </div>
   )
 }
