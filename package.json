@@ -9,7 +9,8 @@
     "lint": "next lint",
     "deploy": "npm run build && firebase deploy",
     "optimize-images": "tsx scripts/optimize-images.ts",
-    "build-optimized": "npm run build && npm run optimize-images",
+    "build-optimized": "npm run optimize-images && npm run build",
+    "deploy-optimized": "npm run build-optimized && firebase deploy",
     "test:recaptcha": "tsx scripts/test-recaptcha-api.ts"
   },
   "dependencies": {
@@ -32,12 +33,11 @@
     "react-dom": "^19.1.0",
     "react-firebase-hooks": "^5.1.1",
     "react-google-recaptcha-v3": "^1.11.0",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^7.6.2",
-    "react-youtube": "^10.1.0"
+    "react-icons": "^5.5.0"
   },
   "overrides": {
-    "minimatch": "^10.2.1"
+    "minimatch": "^10.2.1",
+    "@tootallnate/once": "^3.0.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-class-properties": "^7.27.1",
@@ -46,7 +46,7 @@
     "@babel/plugin-transform-optional-chaining": "^7.27.1",
     "@babel/plugin-transform-private-methods": "^7.27.1",
     "@jridgewell/sourcemap-codec": "^1.5.4",
-    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-terser": "^1.0.0",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^25.0.2",

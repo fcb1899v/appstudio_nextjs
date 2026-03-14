@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties, useState } from 'react'
 import { isPC, myApp, myAppNumber } from '@/utils/constants'
 
@@ -149,25 +149,23 @@ const AppScreenshots: NextPage<Props> = ({appNumber, width, isJa}) => {
         {isJa ? 'スクリーンショット' : 'Screenshots'}
       </h2>
       
-      <Image 
-        src={screenshots[selectedImage]} 
+      <OptimizedImage
+        src={screenshots[selectedImage]}
         alt={`Screenshot ${selectedImage + 1}`}
-        width={400} 
-        height={800} 
-        priority={true}
+        width={isPC(width) ? 400 : 300}
+        height={isPC(width) ? 800 : 600}
         style={mainImageStyle}
         className="hover:scale-105 transition-transform duration-300"
       />
       
       <div style={thumbnailContainerStyle}>
         {screenshots.map((screenshot, index) => (
-          <Image
+          <OptimizedImage
             key={index}
             src={screenshot}
             alt={`Thumbnail ${index + 1}`}
-            width={80}
-            height={160}
-            priority={index === 0}
+            width={isPC(width) ? 80 : 60}
+            height={isPC(width) ? 160 : 120}
             style={thumbnailStyle(index)}
             onClick={() => handleThumbnailClick(index)}
             className="hover:scale-110 transition-transform duration-200"

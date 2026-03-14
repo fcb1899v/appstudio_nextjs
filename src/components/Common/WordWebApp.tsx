@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties, useEffect, useRef, useState } from 'react'
 import { isSP, myApp, myAppNumber } from '@/utils/constants'
 import { defaultCharList, defaultFirstChar, defaultImages, defaultSecondChar, defaultWords  } from '@/utils/functions'
@@ -149,7 +149,7 @@ const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
             {words[2]}
           </p>
           <div className="flex_center_wrap" ref={squareRef1} style={imageBoxStyle}>
-            <Image src={images[0]} alt={`image1`} width={500} height={500} priority={true} style={imageStyle}/>
+            <OptimizedImage src={images[0]} alt={`image1`} width={500} height={500} style={imageStyle}/>
           </div>
         </div>
         <div style={wordImageStyle} onClick={() => speechWord(words, isPhonics, false)}>
@@ -160,7 +160,7 @@ const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
             {words[5]}
           </p>
           <div className="flex_center_wrap" ref={squareRef2} style={imageBoxStyle}>
-            <Image src={images[1]} alt={`image2`} width={500} height={500} priority={true} style={imageStyle}/>
+            <OptimizedImage src={images[1]} alt={`image2`} width={500} height={500} style={imageStyle}/>
           </div>
         </div>
       </div>

@@ -101,11 +101,11 @@ const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {
         <meta name="msapplication-TileImage" content={`/images/${folder}/favicons/site-tile-150x150.png`} />
         <meta name="theme-color" content={color.header} />
 
-        {/* LCP optimization - preload important images */}
+        {/* LCP optimization - preload with high fetch priority */}
         {appNumber === 0 && (
-          <link rel="preload" as="image" href="/images/appstudio/icon.png" />
+          <link rel="preload" as="image" href="/images/appstudio/icon.png" fetchPriority="high" />
         )}
-        <link rel="preload" as="image" href={`/images/${folder}/icon.png`} />
+        <link rel="preload" as="image" href={`/images/${folder}/icon.png`} fetchPriority="high" />
 
         {/* Structured data for SEO */}
         <StructuredData 

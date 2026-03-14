@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import '@/app/globals.css';
-import Image from "next/image"
+import OptimizedImage from "./OptimizedImage";
 import MyAppsBadges from "./MyAppsBadges";
 import { isPC, myApp, isSP } from "@/utils/constants";
 import { CSSProperties } from "react";
@@ -45,25 +45,25 @@ const MyAppsTop: NextPage<Props> = ({ appNumber, width, isJa }) => {
       <div className={isPC(width) ? "flex_center": "block_center"}>
         {/* Left content area with title and description */}
         <div style={{
-          width: "95%", 
-          maxWidth: isPC(width) ? "40%" : "95%",
+          width: isPC(width) ? "50%" : "95%", 
+          maxWidth: isPC(width) ? "50%" : "95%",
           margin: "0 auto"
         }}>
           {/* App title - image or text */}
           {isTitleImage ? (
-            <Image
+            <OptimizedImage
               src={appData.text.title}
-              alt="App title" 
-              width={isSP(width) ? 300 : 400} 
-              height={isSP(width) ? 75 : 100} 
+              alt="App title"
+              width={isSP(width) ? 300 : 400}
+              height={isSP(width) ? 75 : 100}
               style={{
-                textAlign: "center", 
+                textAlign: "center",
                 margin: "0 auto",
                 maxWidth: isSP(width) ? "90%" : "400px",
                 width: "100%",
                 height: "auto"
-              }} 
-              priority={true}
+              }}
+              fetchPriority="high"
             />
           ): (
             <h1 className={appData.font.title} 
@@ -80,31 +80,42 @@ const MyAppsTop: NextPage<Props> = ({ appNumber, width, isJa }) => {
           )}
           
           {/* App icon with shadow effects */}
-          <Image
+          <OptimizedImage
             src={appData.icon}
-            alt="App icon" 
-            width={100} 
-            height={100} 
-            priority={true}
+            alt="App icon"
+            width={100}
+            height={100}
+            fetchPriority="high"
             style={{
-              margin: "30px auto 25px auto", 
-              borderRadius: 22.5, 
+              margin: "30px auto 25px auto",
+              borderRadius: 22.5,
               filter: "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))",
               boxShadow: "0px 0px 20px 1px rgba(255, 255, 255, 0.5)"
             }}
           />
           
-          {/* App description messages */}
+          {/* App description messages: [[a,b],[c,d]] → on PC 2 rows with a,b and c,d side by side; segments share row and wrap text inside */}
           {appData.text.message.map((lines, i) => (
-            <div className="flex_center_wrap" key={`message_${i}`}>
+            <div
+              className="flex_center_wrap"
+              key={`message_${i}`}
+              style={{
+                rowGap: 4,
+                columnGap: 6,
+                flexWrap: isPC(width) ? "nowrap" : "wrap",
+              }}
+            >
               {lines.map((line, j) => (
-                <p className={appData.font.message}
+                <p
+                  className={appData.font.message}
                   key={`message_${i}_${j}`}
                   style={{
                     color: appData.color.title,
                     fontSize: appData.size.message,
                     textAlign: "center",
-                    margin: 5,
+                    margin: "5px 0",
+                    minWidth: 0,
+                    flex: isPC(width) ? "0 0 auto" : undefined,
                   }}
                 >
                   {line}
@@ -116,22 +127,23 @@ const MyAppsTop: NextPage<Props> = ({ appNumber, width, isJa }) => {
           {/* Download number display */}
           {appData.text.dlnumber && (
             <div className={appData.font.header}>
-              <div className="flex_center_wrap" style={{
+              <ul className="flex_center_wrap" style={{
                 color: appData.color.title,
-                listStyle: "none", 
+                listStyle: "none",
+                margin: isSP(width) ? "10px 10px 10px 10px" : "10px 0 10px 0",
+                padding: 0,
                 fontSize: isSP(width) ? 24 : 28,
-                margin: isSP(width) ? "10px 10px 10px 10px": "10px 0 10px 0", 
                 columnGap: isSP(width) ? 15 : 20,
               }}>
                 {!isJa && <li style={{ marginBottom: isSP(width) ? -8 : -10 }}>Over</li>}
                 <li style={{ fontSize: isSP(width) ? 40 : 50 }}>{appData.text.dlnumber}</li>
-                <li style={{ 
-                  marginBottom: isSP(width) ? -8 : -10, 
-                  fontWeight: isJa ? "bold": "normal"
+                <li style={{
+                  marginBottom: isSP(width) ? -8 : -10,
+                  fontWeight: isJa ? "bold" : "normal",
                 }}>
-                  {isJa ? "ダウンロード突破！": "Downloads"}
+                  {isJa ? "ダウンロード突破！" : "Downloads"}
                 </li>
-              </div>
+              </ul>
             </div>
           )}
           
@@ -141,24 +153,30 @@ const MyAppsTop: NextPage<Props> = ({ appNumber, width, isJa }) => {
           </div>
         </div>
         
-        {/* App screenshot image */}
-        {appData.image.picture && (
-        <Image
-          src={appData.image.picture}
-          alt="App screenshot" 
-          width={1080} 
-          height={1080} 
-          priority={true}
-          style={{
-            width: "95%", 
-            maxWidth: isPC(width) ? "40%" : "95%",
-            maxHeight: "600px",
-            height: "auto",
-            objectFit: "contain",
-            margin: isPC(width) ? "10px auto 20px 0" : "20px auto"
-          }}
-        />
-        )}
+        <div style={{
+          width: isPC(width) ? "50%" : "95%", 
+          maxWidth: isPC(width) ? "50%" : "95%",
+          margin: "0 auto"
+          }}>
+            {/* App screenshot image (WebP when available; larger on PC) */}
+            {appData.image.picture && (
+            <OptimizedImage
+              src={appData.image.picture}
+              alt="App screenshot"
+              width={isPC(width) ? 1080 : 600}
+              height={800}
+              fetchPriority="high"
+              style={{
+                width: "95%",
+                maxWidth: "95%",
+                maxHeight: "640px",
+                height: "auto",
+                objectFit: "contain",
+                margin: isPC(width) ? "10px auto 20px 0" : "20px auto"
+              }}
+            />
+            )}
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties, useRef, useEffect } from 'react'
 import { myApp, isSP } from '@/utils/constants'
 
@@ -131,13 +131,12 @@ const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => 
             );
           } else {
             return (
-              <Image
+              <OptimizedImage
                 key={index}
                 src={item}
                 alt={`howtouse ${index + 1}`}
-                width={1920}
-                height={1080}
-                priority={index === 0}
+                width={1200}
+                height={600}
                 className="image"
                 style={mediaStyle}
               />

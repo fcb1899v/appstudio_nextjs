@@ -1,5 +1,6 @@
 "use client"
 import type { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import '@/app/globals.css';
 import MyHead from '@/components/Common/MyHead'
 import MySplash from '@/components/Common/MySplash'
@@ -8,8 +9,9 @@ import MyFooter from '@/components/Common/MyFooter'
 import { myAppNumber, myMenuNumber } from '@/utils/constants';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
-import AnalyticsTracker from '@/components/Common/AnalyticsTracker';
 import MyAppsHeader from '@/components/Common/MyAppsHeader';
+
+const AnalyticsTracker = dynamic(() => import('@/components/Common/AnalyticsTracker'), { ssr: false });
 
 /**
  * Home page component for the main landing page

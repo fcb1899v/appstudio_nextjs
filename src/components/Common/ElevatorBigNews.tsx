@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties, useEffect, useRef } from 'react'
 import { isPC, isSP, myApp, myAppNumber } from '@/utils/constants';
 
@@ -37,32 +37,38 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
   const twitterRef = useRef<HTMLDivElement>(null);
 
   /**
-   * Initialize Twitter embed when component mounts
-   * Creates and configures Twitter widget for embedding
+   * Load Twitter embed only when in view to avoid loading ~340 KiB of widgets.js until needed
    */
   useEffect(() => {
-    if (!twitterRef.current) return;
-    // Clear existing embed
-    twitterRef.current.innerHTML = '';
-    // Add blockquote element
-    const blockquote = document.createElement('blockquote');
-    blockquote.className = 'twitter-tweet';
-    blockquote.setAttribute('data-lang', isJa ? 'ja' : 'en');
-    blockquote.style.margin = 'auto';
-    blockquote.style.textAlign = 'center';
-    blockquote.style.display = 'block';
-    blockquote.style.marginLeft = 'auto';
-    blockquote.style.marginRight = 'auto';
-    blockquote.style.width = '100%';
-    blockquote.style.maxWidth = '550px';
-    blockquote.innerHTML = `<a href='https://twitter.com/x/status/${twitterLinkId}?ref_src=twsrc%5Etfw'></a>`;
-    twitterRef.current.appendChild(blockquote);
-    // Add Twitter widget script
-    const script = document.createElement('script');
-    script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
-    script.setAttribute('async', 'true');
-    twitterRef.current.appendChild(script);
-  }, [isJa]);
+    const el = twitterRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        observer.disconnect();
+        el.innerHTML = '';
+        const blockquote = document.createElement('blockquote');
+        blockquote.className = 'twitter-tweet';
+        blockquote.setAttribute('data-lang', isJa ? 'ja' : 'en');
+        blockquote.style.margin = 'auto';
+        blockquote.style.textAlign = 'center';
+        blockquote.style.display = 'block';
+        blockquote.style.marginLeft = 'auto';
+        blockquote.style.marginRight = 'auto';
+        blockquote.style.width = '100%';
+        blockquote.style.maxWidth = '550px';
+        blockquote.innerHTML = `<a href='https://twitter.com/x/status/${twitterLinkId}?ref_src=twsrc%5Etfw'></a>`;
+        el.appendChild(blockquote);
+        const script = document.createElement('script');
+        script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+        script.setAttribute('async', 'true');
+        el.appendChild(script);
+      },
+      { rootMargin: '100px', threshold: 0.01 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isJa, twitterLinkId]);
 
   /**
    * Style for the big news container
@@ -129,21 +135,21 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
     <div style={twitterStyle} ref={twitterRef}></div>
     <h2 className={titleFont} style={h2Style}>{buttonsMode}</h2>
     <div className="flex_center_wrap" style={containerStyle(20)}>
-      <Image src={bigNewsImage[0]} alt={`news_0`} width={1920} height={1080} priority={true} style={tallImageStyle} className='image'/>
+      <OptimizedImage src={bigNewsImage[0]} alt={`news_0`} width={540} height={304} style={tallImageStyle} className='image'/>
       <div>
         <h3 style={h3Style}>{howtoChange}</h3>
-        <Image src={bigNewsImage[1]} alt={`news_1`} width={1920} height={1080} priority={true} style={imageStyle} className='image'/>
+        <OptimizedImage src={bigNewsImage[1]} alt={`news_1`} width={640} height={360} style={imageStyle} className='image'/>
       </div>
     </div>
     <h2 className={titleFont} style={h2Style}>{reproduceMode}</h2>
     <div className="flex_center_wrap" style={containerStyle(0)}>
       <div>
         <h3 style={h3Style}>{challenge}</h3>
-        <Image src={bigNewsImage[2]} alt={`news_2`} width={1920} height={1080} priority={true} style={imageStyle} className='image'/>
+        <OptimizedImage src={bigNewsImage[2]} alt={`news_2`} width={640} height={360} style={imageStyle} className='image'/>
       </div>
       <div>
         <h3 style={h3Style}>{howtoChange}</h3>
-        <Image src={bigNewsImage[3]} alt={`news_3`} width={1920} height={1080} priority={true} style={imageStyle} className='image'/>
+        <OptimizedImage src={bigNewsImage[3]} alt={`news_3`} width={640} height={360} style={imageStyle} className='image'/>
       </div>
     </div>
   </div>

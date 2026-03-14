@@ -1,5 +1,7 @@
+'use client';
+
 import { NextPage } from 'next';
-import YouTube from 'react-youtube';
+import { useState } from 'react';
 import { isSP, myApp } from '@/utils/constants';
 import { CSSProperties } from 'react';
 
@@ -8,56 +10,97 @@ import { CSSProperties } from 'react';
  * Defines the properties required for rendering YouTube videos
  */
 interface Props {
-  appNumber: number
-  width: number
-  isJa: boolean
+  appNumber: number;
+  width: number;
+  isJa: boolean;
 }
+
+/** YouTube embed base URL (privacy-enhanced: no cookies until user plays) */
+const YOUTUBE_EMBED_BASE = 'https://www.youtube-nocookie.com/embed';
+
+/** Thumbnail URL for placeholder; iframe loads only after user click (reduces unused JS) */
+const thumbUrl = (id: string) => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 
 /**
  * Component for embedding a YouTube video
- * Displays YouTube video player with analytics tracking
- * @param appNumber - App identifier for dynamic content
- * @param width - Screen width for responsive design
- * @param isJa - Language preference (Japanese or English)
+ * Uses youtube-nocookie.com. Loads iframe only on user click to avoid loading ~2MB of YouTube JS until needed.
  */
-const YoutubeMovie: NextPage<Props> = ({appNumber, width, isJa}) => {
-      
-  const videoId = myApp(width, isJa)[appNumber].link.youtube
+const YoutubeMovie: NextPage<Props> = ({ appNumber, width, isJa }) => {
+  const videoId = myApp(width, isJa)[appNumber].link.youtube;
+  const [embedLoaded, setEmbedLoaded] = useState(false);
 
-  // Hide component if YouTube link is empty or invalid
-  if (!videoId || videoId === "/" || videoId === "") {
-    return <div style={{ height: isSP(width) ? "20px" : "40px" }}></div>;
+  if (!videoId || videoId === '/' || videoId === '') {
+    return <div style={{ height: isSP(width) ? '20px' : '40px' }} />;
   }
 
-  /**
-   * Style for YouTube video container
-   * Responsive styling for different screen sizes
-   */
-  const youtubeStyle: CSSProperties = {
-    margin: isSP(width) ? "10px auto": "20px auto", 
-    width: "100vw", 
-    maxWidth: isSP(width) ? "95%" : 600,
-    padding: isSP(width) ? "0 10px" : "0"
-  }
+  const containerStyle: CSSProperties = {
+    margin: isSP(width) ? '10px auto' : '20px auto',
+    width: '100vw',
+    maxWidth: isSP(width) ? '95%' : 600,
+    padding: isSP(width) ? '0 10px' : '0',
+    position: 'relative',
+    aspectRatio: '16 / 9',
+    backgroundColor: '#000',
+  };
 
-  /**
-   * YouTube player configuration
-   * Controls player behavior and appearance
-   */
-  const playerVars = {
-    controls: 0, 
-    showinfo: 0, 
-    loop: 1, 
-    rel: 0, 
-    enablejsapi: 1
-  }
-  
-  return <div style={youtubeStyle}>
-    <YouTube videoId={videoId} className="youtube" opts={{playerVars: playerVars}}
-      onPlay={() => {gtag('event', 'youtube', { event_category: 'elevator', event_label: 'ja', value: 1 })}}
-    />
-  </div>
-}
-  
+  const iframeStyle: CSSProperties = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    border: 0,
+  };
+
+  const params = new URLSearchParams({
+    controls: '0',
+    rel: '0',
+    loop: '1',
+    playlist: videoId,
+  });
+  const embedSrc = `${YOUTUBE_EMBED_BASE}/${videoId}?${params.toString()}`;
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setEmbedLoaded(true);
+  };
+
+  return (
+    <div style={containerStyle} className="youtube">
+      {embedLoaded ? (
+        <iframe
+          src={embedSrc}
+          title="YouTube video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={iframeStyle}
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={handleClick}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            padding: 0,
+            border: 0,
+            cursor: 'pointer',
+            background: 'none',
+          }}
+          aria-label="Play YouTube video"
+        >
+          <img
+            src={thumbUrl(videoId)}
+            alt=""
+            loading="lazy"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </button>
+      )}
+    </div>
+  );
+};
 
 export default YoutubeMovie;

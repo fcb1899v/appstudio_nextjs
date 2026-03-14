@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { isSP, myApp, myAppNumber, myBadge} from '@/utils/constants'
 import { useAnalytics } from '@/hooks/useAnalytics'
 
@@ -79,19 +79,18 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
           const platform = i === 0 ? 'ios' : 'android';
           handleButtonClick(buttonName(i), platform, appLink[i]);
         }}>
-          <Image 
-            src={badge.image} 
-            alt={badge.title} 
-            width={360} 
-            height={160} 
+          <OptimizedImage
+            src={badge.image}
+            alt={badge.title}
+            width={180}
+            height={80}
             style={{
-              width: appNumber === myAppNumber.home 
+              width: appNumber === myAppNumber.home
                 ? (isSP(width) ? "40vw" : 162)
                 : (isSP(width) ? "44vw" : 180),
               maxWidth: appNumber === myAppNumber.home ? 162 : 180,
               height: "auto"
             }}
-            priority={true}
           />
         </Link>
       ))}

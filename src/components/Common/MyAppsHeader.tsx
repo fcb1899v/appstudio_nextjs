@@ -1,7 +1,7 @@
 import { NextPage } from "next"
 import {CSSProperties, useState} from "react"
 import Link from "next/link";
-import Image from "next/image";
+import OptimizedImage from '@/components/Common/OptimizedImage';
 import MyFooter from "./MyFooter";
 import { isPC, isSP, myApp } from "@/utils/constants";
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -150,22 +150,54 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
       {/* Header container with app title and menu button */}
       <div className="flex_center" style={headerTitleStyle}>
         {(appNumber === 0) ? (
-          // Home: logo only; on PC center vertically (no top padding)
-          <Image src={icon} alt="logo" width={300} height={300} priority={true} style={{
-            height: isSP(width) ? 50 : 60,
-            width: "auto",
-            display: "block",
-          }}/>
+          // Home: logo only (icon 1082x630); PC larger (120px height), SP 50px
+          <OptimizedImage 
+            src={icon} 
+            alt="logo" 
+            width={isSP(width) ? 86 : 206} 
+            height={50} 
+            fetchPriority="high" 
+            style={{
+              height: 50,
+              width: "auto",
+              display: "block",
+            }}
+          />
         ) : isPC(width) ? (
           // Other apps: keep default behavior
           <>
             {/* Desktop app icon display */}
-            {!isSP(width) && <Image src={icon} alt="logo" width={50} height={50} priority={true} style={iconStyle}/>}
+            {!isSP(width) && <OptimizedImage 
+              src={icon} 
+              alt="logo" 
+              width={50} 
+              height={50} 
+              fetchPriority="high" 
+              style={iconStyle}
+            />}
             {/* App title display with font styling */}
-            <div style={{display: "flex", alignItems: "center", flexDirection: title.includes("/") ? "column" : "row"}}>
+            <div style={{
+              display: "flex", 
+              alignItems: "center", 
+              flexDirection: title.includes("/") ? "column" : "row"
+            }}>
               {title.includes("/") ? 
-                title.split("/").map((title, k) => <h1 className={font} key={`title_${k}`} style={{fontSize: myApp(width, isJa)[appNumber].size.header, lineHeight: 1, margin: 0, transform: font === "cornerStone" ? "translateY(2px)" : "none"}}>{title}</h1>) :
-                <h1 className={font} style={{fontSize: myApp(width, isJa)[appNumber].size.header, lineHeight: 1, margin: 0, transform: font === "cornerStone" ? "translateY(2px)" : "none"}}>{title}</h1>
+                title.split("/").map((title, k) => <h1 
+                  className={font} key={`title_${k}`} 
+                  style={{
+                    fontSize: myApp(width, isJa)[appNumber].size.header, 
+                    lineHeight: 1, 
+                    margin: 0, 
+                    transform: font === "cornerStone" ? "translateY(2px)" : "none"}
+                }>{title}</h1>):
+                <h1 
+                  className={font} 
+                  style={{
+                    fontSize: myApp(width, isJa)[appNumber].size.header, 
+                    lineHeight: 1, 
+                    margin: 0, 
+                    transform: font === "cornerStone" ? "translateY(2px)" : "none"}}
+                >{title}</h1>
               }
             </div>
           </>
@@ -209,31 +241,28 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
             {/* Current app icon in menu */}
             <div onClick={toMenu} className="flex_center" style={{padding: '10px 0'}}>
               <Link href={link}>
-                <Image 
-                  src={appNumber === 0 ? "/images/appstudio/icon.png" : icon} 
-                  alt={title} 
-                  width={300} 
-                  height={300} 
-                  priority={true} 
+                <OptimizedImage
+                  src={appNumber === 0 ? "/images/appstudio/icon.png" : icon}
+                  alt={title}
+                  width={150}
+                  height={150}
                   style={appIconSytle}
                 />
               </Link>
             </div>
             
             {/* App navigation links list */}
-            <div style={appLinksStyle}>
-              {myApp(width, isJa).map((myApp, j) => (j != appNumber) &&
-                (<div key={`headerMenu_${j}`}>
-                  <li style={appLinkStyle(j)}>
-                    <a href={myApp.link.link} onClick={(e) => {
-                      e.stopPropagation();
-                      handleMenuClick(myApp.text.menu, myApp.link.link);
-                      toMenu(); // Close menu
-                    }} className={myApp.font.menu} style={{color: "var(--white)"}}>{myApp.text.menu}</a>
-                  </li>
-                </div>)
-              )}
-            </div>
+            <ul style={appLinksStyle}>
+              {myApp(width, isJa).map((myApp, j) => (j != appNumber) && (
+                <li key={`headerMenu_${j}`} style={appLinkStyle(j)}>
+                  <a href={myApp.link.link} onClick={(e) => {
+                    e.stopPropagation();
+                    handleMenuClick(myApp.text.menu, myApp.link.link);
+                    toMenu(); // Close menu
+                  }} className={myApp.font.menu} style={{ color: "var(--white)" }}>{myApp.text.menu}</a>
+                </li>
+              ))}
+            </ul>
             
             {/* Footer component in menu */}
             <MyFooter width={width} isJa={isJa} menuNumber={0}/>

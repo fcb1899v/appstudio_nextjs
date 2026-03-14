@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties } from 'react'
 import { myApp, myAppNumber, isSP } from '@/utils/constants'
 
@@ -92,10 +92,12 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
     margin: "0 auto",
   }
 
-  // For multiple landscape images: increase min-width so each image displays larger (fewer per row when wrapped)
-  const landscapeMinWidth = 480;
-  // For odd count: set max-width to one item of a 2-column row so the last single item does not span full width
-  const landscapeMaxWidth = "calc((100% - 20px) / 2)";
+  // PC: fit as many images per row as possible while keeping each image reasonably large
+  const landscapeMinWidth = 360;
+  const landscapeMaxWidth = 560;
+  // Center image(s): on SP always; on PC when there is only one image (equal left/right margin)
+  const isSingleImage = useHorizontalLayout && images.length === 1;
+  const centerImage = isSP(width) || isSingleImage;
   // Image style with responsive sizing and contain object fit (same maxHeight as MyAppsHowtoUse)
   const imageStyle: CSSProperties = {
     maxWidth: useHorizontalLayout ? landscapeMaxWidth : (isSP(width) ? "95%" : 1000),
@@ -105,8 +107,9 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
     objectFit: "contain" as const,
     padding: isSP(width) ? "5px 0" : "10px 0",
     display: "block",
-    flex: useHorizontalLayout ? `1 1 ${landscapeMinWidth}px` : "none",
-    minWidth: useHorizontalLayout ? `${landscapeMinWidth}px` : "auto",
+    flex: isSingleImage ? "none" : (useHorizontalLayout ? `1 1 ${landscapeMinWidth}px` : "none"),
+    minWidth: isSingleImage ? "auto" : (useHorizontalLayout ? `${landscapeMinWidth}px` : "auto"),
+    margin: centerImage ? "0 auto" : undefined,
   }
 
   // Get all messages from the first message array (or combine all if needed)
@@ -132,13 +135,12 @@ const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {
       <div style={imagesContainerStyle}>
         {/* All feature images */}
         {images.map((image, i) => (
-          <Image 
+          <OptimizedImage
             key={`image_${i}`}
-            src={image} 
-            alt={`features_${appNumber}_${i + 1}`} 
-            width={1920} 
-            height={1080} 
-            priority={i === 0} 
+            src={image}
+            alt={`features_${appNumber}_${i + 1}`}
+            width={1000}
+            height={750}
             style={imageStyle}
           />
         ))}

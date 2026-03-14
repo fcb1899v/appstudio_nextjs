@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useState, type MouseEvent } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { isPC, isSP, myApp, myAppNumber, myBadge} from '@/utils/constants'
 
 /**
@@ -86,12 +86,11 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
               }}>
                 {myApp.text.menu}
               </h2>
-              <Image 
-                src={`/images/${myApp.folder}/icon.png`} 
-                alt={myApp.text.menu} 
-                width={300} 
-                height={300} 
-                priority={true} 
+              <OptimizedImage
+                src={`/images/${myApp.folder}/icon.png`}
+                alt={myApp.text.menu}
+                width={120}
+                height={120}
                 style={{
                   width: 120,
                   height: "auto",
@@ -134,12 +133,11 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
           </h2>
           
           <a href={expandLink} onClick={(e) => e.stopPropagation()}>
-            <Image 
-              src={expandImage} 
-              alt={`image_${expandNumber}`} 
-              width={1920} 
-              height={1080} 
-              priority={true} 
+            <OptimizedImage
+              src={expandImage}
+              alt={`image_${expandNumber}`}
+              width={960}
+              height={250}
               style={{
                 margin: "20px auto",
                 width: "auto",
@@ -153,29 +151,27 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
             padding: "10px 0"
           }}>
             <Link href={expandIos} onClick={(e) => e.stopPropagation()}>
-              <Image 
-                src={myBadge[0].image} 
-                alt={myBadge[0].title} 
-                width={162} 
-                height={80} 
-                priority={true} 
+              <OptimizedImage
+                src={myBadge[0].image}
+                alt={myBadge[0].title}
+                width={162}
+                height={80}
                 style={{
-                  width: isSP(width) ? "36vw": 162, 
-                  maxWidth: 162, 
+                  width: isSP(width) ? "36vw" : 162,
+                  maxWidth: 162,
                   height: "auto"
                 }}
               />
             </Link>
             <Link href={expandAndroid} onClick={(e) => e.stopPropagation()}>
-              <Image 
-                src={myBadge[1].image} 
-                alt={myBadge[1].title} 
-                width={162} 
-                height={80} 
-                priority={true} 
+              <OptimizedImage
+                src={myBadge[1].image}
+                alt={myBadge[1].title}
+                width={180}
+                height={80}
                 style={{
-                  width: isSP(width) ? "40vw": 180, 
-                  maxWidth: 180, 
+                  width: isSP(width) ? "40vw" : 180,
+                  maxWidth: 180,
                   height: "auto"
                 }}
               />

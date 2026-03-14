@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties } from 'react'
 import { isPC, myApp, myAppNumber } from '@/utils/constants'
 
@@ -255,12 +255,11 @@ const EnhancedFeatures: NextPage<Props> = ({appNumber, width, isJa}) => {
               {feature.description}
             </p>
             {feature.image && (
-              <Image
+              <OptimizedImage
                 src={feature.image}
                 alt={feature.title}
                 width={200}
                 height={150}
-                priority={index === 0}
                 style={featureImageStyle}
                 className="hover:scale-110 transition-transform duration-300"
               />

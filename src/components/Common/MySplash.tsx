@@ -1,7 +1,7 @@
 "use client"
 import { NextPage } from "next";
 import { useState, useEffect, CSSProperties } from "react"
-import Image from "next/image"
+import OptimizedImage from '@/components/Common/OptimizedImage'
 import { myApp, myAppNumber } from "@/utils/constants";
 
 /**
@@ -52,10 +52,14 @@ const MySplash: NextPage<Props> = ({appNumber, width, isJa}) => {
     transition: 'all 3s ease',    
   }
 
-  // Icon style with centered positioning and responsive size
+  // Same height for Home and others (100px); Home keeps aspect ratio by width
+  const isHome = appNumber === myAppNumber.home;
+  const iconWidth = isHome ? Math.round((1082 * 100) / 630) : 100; // 1082:630 aspect
+
+  // Icon style: must match display size so image is not constrained by CSS
   const iconStyle: CSSProperties = {
     position: 'absolute',
-    width: (appNumber == myAppNumber.home) ? 200 : 100,
+    width: iconWidth,
     height: 'auto',
     zIndex: 1000,
     top: '45%',
@@ -63,20 +67,15 @@ const MySplash: NextPage<Props> = ({appNumber, width, isJa}) => {
     transform: 'translate(-50%, -50%)',
   };
 
-  // Use intrinsic aspect ratio: home icon is 1082x630, others assume square for Next/Image
-  const isHome = appNumber === myAppNumber.home;
-  const imgWidth = isHome ? 1082 : 256;
-  const imgHeight = isHome ? 630 : 256;
-
   return (
     <div className="dark_container" style={splashStyle}>
       {/* Splash screen app icon */}
-      <Image
+      <OptimizedImage
         src={icon}
         alt={title}
-        width={imgWidth}
-        height={imgHeight}
-        priority
+        width={iconWidth}
+        height={100}
+        fetchPriority="high"
         style={iconStyle}
       />
     </div>

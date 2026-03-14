@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import {CSSProperties} from "react"
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/Common/OptimizedImage';
 import { isPC, isSP, myMenu, mySNS } from "@/utils/constants";
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 
@@ -70,7 +70,7 @@ const MyFooter: NextPage<Props> = ({width, isJa, menuNumber}) => {
       <div className="flex_center" style={{marginBottom: 15}}>
         {mySNS.map((sns, i) => (
           <Link href={sns.link} key={`snsLink_${i}`}>
-            <Image src={sns.image} alt={sns.title} width={35} height={35} style={snsStyle}/>
+            <OptimizedImage src={sns.image} alt={sns.title} width={35} height={35} style={snsStyle}/>
           </Link>
         ))}
       </div>
