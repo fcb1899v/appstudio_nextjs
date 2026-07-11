@@ -16,8 +16,11 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-// GTM ID from environment (e.g. GTM-T3PSBCC)
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || process.env.GTM_ID || '';
+// GTM ID from environment (e.g. GTM-T3PSBCC). Skip in dev to avoid Cookiebot localhost errors.
+const GTM_ID =
+  process.env.NODE_ENV === 'production'
+    ? process.env.NEXT_PUBLIC_GTM_ID || process.env.GTM_ID || ''
+    : '';
 
 // Default SEO for static export (per-page MyHead overrides with correct language)
 const DEFAULT_TITLE = 'Nakajima Masao App Studio - Mobile Apps';
@@ -54,7 +57,7 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: `*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;padding:0;background:#000;color:#fff;font-family:system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}` }} />
 
         {/* Content Security Policy for security */}
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://platform.twitter.com https://cdn.syndication.twimg.com https://pagead2.googlesyndication.com https://consent.cookiebot.com https://consentcdn.cookiebot.com https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://ep2.adtrafficquality.google https://www.google.com https://www.gstatic.com http://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https:; connect-src 'self' https: wss: ws: https://ipapi.co; frame-src 'self' https://www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://platform.twitter.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://consentcdn.cookiebot.com https://ep2.adtrafficquality.google https://www.google.com https://www.gstatic.com https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://docs.google.com" />
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://platform.twitter.com https://cdn.syndication.twimg.com https://pagead2.googlesyndication.com https://consent.cookiebot.com https://consentcdn.cookiebot.com https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://ep2.adtrafficquality.google https://www.google.com https://www.gstatic.com http://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https: blob:; connect-src 'self' https: wss: ws: https://ipapi.co; frame-src 'self' https://www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://platform.twitter.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://consentcdn.cookiebot.com https://ep2.adtrafficquality.google https://www.google.com https://www.gstatic.com https://docs.google.com https://drive.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://docs.google.com" />
         
         {/* Permissions Policy for privacy */}
         <meta httpEquiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=(), web-share=(self)" />

@@ -92,13 +92,15 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
   }
 
   // Header title container styling with responsive design
+  const isHomeHeader = appNumber === 0;
+  const headerBarHeight = 70;
   const headerTitleStyle: CSSProperties = {
     fontSize: myApp(width, isJa)[appNumber].size.header,
     textAlign: "center",
     lineHeight: 1,
-    height: 70,
+    height: headerBarHeight,
     columnGap: 20,
-    padding: isSP(width) ? "0 40px 0 50px" : appNumber === 0 ? "0 40px 0 50px" : "5px 40px 0 50px",
+    padding: isSP(width) ? "0 40px 0 50px" : isHomeHeader ? "0 40px 0 50px" : "5px 40px 0 50px",
   };
   
   // App icon styling with border and spacing
@@ -145,22 +147,27 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
     textDecoration: "none"
   });
 
+  // header_logo.png is 1082x630
+  const logoHeight = isHomeHeader && !isSP(width) ? 56 : 48;
+  const logoWidth = Math.round((1082 * logoHeight) / 630);
+
   return (
     <header className="header" style={headerStyle}>
       {/* Header container with app title and menu button */}
       <div className="flex_center" style={headerTitleStyle}>
         {(appNumber === 0) ? (
-          // Home: logo only (icon 1082x630); PC larger (120px height), SP 50px
+          // Home: logo only (1082x630); PC 56px / SP 48px height
           <OptimizedImage 
             src={icon} 
             alt="logo" 
-            width={isSP(width) ? 86 : 206} 
-            height={50} 
-            fetchPriority="high" 
+            width={logoWidth}
+            height={logoHeight}
+            fetchPriority="high"
+            loading="eager"
             style={{
-              height: 50,
-              width: "auto",
-              display: "block",
+              height: logoHeight,
+              width: 'auto',
+              display: 'block',
             }}
           />
         ) : isPC(width) ? (

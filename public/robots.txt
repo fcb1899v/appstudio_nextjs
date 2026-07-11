@@ -1,8 +1,20 @@
 User-agent: *
 Allow: /
 
+# Family-only private page (do not crawl or index)
+Disallow: /familymovie
+Disallow: /familymovie/
+
+User-agent: Googlebot
+Disallow: /familymovie
+Disallow: /familymovie/
+
+User-agent: Bingbot
+Disallow: /familymovie
+Disallow: /familymovie/
+
 # Sitemap
 Sitemap: https://nakajimamasao-appstudio.web.app/sitemap.xml
- 
+
 # Crawl-delay
-Crawl-delay: 1 
+Crawl-delay: 1

@@ -25,7 +25,7 @@ A modern Next.js-based website providing landing pages for multiple educational 
 - **Analytics**: Detailed user behavior tracking and performance monitoring
 - **SEO Optimization**: Meta tags, structured data, and search engine optimization
 - **Performance Optimization**: Static export, image optimization, and lazy loading
-- **Form Handling**: Contact form submitted via API (`/api/submit-form`) to Google Forms; optional reCAPTCHA v2. Server-side submission avoids CORS.
+- **Form Handling**: Contact form submitted via API (`/api/submit-form`) to Google Forms; optional reCAPTCHA v3. Server-side submission avoids CORS.
 - **API Integration**: Secure form submission endpoint; optional GAS script for auto-reply email (see `gas/`).
 - **No Cloud Functions**: Production form submission uses **GAS Web App** (`doPost`) or, as a reference, **direct form POST** to Google Forms (see [soleemare-webpage](https://github.com/nakajimamasao/soleemare-webpage) `InquiryBody` + `inquiryConstant`: `action` = formResponse URL, `target="hidden_iframe"`, iframe `onLoad` for success).
 - **Accessibility**: WCAG compliant design and navigation

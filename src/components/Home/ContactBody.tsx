@@ -4,36 +4,31 @@ import { NextPage } from 'next';
 import {
   CSSProperties,
   useCallback,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
   type ChangeEvent,
+  type FormEvent,
 } from 'react';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Button, Snackbar, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import '@/app/globals.css';
 import AccountIcon from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import Edit from '@mui/icons-material/Edit';
 import IoSquareOutline from '@mui/icons-material/CropSquare';
-import Script from 'next/script';
 import Link from 'next/link';
 import { myForm, myApp, myAppNumber, isFormConfigured } from '@/utils/constants';
 
-/** reCAPTCHA v2 site key (optional). Form uses v2 checkbox, so only RECAPTCHA_V2_SITE_KEY. */
+/** reCAPTCHA v3 site key (optional). Matches keys from the legacy appstudio_next project. */
 const recaptchaSiteKey = (
-  typeof process.env.RECAPTCHA_V2_SITE_KEY === 'string'
-    ? process.env.RECAPTCHA_V2_SITE_KEY.trim()
+  typeof process.env.RECAPTCHA_V3_SITE_KEY === 'string'
+    ? process.env.RECAPTCHA_V3_SITE_KEY.trim()
     : ''
 );
 const isRecaptchaConfigured = recaptchaSiteKey.length > 0;
 
-const isPC = (width: number) => width > 1024;
-
 const FORM_MAX_WIDTH = 600;
-const RECAPTCHA_WIDTH = 304;
-const RECAPTCHA_GAP = 16;
-/** Unified vertical gap between text fields */
 const FIELD_GAP = 20;
 
 interface Props {
@@ -41,69 +36,23 @@ interface Props {
   width: number;
 }
 
-const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
+const ContactBodyInner: NextPage<Props> = ({ isJa }) => {
   const formConfig = myForm(isJa)[0];
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [selectedApp, setSelectedApp] = useState('');
   const [message, setMessage] = useState('');
   const [sentMessage, setSentMessage] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [recaptchaPassed, setRecaptchaPassed] = useState(false);
   const [touchedName, setTouchedName] = useState(false);
   const [touchedEmail, setTouchedEmail] = useState(false);
   const [touchedApp, setTouchedApp] = useState(false);
   const [touchedMessage, setTouchedMessage] = useState(false);
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const recaptchaRendered = useRef(false);
+  const [recaptchaError, setRecaptchaError] = useState(false);
   const expectingFormSubmitLoad = useRef(false);
-  const pc = isPC(width);
-
-  useLayoutEffect(() => {
-    if (!isRecaptchaConfigured) return;
-    (window as unknown as { onRecaptchaLoad?: () => void }).onRecaptchaLoad = () => {
-      if (recaptchaRendered.current || !(window as unknown as { grecaptcha?: unknown }).grecaptcha || !recaptchaSiteKey)
-        return;
-      const container = document.getElementById('contact-recaptcha');
-      if (!container || container.children.length > 0) return;
-      try {
-        (window as unknown as { grecaptcha: { render: (el: HTMLElement, opts: { sitekey: string; callback: () => void }) => void } }).grecaptcha.render(container, {
-          sitekey: recaptchaSiteKey,
-          callback: () => setRecaptchaPassed(true),
-        });
-        recaptchaRendered.current = true;
-      } catch {
-        // already rendered or container invalid
-      }
-    };
-    return () => {
-      delete (window as unknown as { onRecaptchaLoad?: () => void }).onRecaptchaLoad;
-    };
-  }, [isRecaptchaConfigured, recaptchaSiteKey]);
-
-  useLayoutEffect(() => {
-    if (!isRecaptchaConfigured || !recaptchaSiteKey) return;
-    recaptchaRendered.current = false;
-    const container = document.getElementById('contact-recaptcha');
-    const g = (window as unknown as { grecaptcha?: { render: (el: HTMLElement, opts: { sitekey: string; callback: () => void }) => void } }).grecaptcha;
-    if (container && container.children.length === 0 && typeof window !== 'undefined' && g) {
-      try {
-        g.render(container, {
-          sitekey: recaptchaSiteKey,
-          callback: () => setRecaptchaPassed(true),
-        });
-        recaptchaRendered.current = true;
-      } catch {
-        // ignore
-      }
-    }
-  }, [pc, isRecaptchaConfigured, recaptchaSiteKey]);
-
-  const handleRecaptchaScriptLoad = useCallback(() => {
-    const w = window as unknown as { onRecaptchaLoad?: () => void };
-    if (typeof window !== 'undefined' && w.onRecaptchaLoad) w.onRecaptchaLoad();
-  }, []);
 
   const showError = (touched: boolean, invalid: boolean) => (touched || submitAttempted) && invalid;
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -122,35 +71,61 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
       message !== '',
     [name, email, selectedApp, message]
   );
-  const submitAllowed = canSubmit && (!isRecaptchaConfigured || recaptchaPassed) && !submitting;
+  const submitAllowed = canSubmit && !submitting;
   const anyTouched = touchedName || touchedEmail || touchedApp || touchedMessage;
 
   const alertMessage = useMemo(() => {
     if (sentMessage) return formConfig.alert.success;
     if (!submitAttempted && !anyTouched) return '';
-    if (isRecaptchaConfigured && canSubmit && !recaptchaPassed)
-      return isJa ? '「私はロボットではありません」の確認を完了してください。' : 'Please complete the "I\'m not a robot" verification.';
+    if (recaptchaError)
+      return isJa
+        ? 'セキュリティ確認に失敗しました。しばらく経ってからもう一度お試しください。'
+        : 'Security verification failed. Please try again later.';
     if (name === '') return formConfig.alert.name;
     if (email === '') return formConfig.alert.email;
     if (!validEmail.test(email)) return formConfig.alert.invalid;
     if (selectedApp === '') return formConfig.alert.app;
     if (message === '') return formConfig.alert.message;
     return formConfig.alert.submit;
-  }, [formConfig, sentMessage, canSubmit, recaptchaPassed, submitAttempted, anyTouched, name, email, selectedApp, message, isJa]);
+  }, [formConfig, sentMessage, recaptchaError, submitAttempted, anyTouched, name, email, selectedApp, message, isJa]);
 
-  // Append ASCII marker at end when Japanese so GAS can detect and strip it; English sends as-is.
   const LANG_MARKER_JA = '[[LANG_JA]]';
-  const handleSubmit = (e: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     if (!submitAllowed || !isFormConfigured) return;
+
+    setSubmitAttempted(true);
+    setRecaptchaError(false);
+
+    if (isRecaptchaConfigured) {
+      if (!executeRecaptcha) return;
+
+      try {
+        const token = await executeRecaptcha('submit_form');
+        const response = await fetch('/api/recaptcha', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token }),
+        });
+
+        if (!response.ok) {
+          setRecaptchaError(true);
+          return;
+        }
+      } catch {
+        setRecaptchaError(true);
+        return;
+      }
+    }
+
     expectingFormSubmitLoad.current = true;
     const valueToSend = isJa ? message + LANG_MARKER_JA : message;
     setMessage(valueToSend);
-    const form = e.currentTarget;
     const messageField = form.querySelector<HTMLTextAreaElement>(`textarea[name="${formConfig.number.message}"]`);
     if (messageField) messageField.value = valueToSend;
     form.submit();
-    setSubmitAttempted(true);
     setSubmitting(true);
   };
 
@@ -164,8 +139,8 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
     setSelectedApp('');
     setMessage('');
     setSentMessage(true);
-    if (isRecaptchaConfigured) setRecaptchaPassed(false);
-  }, [isRecaptchaConfigured]);
+    setRecaptchaError(false);
+  }, []);
 
   const contactStyle: CSSProperties = {
     display: 'flex',
@@ -193,10 +168,7 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
   };
   const labelStyle: CSSProperties = { fontSize: 20, margin: '0px 10px 4px 5px' };
   const buttonStyle: CSSProperties = {
-    width:
-      pc && isRecaptchaConfigured
-        ? FORM_MAX_WIDTH - RECAPTCHA_WIDTH - RECAPTCHA_GAP
-        : '60%',
+    width: '60%',
     height: 40,
     marginTop: 0,
     marginBottom: FIELD_GAP,
@@ -372,51 +344,9 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
           error={showError(touchedMessage, message === '')}
           helperText={showError(touchedMessage, message === '') ? formConfig.alert.message : ''}
         />
-        {pc && isRecaptchaConfigured ? (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 16,
-              flexWrap: 'nowrap',
-              marginTop: 0,
-              marginBottom: FIELD_GAP,
-              width: '100%',
-              justifyContent: 'center',
-            }}
-          >
-            <Button type="submit" style={buttonStyle} disabled={!submitAllowed}>
-              {submitting ? (isJa ? '送信中…' : 'Sending…') : formConfig.submit}
-            </Button>
-            <div style={{ minHeight: 78, display: 'flex', alignItems: 'center' }}>
-              <div id="contact-recaptcha" role="presentation" aria-label="reCAPTCHA" />
-            </div>
-            <Script
-              src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
-              strategy="afterInteractive"
-              onLoad={handleRecaptchaScriptLoad}
-            />
-          </div>
-        ) : (
-          <>
-            {isRecaptchaConfigured && (
-              <>
-                <div style={{ marginTop: 0, marginBottom: FIELD_GAP, minHeight: 78, display: 'flex', justifyContent: 'center' }}>
-                  <div id="contact-recaptcha" role="presentation" aria-label="reCAPTCHA" />
-                </div>
-                <Script
-                  src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
-                  strategy="afterInteractive"
-                  onLoad={handleRecaptchaScriptLoad}
-                />
-              </>
-            )}
-            <Button type="submit" style={buttonStyle} disabled={!submitAllowed}>
-              {submitting ? (isJa ? '送信中…' : 'Sending…') : formConfig.submit}
-            </Button>
-          </>
-        )}
+        <Button type="submit" style={buttonStyle} disabled={!submitAllowed}>
+          {submitting ? (isJa ? '送信中…' : 'Sending…') : formConfig.submit}
+        </Button>
         <p style={{ ...alertStyle, marginTop: 0, marginBottom: 0 }} id="form-alert" role="status" aria-live="polite">
           {alertMessage || '\u00A0'}
         </p>
@@ -439,7 +369,15 @@ const ContactBodyInner: NextPage<Props> = ({ isJa, width }) => {
 };
 
 const ContactBody: NextPage<Props> = (props) => {
-  return <ContactBodyInner {...props} />;
+  if (!isRecaptchaConfigured) {
+    return <ContactBodyInner {...props} />;
+  }
+
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey} language={props.isJa ? 'ja' : 'en'}>
+      <ContactBodyInner {...props} />
+    </GoogleReCaptchaProvider>
+  );
 };
 
 export default ContactBody;

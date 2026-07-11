@@ -91,10 +91,11 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
                 alt={myApp.text.menu}
                 width={120}
                 height={120}
+                loading={i === myAppNumber.elevator ? 'eager' : undefined}
                 style={{
                   width: 120,
-                  height: "auto",
-                  margin: "0 auto"
+                  height: 'auto',
+                  margin: '0 auto',
                 }}
               />
             </div>
@@ -154,12 +155,12 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
               <OptimizedImage
                 src={myBadge[0].image}
                 alt={myBadge[0].title}
-                width={162}
-                height={80}
+                width={180}
+                height={60}
                 style={{
-                  width: isSP(width) ? "36vw" : 162,
-                  maxWidth: 162,
-                  height: "auto"
+                  width: isSP(width) ? '36vw' : 180,
+                  maxWidth: 180,
+                  height: 'auto',
                 }}
               />
             </Link>
@@ -167,12 +168,12 @@ const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
               <OptimizedImage
                 src={myBadge[1].image}
                 alt={myBadge[1].title}
-                width={180}
-                height={80}
+                width={200}
+                height={59}
                 style={{
-                  width: isSP(width) ? "40vw" : 180,
-                  maxWidth: 180,
-                  height: "auto"
+                  width: isSP(width) ? '40vw' : 200,
+                  maxWidth: 200,
+                  height: 'auto',
                 }}
               />
             </Link>

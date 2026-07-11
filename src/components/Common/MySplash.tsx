@@ -76,6 +76,7 @@ const MySplash: NextPage<Props> = ({appNumber, width, isJa}) => {
         width={iconWidth}
         height={100}
         fetchPriority="high"
+        loading="eager"
         style={iconStyle}
       />
     </div>

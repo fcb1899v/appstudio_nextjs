@@ -68,6 +68,16 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
   // Generate button name for analytics tracking
   const buttonName = (i: number): string => `${folder}_${i == 0 ? "iOS": "Android"}_${isJa ? "ja_": "_"}open`
 
+  // App store badge intrinsic sizes (width x height)
+  const appStoreBadgeWidth = appNumber === myAppNumber.home ? 180 : 200;
+  const googlePlayBadgeWidth = appNumber === myAppNumber.home ? 200 : 220;
+  const appStoreBadgeHeight = Math.round((appStoreBadgeWidth * 40) / 119.66407);
+  const googlePlayBadgeHeight = Math.round((googlePlayBadgeWidth * 167) / 563);
+  const badgeSizes = [
+    { width: appStoreBadgeWidth, height: appStoreBadgeHeight },
+    { width: googlePlayBadgeWidth, height: googlePlayBadgeHeight },
+  ];
+
   return (
     <div className="flex_center" style={{
       columnGap: 20,
@@ -82,14 +92,14 @@ const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {
           <OptimizedImage
             src={badge.image}
             alt={badge.title}
-            width={180}
-            height={80}
+            width={badgeSizes[i].width}
+            height={badgeSizes[i].height}
             style={{
-              width: appNumber === myAppNumber.home
-                ? (isSP(width) ? "40vw" : 162)
-                : (isSP(width) ? "44vw" : 180),
-              maxWidth: appNumber === myAppNumber.home ? 162 : 180,
-              height: "auto"
+              width: isSP(width)
+                ? (appNumber === myAppNumber.home ? '40vw' : '44vw')
+                : badgeSizes[i].width,
+              maxWidth: badgeSizes[i].width,
+              height: 'auto',
             }}
           />
         </Link>

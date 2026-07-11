@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
   env: {
     GOOGLE_FORM_ID: process.env.GOOGLE_FORM_ID,
     RECAPTCHA_V3_SITE_KEY: process.env.RECAPTCHA_V3_SITE_KEY,
-    RECAPTCHA_V2_SITE_KEY: process.env.RECAPTCHA_V2_SITE_KEY,
   },
   images: {
     unoptimized: true,

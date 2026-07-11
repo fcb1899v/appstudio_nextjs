@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- ホームページ -->
+  <!-- Home page -->
   <url>
     <loc>https://nakajimamasao-appstudio.web.app/</loc>
     <lastmod>2024-12-13</lastmod>
@@ -8,7 +8,7 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- 日本語ホームページ -->
+  <!-- Japanese home page -->
   <url>
     <loc>https://nakajimamasao-appstudio.web.app/ja</loc>
     <lastmod>2024-12-13</lastmod>
@@ -16,7 +16,7 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- アプリページ -->
+  <!-- App pages -->
   <url>
     <loc>https://nakajimamasao-appstudio.web.app/elevator</loc>
     <lastmod>2024-12-13</lastmod>
@@ -134,7 +134,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- その他のページ -->
+  <!-- Other pages -->
   <url>
     <loc>https://nakajimamasao-appstudio.web.app/contact</loc>
     <lastmod>2024-12-13</lastmod>
