@@ -23,6 +23,7 @@ function loadEnvFile(fileName) {
 loadEnvFile('.env.local');
 loadEnvFile('.env');
 
+const familyMovieUrl = (process.env.FAMILY_MOVIE_URL ?? '').trim();
 const firebasePath = path.join(process.cwd(), 'firebase.json');
 
 const defaultConfig = {
@@ -45,6 +46,9 @@ config.hosting.headers ??= [];
 config.hosting.redirects = config.hosting.redirects.filter(
   (redirect) => !redirect.source.startsWith('/familymovie'),
 );
+config.hosting.headers = config.hosting.headers.filter(
+  (entry) => !entry.source.startsWith('/familymovie'),
+);
 
 const familyMovieHeaders = [
   {
@@ -63,10 +67,24 @@ const familyMovieHeaders = [
   },
 ];
 
-config.hosting.headers = [
-  ...config.hosting.headers.filter((entry) => !entry.source.startsWith('/familymovie')),
-  ...familyMovieHeaders,
-];
+config.hosting.headers = [...config.hosting.headers, ...familyMovieHeaders];
+
+if (familyMovieUrl) {
+  config.hosting.redirects.push(
+    {
+      source: '/familymovie',
+      destination: familyMovieUrl,
+      type: 302,
+    },
+    {
+      source: '/familymovie/',
+      destination: familyMovieUrl,
+      type: 302,
+    },
+  );
+  console.log(`Configured /familymovie redirect to ${familyMovieUrl}`);
+} else {
+  console.log('FAMILY_MOVIE_URL not set; configured /familymovie noindex headers only');
+}
 
 fs.writeFileSync(firebasePath, `${JSON.stringify(config, null, 2)}\n`);
-console.log('Configured /familymovie noindex headers in firebase.json');

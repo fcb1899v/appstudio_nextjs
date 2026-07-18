@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
   type ChangeEvent,
-  type FormEvent,
+  type SubmitEvent,
 } from 'react';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Button, Snackbar, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
@@ -91,7 +91,7 @@ const ContactBodyInner: NextPage<Props> = ({ isJa }) => {
 
   const LANG_MARKER_JA = '[[LANG_JA]]';
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     if (!submitAllowed || !isFormConfigured) return;

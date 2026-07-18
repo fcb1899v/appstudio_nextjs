@@ -1,36 +1,38 @@
+'use client';
+
+import { useEffect } from 'react';
+
 type FamilyMoviePlayerProps = {
-  fileId: string;
-  title: string;
+  url: string;
 };
 
-export default function FamilyMoviePlayer({ fileId, title }: FamilyMoviePlayerProps) {
-  const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+/** Opens the configured family album URL (Google Photos does not allow reliable iframe embeds). */
+export default function FamilyMoviePlayer({ url }: FamilyMoviePlayerProps) {
+  useEffect(() => {
+    window.location.replace(url);
+  }, [url]);
 
   return (
-    <section
+    <main
       style={{
-        position: 'relative',
-        width: '100vw',
-        height: '100dvh',
-        flexShrink: 0,
+        minHeight: '100dvh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2rem',
+        textAlign: 'center',
         backgroundColor: '#000',
-        overflow: 'hidden',
+        color: '#fff',
       }}
     >
-      <iframe
-        src={previewUrl}
-        title={title}
-        allow="autoplay; encrypted-media; fullscreen"
-        allowFullScreen
-        loading="eager"
-        style={{
-          display: 'block',
-          width: '100%',
-          height: 'calc(100% + 72px)',
-          marginBottom: '-72px',
-          border: 0,
-        }}
-      />
-    </section>
+      <div>
+        <p>Opening the family album…</p>
+        <p>
+          <a href={url} style={{ color: '#9cf' }}>
+            Open album
+          </a>
+        </p>
+      </div>
+    </main>
   );
 }

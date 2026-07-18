@@ -1,12 +1,9 @@
 import FamilyMoviePlayer from './FamilyMoviePlayer';
 
-const driveFileIds = (process.env.FAMILY_MOVIE_DRIVE_FILE_ID ?? '')
-  .split(',')
-  .map((id) => id.trim())
-  .filter(Boolean);
+const familyMovieUrl = (process.env.FAMILY_MOVIE_URL ?? '').trim();
 
 export default function FamilyMoviePage() {
-  if (driveFileIds.length === 0) {
+  if (!familyMovieUrl) {
     return (
       <main
         style={{
@@ -21,34 +18,12 @@ export default function FamilyMoviePage() {
         }}
       >
         <div>
-          <p>FAMILY_MOVIE_DRIVE_FILE_ID is not configured.</p>
-          <p>Add a Google Drive file ID to .env.local and restart the dev server.</p>
+          <p>FAMILY_MOVIE_URL is not configured.</p>
+          <p>Add a Google Photos (or other) album URL to .env.local and restart the dev server.</p>
         </div>
       </main>
     );
   }
 
-  return (
-    <main
-      style={{
-        margin: 0,
-        padding: 0,
-        width: '100vw',
-        minHeight: '100dvh',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#000',
-        boxSizing: 'border-box',
-        overflowX: 'hidden',
-      }}
-    >
-      {driveFileIds.map((fileId, index) => (
-        <FamilyMoviePlayer
-          key={fileId}
-          fileId={fileId}
-          title={driveFileIds.length > 1 ? `Family Movie ${index + 1}` : 'Family Movie'}
-        />
-      ))}
-    </main>
-  );
+  return <FamilyMoviePlayer url={familyMovieUrl} />;
 }
