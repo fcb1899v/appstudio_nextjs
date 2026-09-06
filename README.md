@@ -56,33 +56,18 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 
 ## 🔧 Environment Variables
 
-Create a `.env.local` file in the project root and set the following variables:
+Copy `.env_example` to `.env.local` and fill in the values. The template lists
+every variable with what it is for, and is the one place that list is
+maintained, so it is not repeated here.
 
-```bash
-# Google Analytics（ページビューは GTM の「Google タグ」で計測。カスタムイベント用に ID を設定する場合）
-# GA_TRACKING_ID=G-R0FGZZJ71Y
+The template is named with an underscore rather than `.env.example` because the
+studio's tooling refuses to edit paths matching `.env.*`.
 
-# Google Tag Manager（全ページの head/body にインストール。GA4 は GTM 内で設定）
-GTM_ID=GTM-T3PSBCC
-
-# Google AdSense
-ADSENSE_ID=ca-pub-XXXXXXXXXX
-
-# Cookiebot（同意管理は GTM の「Cookiebot CMP」タグで読み込み。サイト側では読み込まない）
-# COOKIEBOT_ID は GTM 側で設定。カスタム CookieConsentBanner と併用する場合は二重表示に注意
-
-# reCAPTCHA (for contact form)
-RECAPTCHA_V3_SITE_KEY=your_recaptcha_v3_site_key
-
-# reCAPTCHA secret key (server-side only)
-RECAPTCHA_V3_SECRET_KEY=your_recaptcha_v3_secret_key
-
-# Google Form (contact form submission). Use the form ID from the URL: /d/FORM_ID/ or /d/e/FORM_ID/
-GOOGLE_FORM_ID=your_google_form_id
-
-# Environment
-NODE_ENV=development
-```
+One distinction in it is not cosmetic. Next.js inlines any `NEXT_PUBLIC_`
+variable into the client bundle at build time, and everything else stays on the
+server. `RECAPTCHA_V3_SECRET_KEY` is the only real secret here: with it, anyone
+can validate their own tokens as this site. Moving a key across that line
+changes who can read it.
 
 ## 📁 Project Structure
 
