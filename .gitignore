@@ -121,3 +121,20 @@ font/
 
 #vendor
 vendor/
+# Workspace tooling, not part of this app. Six of the other repos already
+# hide it; keeping one set of rules means the same review applies everywhere.
+.claude/
+.cursorignore
+
+# --- Signing assets (added 2026-09-06) ---
+# None of these are in any repository today. The rules exist so that a
+# certificate exported to the project directory for a one-off cannot be
+# committed by a later `git add -A`. Distribution certificates and the App
+# Store Connect key grant publishing rights, and a leak is not fixed by
+# deleting the file: the history keeps it.
+*.p12
+*.p8
+*.cer
+*.certSigningRequest
+*.mobileprovision
+*.provisionprofile
