@@ -147,16 +147,16 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
     textDecoration: "none"
   });
 
-  // header_logo.png is 1082x630
+  // header_logo.png and .webp are both 2804x630, measured 2026-09-06.
   const logoHeight = isHomeHeader && !isSP(width) ? 56 : 48;
-  const logoWidth = Math.round((1082 * logoHeight) / 630);
+  const logoWidth = Math.round((2804 * logoHeight) / 630);
 
   return (
     <header className="header" style={headerStyle}>
       {/* Header container with app title and menu button */}
       <div className="flex_center" style={headerTitleStyle}>
         {(appNumber === 0) ? (
-          // Home: logo only (1082x630); PC 56px / SP 48px height
+          // Home: logo only (2804x630); PC 56px / SP 48px height
           <OptimizedImage 
             src={icon} 
             alt="logo" 

@@ -81,6 +81,30 @@ export const testVoice = (voiceIndex: number, text: string = 'Hello, this is a t
   }
 };
 
+// Voices can arrive in stages, so a first click may see a partial list.
+// See 03_Developer/bugs/2026-09-06_appstudio_speech_voices.md.
+const VOICE_WAIT_MS = 10000;
+let voicesReady: Promise<void> | null = null;
+let latestRequest = 0;
+
+/** Resolves on the next voice list update, or after VOICE_WAIT_MS. */
+const waitForVoices = (synth: SpeechSynthesis) => {
+  if (!voicesReady) {
+    voicesReady = new Promise<void>(resolve => {
+      const finish = () => {
+        synth.removeEventListener('voiceschanged', finish);
+        clearTimeout(timer);
+        // Cleared so a later click waits again instead of resolving at once.
+        voicesReady = null;
+        resolve();
+      };
+      const timer = setTimeout(finish, VOICE_WAIT_MS);
+      synth.addEventListener('voiceschanged', finish);
+    });
+  }
+  return voicesReady;
+};
+
 /**
  * Speak words using speech synthesis
  * @param words - Array of words to speak
@@ -94,12 +118,13 @@ export const speechWord = (words: string[], isPhonics: boolean, isFirst: boolean
   }  
   const synth = window.speechSynthesis;
   
-  // Initialize voices properly
+  const langPrefix = isPhonics ? 'en' : 'ja';
+
+  // Null means "not in the list yet", which is not yet "absent".
   const initVoices = () => {
     const voices = synth.getVoices();
-    const filteredVoices = voices.filter(voice => voice.lang.startsWith(isPhonics ? 'en': 'ja'));
+    const filteredVoices = voices.filter(voice => voice.lang.startsWith(langPrefix));
     if (filteredVoices.length == 0) {
-      alert('English voices are not available.');
       return null;
     }
 
@@ -110,7 +135,7 @@ export const speechWord = (words: string[], isPhonics: boolean, isFirst: boolean
   
 
     const preferredVoices = voices.filter(voice => {
-      return preferredVoiceKeywords.some(keyword => voice.name.includes(keyword)) && voice.lang.startsWith(isPhonics ? 'en': 'ja');
+      return preferredVoiceKeywords.some(keyword => voice.name.includes(keyword)) && voice.lang.startsWith(langPrefix);
     });
 
     const selectedVoice = preferredVoices.length > 0 ? preferredVoices[0] : filteredVoices[0];
@@ -140,20 +165,27 @@ export const speechWord = (words: string[], isPhonics: boolean, isFirst: boolean
     speechSynthesis.speak(msg);
   };
 
-  // Wait if voices are not loaded yet
-  if (synth.getVoices().length === 0) {
-    synth.onvoiceschanged = () => {
-      const selectedVoice = initVoices();
-      if (selectedVoice) {
-        speakWithSettings(selectedVoice);
-      }
-    };
-  } else {
-    const selectedVoice = initVoices();
-    if (selectedVoice) {
-      speakWithSettings(selectedVoice);
-    }
+  const immediate = initVoices();
+  if (immediate) {
+    speakWithSettings(immediate);
+    return;
   }
+
+  // Taps during the wait supersede each other, so a burst speaks once.
+  const request = ++latestRequest;
+  waitForVoices(synth).then(() => {
+    if (request !== latestRequest) return;
+    const voice = initVoices();
+    if (voice) {
+      speakWithSettings(voice);
+      return;
+    }
+    console.warn(
+      `speechWord: no ${langPrefix} voice after ${VOICE_WAIT_MS}ms`,
+      synth.getVoices().map(v => `${v.lang}/${v.name}`)
+    );
+    alert(`${isPhonics ? 'English' : 'Japanese'} voices are not available on this device.`);
+  });
 }
 
 /**
@@ -430,7 +462,7 @@ export function getWords(char: string) {
       //[ングゥ]
       case "ng": return ["puddi","ng","", "fryi","ng"," pan"];
       //[リィ]:4
-      case "lly": return ["/images/phonics/images/jelly.png", "/images/phonics/images/belly.png"]; 
+      case "lly": return ["je","lly","", "be","lly",""];
       default: return ["","","", "","",""];
     }
 }
@@ -628,7 +660,7 @@ export function getImages(char: string) {
     //[ングゥ]
     case "ng": return ["/images/phonics/images/pudding.png", "/images/phonics/images/fryingpan.png"];
     //[リィ]:4
-    case "lly": return ["je","lly","", "be","lly",""]; 
+    case "lly": return ["/images/phonics/images/jelly.png", "/images/phonics/images/belly.png"];
     default: return ["", ""];
   }
 }
