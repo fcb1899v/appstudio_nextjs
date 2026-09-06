@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "deploy": "npm run build && node scripts/sync-familymovie-redirect.mjs && firebase deploy",
     "preview": "npm run build && node scripts/sync-familymovie-redirect.mjs && firebase serve --only hosting",
     "optimize-images": "tsx scripts/optimize-images.ts",
