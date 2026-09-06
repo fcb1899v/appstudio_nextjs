@@ -7,7 +7,7 @@
 import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
 import nextTypeScript from 'eslint-config-next/typescript';
 
-export default [
+const config = [
   {
     ignores: [
       '.next/**',
@@ -21,3 +21,5 @@ export default [
   ...nextCoreWebVitals,
   ...nextTypeScript,
 ];
+
+export default config;

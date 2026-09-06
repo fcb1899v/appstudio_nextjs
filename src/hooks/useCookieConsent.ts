@@ -55,6 +55,10 @@ export const useCookieConsent = () => {
       try {
         // Parse saved consent data
         const parsedConsent = JSON.parse(savedConsent);
+    /* eslint-disable-next-line react-hooks/set-state-in-effect --
+       localStorage does not exist during SSR, so the saved consent can
+       only be read after mount. There is nothing to derive this from
+       during render. */
         setConsent(parsedConsent);
         setHasConsent(true);
       } catch {

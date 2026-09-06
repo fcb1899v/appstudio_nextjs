@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties, useEffect, useRef, useState } from 'react'
 import { isSP, myApp, myAppNumber } from '@/utils/constants'
-import { defaultCharList, defaultFirstChar, defaultImages, defaultSecondChar, defaultWords  } from '@/utils/functions'
+import { defaultCharList, defaultSecondChar } from '@/utils/functions'
 import { getImages, getWords, hiraganaToKatakana, shuffle, speechWord } from '@/utils/functions'
 import MusicIcon from '@mui/icons-material/MusicNote';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
@@ -31,25 +31,27 @@ const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
 
   const [charList, setCharList] = useState(defaultCharList(isPhonics));
   const [charNumber, setCharNumber] = useState(0);
-  const [firstChar, setFirstChar] = useState(defaultFirstChar(isPhonics));
-  const [secondChar, setSecondChar] = useState(defaultSecondChar);
-  const [words, setWords] = useState(defaultWords(isPhonics));
-  const [images, setImages] = useState(defaultImages(isPhonics));
   const squareRef1 = useRef<HTMLDivElement>(null);
   const squareRef2 = useRef<HTMLDivElement>(null);
 
+  // All four follow from the selected character, so they are computed here
+  // rather than mirrored into state by an effect. Only charList and charNumber
+  // are set from outside, by the navigation and shuffle handlers below.
+  const currentChar = charList[charNumber];
+  const firstChar = currentChar;
+  const secondChar = isPhonics ? defaultSecondChar() : hiraganaToKatakana(currentChar);
+  const words = getWords(currentChar);
+  const images = getImages(currentChar);
+
+  // The squares are sized from their own rendered width, which is only known
+  // after layout, so this part genuinely belongs in an effect.
   useEffect(() => {
-    setCharNumber(charNumber);
-    setFirstChar(charList[charNumber]);
-    if (!isPhonics) setSecondChar(hiraganaToKatakana(charList[charNumber]));
-    setWords(getWords(charList[charNumber]));
-    setImages(getImages(charList[charNumber]));
     if (squareRef1.current && squareRef2.current) {
       const imageBoxWidth1 = squareRef1.current.clientWidth;
       const imageBoxWidth2 = squareRef2.current.clientWidth;
       squareRef1.current.style.height = `${imageBoxWidth1}px`;
       squareRef2.current.style.height = `${imageBoxWidth2}px`;
-    }            
+    }
   }, [isPhonics, width, charNumber, charList]);
     
   const nextNumber = () => setCharNumber((charNumber + 1 == charList.length) ? 0: charNumber + 1);

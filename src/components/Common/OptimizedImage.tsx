@@ -18,18 +18,21 @@ interface OptimizedImageProps extends Omit<ImageProps, 'src'> {
   src: string;
 }
 
-export default function OptimizedImage({ src, ...props }: OptimizedImageProps) {
+export default function OptimizedImage({ src, alt, ...props }: OptimizedImageProps) {
   const webpSrc = getWebpSrc(src);
-  const imageProps: ImageProps = { ...props, src };
+  // alt is spelled out at both call sites: jsx-a11y only recognises a literal
+  // attribute, not one arriving through a spread, even though ImageProps
+  // already requires it.
+  const imageProps: Omit<ImageProps, 'alt'> = { ...props, src };
 
   if (webpSrc) {
     return (
       <picture>
         <source srcSet={webpSrc} type="image/webp" />
-        <Image {...imageProps} />
+        <Image {...imageProps} alt={alt} />
       </picture>
     );
   }
 
-  return <Image {...imageProps} />;
+  return <Image {...imageProps} alt={alt} />;
 }

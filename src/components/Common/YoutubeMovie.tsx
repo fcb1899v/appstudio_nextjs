@@ -91,6 +91,12 @@ const YoutubeMovie: NextPage<Props> = ({ appNumber, width, isJa }) => {
           }}
           aria-label="Play YouTube video"
         >
+          {/* images.unoptimized is set, so next/image skips its loader
+              entirely (generateImgAttrs returns before calling it) and no
+              optimization is available to gain here. It would still add its own
+              width, height, decoding and style attributes over a thumbnail that
+              is already positioned by the button around it. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={thumbUrl(videoId)}
             alt=""

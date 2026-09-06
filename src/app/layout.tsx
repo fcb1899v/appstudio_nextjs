@@ -33,8 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager - place as high as possible in head */}
+        {/* Google Tag Manager - place as high as possible in head.
+            Not the GoogleTagManager component from @next/third-parties: that
+            injects through next/script and loads later, and Cookiebot's consent
+            banner is loaded from inside GTM, so the container has to be first. */}
         {GTM_ID && (
+          // eslint-disable-next-line @next/next/next-script-for-ga
           <script
             id="gtm-script"
             dangerouslySetInnerHTML={{

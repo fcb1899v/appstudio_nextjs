@@ -30,15 +30,16 @@ const AnalyticsTracker: FC<AnalyticsTrackerProps> = ({
   // Get analytics tracking functions from custom hook
   const { trackPageView, trackAppView, trackScroll, trackTimeOnPage } = useAnalytics();
   
-  // Store initial page load time for time tracking
-  const startTime = useRef<number>(Date.now());
-  
   // Track last scroll event time for throttling
   const lastScrollTime = useRef<number>(0);
 
   useEffect(() => {
-    // Store initial start time for accurate tracking
-    const initialStartTime = startTime.current;
+    // Measured from when tracking for this page started. The tracking
+    // functions are module-scope constants, so this effect re-runs only when
+    // the page metadata or the device bucket changes, not on every render.
+    // Rotating a phone crosses a width breakpoint and does restart the count,
+    // which is deliberate: deviceType is one of the dimensions being reported.
+    const initialStartTime = Date.now();
     
     // Track page view with metadata
     trackPageView(pageTitle, pagePath, {

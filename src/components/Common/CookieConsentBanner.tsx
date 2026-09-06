@@ -49,6 +49,10 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     if (savedConsent) {
       try {
         const parsedConsent = JSON.parse(savedConsent);
+    /* eslint-disable-next-line react-hooks/set-state-in-effect --
+       localStorage does not exist during SSR, so the saved consent can
+       only be read after mount. There is nothing to derive this from
+       during render. */
         setConsent(parsedConsent);
       } catch {
         if (savedConsent === 'accepted') {

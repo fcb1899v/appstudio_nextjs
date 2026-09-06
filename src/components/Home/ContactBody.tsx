@@ -20,6 +20,10 @@ import IoSquareOutline from '@mui/icons-material/CropSquare';
 import Link from 'next/link';
 import { myForm, myApp, myAppNumber, isFormConfigured } from '@/utils/constants';
 
+// Module scope: a literal in the component body is a new object every render,
+// which forces it into every dependency array that touches it.
+const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 /** reCAPTCHA v3 site key (optional). Matches keys from the legacy appstudio_next project. */
 const recaptchaSiteKey = (
   typeof process.env.RECAPTCHA_V3_SITE_KEY === 'string'
@@ -55,7 +59,6 @@ const ContactBodyInner: NextPage<Props> = ({ isJa }) => {
   const expectingFormSubmitLoad = useRef(false);
 
   const showError = (touched: boolean, invalid: boolean) => (touched || submitAttempted) && invalid;
-  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setName(e.target.value);
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setEmail(e.target.value);
