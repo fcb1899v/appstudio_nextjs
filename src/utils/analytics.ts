@@ -1,9 +1,6 @@
 import { CookieConsent } from '@/hooks/useCookieConsent';
 
-/**
- * Global type declarations for Google Analytics and Google Tag Manager
- * Extends the Window interface to include gtag and dataLayer properties
- */
+/** gtag and dataLayer on Window. */
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
@@ -11,18 +8,11 @@ declare global {
   }
 }
 
-/**
- * Environment variables for Google Analytics and Google Tag Manager IDs
- * These are loaded from environment variables and used for tracking configuration
- */
+/** Google Analytics and Tag Manager IDs from environment variables. */
 export const GA_TRACKING_ID = process.env.GA_TRACKING_ID || "";
 export const GTM_ID = process.env.GTM_ID || "";
 
-/**
- * Initialize Google Analytics with user consent
- * Sets up dataLayer and configures GA with privacy settings
- * @param consent - User's cookie consent preferences
- */
+/** Initialize Google Analytics with the user's consent: dataLayer plus privacy settings. */
 export const initializeGA = (consent: CookieConsent) => {
   if (!GA_TRACKING_ID || !consent.analytics) {
     return;
@@ -31,10 +21,8 @@ export const initializeGA = (consent: CookieConsent) => {
   // Initialize dataLayer array for Google Tag Manager
   window.dataLayer = window.dataLayer || [];
   
-  // Define gtag function for Google Analytics
-  // gtag.js is documented as pushing the arguments object. Rest parameters
-  // would push an Array instead, and nothing in its docs says the two are
-  // interchangeable, so the shape stays as Google publishes it.
+  // gtag.js is documented as pushing the arguments object; rest parameters would push
+  // an Array, and nothing in the docs says the two are interchangeable.
   window.gtag = function() {
     // eslint-disable-next-line prefer-rest-params
     window.dataLayer.push(arguments);
@@ -49,11 +37,7 @@ export const initializeGA = (consent: CookieConsent) => {
   });
 };
 
-/**
- * Track page views in Google Analytics
- * @param url - The URL of the page being tracked
- * @param consent - User's cookie consent preferences
- */
+/** Track a page view, subject to consent. */
 export const pageview = (url: string, consent: CookieConsent): void => {
   if (!GA_TRACKING_ID || !consent.analytics) {
     return;
@@ -65,15 +49,7 @@ export const pageview = (url: string, consent: CookieConsent): void => {
   });
 };
 
-/**
- * Track custom events in Google Analytics
- * @param action - The action being tracked
- * @param category - The category of the event
- * @param label - The label for the event
- * @param value - Optional numeric value for the event
- * @param consent - User's cookie consent preferences
- * @param parameters - Additional parameters to include with the event
- */
+/** Track a custom event (action/category/label/value), subject to consent. */
 export const event = ({
   action,
   category,
@@ -102,12 +78,7 @@ export const event = ({
   });
 };
 
-/**
- * Track custom events with flexible parameters
- * @param eventName - The name of the event to track
- * @param parameters - Parameters to include with the event
- * @param consent - User's cookie consent preferences
- */
+/** Track a custom event with arbitrary parameters, subject to consent. */
 export const trackCustomEvent = ({
   eventName,
   parameters,
@@ -127,11 +98,7 @@ export const trackCustomEvent = ({
   });
 };
 
-/**
- * Handle consent changes for Google Analytics
- * Initializes GA when consent is given, removes cookies when consent is withdrawn
- * @param consent - User's cookie consent preferences
- */
+/** Apply a consent change: initialize GA when granted, remove GA cookies when withdrawn. */
 export const handleConsentChange = (consent: CookieConsent) => {
   if (consent.analytics) {
     initializeGA(consent);

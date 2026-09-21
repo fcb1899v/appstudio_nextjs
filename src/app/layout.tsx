@@ -3,13 +3,8 @@ import HtmlLang from '@/components/Common/HtmlLang'
 import { beon, cornerStone, kodomo, pacifico, riipop } from '@/lib/fonts'
 import type { ReactNode } from 'react'
 
-/**
- * Root layout component for the entire application
- * Provides the base HTML structure, global styles, custom fonts, and security policies
- * for all pages. Sets up document head with meta tags, viewport settings, and CSP headers.
- * The body includes all custom font variables for consistent typography across the app.
- * Static export: no headers() so layout can be pre-rendered. Per-page title/description via MyHead.
- */
+/** Root layout: base HTML, global styles and font variables. No headers() so the static
+ * export can pre-render; per-page title/description come from MyHead. */
 
 // Interface for root layout component props
 interface RootLayoutProps {

@@ -1,8 +1,4 @@
-/**
- * Firebase configuration object
- * Contains all necessary configuration parameters for Firebase services
- * Replace placeholder values with actual Firebase project credentials
- */
+/** Firebase configuration. Replace placeholders with the project credentials. */
 export const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_AUTH_DOMAIN",

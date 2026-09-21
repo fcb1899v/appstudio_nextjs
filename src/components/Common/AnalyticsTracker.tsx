@@ -1,10 +1,7 @@
 import { useEffect, useRef, type FC } from 'react';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
-/**
- * Interface for analytics tracking component props
- * Defines the properties required for analytics tracking functionality
- */
+/** Props for AnalyticsTracker. */
 interface AnalyticsTrackerProps {
   pageTitle: string;
   pagePath: string;
@@ -13,11 +10,7 @@ interface AnalyticsTrackerProps {
   deviceType: string;
 }
 
-/**
- * Component for tracking user behavior and analytics data
- * Handles page views, app views, scroll tracking, and time on page
- * Provides comprehensive analytics tracking for user engagement metrics
- */
+/** Tracks page views, app views, scroll depth and time on page. */
 
 // Analytics tracking component for user behavior monitoring
 const AnalyticsTracker: FC<AnalyticsTrackerProps> = ({
@@ -34,11 +27,8 @@ const AnalyticsTracker: FC<AnalyticsTrackerProps> = ({
   const lastScrollTime = useRef<number>(0);
 
   useEffect(() => {
-    // Measured from when tracking for this page started. The tracking
-    // functions are module-scope constants, so this effect re-runs only when
-    // the page metadata or the device bucket changes, not on every render.
-    // Rotating a phone crosses a width breakpoint and does restart the count,
-    // which is deliberate: deviceType is one of the dimensions being reported.
+    // Measured from when tracking started; re-runs only when page metadata or the
+    // device bucket changes. Rotating across a breakpoint restarts it on purpose.
     const initialStartTime = Date.now();
     
     // Track page view with metadata

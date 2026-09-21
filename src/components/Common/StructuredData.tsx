@@ -2,22 +2,12 @@ import { AppProps } from '@/types/app';
 import { myApp } from '@/utils/constants';
 import type { FC } from 'react';
 
-/**
- * Interface for structured data component props
- * Extends AppProps and adds page type for SEO optimization
- */
+/** Props for StructuredData: AppProps plus the page type. */
 interface StructuredDataProps extends AppProps {
   pageType?: 'website' | 'article' | 'product';
 }
 
-/**
- * Component for generating structured data (JSON-LD) for SEO
- * Creates schema.org markup for better search engine understanding
- * @param appNumber - App identifier for dynamic content
- * @param width - Screen width for responsive design
- * @param isJa - Language preference (Japanese or English)
- * @param pageType - Type of page for appropriate schema markup
- */
+/** Emits schema.org JSON-LD for the app page. */
 const StructuredData: FC<StructuredDataProps> = ({ 
   appNumber, 
   width, 

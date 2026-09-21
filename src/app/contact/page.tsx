@@ -11,13 +11,7 @@ import { useWindowSize } from '@/hooks/useWindowSize';
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 import AnalyticsTracker from '@/components/Common/AnalyticsTracker';
 
-/**
- * Contact page component for user inquiries and feedback
- * Provides a contact form and information page where users can submit inquiries,
- * feedback, or get in touch with the development team. Includes analytics tracking,
- * cookie consent banner, and responsive design to ensure proper user experience
- * across all devices. Handles form submissions and user interaction tracking.
- */
+/** Contact page: contact form with analytics tracking and cookie consent banner. */
 
 // Contact page component for user inquiries and feedback
 const ContactPage: NextPage = () => {

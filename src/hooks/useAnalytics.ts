@@ -1,17 +1,11 @@
-/**
- * Global type declaration for Google Analytics gtag function
- * Extends Window interface to include gtag function for analytics tracking
- */
+/** Adds the Google Analytics gtag function to Window. */
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
   }
 }
 
-/**
- * Interface for analytics event data structure
- * Defines the structure for tracking events in Google Analytics
- */
+/** Event payload sent to Google Analytics. */
 interface AnalyticsEvent {
   action: string;
   category: string;
@@ -20,13 +14,8 @@ interface AnalyticsEvent {
   custom_parameters?: Record<string, unknown>;
 }
 
-// Defined at module scope: none of these close over anything, so leaving them
-// in the hook body handed every caller a new identity on every render, and
-// any effect listing them as dependencies re-ran on every render.
-/**
- * Generic event tracking function that sends data to Google Analytics
- * @param event - Analytics event data to track
- */
+// Module scope: these close over nothing, and per-render identities re-ran effects.
+/** Sends an event to Google Analytics. */
 const trackEvent = (event: AnalyticsEvent) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', event.action, {
@@ -38,12 +27,7 @@ const trackEvent = (event: AnalyticsEvent) => {
   }
 };
 
-/**
- * Track page view events with custom parameters
- * @param pageTitle - Title of the page being viewed
- * @param pagePath - Path of the page being viewed
- * @param customParams - Additional parameters to include with the event
- */
+/** Track a page view with custom parameters. */
 const trackPageView = (pageTitle: string, pagePath: string, customParams?: Record<string, unknown>) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'page_view', {
@@ -55,12 +39,7 @@ const trackPageView = (pageTitle: string, pagePath: string, customParams?: Recor
   }
 };
 
-/**
- * Track app download events for iOS and Android platforms
- * @param appName - Name of the app being downloaded
- * @param platform - Platform (ios or android)
- * @param language - User's language preference
- */
+/** Track an app download for iOS or Android. */
 const trackAppDownload = (appName: string, platform: 'ios' | 'android', language: string) => {
   trackEvent({
     action: 'app_download',
@@ -74,12 +53,7 @@ const trackAppDownload = (appName: string, platform: 'ios' | 'android', language
   });
 };
 
-/**
- * Track when users view app-specific pages
- * @param appName - Name of the app being viewed
- * @param language - User's language preference
- * @param deviceType - Type of device being used
- */
+/** Track a view of an app-specific page. */
 const trackAppView = (appName: string, language: string, deviceType: string) => {
   trackEvent({
     action: 'app_view',
@@ -93,11 +67,7 @@ const trackAppView = (appName: string, language: string, deviceType: string) => 
   });
 };
 
-/**
- * Track navigation menu clicks
- * @param menuItem - Name of the menu item clicked
- * @param language - User's language preference
- */
+/** Track a navigation menu click. */
 const trackMenuClick = (menuItem: string, language: string) => {
   trackEvent({
     action: 'menu_click',
@@ -110,11 +80,7 @@ const trackMenuClick = (menuItem: string, language: string) => {
   });
 };
 
-/**
- * Track clicks on external links (app store, social media, etc.)
- * @param url - URL of the external link
- * @param linkType - Type of external link (app store, social media, etc.)
- */
+/** Track a click on an external link (app store, social media, etc.). */
 const trackExternalLink = (url: string, linkType: string) => {
   trackEvent({
     action: 'external_link',
@@ -127,11 +93,7 @@ const trackExternalLink = (url: string, linkType: string) => {
   });
 };
 
-/**
- * Track scroll depth to measure user engagement
- * @param scrollDepth - Percentage of page scrolled (0-100)
- * @param pagePath - Path of the page being scrolled
- */
+/** Track scroll depth (0-100%) for engagement. */
 const trackScroll = (scrollDepth: number, pagePath: string) => {
   trackEvent({
     action: 'scroll',
@@ -145,11 +107,7 @@ const trackScroll = (scrollDepth: number, pagePath: string) => {
   });
 };
 
-/**
- * Track time spent on page for engagement analysis
- * @param timeSpent - Time spent on page in seconds
- * @param pagePath - Path of the page being tracked
- */
+/** Track time spent on a page in seconds. */
 const trackTimeOnPage = (timeSpent: number, pagePath: string) => {
   trackEvent({
     action: 'time_on_page',
@@ -163,9 +121,7 @@ const trackTimeOnPage = (timeSpent: number, pagePath: string) => {
   });
 };
 
-/**
- * Every tracking function, as one stable object.
- */
+/** Every tracking function, as one stable object. */
 const analytics = {
   trackEvent,
   trackPageView,
@@ -177,9 +133,5 @@ const analytics = {
   trackTimeOnPage
 } as const;
 
-/**
- * Custom hook for Google Analytics tracking functionality
- * Provides methods to track various user interactions and page events
- * @returns Object containing various tracking functions
- */
+/** Google Analytics hook: returns the tracking functions. */
 export const useAnalytics = () => analytics;

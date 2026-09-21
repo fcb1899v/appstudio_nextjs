@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/functions/node_modules
 /.pnp
 .pnp.js
 
@@ -30,6 +31,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+# Cloud Functions read secrets from Secret Manager in production, and from these when emulated.
+functions/.env*
 .env*.local
 .env
 .env.production

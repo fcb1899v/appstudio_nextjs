@@ -11,9 +11,7 @@ export function generateStaticParams() {
   return APP_SLUGS.map((appSlug) => ({ appSlug }));
 }
 
-/**
- * Dynamic app page (English). Handles /elevator, /signal, /phonics, etc.
- */
+/** Dynamic app page (English). Handles /elevator, /signal, /phonics, etc. */
 export default async function AppSlugPage({ params }: PageProps) {
   const { appSlug } = await params;
   const appNumber = APP_SLUG_TO_NUMBER[appSlug];

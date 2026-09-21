@@ -17,9 +17,7 @@ const ALLOWED_APP_VALUES = new Set<string>([
   ...myApp(1024, false).map((a) => a.text.menu).filter((_, i) => i !== myAppNumber.home),
 ]);
 
-/**
- * Validates and sanitizes form body. Returns null if valid, or an error response body.
- */
+/** Validates and sanitizes the form body. Returns null if valid, else an error body. */
 function validateFormBody(body: unknown): { name: string; email: string; app: string; message: string } | NextResponse {
   if (body === null || typeof body !== 'object' || Array.isArray(body)) {
     return NextResponse.json({ success: false, message: 'Invalid request body' }, { status: 400 });
@@ -73,21 +71,8 @@ function validateFormBody(body: unknown): { name: string; email: string; app: st
   return { name, email, app, message };
 }
 
-/**
- * Form submission API route for contact form processing
- * Handles contact form submissions by forwarding data to Google Forms for storage and processing.
- * Validates incoming data, maps form fields to Google Forms entry IDs, and provides
- * appropriate success/error responses. Includes proper error handling, development logging,
- * and HTTP status codes for different scenarios including successful submission,
- * validation errors, and server errors.
- *
- * This route:
- * - Receives form data from the client
- * - Validates and sanitizes required fields (name, email, app, message)
- * - Maps form fields to Google Forms entry IDs
- * - Submits data to Google Forms
- * - Returns appropriate success/error responses
- */
+/** Contact form route: validates name/email/app/message, maps them to Google Forms
+ * entry IDs and forwards the submission. */
 export async function POST(request: NextRequest) {
   try {
     let body: unknown;

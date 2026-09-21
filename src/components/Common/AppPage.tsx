@@ -24,11 +24,8 @@ export interface AppPageProps {
   pagePath: string;
 }
 
-/**
- * Shared app showcase page. Renders common shell and app-specific content blocks
- * based on appNumber (elevator, elevatorneo, signal, crossing, toilet, allowance,
- * transit, phonics, japanese). Used by dynamic routes [appSlug]/page and [appSlug]/ja/page.
- */
+/** Shared app showcase page: common shell plus app-specific blocks chosen by appNumber.
+ * Used by the [appSlug]/page and [appSlug]/ja/page dynamic routes. */
 const AppPage: NextPage<AppPageProps> = ({ appNumber, isJa, pagePath }) => {
   const { windowSize, isClient } = useWindowSize();
 

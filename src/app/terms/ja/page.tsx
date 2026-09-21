@@ -11,13 +11,7 @@ import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 import AnalyticsTracker from '@/components/Common/AnalyticsTracker';
 import TermsContents from '@/components/Home/TermsContents';
 
-/**
- * Japanese Terms of Service page component for legal information
- * Displays terms of service content in Japanese for legal compliance.
- * Includes analytics tracking, responsive design, and user engagement
- * features to provide a complete legal information experience. Handles
- * client-side rendering and provides proper SEO optimization for the terms page.
- */
+/** Japanese terms of service page with analytics tracking. */
 
 // Japanese Terms of Service page component for legal information
 const TermsPage: NextPage = () => {

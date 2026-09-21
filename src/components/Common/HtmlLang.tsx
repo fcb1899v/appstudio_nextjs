@@ -3,10 +3,8 @@
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
-/**
- * Sets document.documentElement.lang from route (static export safe).
- * /ja/* routes -> lang="ja", otherwise lang="en". Runs after hydration.
- */
+/** Sets document.documentElement.lang from the route after hydration (static export safe).
+ * /ja/* routes get "ja", everything else "en". */
 export default function HtmlLang() {
   const pathname = usePathname();
 

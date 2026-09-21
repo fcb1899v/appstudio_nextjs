@@ -1,40 +1,27 @@
 import { useState, useEffect } from 'react';
 
-/**
- * Interface for cookie consent preferences
- * Defines the structure for user consent to different types of cookies
- */
+/** User consent per cookie type. */
 export interface CookieConsent {
   analytics: boolean;
   marketing: boolean;
   necessary: boolean;
 }
 
-/**
- * Interface for cookie consent state management
- * Defines the complete state structure for cookie consent functionality
- */
+/** Cookie consent state. */
 export interface CookieConsentState {
   consent: CookieConsent;
   hasConsent: boolean;
   isOpen: boolean;
 }
 
-/**
- * Default consent settings - necessary cookies are always enabled
- * Provides initial state for cookie consent preferences
- */
+/** Default consent: necessary cookies are always enabled. */
 const DEFAULT_CONSENT: CookieConsent = {
   analytics: false,
   marketing: false,
   necessary: true, // Necessary cookies are always enabled
 };
 
-/**
- * Custom hook for managing cookie consent
- * Handles consent storage, retrieval, and state management
- * @returns Object containing consent state and management functions
- */
+/** Manages cookie consent: storage, retrieval and state. */
 export const useCookieConsent = () => {
   // State for current consent preferences
   const [consent, setConsent] = useState<CookieConsent>(DEFAULT_CONSENT);
@@ -45,10 +32,7 @@ export const useCookieConsent = () => {
   // State to control consent banner visibility
   const [isOpen, setIsOpen] = useState(false);
 
-  /**
-   * Load saved consent from localStorage on component mount
-   * Handles both new JSON format and legacy string format
-   */
+  /** Load saved consent on mount; accepts the JSON format and the legacy string format. */
   useEffect(() => {
     const savedConsent = localStorage.getItem('cookie_consent');
     if (savedConsent) {
@@ -56,9 +40,7 @@ export const useCookieConsent = () => {
         // Parse saved consent data
         const parsedConsent = JSON.parse(savedConsent);
     /* eslint-disable-next-line react-hooks/set-state-in-effect --
-       localStorage does not exist during SSR, so the saved consent can
-       only be read after mount. There is nothing to derive this from
-       during render. */
+       localStorage exists only after mount, so saved consent cannot be derived in render. */
         setConsent(parsedConsent);
         setHasConsent(true);
       } catch {
@@ -76,10 +58,7 @@ export const useCookieConsent = () => {
     }
   }, []);
 
-  /**
-   * Accept all cookie types (analytics, marketing, necessary)
-   * Enables all cookie types and saves to localStorage
-   */
+  /** Enable all cookie types and save to localStorage. */
   const acceptAll = () => {
     const newConsent = { ...DEFAULT_CONSENT, analytics: true, marketing: true };
     setConsent(newConsent);
@@ -88,10 +67,7 @@ export const useCookieConsent = () => {
     localStorage.setItem('cookie_consent', JSON.stringify(newConsent));
   };
 
-  /**
-   * Accept only necessary cookies
-   * Enables only necessary cookies and saves to localStorage
-   */
+  /** Enable only necessary cookies and save to localStorage. */
   const acceptNecessary = () => {
     const newConsent = { ...DEFAULT_CONSENT };
     setConsent(newConsent);
@@ -100,10 +76,7 @@ export const useCookieConsent = () => {
     localStorage.setItem('cookie_consent', JSON.stringify(newConsent));
   };
 
-  /**
-   * Update specific consent preferences
-   * @param newConsent - Partial consent object to update
-   */
+  /** Merge a partial consent object into the current preferences. */
   const updateConsent = (newConsent: Partial<CookieConsent>) => {
     const updatedConsent = { ...consent, ...newConsent };
     setConsent(updatedConsent);
@@ -112,10 +85,7 @@ export const useCookieConsent = () => {
     localStorage.setItem('cookie_consent', JSON.stringify(updatedConsent));
   };
 
-  /**
-   * Withdraw all consent and reset to default state
-   * Removes all consent data and shows consent banner
-   */
+  /** Withdraw all consent, clear stored data and show the banner again. */
   const withdrawConsent = () => {
     setConsent(DEFAULT_CONSENT);
     setHasConsent(false);
@@ -123,9 +93,7 @@ export const useCookieConsent = () => {
     localStorage.removeItem('cookie_consent');
   };
 
-  /**
-   * Return consent state and management functions
-   */
+  /** Consent state and management functions. */
   return {
     consent,
     hasConsent,

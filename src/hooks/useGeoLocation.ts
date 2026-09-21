@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 
-/**
- * EU/EEA/UK country codes for GDPR applicability.
- */
+/** EU/EEA/UK country codes for GDPR applicability. */
 const GDPR_COUNTRIES = [
   'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
   'NO', 'IS', 'LI',
@@ -21,11 +19,8 @@ const STORAGE_KEY_GDPR = 'gdpr_applicable';
 const STORAGE_KEY_TIME = 'geo_detection_time';
 const CACHE_MS = 24 * 60 * 60 * 1000;
 
-/**
- * Detects if the user is in a GDPR-applicable region (EU/EEA/UK) via IP geolocation.
- * Uses ipapi.co (CORS-enabled for browser). Results cached in localStorage for 24h.
- * On failure, defaults to isGDPRApplicable: true to be safe.
- */
+/** Detects a GDPR region (EU/EEA/UK) via ipapi.co; result cached in localStorage for 24h.
+ * On failure defaults to isGDPRApplicable: true, to be safe. */
 export function useGeoLocation(): GeoLocationData {
   const [data, setData] = useState<GeoLocationData>({
     country: '',

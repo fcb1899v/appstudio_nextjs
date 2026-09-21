@@ -1,7 +1,4 @@
-/**
- * Check available voices for speech synthesis
- * Displays a list of available Japanese voices in the browser
- */
+/** Log the browser's available Japanese speech synthesis voices. */
 export const showAvailableVoices = () => {
   if (!('SpeechSynthesisUtterance' in window)) {
     alert('Speech synthesis API is not supported.');
@@ -20,11 +17,7 @@ export const showAvailableVoices = () => {
   alert(message);
 };
 
-/**
- * Test a specific voice by name
- * @param voiceName - Name of the voice to test
- * @param text - Text to speak (default: English test message)
- */
+/** Speak a test message with the named voice. */
 export const testSpecificVoice = (voiceName: string, text: string = 'Hello, this is a test voice.') => {
   if (!('SpeechSynthesisUtterance' in window)) {
     alert('Speech synthesis API is not supported.');
@@ -51,11 +44,7 @@ export const testSpecificVoice = (voiceName: string, text: string = 'Hello, this
   }
 };
 
-/**
- * Test voice by index
- * @param voiceIndex - Index of the voice to test
- * @param text - Text to speak (default: English test message)
- */
+/** Speak a test message with the voice at the given index. */
 export const testVoice = (voiceIndex: number, text: string = 'Hello, this is a test voice.') => {
   if (!('SpeechSynthesisUtterance' in window)) {
     alert('Speech synthesis API is not supported.');
@@ -105,12 +94,7 @@ const waitForVoices = (synth: SpeechSynthesis) => {
   return voicesReady;
 };
 
-/**
- * Speak words using speech synthesis
- * @param words - Array of words to speak
- * @param isPhonics - Whether to use English phonics or Japanese
- * @param isFirst - Whether to speak first or second set of words
- */
+/** Speak words in English phonics or Japanese; isFirst picks the first or second set. */
 export const speechWord = (words: string[], isPhonics: boolean, isFirst: boolean) => {
   if (!('SpeechSynthesisUtterance' in window)) {
     alert('Speech synthesis API is not supported.');
@@ -142,10 +126,7 @@ export const speechWord = (words: string[], isPhonics: boolean, isFirst: boolean
     return selectedVoice;
   };
 
-  /**
-   * Speak with configured settings
-   * @param selectedVoice - The selected voice to use
-   */
+  /** Speak with the selected voice and configured settings. */
   const speakWithSettings = (selectedVoice: SpeechSynthesisVoice) => {
     const msg = new SpeechSynthesisUtterance();
     msg.voice = selectedVoice;
@@ -188,11 +169,7 @@ export const speechWord = (words: string[], isPhonics: boolean, isFirst: boolean
   });
 }
 
-/**
- * Shuffle an array using Fisher-Yates algorithm
- * @param array - Array to shuffle
- * @returns Shuffled array
- */
+/** Fisher-Yates shuffle. */
 export const shuffle = (array: string[]) => { 
   for (let i = array.length - 1; i > 0; i--) { 
     const j = Math.floor(Math.random() * (i + 1)); 
@@ -201,20 +178,12 @@ export const shuffle = (array: string[]) => {
   return array; 
 }; 
 
-/**
- * Convert hiragana to katakana
- * @param text - Text containing hiragana characters
- * @returns Text with hiragana converted to katakana
- */
+/** Convert hiragana to katakana. */
 export const hiraganaToKatakana = (text: string) => {
   return text.replace(/[\u3042-\u3093]/g, m => String.fromCharCode(m.charCodeAt(0) + 96));
 };
 
-/**
- * Get default character list based on language
- * @param isPhonics - Whether to return English phonics or Japanese hiragana
- * @returns Array of characters for the specified language
- */
+/** Default character list: English phonics or Japanese hiragana. */
 export const defaultCharList = (isPhonics: boolean) => (isPhonics) ? [
     "a", "a'", "b", "c", "c'", "d", "e", "f", "g", "g'", "h",
     "i", "i'", "j", "k", "l", "m", "n", "o", "p", "q", "r",
@@ -238,42 +207,23 @@ export const defaultCharList = (isPhonics: boolean) => (isPhonics) ? [
     // "びゃ", "びゅ", "ぴゃ", "ぴゅ", "ぴょ",
 ];
 
-/**
- * Get default first character based on language
- * @param isPhonics - Whether to return English or Japanese character
- * @returns Default first character
- */
+/** Default first character for the language. */
 export const defaultFirstChar = (isPhonics: boolean) => isPhonics ? "a": "あ";
 
-/**
- * Get default second character (katakana version of あ)
- * @returns Katakana character
- */
+/** Default second character (katakana あ). */
 export const defaultSecondChar = () => hiraganaToKatakana("あ");
 
-/**
- * Get default words based on language
- * @param isPhonics - Whether to return English or Japanese words
- * @returns Array of default words
- */
+/** Default words for the language. */
 export const defaultWords = (isPhonics: boolean) => isPhonics ? 
     ["", "a", "pple", "", "a", "nt"]: 
     ["", "あ", "ひる", "", "ア", "イスクリーム"];
 
-/**
- * Get default images based on language
- * @param isPhonics - Whether to return English or Japanese images
- * @returns Array of default image paths
- */
+/** Default images for the language. */
 export const defaultImages = (isPhonics: boolean) => isPhonics ? 
     ["/images/phonics/images/apple.png", "/images/phonics/images/ant.png"]: 
     ["/images/japanese/images/ahiru.png", "/images/japanese/images/aisukurimu.png"];
 
-/**
- * Get words associated with a specific character
- * @param char - The character to get words for
- * @returns Array of words associated with the character
- */
+/** Words associated with a character. */
 export function getWords(char: string) {
     switch (char) {
       case "あ": return ["", "あ", "ひる", "", "ア", "イスクリーム"];
@@ -467,11 +417,7 @@ export function getWords(char: string) {
     }
 }
   
-/**
- * Get images associated with a specific character
- * @param char - The character to get images for
- * @returns Array of image paths associated with the character
- */
+/** Images associated with a character. */
 export function getImages(char: string) {
   switch (char) {
     case "あ": return ["/images/japanese/images/ahiru.png", "/images/japanese/images/aisukurimu.png"];

@@ -35,6 +35,20 @@ const defaultConfig = {
   },
 };
 
+// firebase.json is untracked because the redirect target is private, so the
+// pieces that are not secret are written here instead of living on one machine.
+const functionsConfig = [
+  {
+    source: 'functions',
+    codebase: 'default',
+    ignore: ['node_modules', '.git', 'firebase-debug.log', 'firebase-debug.*.log', '*.local'],
+  },
+];
+
+// output: 'export' writes no route handlers, so the contact form's reCAPTCHA
+// check has no endpoint without this.
+const apiRewrites = [{ source: '/api/recaptcha', function: 'recaptcha' }];
+
 const config = fs.existsSync(firebasePath)
   ? JSON.parse(fs.readFileSync(firebasePath, 'utf8'))
   : structuredClone(defaultConfig);
@@ -42,6 +56,19 @@ const config = fs.existsSync(firebasePath)
 config.hosting ??= defaultConfig.hosting;
 config.hosting.redirects ??= [];
 config.hosting.headers ??= [];
+
+config.functions = [
+  ...functionsConfig,
+  ...(config.functions ?? []).filter(
+    (fn) => !functionsConfig.some((f) => f.codebase === fn.codebase),
+  ),
+];
+config.hosting.rewrites = [
+  ...apiRewrites,
+  ...(config.hosting.rewrites ?? []).filter(
+    (rewrite) => !apiRewrites.some((api) => api.source === rewrite.source),
+  ),
+];
 
 config.hosting.redirects = config.hosting.redirects.filter(
   (redirect) => !redirect.source.startsWith('/familymovie'),
@@ -82,9 +109,13 @@ if (familyMovieUrl) {
       type: 302,
     },
   );
+}
+
+fs.writeFileSync(firebasePath, `${JSON.stringify(config, null, 2)}\n`);
+
+if (familyMovieUrl) {
   console.log(`Configured /familymovie redirect to ${familyMovieUrl}`);
 } else {
   console.log('FAMILY_MOVIE_URL not set; configured /familymovie noindex headers only');
 }
-
-fs.writeFileSync(firebasePath, `${JSON.stringify(config, null, 2)}\n`);
+console.log('Configured /api/recaptcha -> functions:recaptcha');

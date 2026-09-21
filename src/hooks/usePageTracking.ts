@@ -3,11 +3,7 @@ import { usePathname } from 'next/navigation';
 import { useCookieConsent } from '@/hooks/useCookieConsent';
 import { pageview } from '@/utils/analytics';
 
-/**
- * Custom hook for tracking page views in Google Analytics
- * Automatically tracks page changes when user has consented to analytics
- * Uses Next.js router and custom cookie consent hook
- */
+/** Tracks page views in Google Analytics on route change, when analytics consent is given. */
 export const usePageTracking = () => {
   // Get current pathname from Next.js router
   const pathname = usePathname();

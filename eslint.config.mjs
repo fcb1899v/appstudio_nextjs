@@ -1,9 +1,5 @@
-// Next 16 removed `next lint`, which had been supplying the config implicitly.
-// There was no config file in the repository, so once the command went away
-// linting stopped working entirely rather than failing loudly.
-//
-// Both entry points export a Linter.Config[] through CommonJS, so the default
-// import is the array itself.
+// Next 16 removed `next lint`, which had supplied the config implicitly, so without this
+// file linting stopped silently. Both entry points export a Linter.Config[] array.
 import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
 import nextTypeScript from 'eslint-config-next/typescript';
 
@@ -13,6 +9,7 @@ const config = [
       '.next/**',
       'out/**',
       'node_modules/**',
+      'functions/node_modules/**',
       // Kept for reference, excluded from the build; not worth linting.
       'public/legacy/**',
       'next-env.d.ts',
@@ -20,6 +17,14 @@ const config = [
   },
   ...nextCoreWebVitals,
   ...nextTypeScript,
+  {
+    // Cloud Functions are a separate package on a separate runtime. The deploy
+    // analyzer could not read an ESM source, so this one stays CommonJS.
+    files: ['functions/**/*.js'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
 ];
 
 export default config;

@@ -17,10 +17,7 @@ interface Props {
   isJa: boolean
 }
 
-/**
- * Component for displaying a web-based word app
- * @param words - Array of words to display
- */
+/** Web-based word app. */
 const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
 
   const isPhonics = (appNumber == myAppNumber.phonics);
@@ -34,9 +31,8 @@ const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
   const squareRef1 = useRef<HTMLDivElement>(null);
   const squareRef2 = useRef<HTMLDivElement>(null);
 
-  // All four follow from the selected character, so they are computed here
-  // rather than mirrored into state by an effect. Only charList and charNumber
-  // are set from outside, by the navigation and shuffle handlers below.
+  // Derived from the selected character rather than mirrored into state by an effect.
+  // Only charList and charNumber are set by the navigation and shuffle handlers.
   const currentChar = charList[charNumber];
   const firstChar = currentChar;
   const secondChar = isPhonics ? defaultSecondChar() : hiraganaToKatakana(currentChar);

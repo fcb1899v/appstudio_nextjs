@@ -4,32 +4,19 @@ import Link from 'next/link'
 import OptimizedImage from '@/components/Common/OptimizedImage'
 import { isPC, isSP, myApp, myAppNumber, myBadge} from '@/utils/constants'
 
-/**
- * Interface for home apps list component props
- * Defines the properties required for rendering the apps list
- */
+/** Props for HomeAppsList. */
 interface Props {
   width: number
   height: number
   isJa: boolean
 }
 
-/**
- * Component for displaying list of apps on home page
- * Shows grid of app icons with expandable details
- * @param width - Screen width for responsive design
- * @param height - Screen height for positioning
- * @param isJa - Language preference (Japanese or English)
- */
+/** Grid of app icons with expandable details. */
 const MyAppsList: NextPage<Props> = ({width, height, isJa}) => {
   const [expandNumber, setIsExpandNumber] = useState<number | null>(null);
   const [expandTop, setExpandTop] = useState(110);
   
-  /**
-   * Handle app tap/click to expand details
-   * @param number - App number to expand
-   * @param event - Mouse event for positioning
-   */
+  /** Expand the tapped app's details, positioned from the event. */
   const handleTap = (number: number, event: MouseEvent<HTMLDivElement>) => {
     const touchY = isSP(width) ? event.clientY - 130: 110;
     const expandHeight = 0.5474 * width + 212.59;

@@ -11,13 +11,7 @@ import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 import AnalyticsTracker from '@/components/Common/AnalyticsTracker';
 import MyAppsHeader from '@/components/Common/MyAppsHeader';
 
-/**
- * Japanese home page component for the localized landing page
- * Provides the Japanese version of the main landing page with app listings, analytics tracking,
- * and user engagement features. Includes all the same components as the English version
- * but with Japanese language settings and localized content. Maintains responsive design
- * and analytics tracking capabilities while providing a culturally appropriate experience.
- */
+/** Japanese home page. Same components as the English version with isJa set. */
 
 // Japanese home page component for the localized landing page
 const HomePage: NextPage = () => {

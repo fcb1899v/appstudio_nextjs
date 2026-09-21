@@ -305,11 +305,12 @@ const ContactBodyInner: NextPage<Props> = ({ isJa }) => {
           required
           error={showError(touchedApp, selectedApp === '')}
         >
-          <InputLabel sx={{ display: 'flex', alignItems: 'center' }}>
+          <InputLabel id="contact-app-label" sx={{ display: 'flex', alignItems: 'center' }}>
             <IoSquareOutline style={labelStyle} />
             {formConfig.label.app}
           </InputLabel>
           <Select
+            labelId="contact-app-label"
             value={selectedApp}
             onChange={handleAppChange}
             onBlur={() => setTouchedApp(true)}

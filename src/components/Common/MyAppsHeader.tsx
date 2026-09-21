@@ -6,23 +6,15 @@ import MyFooter from "./MyFooter";
 import { isPC, isSP, myApp } from "@/utils/constants";
 import { useAnalytics } from '@/hooks/useAnalytics';
 
-/**
- * Interface for header component props
- * Defines the properties required for rendering the app header
- */
+/** Props for MyAppsHeader. */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
 
-/**
- * Header component for app pages with navigation and analytics tracking
- * Displays the app title, logo, and navigation menu with responsive design.
- * Includes analytics tracking for menu interactions, navigation clicks, and user behavior.
- * Provides mobile-friendly menu overlay with app navigation links and footer integration.
- * Handles different display modes for home page vs app pages with appropriate styling.
- */
+/** App page header: title, logo and mobile menu overlay with navigation analytics.
+ * Styling differs between the home page and app pages. */
 
 // Header component for app pages with navigation and analytics tracking
 const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
@@ -32,10 +24,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
   // Menu state management for mobile navigation
   const [openMenu, setOpenMenu] = useState(false);
   
-  /**
-   * Toggle menu visibility and track analytics
-   * Handles menu open/close state and tracks user interaction
-   */
+  /** Toggle the menu and track the interaction. */
   const toMenu = () => {
     setOpenMenu(!openMenu);
     
@@ -52,11 +41,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
     });
   };
 
-  /**
-   * Handle menu item click and track navigation analytics
-   * @param targetAppName - Name of the target app being navigated to
-   * @param targetAppLink - URL of the target app page
-   */
+  /** Navigate to the target app and track the menu click. */
   const handleMenuClick = (targetAppName: string, targetAppLink: string) => {
     // Track menu click
     trackMenuClick(targetAppName, isJa ? 'ja' : 'en');

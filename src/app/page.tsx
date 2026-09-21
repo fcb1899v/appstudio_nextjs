@@ -13,12 +13,7 @@ import MyAppsHeader from '@/components/Common/MyAppsHeader';
 
 const AnalyticsTracker = dynamic(() => import('@/components/Common/AnalyticsTracker'), { ssr: false });
 
-/**
- * Home page component for the main landing page
- * Displays the primary landing page with app listings, analytics tracking, and user engagement features.
- * Includes splash screen, app header, app list, footer, and cookie consent banner.
- * Designed to showcase all available applications with responsive design and proper analytics tracking.
- */
+/** Home page: splash, header, app list, footer and cookie consent banner. */
 
 // Home page component for the main landing page
 const HomePage: NextPage = () => {

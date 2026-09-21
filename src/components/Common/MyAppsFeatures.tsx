@@ -3,21 +3,14 @@ import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties } from 'react'
 import { myApp, myAppNumber, isSP } from '@/utils/constants'
 
-/**
- * Interface for app features component props
- * Defines the properties required for rendering app features
- */
+/** Props for MyAppsFeatures. */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
 
-/**
- * Component for displaying app features
- * Shows a list of features with icons and descriptions
- * Provides responsive layout and localized content
- */
+/** Localized feature list with icons and descriptions. */
 
 // App features component for showcasing app capabilities
 const MyAppsFeatures: NextPage<Props> = ({ appNumber, width, isJa }) => {

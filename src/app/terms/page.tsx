@@ -11,13 +11,7 @@ import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 import AnalyticsTracker from '@/components/Common/AnalyticsTracker';
 import TermsContents from '@/components/Home/TermsContents';
 
-/**
- * Terms of Service page component for legal information
- * Displays the terms of service and legal information for the application.
- * Includes analytics tracking, responsive design, and proper legal content
- * presentation. Handles client-side rendering and provides comprehensive
- * legal information with proper SEO optimization and user experience.
- */
+/** Terms of service page with analytics tracking. */
 
 // Terms of Service page component for legal information
 const TermsPage: NextPage = () => {

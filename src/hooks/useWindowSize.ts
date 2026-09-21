@@ -1,9 +1,6 @@
 import { useSyncExternalStore } from 'react';
 
-/**
- * Interface for window dimensions
- * Defines the structure for window width and height
- */
+/** Window width and height. */
 interface WindowSize {
   width: number;
   height: number;
@@ -36,17 +33,8 @@ const subscribeToNothing = () => () => {};
 const onClient = () => true;
 const onServer = () => false;
 
-/**
- * Custom hook for tracking window size changes
- * Provides responsive design support by monitoring window dimensions
- *
- * Reads through useSyncExternalStore rather than mirroring the window into
- * state from an effect. The effect version rendered once with zeros before
- * correcting itself; this one has the real size on the first render after
- * hydration.
- *
- * @returns Object containing window size and client-side mount status
- */
+/** Window size hook. Reads via useSyncExternalStore so the real size is available on the
+ * first render after hydration; an effect-based version rendered once with zeros. */
 export const useWindowSize = () => {
   const windowSize = useSyncExternalStore(subscribeToResize, getWindowSize, getServerWindowSize);
   const isClient = useSyncExternalStore(subscribeToNothing, onClient, onServer);

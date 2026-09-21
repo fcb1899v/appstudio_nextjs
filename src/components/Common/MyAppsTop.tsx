@@ -5,10 +5,7 @@ import MyAppsBadges from "./MyAppsBadges";
 import { isPC, myApp, isSP } from "@/utils/constants";
 import { CSSProperties } from "react";
 
-/**
- * Interface for top section component props
- * Defines the properties required for rendering the app top section
- */
+/** Props for MyAppsTop. */
 interface Props {
   appNumber: number
   width: number

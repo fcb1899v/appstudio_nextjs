@@ -1,9 +1,6 @@
 export {};
 
-/**
- * Global type declarations for external libraries
- * Extends Window interface to include third-party library objects
- */
+/** Third-party library objects on Window. */
 declare global {
   interface Window {
     dataLayer: unknown[];

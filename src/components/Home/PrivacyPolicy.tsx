@@ -7,21 +7,13 @@ import { isSP,
   cookieCreatedDate, cookieUpdatedDate, cookieLabel, cookieTitle, cookieMessage, 
 } from '@/utils/constants';
 
-/**
- * Interface for privacy policy component props
- * Defines the properties required for rendering privacy policy page
- */
+/** Props for PrivacyPolicy. */
 interface Props {
   width: number
   isJa: boolean
 }
 
-/**
- * Component for displaying privacy policy page
- * Shows terms of service, privacy policy, and cookie policy
- * @param width - Screen width for responsive design
- * @param isJa - Language preference (Japanese or English)
- */
+/** Privacy policy page: terms, privacy and cookie policy. */
 const TermsPage: NextPage<Props> = ({width, isJa}) => { 
 
   const termsStyle: CSSProperties = {

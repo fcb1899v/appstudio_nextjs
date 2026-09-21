@@ -1,8 +1,5 @@
-/**
- * Test script for reCAPTCHA API route.
- * Run with dev server up: npm run dev (then in another terminal) npm run test:recaptcha
- * Verifies that /api/recaptcha returns expected status for missing/invalid token.
- */
+/** Checks /api/recaptcha status codes for missing/invalid tokens.
+ * Run `npm run test:recaptcha` with the dev server up. */
 
 const BASE = process.env.BASE_URL ?? 'http://localhost:3000';
 

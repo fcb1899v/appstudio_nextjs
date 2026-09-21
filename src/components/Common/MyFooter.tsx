@@ -5,21 +5,14 @@ import OptimizedImage from '@/components/Common/OptimizedImage';
 import { isPC, isSP, myMenu, mySNS } from "@/utils/constants";
 import CookieConsentBanner from '@/components/Common/CookieConsentBanner';
 
-/**
- * Interface for footer component props
- * Defines the properties required for rendering the footer
- */
+/** Props for MyFooter. */
 interface Props {
   width: number
   isJa: boolean
   menuNumber: number
 }
 
-/**
- * Footer component
- * Displays SNS links, menu navigation, copyright, and cookie consent banner
- * Provides responsive layout and social media integration
- */
+/** Footer: SNS links, menu navigation, copyright and cookie consent banner. */
 
 // Footer component for site navigation and social links
 const MyFooter: NextPage<Props> = ({width, isJa, menuNumber}) => {

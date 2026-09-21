@@ -1,7 +1,4 @@
-/**
- * Interface for app text content
- * Defines the structure for text elements in app configurations
- */
+/** Text elements of an app configuration. */
 export interface AppText {
   header: string;
   menu: string;
@@ -11,10 +8,7 @@ export interface AppText {
   features: string[][];
 }
 
-/**
- * Interface for app font configurations
- * Defines custom font settings for different text elements
- */
+/** Custom fonts per text element. */
 export interface AppFont {
   header?: string;
   menu?: string;
@@ -22,10 +16,7 @@ export interface AppFont {
   message?: string;
 }
 
-/**
- * Interface for app size configurations
- * Defines font sizes for different text elements
- */
+/** Font sizes per text element. */
 export interface AppSize {
   header: number;
   menu: number;
@@ -34,10 +25,7 @@ export interface AppSize {
   message?: number;
 }
 
-/**
- * Interface for app image configurations
- * Defines image paths for app screenshots and features
- */
+/** Image paths for screenshots and features. */
 export interface AppImage {
   picture?: string;
   pictures?: string;
@@ -46,10 +34,7 @@ export interface AppImage {
   howtouse: string | string[];
 }
 
-/**
- * Interface for app color configurations
- * Defines color schemes for different UI elements
- */
+/** Color scheme per UI element. */
 export interface AppColor {
   header: string;
   spHeader?: string;
@@ -63,10 +48,7 @@ export interface AppColor {
   howtouse: string;
 }
 
-/**
- * Interface for app link configurations
- * Defines URLs for app pages and external links
- */
+/** URLs for app pages and external links. */
 export interface AppLink {
   link: string;
   ios: string;
@@ -74,11 +56,7 @@ export interface AppLink {
   youtube: string;
 }
 
-/**
- * Main app interface
- * Defines the complete structure for app configurations
- * Combines all other interfaces into a single app definition
- */
+/** Complete app configuration, combining the interfaces above. */
 export interface App {
   app: string;
   appNumber: number;
@@ -92,10 +70,7 @@ export interface App {
   link: AppLink;
 }
 
-/**
- * Interface for app number constants
- * Defines unique identifiers for each app in the system
- */
+/** Unique app number per app. */
 export interface AppNumber {
   home: number;
   elevator: number;
@@ -109,10 +84,7 @@ export interface AppNumber {
   japanese: number;
 }
 
-/**
- * Interface for menu number constants
- * Defines unique identifiers for menu navigation items
- */
+/** Unique number per menu item. */
 export interface MenuNumber {
   home: number;
   terms: number;
@@ -120,42 +92,32 @@ export interface MenuNumber {
   other: number;
 }
 
-/**
- * Interface for window dimensions
- */
+/** Window dimensions. */
 export interface WindowSize {
   width: number;
   height: number;
 }
 
-/**
- * Interface for app component props
- */
+/** App component props. */
 export interface AppProps {
   appNumber: number;
   width: number;
   isJa: boolean;
 }
 
-/**
- * Interface for menu component props
- */
+/** Menu component props. */
 export interface MenuProps {
   menuNumber: number;
   width: number;
   isJa: boolean;
 }
 
-/**
- * Interface for footer component props
- */
+/** Footer component props. */
 export interface FooterProps extends AppProps {
   menuNumber: number;
 }
 
-/**
- * Interface for apps list component props
- */
+/** Apps list component props. */
 export interface AppsListProps {
   width: number;
   height: number;

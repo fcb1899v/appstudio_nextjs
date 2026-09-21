@@ -5,13 +5,8 @@ import { useEffect } from 'react';
 import { AppProps } from '@/types/app';
 import StructuredData from './StructuredData';
 
-/**
- * Head component for managing page metadata and external scripts
- * Handles SEO, social media tags, analytics, and performance monitoring
- * for all app pages. Provides comprehensive meta information including
- * Open Graph tags, Twitter cards, favicons, and analytics integration.
- * Manages cookie consent and conditional script loading for optimal performance.
- */
+/** Page head: SEO and social meta (Open Graph, Twitter cards, favicons) plus analytics
+ * scripts loaded conditionally on cookie consent. */
 
 // Head component for managing page metadata and external scripts
 const MyHead: NextPage<AppProps> = ({ appNumber, width, isJa }) => {

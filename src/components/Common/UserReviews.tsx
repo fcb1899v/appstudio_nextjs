@@ -2,29 +2,16 @@ import type { NextPage } from 'next'
 import { CSSProperties } from 'react'
 import { isPC, myApp, myAppNumber } from '@/utils/constants'
 
-/**
- * Interface for user reviews component props
- * Defines the properties required for rendering user reviews
- */
+/** Props for UserReviews. */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
 
-/**
- * Component for displaying user reviews
- * Shows a list of user feedback and ratings for each app
- * @param appNumber - App identifier for dynamic content
- * @param width - Screen width for responsive design
- * @param isJa - Language preference (Japanese or English)
- */
+/** User reviews and ratings for the app. */
 const UserReviews: NextPage<Props> = ({appNumber, width, isJa}) => {
-  /**
-   * Get reviews data for each app
-   * Returns localized review data based on app number and language
-   * @returns Array of review objects for the current app
-   */
+  /** Localized review data for the current app. */
   const getReviews = () => {
     const reviews = {
       [myAppNumber.elevator]: [
@@ -169,11 +156,7 @@ const UserReviews: NextPage<Props> = ({appNumber, width, isJa}) => {
     opacity: 0.8,
   }
 
-  /**
-   * Render star rating display
-   * @param rating - Number of stars (1-5)
-   * @returns String of filled and empty stars
-   */
+  /** Star string for a 1-5 rating. */
   const renderStars = (rating: number) => {
     return '★'.repeat(rating) + '☆'.repeat(5 - rating)
   }

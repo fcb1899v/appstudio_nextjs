@@ -7,25 +7,15 @@ import { termsLabel, termsCreatedDate, termsUpdatedDate, termsTitle, termsMessag
          cookieLabel, cookieCreatedDate, cookieTitle, cookieMessage, cookieLinkWords, cookieUpdatedDate,  
 } from '@/utils/constants';
 
-/**
- * Interface for terms contents component props
- * Defines the properties required for rendering terms and policies
- */
+/** Props for TermsContents. */
 interface Props {
   isJa: boolean
 }
 
-/**
- * Component for displaying terms of service, privacy policy, and cookie policy
- * Shows legal documents with smooth scrolling to sections
- * @param isJa - Language preference (Japanese or English)
- */
+/** Terms of service, privacy policy and cookie policy with smooth section scrolling. */
 const TermsContents: NextPage<Props> = ({isJa}) => { 
 
-  /**
-   * Handle smooth scrolling to specific sections based on URL hash
-   * Scrolls to target element when page loads with hash in URL
-   */
+  /** Smooth-scroll to the section named by the URL hash on load. */
   useEffect(() => {
     // Executes when the page is mounted on the client side
     const hash = window.location.hash; // Example: "#cookie", etc.
@@ -112,18 +102,9 @@ const TermsContents: NextPage<Props> = ({isJa}) => {
   </div>
 }
 
-/**
- * Function to replace words in the text with <Link> for creating hyperlinks
- * @param text - Original text content
- * @param linkWords - Array of words and their corresponding href links
- * @returns React node with links embedded in text
- */
+/** Replaces the given words in text with <Link> elements. */
 function transformTextWithLinks(text: string, linkWords: {word: string; href: string;}[]): ReactNode {
-  /**
-   * Escape special characters in regular expressions
-   * @param str - String to escape
-   * @returns Escaped string safe for regex
-   */
+  /** Escape regex special characters. */
   function escapeRegExp(str: string): string {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }

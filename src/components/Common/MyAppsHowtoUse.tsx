@@ -3,10 +3,7 @@ import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties, useRef, useEffect } from 'react'
 import { myApp, isSP } from '@/utils/constants'
 
-/**
- * Interface for how to use component props
- * Defines the properties required for rendering how to use section
- */
+/** Props for MyAppsHowtoUse. */
 interface Props {
   appNumber: number
   width: number
@@ -14,11 +11,7 @@ interface Props {
   maxWidth: number
 }
 
-/**
- * Component for displaying how to use instructions
- * Shows usage guide with image for each app
- * Provides responsive layout and localized content
- */
+/** Localized usage guide with an image for each app. */
 
 // How to use component for app instructions
 const MyAppsHowtoUse: NextPage<Props> = ({appNumber, width, isJa, maxWidth}) => {

@@ -1,23 +1,12 @@
 import { AppNumber, MenuNumber } from '@/types/app';
 
-/**
- * Check if screen width is smartphone size
- * @param width - Screen width in pixels
- * @returns True if width is less than 600px
- */
+/** True if width is smartphone size (< 600px). */
 export const isSP = (width: number) => (width < 600);
 
-/**
- * Check if screen width is PC size
- * @param width - Screen width in pixels
- * @returns True if width is greater than 1024px
- */
+/** True if width is PC size (> 1024px). */
 export const isPC = (width: number) => (width > 1024);
 
-/**
- * App number constants for navigation and identification
- * Each app has a unique number for routing and state management
- */
+/** App numbers used for routing and state. */
 export const myAppNumber: AppNumber = {
   home: 0,
   elevator: 1,
@@ -31,10 +20,7 @@ export const myAppNumber: AppNumber = {
   japanese: 9
 }
 
-/**
- * Menu number constants for navigation
- * Used for menu routing and state management
- */
+/** Menu numbers used for routing and state. */
 export const myMenuNumber: MenuNumber = {
   home: 0,
   terms: 1,
@@ -42,10 +28,7 @@ export const myMenuNumber: MenuNumber = {
   other: 100,
 }
 
-/**
- * URL segment to app number. Used for dynamic app routes (e.g. /elevator, /signal).
- * Excludes home (no dedicated app page at /home).
- */
+/** URL segment to app number for dynamic app routes. Excludes home (no /home page). */
 export const APP_SLUG_TO_NUMBER: Record<string, number> = {
   elevator: myAppNumber.elevator,
   elevatorneo: myAppNumber.elevatorNeo,
@@ -61,13 +44,7 @@ export const APP_SLUG_TO_NUMBER: Record<string, number> = {
 /** Valid app slugs for route params */
 export const APP_SLUGS = Object.keys(APP_SLUG_TO_NUMBER) as string[];
 
-/**
- * Main app configuration array
- * Contains all app data including text, styling, and navigation
- * @param width - Screen width for responsive design
- * @param isJa - Whether to use Japanese or English text
- * @returns Array of app configurations
- */
+/** All app configurations (text, styling, navigation) for the given width and language. */
 export const myApp = (width: number, isJa: boolean) => [
   {
     app: "Home",
@@ -702,11 +679,7 @@ export const myBadge = [
 ];
 
 ///Contact
-/**
- * GOOGLE_FORM_ID: Use the ID from the form's "Send" → "Embed" HTML (the long id after /d/e/ and before /viewform).
- * Example: .../d/e/FAIpQLSe.../viewform → use FAIpQLSe...
- * If you get 400 on submit: (1) Use the embed form ID (FAIpQL...), not the edit-page short ID. (2) Ensure number.* entry IDs match your form's question IDs exactly.
- */
+/** GOOGLE_FORM_ID: embed ID (FAIpQL..., Send → Embed). 400 = wrong ID or entry IDs. */
 const googleFormId = (typeof process.env.GOOGLE_FORM_ID === 'string' && process.env.GOOGLE_FORM_ID.trim()) || '';
 export const isFormConfigured = googleFormId.length > 0;
 const isEmbedFormId = googleFormId.includes('FAIpQL');

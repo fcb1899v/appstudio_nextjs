@@ -4,21 +4,14 @@ import OptimizedImage from '@/components/Common/OptimizedImage'
 import { isSP, myApp, myAppNumber, myBadge} from '@/utils/constants'
 import { useAnalytics } from '@/hooks/useAnalytics'
 
-/**
- * Interface for app badges component props
- * Defines the properties required for rendering app store badges
- */
+/** Props for MyAppsBadges. */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
 
-/**
- * Component for displaying app store badges
- * Shows download links for iOS and Android with analytics tracking
- * Provides responsive design and comprehensive analytics
- */
+/** iOS and Android store badges with download analytics. */
 
 // App store badges component for download links
 const MyAppsBadges: NextPage<Props> = ({appNumber, width, isJa}) => {

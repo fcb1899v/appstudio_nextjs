@@ -4,21 +4,14 @@ import { useState, useEffect, CSSProperties } from "react"
 import OptimizedImage from '@/components/Common/OptimizedImage'
 import { myApp, myAppNumber } from "@/utils/constants";
 
-/**
- * Interface for splash screen component props
- * Defines the properties required for rendering splash screen
- */
+/** Props for MySplash. */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
 
-/**
- * Splash screen component for the app
- * Shows a loading or introductory animation with fade effects
- * Provides smooth transition and responsive design
- */
+/** Splash screen with fade-in/out animation. */
 
 // Splash screen component for app loading animation
 const MySplash: NextPage<Props> = ({appNumber, width, isJa}) => {

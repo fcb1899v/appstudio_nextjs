@@ -1,31 +1,10 @@
 // app/api/recaptcha/route.ts
 import { NextResponse } from 'next/server';
 
-/**
- * reCAPTCHA verification API route for spam prevention
- * Validates reCAPTCHA tokens to prevent spam and bot submissions by communicating
- * with Google's reCAPTCHA verification service. Processes tokens from the client,
- * verifies them with Google's servers, and returns appropriate success/error responses.
- * Handles token validation, communicates with Google's verification endpoint, and
- * provides proper error handling for various scenarios including missing tokens,
- * invalid tokens, and server errors.
- * 
- * This route:
- * - Receives reCAPTCHA tokens from the client
- * - Validates token presence and format
- * - Communicates with Google's verification service
- * - Verifies token authenticity and score
- * - Returns appropriate success/error responses
- * 
- * Security considerations:
- * - Uses server-side secret key for verification
- * - Validates token format before processing
- * - Handles verification failures gracefully
- * - Provides minimal error information to prevent abuse
- */
+/** Verifies a client reCAPTCHA token against Google's endpoint with the server secret.
+ * Returns minimal error detail so failures reveal nothing useful to bots. */
 
-// reCAPTCHA verification API route for spam prevention
-// Use a server-only env var (no NEXT_PUBLIC_ prefix) for the secret key
+// Server-only env var (no NEXT_PUBLIC_ prefix), so the secret never reaches the client bundle
 const secretKey = process.env.RECAPTCHA_V3_SECRET_KEY;
 
 export async function POST(request: Request) {

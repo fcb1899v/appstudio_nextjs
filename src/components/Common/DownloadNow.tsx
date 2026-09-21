@@ -4,21 +4,14 @@ import '@/app/globals.css';
 import MyAppsBadges from "./MyAppsBadges";
 import { myApp } from "@/utils/constants";
 
-/**
- * Interface for download now component props
- * Defines the properties required for rendering download section
- */
+/** Props for DownloadNow. */
 interface Props {
   appNumber: number
   width: number
   isJa: boolean
 }
 
-/**
- * Component for displaying a download now button
- * Shows download section with app store badges
- * Provides localized content and responsive design
- */
+/** Download section with localized app store badges. */
 
 // Download now component for app store links
 const DownloadNow: NextPage<Props> = ({appNumber, width, isJa}) => { 

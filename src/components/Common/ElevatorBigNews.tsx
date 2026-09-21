@@ -3,21 +3,13 @@ import OptimizedImage from '@/components/Common/OptimizedImage'
 import { CSSProperties, useEffect, useRef } from 'react'
 import { isPC, isSP, myApp, myAppNumber } from '@/utils/constants';
 
-/**
- * Interface for elevator big news component props
- * Defines the properties required for rendering elevator news section
- */
+/** Props for ElevatorBigNews. */
 interface Props {
   width: number
   isJa: boolean
 }
 
-/**
- * Component for displaying big news or announcements for the Elevator app
- * Shows special features and Twitter integration
- * @param width - Screen width for responsive design
- * @param isJa - Language preference (Japanese or English)
- */
+/** Big news section for the Elevator app with a Twitter embed. */
 const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
 
   // App number for elevator app
@@ -36,9 +28,7 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
 
   const twitterRef = useRef<HTMLDivElement>(null);
 
-  /**
-   * Load Twitter embed only when in view to avoid loading ~340 KiB of widgets.js until needed
-   */
+  /** Load the Twitter embed only when in view; widgets.js is ~340 KiB. */
   useEffect(() => {
     const el = twitterRef.current;
     if (!el) return;
@@ -70,10 +60,7 @@ const ElevatorBigNews: NextPage<Props> = ({width, isJa}) => {
     return () => observer.disconnect();
   }, [isJa, twitterLinkId]);
 
-  /**
-   * Style for the big news container
-   * Applies dynamic colors and full width layout
-   */
+  /** Container style: app colors, full width. */
   const bigNewsStyle: CSSProperties = {
     width: "100vw", 
     color: myApp(width, isJa)[appNumber].color.title, 

@@ -5,10 +5,7 @@ import { useState } from 'react';
 import { isSP, myApp } from '@/utils/constants';
 import { CSSProperties } from 'react';
 
-/**
- * Interface for YouTube movie component props
- * Defines the properties required for rendering YouTube videos
- */
+/** Props for YoutubeMovie. */
 interface Props {
   appNumber: number;
   width: number;
@@ -21,10 +18,8 @@ const YOUTUBE_EMBED_BASE = 'https://www.youtube-nocookie.com/embed';
 /** Thumbnail URL for placeholder; iframe loads only after user click (reduces unused JS) */
 const thumbUrl = (id: string) => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 
-/**
- * Component for embedding a YouTube video
- * Uses youtube-nocookie.com. Loads iframe only on user click to avoid loading ~2MB of YouTube JS until needed.
- */
+/** YouTube embed via youtube-nocookie.com. The iframe loads only on click
+ * so ~2 MB of YouTube JS is not fetched until needed. */
 const YoutubeMovie: NextPage<Props> = ({ appNumber, width, isJa }) => {
   const videoId = myApp(width, isJa)[appNumber].link.youtube;
   const [embedLoaded, setEmbedLoaded] = useState(false);

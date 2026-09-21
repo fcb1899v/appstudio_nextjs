@@ -3,14 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 
-/**
- * Image optimization script (Lighthouse "uses-optimized-images").
- * - Compresses PNG/JPEG in place and writes a WebP beside each one.
- * - Default target: images git reports as new or modified. Pass paths to
- *   override, e.g. `npm run optimize-images -- public/images/newapp`.
- * - Neither output is ever replaced by a larger one: re-encoding an already
- *   optimized image can grow it, and the webp is what <picture> serves.
- */
+/** Compresses PNG/JPEG in place and writes a WebP beside each; defaults to git-changed files.
+ * Never replaces an output with a larger file: re-encoding an optimized image can grow it. */
 
 const DEFAULT_ROOT = 'public/images';
 const JPEG_QUALITY = 85; // Match Lighthouse audit comparison (level 85)

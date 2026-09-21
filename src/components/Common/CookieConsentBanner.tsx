@@ -4,38 +4,27 @@ import { useState, useEffect, CSSProperties } from 'react';
 import { cookieConsentMessage, cookieLabel, cookiePolicyLink } from '@/utils/constants';
 import { useGeoLocation } from '@/hooks/useGeoLocation';
 
-/**
- * Interface for cookie consent banner component props
- * Defines the language preference for the banner
- */
+/** Props for CookieConsentBanner. */
 interface Props {
   isJa: boolean
 }
 
-/**
- * Interface for cookie consent preferences
- * Defines the structure for user consent to different cookie types
- */
+/** User consent per cookie type. */
 interface CookieConsent {
   analytics: boolean;
   marketing: boolean;
   necessary: boolean;
 }
 
-/**
- * Default consent settings - necessary cookies are always enabled
- * Provides initial state for cookie consent preferences
- */
+/** Default consent: necessary cookies are always enabled. */
 const DEFAULT_CONSENT: CookieConsent = {
   analytics: false,
   marketing: false,
   necessary: true,
 };
 
-/**
- * Cookie consent banner for GDPR: shown only in GDPR-applicable regions (EU/EEA/UK).
- * Uses useGeoLocation (ipapi.co, CORS-enabled). When geo fails we show the banner to be safe.
- */
+/** GDPR cookie banner, shown only in EU/EEA/UK via useGeoLocation (ipapi.co).
+ * Shown anyway when geolocation fails, to be safe. */
 const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
   const [consent, setConsent] = useState<CookieConsent>(DEFAULT_CONSENT);
   const [open, setOpen] = useState(false);
@@ -50,9 +39,7 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
       try {
         const parsedConsent = JSON.parse(savedConsent);
     /* eslint-disable-next-line react-hooks/set-state-in-effect --
-       localStorage does not exist during SSR, so the saved consent can
-       only be read after mount. There is nothing to derive this from
-       during render. */
+       localStorage exists only after mount, so saved consent cannot be derived in render. */
         setConsent(parsedConsent);
       } catch {
         if (savedConsent === 'accepted') {
@@ -66,10 +53,7 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     }
   }, [isGDPRApplicable, isLoading]);
   
-  /**
-   * Accept all cookie types (analytics, marketing, necessary)
-   * Enables all cookie types and saves to localStorage
-   */
+  /** Enable all cookie types and save to localStorage. */
   const handleAcceptAll = () => {
     const newConsent = { ...DEFAULT_CONSENT, analytics: true, marketing: true };
     setConsent(newConsent);
@@ -77,10 +61,7 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     localStorage.setItem('cookie_consent', JSON.stringify(newConsent));
   };
 
-  /**
-   * Accept only necessary cookies
-   * Enables only necessary cookies and saves to localStorage
-   */
+  /** Enable only necessary cookies and save to localStorage. */
   const handleAcceptNecessary = () => {
     const newConsent = { ...DEFAULT_CONSENT };
     setConsent(newConsent);
@@ -88,10 +69,7 @@ const CookieConsentBanner: NextPage<Props> = ({isJa}) => {
     localStorage.setItem('cookie_consent', JSON.stringify(newConsent));
   };
 
-  /**
-   * Update specific consent preferences
-   * @param newConsent - Partial consent object to update
-   */
+  /** Merge a partial consent object into the current preferences. */
   const handleUpdateConsent = (newConsent: Partial<CookieConsent>) => {
     const updatedConsent = { ...consent, ...newConsent };
     setConsent(updatedConsent);
