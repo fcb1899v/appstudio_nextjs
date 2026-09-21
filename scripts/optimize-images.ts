@@ -22,8 +22,7 @@ function gitChangedImages(root: string): string[] {
       .filter(Boolean);
 
   const untracked = git(['ls-files', '--others', '--exclude-standard', '-z', '--', root]);
-  // Against HEAD, not the index: a staged image is a difference from the
-  // commit, and comparing to the index would report nothing for it.
+  // Against HEAD, not the index: a staged image differs from the commit, and comparing to the index would report nothing for it.
   const changed = git(['diff', '--name-only', '-z', 'HEAD', '--', root]);
 
   return [...new Set([...untracked, ...changed])]
@@ -89,8 +88,8 @@ async function optimizeImages(): Promise<void> {
     try {
       const ext = path.extname(file).toLowerCase();
       const webpPath = path.join(path.dirname(file), `${path.basename(file, ext)}.webp`);
-      // Read once and encode from these bytes. Deriving the WebP from a
-      // freshly quantized PNG instead makes it larger, not smaller.
+      // Read once and encode from these bytes.
+      // Deriving the WebP from a freshly quantized PNG instead makes it larger, not smaller.
       const original = fs.readFileSync(file);
 
       const recompressed =

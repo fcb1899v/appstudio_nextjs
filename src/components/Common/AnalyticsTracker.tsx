@@ -27,8 +27,8 @@ const AnalyticsTracker: FC<AnalyticsTrackerProps> = ({
   const lastScrollTime = useRef<number>(0);
 
   useEffect(() => {
-    // Measured from when tracking started; re-runs only when page metadata or the
-    // device bucket changes. Rotating across a breakpoint restarts it on purpose.
+    // Measured from when tracking started; re-runs only when page metadata or the device bucket changes.
+    // Rotating across a breakpoint restarts it on purpose.
     const initialStartTime = Date.now();
     
     // Track page view with metadata

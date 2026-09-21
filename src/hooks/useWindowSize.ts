@@ -6,12 +6,12 @@ interface WindowSize {
   height: number;
 }
 
-// The server has no window, and the snapshot has to be referentially stable or
-// React re-renders forever comparing a fresh object against the last one.
+// The server has no window, and the snapshot has to be referentially stable.
+// Otherwise React re-renders forever comparing a fresh object against the last one.
 const SERVER_SIZE: WindowSize = { width: 0, height: 0 };
 
-// One window, so one cache. A new object is built only when the size actually
-// changed, which is what keeps getSnapshot stable between resizes.
+// One window, so one cache.
+// A new object is built only when the size actually changed, which is what keeps getSnapshot stable between resizes.
 let cachedSize: WindowSize = SERVER_SIZE;
 
 const subscribeToResize = (onChange: () => void) => {

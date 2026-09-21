@@ -678,7 +678,7 @@ export const myBadge = [
   },
 ];
 
-///Contact
+// Contact
 /** GOOGLE_FORM_ID: embed ID (FAIpQL..., Send → Embed). 400 = wrong ID or entry IDs. */
 const googleFormId = (typeof process.env.GOOGLE_FORM_ID === 'string' && process.env.GOOGLE_FORM_ID.trim()) || '';
 export const isFormConfigured = googleFormId.length > 0;

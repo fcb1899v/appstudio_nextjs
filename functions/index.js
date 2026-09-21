@@ -1,5 +1,4 @@
-// CommonJS, not ESM: the deploy analyzer could not read an ESM source here and
-// failed with "Cannot determine backend specification" before any code ran.
+// CommonJS, not ESM: the deploy analyzer failed on an ESM source with "Cannot determine backend specification" before any code ran.
 const { onRequest } = require('firebase-functions/v2/https');
 const { defineSecret } = require('firebase-functions/params');
 

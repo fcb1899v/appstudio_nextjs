@@ -10,8 +10,8 @@ const nextConfig: NextConfig = {
     RECAPTCHA_V3_SITE_KEY: process.env.RECAPTCHA_V3_SITE_KEY,
     FAMILY_MOVIE_URL: process.env.FAMILY_MOVIE_URL,
   },
-  // /familymovie redirects + noindex headers are configured in firebase.json via scripts/sync-familymovie-redirect.mjs
-  // (headers/redirects in next.config do not work with output: 'export')
+  // /familymovie redirects + noindex headers are configured in firebase.json via scripts/sync-familymovie-redirect.mjs.
+  // Headers and redirects in next.config do not work with output: 'export'.
   images: {
     unoptimized: true,
     formats: ['image/webp', 'image/avif'],

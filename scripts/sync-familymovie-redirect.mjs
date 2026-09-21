@@ -35,8 +35,7 @@ const defaultConfig = {
   },
 };
 
-// firebase.json is untracked because the redirect target is private, so the
-// pieces that are not secret are written here instead of living on one machine.
+// firebase.json is untracked because the redirect target is private, so the non-secret pieces are written here, not kept on one machine.
 const functionsConfig = [
   {
     source: 'functions',
@@ -45,8 +44,7 @@ const functionsConfig = [
   },
 ];
 
-// output: 'export' writes no route handlers, so the contact form's reCAPTCHA
-// check has no endpoint without this.
+// output: 'export' writes no route handlers, so the contact form's reCAPTCHA check has no endpoint without this.
 const apiRewrites = [{ source: '/api/recaptcha', function: 'recaptcha' }];
 
 const config = fs.existsSync(firebasePath)

@@ -21,8 +21,8 @@ export const initializeGA = (consent: CookieConsent) => {
   // Initialize dataLayer array for Google Tag Manager
   window.dataLayer = window.dataLayer || [];
   
-  // gtag.js is documented as pushing the arguments object; rest parameters would push
-  // an Array, and nothing in the docs says the two are interchangeable.
+  // gtag.js is documented as pushing the arguments object; rest parameters would push an Array.
+  // Nothing in the docs says the two are interchangeable.
   window.gtag = function() {
     // eslint-disable-next-line prefer-rest-params
     window.dataLayer.push(arguments);

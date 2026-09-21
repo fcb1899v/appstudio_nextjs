@@ -20,8 +20,7 @@ import IoSquareOutline from '@mui/icons-material/CropSquare';
 import Link from 'next/link';
 import { myForm, myApp, myAppNumber, isFormConfigured } from '@/utils/constants';
 
-// Module scope: a literal in the component body is a new object every render,
-// which forces it into every dependency array that touches it.
+// Module scope: a literal in the component body is a new object every render and would be forced into every dependency array.
 const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** reCAPTCHA v3 site key (optional). Matches keys from the legacy appstudio_next project. */

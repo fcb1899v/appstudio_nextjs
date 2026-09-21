@@ -39,8 +39,7 @@ const WordWebApp: NextPage<Props> = ({ appNumber, width, isJa }) => {
   const words = getWords(currentChar);
   const images = getImages(currentChar);
 
-  // The squares are sized from their own rendered width, which is only known
-  // after layout, so this part genuinely belongs in an effect.
+  // The squares are sized from their own rendered width, which is only known after layout, so this belongs in an effect.
   useEffect(() => {
     if (squareRef1.current && squareRef2.current) {
       const imageBoxWidth1 = squareRef1.current.clientWidth;

@@ -70,8 +70,7 @@ export const testVoice = (voiceIndex: number, text: string = 'Hello, this is a t
   }
 };
 
-// Voices can arrive in stages, so a first click may see a partial list
-// that has no voice for this language yet.
+// Voices can arrive in stages, so a first click may see a partial list with no voice for this language yet.
 const VOICE_WAIT_MS = 10000;
 let voicesReady: Promise<void> | null = null;
 let latestRequest = 0;
