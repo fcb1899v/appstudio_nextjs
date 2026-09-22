@@ -618,7 +618,7 @@ export const myApp = (width: number, isJa: boolean) => [
   },
 ];
 
-///Menu
+// Menu
 export const myMenu = (isJa: boolean) => [
   {
     menuNumber: myMenuNumber.home,
@@ -637,7 +637,7 @@ export const myMenu = (isJa: boolean) => [
   },
 ];
 
-///SNS
+// SNS
 export const mySNS = [
   {
     title: "Github",
@@ -666,7 +666,7 @@ export const mySNS = [
   },
 ];
 
-///App Store
+// App Store
 export const myBadge = [
   {
     title: "appstore_badge", 
@@ -722,7 +722,7 @@ export const myForm = (isJa: boolean) => [
   }
 ]
 
-///Terms
+// Terms
 export const termsCreatedDate = (isJa: boolean) => isJa ? "発行日：2023/08/01": "Effective Date: Aug. 1, 2023";
 export const termsUpdatedDate = (isJa: boolean) => isJa ? "改訂日：2025/02/03": "Revised Date: Feb. 3, 2025";
 export const termsLabel = (isJa: boolean) => isJa ? "利用規約": "Terms of Service";
@@ -801,7 +801,7 @@ export const termsMessage = (isJa: boolean) => isJa ? [
   "These Terms and the Privacy Policy constitute the entire agreement between you and us regarding the use of the App and the Site. If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.",
 ]
 
-///Privacy Policy
+// Privacy Policy
 export const policyCreatedDate = (isJa: boolean) => isJa ? "発行日：2023/08/01": "Effective Date: Aug. 1, 2023";
 export const policyUpdatedDate = (isJa: boolean) => isJa ? "改訂日：2025/02/03": "Revised Date: Feb. 3, 2025";
 export const policyLabel = (isJa: boolean) => isJa ? "プライバシーポリシー": "Privacy Policy";
@@ -860,7 +860,7 @@ export const policyMessage = (isJa: boolean) => isJa ? [
   "If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us through the inquiry page on the Site.",
 ]
 
-///Cookie Policy
+// Cookie Policy
 export const cookieCreatedDate = (isJa: boolean) => isJa ? "発行日：2025/02/01": "Effective Date: Feb. 1, 2025";
 export const cookieUpdatedDate = (isJa: boolean) => isJa ? "改訂日：2025/02/03": "Revised Date: Feb. 3, 2025";
 export const cookieLabel = (isJa: boolean) => isJa ? "クッキーポリシー": "Cookie Policy";
