@@ -36,7 +36,6 @@
     "react-icons": "^5.5.0"
   },
   "overrides": {
-    "minimatch": "^10.2.1",
     "@tootallnate/once": "^3.0.1"
   },
   "devDependencies": {
