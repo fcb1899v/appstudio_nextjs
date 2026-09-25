@@ -104,7 +104,7 @@ appstudio_nextjs/
 │   └── package.json
 ├── scripts/
 │   ├── optimize-images.ts      # Image optimization, for newly added images
-│   ├── sync-familymovie-redirect.mjs  # Writes the functions entry and rewrites into firebase.json
+│   ├── sync-familymovie-redirect.mjs  # Writes the functions entry, rewrites and headers into firebase.json
 │   └── test-recaptcha-api.ts   # reCAPTCHA API test (run with the dev server up)
 ├── src/
 │   ├── app/                    # Next.js App Router
@@ -158,7 +158,7 @@ appstudio_nextjs/
 │   │   ├── usePageTracking.ts
 │   │   └── useWindowSize.ts
 │   ├── lib/
-│   │   └── fonts.ts            # Next.js local font setup
+│   │   └── fonts.ts            # Next.js local fonts; define only fonts the layout applies (each one is served even if unused)
 │   ├── types/
 │   │   ├── app.ts              # App and common component types
 │   │   ├── env.d.ts            # Environment variable types
@@ -206,7 +206,8 @@ npm run deploy
 
 `npm run deploy` runs the build, then `scripts/sync-familymovie-redirect.mjs`, then `firebase deploy`.
 It deploys to the project `firebase use` has selected, so set that first (`firebase use <project-id>`) or pass `--project`.
-Running `firebase deploy` on its own skips that regeneration, so the rewrite and the redirect may be stale.
+The script also adds a one-year `Cache-Control` header for `/_next/static/**`, whose file names carry a content hash.
+Running `firebase deploy` on its own skips that regeneration, so the rewrite, the redirect and the headers may be stale.
 
 ```bash
 # Build and serve the result locally, with the same generated firebase.json

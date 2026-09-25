@@ -92,7 +92,22 @@ const familyMovieHeaders = [
   },
 ];
 
-config.hosting.headers = [...config.hosting.headers, ...familyMovieHeaders];
+// _next/static file names carry a content hash, so browsers can keep them for a year instead of re-downloading fonts each visit.
+const staticCacheHeaders = [
+  {
+    source: '/_next/static/**',
+    headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+  },
+];
+
+// Placed last because a later matching header rule overrides an earlier one (firebase-tools#9467).
+config.hosting.headers = [
+  ...config.hosting.headers.filter(
+    (entry) => !staticCacheHeaders.some((h) => h.source === entry.source),
+  ),
+  ...familyMovieHeaders,
+  ...staticCacheHeaders,
+];
 
 if (familyMovieUrl) {
   config.hosting.redirects.push(
@@ -117,3 +132,4 @@ if (familyMovieUrl) {
   console.log('FAMILY_MOVIE_URL not set; configured /familymovie noindex headers only');
 }
 console.log('Configured /api/recaptcha -> functions:recaptcha');
+console.log('Configured one-year Cache-Control for /_next/static/**');
