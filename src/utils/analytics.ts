@@ -8,9 +8,8 @@ declare global {
   }
 }
 
-/** Google Analytics and Tag Manager IDs from environment variables. */
+/** Google Analytics ID from environment variables. */
 export const GA_TRACKING_ID = process.env.GA_TRACKING_ID || "";
-export const GTM_ID = process.env.GTM_ID || "";
 
 /** Initialize Google Analytics with the user's consent: dataLayer plus privacy settings. */
 export const initializeGA = (consent: CookieConsent) => {

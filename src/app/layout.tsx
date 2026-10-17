@@ -11,11 +11,9 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-// GTM ID from environment (e.g. GTM-T3PSBCC). Skip in dev to avoid Cookiebot localhost errors.
-const GTM_ID =
-  process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_GTM_ID || process.env.GTM_ID || ''
-    : '';
+// Public GTM container id, fixed in code so any production build loads it.
+// Skipped outside production to avoid Cookiebot localhost errors.
+const GTM_ID = process.env.NODE_ENV === 'production' ? 'GTM-T3PSBCC' : '';
 
 // Default SEO for static export (per-page MyHead overrides with correct language)
 const DEFAULT_TITLE = 'Nakajima Masao App Studio - Mobile Apps';

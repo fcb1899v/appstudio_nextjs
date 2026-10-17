@@ -62,6 +62,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 
 Copy `.env_example` to `.env.local` and fill in the values.
 The template lists every variable with what it is for, and is the one place that list is maintained, so it is not repeated here.
+The GTM container id is a public value fixed in `src/app/layout.tsx` and is not read from the environment; only production builds load it.
 
 One distinction in it is not cosmetic.
 `next.config.ts` re-exports `GOOGLE_FORM_ID`, `RECAPTCHA_V3_SITE_KEY` and `FAMILY_MOVIE_URL` through its `env` block, which inlines them into the client bundle at build time.
