@@ -85,7 +85,6 @@ coverage
 # Output of 'npm pack'
 *.tgz
 
-# Workspace tooling, not part of this app. Six of the other repos already
-# hide it; keeping one set of rules means the same review applies everywhere.
+# Workspace tooling, not part of this app.
 .claude/
 .cursorignore
