@@ -132,7 +132,7 @@ const MyAppsHeader: NextPage<Props> = ({ appNumber, width, isJa}) => {
     textDecoration: "none"
   });
 
-  // header_logo.png and .webp are both 2804x630, measured 2026-09-06.
+  // header_logo.png and .webp are both 2804x630.
   const logoHeight = isHomeHeader && !isSP(width) ? 56 : 48;
   const logoWidth = Math.round((2804 * logoHeight) / 630);
 
