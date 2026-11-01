@@ -1,29 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-function loadEnvFile(fileName) {
-  const envPath = path.join(process.cwd(), fileName);
-  if (!fs.existsSync(envPath)) return;
-
-  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-
-    const separatorIndex = trimmed.indexOf('=');
-    if (separatorIndex === -1) continue;
-
-    const key = trimmed.slice(0, separatorIndex).trim();
-    const value = trimmed.slice(separatorIndex + 1).trim();
-    if (!(key in process.env)) {
-      process.env[key] = value;
-    }
-  }
-}
-
-loadEnvFile('.env.local');
-loadEnvFile('.env');
-
-const familyMovieUrl = (process.env.FAMILY_MOVIE_URL ?? '').trim();
 const firebasePath = path.join(process.cwd(), 'firebase.json');
 
 const defaultConfig = {
@@ -35,7 +12,6 @@ const defaultConfig = {
   },
 };
 
-// firebase.json is untracked because the redirect target is private, so the non-secret pieces are written here, not kept on one machine.
 const functionsConfig = [
   {
     source: 'functions',
@@ -84,7 +60,7 @@ const familyMovieHeaders = [
     ],
   },
   {
-    source: '/familymovie/',
+    source: '/familymovie/**',
     headers: [
       { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive, nosnippet, noimageindex' },
       { key: 'Referrer-Policy', value: 'no-referrer' },
@@ -109,27 +85,7 @@ config.hosting.headers = [
   ...staticCacheHeaders,
 ];
 
-if (familyMovieUrl) {
-  config.hosting.redirects.push(
-    {
-      source: '/familymovie',
-      destination: familyMovieUrl,
-      type: 302,
-    },
-    {
-      source: '/familymovie/',
-      destination: familyMovieUrl,
-      type: 302,
-    },
-  );
-}
-
 fs.writeFileSync(firebasePath, `${JSON.stringify(config, null, 2)}\n`);
 
-if (familyMovieUrl) {
-  console.log(`Configured /familymovie redirect to ${familyMovieUrl}`);
-} else {
-  console.log('FAMILY_MOVIE_URL not set; configured /familymovie noindex headers only');
-}
 console.log('Configured /api/recaptcha -> functions:recaptcha');
 console.log('Configured one-year Cache-Control for /_next/static/**');

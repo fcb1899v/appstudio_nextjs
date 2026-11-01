@@ -18,8 +18,7 @@ export default function FamilyMoviePage() {
         }}
       >
         <div>
-          <p>FAMILY_MOVIE_URL is not configured.</p>
-          <p>Add a Google Photos (or other) album URL to .env.local and restart the dev server.</p>
+          <p>The family movie link is not configured for this build.</p>
         </div>
       </main>
     );

@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "deploy": "npm run build && node scripts/sync-familymovie-redirect.mjs && firebase deploy",
+    "deploy": "APPSTUDIO_DEPLOY=1 npm run build && node scripts/sync-familymovie-redirect.mjs && firebase deploy",
     "preview": "npm run build && node scripts/sync-familymovie-redirect.mjs && firebase serve --only hosting",
     "optimize-images": "tsx scripts/optimize-images.ts",
     "build-optimized": "npm run optimize-images && npm run build",
-    "deploy-optimized": "npm run build-optimized && node scripts/sync-familymovie-redirect.mjs && firebase deploy",
+    "deploy-optimized": "APPSTUDIO_DEPLOY=1 npm run build-optimized && node scripts/sync-familymovie-redirect.mjs && firebase deploy",
     "test:recaptcha": "tsx scripts/test-recaptcha-api.ts"
   },
   "dependencies": {

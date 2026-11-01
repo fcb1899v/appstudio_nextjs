@@ -69,6 +69,12 @@ One distinction in it is not cosmetic.
 `RECAPTCHA_V3_SECRET_KEY` is deliberately not in that block: with it, anyone can validate their own tokens as this site.
 Moving a key across that line changes who can read it.
 
+`FAMILY_MOVIE_URL` is not set in `.env.local`: `next.config.ts` reads it at build time from a one-line file outside the repository.
+That file is the path in the `FAMILY_MOVIE_URL_FILE` environment variable when it is set, and otherwise `key/web/family_movie_url` under your home directory.
+`npm run deploy` and `npm run deploy-optimized` build with `APPSTUDIO_DEPLOY=1`, and with that set the build stops when the file is missing or empty.
+Any other build (`npm run dev`, `npm run build`, `npm run preview`) still succeeds without the file, and `/familymovie` then shows "The family movie link is not configured for this build."
+`/familymovie` is kept out of search results by `noindex` headers and page metadata, not by `robots.txt`, because crawlers cannot read a `noindex` on a path that `robots.txt` blocks.
+
 `RECAPTCHA_V3_SECRET_KEY` is not written in `.env.local` either.
 Under `npm run dev` only `src/app/api/recaptcha/route.ts` reads it, so pass it on the command line when you test a contact form submit locally:
 
@@ -135,7 +141,7 @@ appstudio_nextjs/
 │   │   │   └── ja/page.tsx     # Japanese app pages
 │   │   ├── contact/            # Contact page (en/ja)
 │   │   ├── terms/              # Terms page (en/ja)
-│   │   └── familymovie/        # Player for FAMILY_MOVIE_URL; its redirect and noindex headers are generated into firebase.json
+│   │   └── familymovie/        # Player for FAMILY_MOVIE_URL; its noindex headers are generated into firebase.json
 │   ├── components/
 │   │   ├── Common/             # Shared components
 │   │   │   ├── AppPage.tsx     # Shared app showcase layout
@@ -222,7 +228,7 @@ npm run deploy
 `npm run deploy` runs the build, then `scripts/sync-familymovie-redirect.mjs`, then `firebase deploy`.
 It deploys to the project `firebase use` has selected, so set that first (`firebase use <project-id>`) or pass `--project`.
 The script also adds a one-year `Cache-Control` header for `/_next/static/**`, whose file names carry a content hash.
-Running `firebase deploy` on its own skips that regeneration, so the rewrite, the redirect and the headers may be stale.
+Running `firebase deploy` on its own skips that regeneration, so the rewrite and the headers may be stale.
 
 ```bash
 # Build and serve the result locally, with the same generated firebase.json
