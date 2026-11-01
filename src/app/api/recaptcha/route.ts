@@ -7,6 +7,22 @@ import { NextResponse } from 'next/server';
 // Server-only env var (no NEXT_PUBLIC_ prefix), so the secret never reaches the client bundle
 const secretKey = process.env.RECAPTCHA_V3_SECRET_KEY;
 
+// Same constants as functions/recaptchaCheck.js; the two packages do not share code.
+const EXPECTED_ACTION = 'submit_form';
+const MIN_SCORE = 0.5;
+const ALLOWED_HOSTNAMES = ['localhost', '127.0.0.1'];
+
+type VerifyResult = { success?: boolean; action?: string; score?: unknown; hostname?: string };
+
+// v3 answers success for any token from this key, so the action, the score and the page's host are what tell a real form submit apart.
+function isAcceptedVerification(verifyData: VerifyResult, allowedHostnames: string[]): boolean {
+  return verifyData.success === true
+    && verifyData.action === EXPECTED_ACTION
+    && typeof verifyData.score === 'number'
+    && verifyData.score >= MIN_SCORE
+    && allowedHostnames.includes(verifyData.hostname ?? '');
+}
+
 export async function POST(request: Request) {
   try {
     if (!secretKey) {
@@ -45,7 +61,8 @@ export async function POST(request: Request) {
 
     // Check if verification was successful
     // Google returns success: true/false and additional data
-    if (!verifyData.success) {
+    if (!isAcceptedVerification(verifyData, ALLOWED_HOSTNAMES)) {
+      console.warn('reCAPTCHA rejected', { action: verifyData.action, score: verifyData.score, hostname: verifyData.hostname });
       return NextResponse.json(
         { ok: false, message: "Invalid reCAPTCHA" },
         { status: 400 }

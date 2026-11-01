@@ -69,6 +69,16 @@ One distinction in it is not cosmetic.
 `RECAPTCHA_V3_SECRET_KEY` is deliberately not in that block: with it, anyone can validate their own tokens as this site.
 Moving a key across that line changes who can read it.
 
+`RECAPTCHA_V3_SECRET_KEY` is not written in `.env.local` either.
+Under `npm run dev` only `src/app/api/recaptcha/route.ts` reads it, so pass it on the command line when you test a contact form submit locally:
+
+```bash
+RECAPTCHA_V3_SECRET_KEY=<secret> npm run dev
+```
+
+Without it, the route answers 500 and the contact form shows a reCAPTCHA error.
+The deployed site does not read it from the environment: the `recaptcha` Cloud Function reads it from Secret Manager.
+
 ## ☁️ Cloud Functions
 
 `functions/` holds one function, `recaptcha`, which a Hosting rewrite serves at `/api/recaptcha`.
@@ -84,11 +94,13 @@ cd functions && npm install && cd ..
 firebase functions:secrets:set RECAPTCHA_V3_SECRET_KEY
 ```
 
-To run it locally, pass the same value as an environment variable, because the emulator resolves `defineSecret` from the process environment:
+The functions emulator (`firebase emulators:start --only functions`) reads the production secret with your application default credentials by default.
+Firebase also lets a `functions/.secret.local` file override that value, but do not create one, so that the secret stays outside the repository folder.
 
-```bash
-RECAPTCHA_V3_SECRET_KEY=... firebase emulators:start --only functions
-```
+The function accepts a token only when Google's answer has `success`, the action `submit_form`, a score of at least 0.5, and a hostname in `ALLOWED_HOSTNAMES` (this site's Hosting domains).
+The check is `functions/recaptchaCheck.js`, and `route.ts` repeats it with `localhost` and `127.0.0.1` as the allowed hostnames, because the two packages share no code.
+Any other answer gets 400, and the server logs a `reCAPTCHA rejected` warning with the action, score and hostname.
+The action must match the one `src/components/Home/ContactBody.tsx` passes to `executeRecaptcha`.
 
 `functions/index.js` is CommonJS, and `functions/package.json` declares no `"type": "module"`.
 
@@ -102,7 +114,9 @@ appstudio_nextjs/
 │   └── README.md
 ├── functions/                  # Cloud Functions (CommonJS, Node 22)
 │   ├── index.js                # recaptcha: verifies a v3 token, served at /api/recaptcha
-│   └── package.json
+│   ├── package.json
+│   ├── recaptchaCheck.js       # Accepts a verification only for the expected action, score and hostname
+│   └── recaptchaCheck.test.js  # Unit tests for that check (npm test, node --test)
 ├── scripts/
 │   ├── optimize-images.ts      # Image optimization, for newly added images
 │   ├── sync-familymovie-redirect.mjs  # Writes the functions entry, rewrites and headers into firebase.json
@@ -256,7 +270,11 @@ npm run build-optimized
 npm run deploy-optimized
 
 # Test the reCAPTCHA endpoint (run with the dev server up in another terminal)
+# Without RECAPTCHA_V3_SECRET_KEY the route answers 500 before reading the token, so its missing and empty token checks get 500, not 400
 npm run test:recaptcha
+
+# Unit tests for the Cloud Function's verification check (node --test)
+cd functions && npm test
 ```
 
 ## 📱 Supported Apps

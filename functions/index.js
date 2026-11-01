@@ -1,12 +1,16 @@
 // CommonJS, not ESM: the deploy analyzer failed on an ESM source with "Cannot determine backend specification" before any code ran.
 const { onRequest } = require('firebase-functions/v2/https');
 const { defineSecret } = require('firebase-functions/params');
+const { isAcceptedVerification } = require('./recaptchaCheck');
 
 // Held in Secret Manager, never in the repository or the bundle.
 // Set it with: firebase functions:secrets:set RECAPTCHA_V3_SECRET_KEY
 const recaptchaSecret = defineSecret('RECAPTCHA_V3_SECRET_KEY');
 
 const VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
+
+// Hosting domains of this site and of its Firebase project.
+const ALLOWED_HOSTNAMES = ['nakajimamasao-appstudio.web.app', 'nakajimamasao-appstudio.firebaseapp.com'];
 
 /**
  * Verifies a reCAPTCHA v3 token for the contact form.
@@ -43,7 +47,8 @@ exports.recaptcha = onRequest({ secrets: [recaptchaSecret] }, async (req, res) =
     const verifyRes = await fetch(VERIFY_URL, { method: 'POST', body: params });
     const verifyData = await verifyRes.json();
 
-    if (!verifyData.success) {
+    if (!isAcceptedVerification(verifyData, ALLOWED_HOSTNAMES)) {
+      console.warn('reCAPTCHA rejected', { action: verifyData.action, score: verifyData.score, hostname: verifyData.hostname });
       res.status(400).json({ ok: false, message: 'Invalid reCAPTCHA' });
       return;
     }
